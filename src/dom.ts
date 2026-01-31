@@ -23,7 +23,7 @@ export function buildWorld(graph: Graph): void {
   landingEl.className = "landing";
   landingEl.innerHTML =
     `<div class="landing-name">ptera</div>` +
-    `<div class="landing-body">i think a lot about software and people —<br>how they shape each other.</div>` +
+    `<div class="landing-body">i think about how software and people<br>shape each other.</div>` +
     `<div class="landing-trail">this is a map of things i've been exploring.</div>`;
   world.appendChild(landingEl);
 
