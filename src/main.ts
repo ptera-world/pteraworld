@@ -18,11 +18,36 @@ applyFilter(filter, graph);
 buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   applyFilter(filter, graph);
   if (filter.active.size > 0) {
-    runLayout(graph, getVisibleIds(filter, graph));
+    const vis = getVisibleIds(filter, graph);
+    runLayout(graph, vis);
+    updatePositions(graph);
+
+    // Fit camera to visible non-ecosystem nodes
+    const vp = document.getElementById("viewport")!;
+    const visible = graph.nodes.filter(
+      (n) => vis.has(n.id) && n.tier !== "ecosystem",
+    );
+    if (visible.length > 0) {
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      for (const n of visible) {
+        minX = Math.min(minX, n.x);
+        maxX = Math.max(maxX, n.x);
+        minY = Math.min(minY, n.y);
+        maxY = Math.max(maxY, n.y);
+      }
+      const cx = (minX + maxX) / 2;
+      const cy = (minY + maxY) / 2;
+      const pad = 200;
+      const zoomX = vp.clientWidth / (maxX - minX + pad);
+      const zoomY = vp.clientHeight / (maxY - minY + pad);
+      const zoom = Math.min(Math.max(Math.min(zoomX, zoomY), 1.5), 3.5);
+      animateTo(camera, cx, cy, zoom);
+    }
   } else {
     resetLayout(graph);
+    updatePositions(graph);
+    animateTo(camera, 0, 0, 1.5);
   }
-  updatePositions(graph);
   hideCard();
 });
 

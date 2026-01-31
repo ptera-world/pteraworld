@@ -21,7 +21,7 @@
     .edge {
       position: absolute; width: 1px; height: 1px; background: #555;
       transform-origin: 0 50%; pointer-events: none;
-      opacity: 0.4; transition: opacity 200ms, translate 400ms ease-out, transform 400ms ease-out;
+      opacity: 0.4; transition: opacity 200ms;
     }
     .edge-label {
       position: absolute;
@@ -40,7 +40,7 @@
       transform: translate(-50%, -50%);
       transition: opacity 200ms, translate 400ms ease-out;
     }
-    .node.ecosystem { z-index: 0; }
+    .node.ecosystem { z-index: 0; opacity: var(--eco-filter-opacity, 1); }
     .node.project { z-index: 1; }
 
     /* Project dot */

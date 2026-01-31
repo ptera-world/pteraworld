@@ -22,10 +22,11 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
     vy.set(n.id, 0);
   }
 
-  const REPEL = 50000;
+  const REPEL = 25000;
   const SPRING_K = 0.005;
   const SPRING_LEN = 150;
-  const ANCHOR_K = 0.01;
+  const ANCHOR_K = 0.03;
+  const CENTER_K = 0.003;
   const DAMPING = 0.85;
   const MAX_FORCE = 10;
   const MAX_STEPS = 200;
@@ -80,6 +81,20 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
       const dy = n.baseY - n.y;
       vx.set(n.id, vx.get(n.id)! + dx * ANCHOR_K);
       vy.set(n.id, vy.get(n.id)! + dy * ANCHOR_K);
+    }
+
+    // Centering: pull toward collective centroid (keeps disjoint groups together)
+    let cx = 0;
+    let cy = 0;
+    for (const n of nodes) {
+      cx += n.x;
+      cy += n.y;
+    }
+    cx /= nodes.length;
+    cy /= nodes.length;
+    for (const n of nodes) {
+      vx.set(n.id, vx.get(n.id)! + (cx - n.x) * CENTER_K);
+      vy.set(n.id, vy.get(n.id)! + (cy - n.y) * CENTER_K);
     }
 
     // Apply velocities with damping

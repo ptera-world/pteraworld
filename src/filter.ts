@@ -58,11 +58,33 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
 
   const visible = getVisibleIds(filter, graph);
 
+  const filtering = filter.active.size > 0;
+
   // Apply to DOM nodes
   for (const node of graph.nodes) {
     const el = nodeEls.get(node.id);
     if (!el) continue;
-    if (visible.has(node.id)) {
+
+    if (node.tags.includes("ecosystem")) {
+      // Ecosystem opacity scales with proportion of visible children
+      if (!filtering) {
+        delete el.dataset.filtered;
+        el.style.removeProperty("--eco-filter-opacity");
+      } else if (!visible.has(node.id)) {
+        el.dataset.filtered = "hidden";
+        el.style.removeProperty("--eco-filter-opacity");
+      } else {
+        delete el.dataset.filtered;
+        const children = graph.nodes.filter((n) => n.parent === node.id);
+        const visibleCount = children.filter((n) => visible.has(n.id)).length;
+        const ratio = children.length > 0 ? visibleCount / children.length : 1;
+        if (ratio < 1) {
+          el.style.setProperty("--eco-filter-opacity", `${0.25 + 0.75 * ratio}`);
+        } else {
+          el.style.removeProperty("--eco-filter-opacity");
+        }
+      }
+    } else if (visible.has(node.id)) {
       delete el.dataset.filtered;
     } else {
       el.dataset.filtered = "hidden";
