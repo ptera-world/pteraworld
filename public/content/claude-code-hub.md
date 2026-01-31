@@ -1,15 +1,9 @@
-Orchestration hub for Claude Code agents. Spawns agents via the Agent SDK, tracks status, exposes HTTP API + WebSocket for real-time updates. Designed for phone access over Tailscale.
+orchestration hub for Claude Code agents. spawns agents, tracks their status, and exposes an HTTP API with WebSocket streaming. designed for checking on things from your phone over Tailscale.
 
-## What it is
+## what it is
 
-Solves the "multiple terminal windows" problem. POST to `/agents` with a working directory and prompt to spawn a new agent. GET `/agents` to see status and recent output. WebSocket at `/ws` for real-time streaming. Send follow-up messages to running agents via `/agents/:id/message`.
+instead of juggling terminal windows, you POST to `/agents` with a working directory and prompt to spawn an agent. GET `/agents` shows status and recent output, `/ws` streams in real time, and you can send follow-ups to running agents.
 
-Each agent runs in its own working directory with its own CLAUDE.md context. Mobile-friendly reference UI included.
+each agent gets its own working directory and CLAUDE.md context. there's a mobile-friendly UI included.
 
-Built with Bun, @anthropic-ai/claude-agent-sdk, Zod v4, and web-push for mobile notifications.
-
-## What it isn't
-
-- Not swarm intelligence or hive mind orchestration
-- Not dozens of specialized agents
-- Just HTTP glue for checking on a few agents from your phone
+built with Bun, the Claude Agent SDK, Zod v4, and web-push for mobile notifications.

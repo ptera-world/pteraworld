@@ -1,24 +1,10 @@
-Minimal expression language compiling to multiple backends. Parse once, emit to WGSL (GPU shaders), Cranelift (native JIT), Lua, GLSL, OpenCL, CUDA, C, Rust, or TokenStream.
+minimal expression language that compiles to multiple backends. parse once, emit to WGSL, Cranelift, Lua, GLSL, OpenCL, CUDA, C, Rust, or TokenStream.
 
-## What it is
+## what it is
 
-A small, focused language for mathematical expressions with let bindings and optional conditionals. Dew handles the gap between "I need a formula" and "I need that formula to run on the GPU / in a JIT / in a scripting runtime."
+a small language for mathematical expressions with let bindings and optional conditionals. it fills the gap between "i need a formula" and "i need that formula to run on the GPU, in a JIT, or in a scripting runtime."
 
-Domain crates provide independent type systems:
-
-- **Scalar** - f32, f64, i32, i64 math
-- **Linear algebra** - vectors and matrices
-- **Complex numbers**
-- **Quaternions**
-
-Each domain has its own FunctionRegistry and eval(). Expression optimization includes constant folding and algebraic simplification. Editor support via VSCode/TextMate/tree-sitter grammars. WASM bindings with module profiles (core, linalg, graphics, signal, full).
-
-## Key design decisions
-
-- Feature-gated conditionals and functions (not in core)
-- Domain crates are independent - no monolithic type system
-- Generic over numeric type T
-- Small and ephemeral by design
+domain crates provide independent type systems (scalar math, linear algebra, complex numbers, quaternions), each with its own function registry and eval. expressions get constant folding and algebraic simplification. there's editor support via VSCode/TextMate/tree-sitter grammars and WASM bindings with module profiles.
 
 ## Related projects
 

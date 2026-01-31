@@ -1,21 +1,10 @@
-Configuration manager for the rhi ecosystem. Generates per-tool config files from a central `myenv.toml` manifest. Tools never read myenv.toml directly - they only read generated native configs.
+configuration manager for the rhi ecosystem. you define everything in one `myenv.toml` and it generates native config files for each tool. tools never know myenv exists.
 
-## What it is
+## what it is
 
-One source of truth for project configuration. You define everything in `myenv.toml`, and myenv generates native config files for each tool. Tools stay dumb - they have no idea myenv exists at runtime.
+one source of truth for project configuration. myenv reads your manifest, validates against tool schemas, and writes out native configs. tools just see their own config files at runtime.
 
-Features:
-
-- Variable substitution across tool configs
-- Schema validation via `tool --schema` convention (validate before write)
-- Project scaffolding via seeds (creation, archaeology, lab templates from [zone](/zone))
-
-## Key design decisions
-
-- Config generation, not orchestration (spore orchestrates)
-- Tools stay dumb: no myenv conventions at runtime
-- Invisible manifest: tools unaware of myenv
-- Validate before write: catch errors before generating
+also handles project scaffolding through seeds (templates from [zone](/zone)) for creating new projects, lifting legacy games, or setting up full ecosystem sandboxes.
 
 ## Related projects
 

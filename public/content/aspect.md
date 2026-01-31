@@ -1,19 +1,12 @@
-Card-based identity exploration sandbox. Local-first web app where everything is a card with edges, navigable as both an infinite graph and an experiential place. Real-time multiplayer via Y.js CRDTs.
+card-based identity exploration sandbox. everything is a card with edges, and you can navigate it as a graph or as a place to walk around in. local-first, real-time multiplayer via Y.js CRDTs.
 
-## What it is
+## what it is
 
-Every card is an atomic unit of existence - a place, trait, relationship, or state. Cards connect via typed directional edges. You navigate by following edges, edit by changing card content, and explore identity by building and rearranging the graph.
+every card represents something (a place, trait, relationship, whatever) and cards connect through typed edges. there's a canvas mode for laying things out as a graph diagram, and a projection mode where you experience it more like being *in* a place, with descriptions and categorized panels.
 
-Features:
+world packs let you define kinds and edge type constraints, and there's a declarative action system for graph transformations. multiplayer syncs via WebSocket with room-scoped SQLite and per-client undo/redo.
 
-- **Canvas mode** - infinite pan/zoom graph diagram with drag, resize, edge-drag, brush selection, minimap
-- **Projection mode** - experiential "place" view with location descriptions, categorized panels by edge type, breadcrumbs, drill-down navigation
-- **World packs** - portable JSON definitions with kinds (icons, colors) and edge type constraints
-- **Actions** - declarative when/do system with JSONLogic predicates for graph transformations
-- **Multiplayer** - Y.js CRDT sync via WebSocket, room-scoped SQLite persistence, per-client undo/redo
-- **Snapshots** - export/import full graph state as JSON
-
-Built with vanilla TypeScript, direct DOM manipulation, Bun server with WebSocket + SQLite WAL mode. Size budget: <120 KB gzip.
+built with vanilla TypeScript and direct DOM manipulation, targeting under 120KB gzip.
 
 ## Related projects
 

@@ -1,26 +1,10 @@
-Lua runtime with plugin system for agentic AI execution. Multi-provider LLM client, SQLite-backed memory store, dynamic C ABI plugin loading, and capability-based security.
+Lua runtime with a plugin system for agentic AI execution. multi-provider LLM client, SQLite-backed memory, dynamic C ABI plugin loading, and capability-based security.
 
-## What it is
+## what it is
 
-The scripting backbone of rhi. Moonlet provides a LuaJIT runtime where Rust crates expose functionality to Lua scripts via a C ABI plugin system. Scripts receive capabilities through a `caps` table - no ambient authority.
+the scripting backbone of rhi. moonlet is a LuaJIT runtime where Rust crates expose functionality to Lua scripts via C ABI plugins. scripts get capabilities through a `caps` table, no ambient authority.
 
-Plugins:
-
-- **llm** - multi-provider client (Anthropic, OpenAI, Azure, Gemini, Cohere, DeepSeek, Groq, Mistral, Ollama, OpenRouter, Perplexity, Together, XAI)
-- **embed** - embedding generation (OpenAI, Azure, Gemini, Cohere, Mistral, Ollama, Together)
-- **libsql** - SQLite-backed memory store with metadata and weights
-- **fs** - capability-based filesystem access
-- **normalize** - code analysis integration via [normalize](/normalize)
-- **sessions** - session management
-- **tools** - tool execution
-- **packages** - package management
-
-## Key design decisions
-
-- Moonlet = agency/execution (LLM, memory, running agents); moss = intelligence (analysis, understanding)
-- Capability-based security: scripts receive pre-opened handles, not path strings
-- C ABI plugin system for language interop
-- Not hard-linked to any single analysis tool; integrates via dynamically loaded plugins
+plugins include an LLM client (Anthropic, OpenAI, Azure, Gemini, Cohere, DeepSeek, Groq, Mistral, Ollama, OpenRouter, Perplexity, Together, XAI), embedding generation, SQLite-backed memory with metadata and weights, capability-based filesystem access, code analysis via [normalize](/normalize), session management, tool execution, and package management.
 
 ## Related projects
 

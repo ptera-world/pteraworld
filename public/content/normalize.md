@@ -1,24 +1,16 @@
-Fast code intelligence CLI providing structural awareness of codebases through AST-based analysis. Supports 98 languages via tree-sitter with unified commands for navigation, analysis, linting, search, and package management.
+code intelligence CLI that works structurally across 98 languages via tree-sitter. navigation, analysis, linting, search, and package management through a single interface.
 
-## What it is
+## what it is
 
-A command-line tool that treats source code structurally. Instead of text, normalize works with syntax trees - functions, types, modules, imports - across 98 languages through a single interface.
+instead of treating source code as text, normalize works with syntax trees (functions, types, modules, imports). core commands:
 
-Core commands:
-
-- `normalize view` - structural outline of files and directories with line numbers
-- `normalize analyze` - codebase health metrics, complexity, hotspots, duplicates, documentation coverage
+- `normalize view` - structural outline with line numbers
+- `normalize analyze` - codebase health, complexity, hotspots, duplicates, documentation coverage
 - `normalize tools` - unified interface to linters, formatters, test runners
-- `normalize text-search` - full-text search with ripgrep backend and file filtering
-- `normalize packages` - query package registries (Cargo, npm, pip, Go, Bundler, Composer, Hex, Maven, NuGet, Nix, Conan)
+- `normalize text-search` - full-text search with ripgrep backend
+- `normalize packages` - query package registries (Cargo, npm, pip, Go, and more)
 
-Also serves as MCP server, HTTP REST API, or LSP server. Can parse Claude Code session logs and run Lua scripts for automation.
-
-## Key design decisions
-
-- Index-first architecture: core extraction lives in Rust index, commands work without index via graceful degradation
-- OutputFormatter trait: consistent `--pretty`/`--compact`/`--json` output across all commands
-- Dog-fooding: uses its own commands instead of builtin tools
+also serves as an MCP server, HTTP REST API, or LSP server. can parse Claude Code session logs and run Lua scripts for automation.
 
 ## Related projects
 

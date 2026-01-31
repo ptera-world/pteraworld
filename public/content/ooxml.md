@@ -1,21 +1,12 @@
-Office Open XML library for Rust. Typed-over-stringly approach: every XML element has a Rust struct. Preserves unknown elements for roundtrip fidelity. Spec-driven - ECMA-376 is source of truth.
+Office Open XML library for Rust. every XML element maps to a Rust struct, unknown elements are preserved for roundtrip fidelity, and ECMA-376 is the source of truth.
 
-## What it is
+## what it is
 
-A Rust library for reading and writing DOCX, XLSX, and PPTX files. Struct names match ECMA-376 element names (e.g., `Run` for `<w:r>`). Unknown XML elements and attributes are stored in catch-all fields for roundtrip preservation.
+reads and writes DOCX, XLSX, and PPTX files. struct names match the spec (e.g., `Run` for `<w:r>`), and unknown XML elements get stored in catch-all fields so nothing is lost on roundtrip.
 
-Crate structure:
+crate structure: `ooxml` for core OPC packaging, `ooxml-wml` for WordprocessingML, `ooxml-sml` for SpreadsheetML, `ooxml-pml` for PresentationML, `ooxml-dml` for DrawingML, `ooxml-omml` for Office Math, `ooxml-codegen` for generating code from the spec, and `ooxml-corpus` for fixture testing with real documents.
 
-- **ooxml** (ooxml-opc) - core OPC packaging, ZIP read/write, relationships
-- **ooxml-wml** - WordprocessingML (DOCX): body, paragraphs, runs, formatting, styles, tables, images
-- **ooxml-sml** - SpreadsheetML (XLSX)
-- **ooxml-pml** - PresentationML (PPTX)
-- **ooxml-dml** - DrawingML (shared shapes/graphics)
-- **ooxml-omml** - Office Math Markup Language
-- **ooxml-codegen** - code generation from ECMA-376 specs
-- **ooxml-corpus** - fixture testing with real documents
-
-Built with quick-xml, serde, and insta for snapshot testing.
+built with quick-xml, serde, and insta for snapshot testing.
 
 ## Related projects
 

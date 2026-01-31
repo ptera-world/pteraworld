@@ -1,14 +1,7 @@
-Universal UI client for arbitrary data sources with data-agnostic control plane. View any format - JSON, protobuf, msgpack, SSE, video, audio, binary - and trigger actions through format-agnostic adapters.
+universal UI client that can view any data source. JSON, protobuf, msgpack, SSE, video, audio, binary - it renders appropriate interfaces from structural descriptions without knowing specific formats.
 
-## What it is
+## what it is
 
-A format-agnostic UI client. Dusklight doesn't know about specific data formats - it receives structural descriptions and renders appropriate interfaces. The control plane handles mutations, triggers, and interactions, all equally format-agnostic.
+dusklight receives structural descriptions of data and figures out how to display it. the control plane handles mutations, triggers, and interactions, all equally format-agnostic. adapters connect it to new data sources.
 
-For rhi projects, dusklight serves as a unified dashboard: inspect world state, trigger extractions, monitor pipelines, view expression outputs - all through the same client pointing at different data sources.
-
-## Key design decisions
-
-- Data-format agnostic architecture
-- Control plane equally format-agnostic
-- Adapter-based extensibility
-- Project hub pattern for ecosystem integration
+for rhi projects it works as a unified dashboard where you can inspect world state, trigger extractions, monitor pipelines, and view expression outputs, all through the same client pointing at different sources.

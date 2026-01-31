@@ -1,19 +1,10 @@
-API bindings intermediate representation and code generation. Generates idiomatic language bindings from API specifications like OpenAPI.
+API bindings IR and code generation. parses API specs (like OpenAPI) into a universal intermediate representation, then generates idiomatic client libraries for different languages.
 
-## What it is
+## what it is
 
-A tool that parses API definitions into a universal intermediate representation, then generates client libraries for target languages. The IR captures full API semantics - endpoints, types, authentication, pagination - so generated code handles real-world patterns correctly.
+the idea is to capture full API semantics in an IR (endpoints, types, auth, pagination) so the generated code actually handles real-world patterns. the pipeline goes: parse spec, transform and optimize, emit bindings for the target language. supports Rust, TypeScript, Python, and more.
 
-The pipeline: parse spec into IR, transform and optimize, emit idiomatic bindings for the target language. Multi-language support: Rust, TypeScript, Python, and more.
-
-Branch structure: master holds core infrastructure, the bindings branch merges master and adds generated API bindings in categories (web-* for browser APIs, openapi-* from specs, ffi-* for foreign function interfaces). Generated code is a build artifact, not checked into master.
-
-## Key design decisions
-
-- Universal IR captures full API semantics
-- Generated code is build artifact
-- Multi-language codegen from single IR
-- Branch separation: infrastructure vs generated bindings
+master holds core infrastructure, and a separate bindings branch adds generated API bindings in categories (web-* for browser APIs, openapi-* from specs, ffi-* for foreign function interfaces). generated code is a build artifact, not checked into master.
 
 ## Related projects
 

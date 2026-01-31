@@ -1,18 +1,12 @@
-Universal document conversion library with lossless intermediate representation. Pandoc-inspired, 50+ formats, open node kinds, fidelity tracking, and roundtrip-friendly design.
+universal document converter with a lossless intermediate representation. 50+ formats, open node kinds, fidelity tracking, and roundtrip-friendly design.
 
-## What it is
+## what it is
 
-A document converter built in Rust. Rescribe converts between 50+ document formats through an IR designed to preserve as much information as possible. Unlike Pandoc's fixed Haskell ADT, rescribe's NodeKind is a string type - the schema is open-ended.
+a Rust library that converts between document formats through an IR designed to preserve as much as possible. unlike Pandoc's fixed ADT, rescribe's node kinds are open-ended strings, so nothing gets forced into a predefined schema.
 
-Key design choices:
+nodes carry property bags with namespaces (semantic, style, layout, format-specific like `html:class` or `latex:env`), conversion loss is tracked and warned about (never silent), and embedded resources (images, fonts, data) are first-class. source format metadata is preserved for roundtripping.
 
-- **Open node kinds** - not limited to a fixed set of document elements
-- **Property bags** - key-value properties with namespaces (semantic, style, layout, format-specific like `html:class` or `latex:env`)
-- **Fidelity tracking** - warnings on conversion loss, never silent
-- **Embedded resources** - images, fonts, and data as first-class ResourceMap
-- **Roundtrip-friendly** - source format metadata preserved
-
-Standard nodes: document, paragraph, heading, code_block, blockquote, list, table, figure, emphasis, strong, link, image. Optional math crate adds math_inline, fraction, matrix, etc.
+standard nodes cover the usual things (paragraphs, headings, code blocks, lists, tables, etc.) and an optional math crate adds math_inline, fractions, matrices, and so on.
 
 ## Related projects
 
