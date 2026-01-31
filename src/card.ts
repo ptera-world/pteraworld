@@ -85,13 +85,9 @@ export function showCard(node: Node, graph: Graph, cx: number, cy: number): void
   const card = document.getElementById("card");
   if (!card) return;
   card.replaceChildren(buildCard(node, graph));
+  card.style.left = `${cx + 16}px`;
+  card.style.top = `${cy}px`;
   card.hidden = false;
-  // Position near click point, clamped to viewport
-  const rect = card.getBoundingClientRect();
-  const left = Math.max(12, Math.min(cx + 16, window.innerWidth - rect.width - 12));
-  const top = Math.max(12, Math.min(cy - rect.height / 2, window.innerHeight - rect.height - 12));
-  card.style.left = `${left}px`;
-  card.style.top = `${top}px`;
 }
 
 export function hideCard(): void {

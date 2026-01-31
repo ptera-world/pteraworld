@@ -10,12 +10,11 @@
       width: 100%; height: 100%; overflow: hidden; background: #0a0a0a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+    #viewport { position: relative; width: 100%; height: 100%; }
     canvas { display: block; width: 100%; height: 100%; }
 
     #card {
-      position: fixed;
-      top: 0;
-      left: 0;
+      position: absolute;
       background: #1a1a1a;
       border: 1px solid #333;
       border-radius: 8px;
@@ -86,8 +85,10 @@
   </style>
 </head>
 <body>
-  <canvas id="world"></canvas>
-  <div id="card" hidden></div>
+  <div id="viewport">
+    <canvas id="world"></canvas>
+    <div id="card" hidden></div>
+  </div>
   <script type="module" src="/main.js"></script>
 </body>
 </html>
