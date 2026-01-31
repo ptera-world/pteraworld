@@ -81,7 +81,7 @@ export function buildWorld(graph: Graph): void {
     label.textContent = node.label;
     text.appendChild(label);
 
-    if (node.tier !== "ecosystem" && node.description) {
+    if (node.description) {
       const desc = document.createElement("div");
       desc.className = "node-desc";
       desc.textContent = node.description;

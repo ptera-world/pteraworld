@@ -17,11 +17,11 @@ export function setupInput(
     dragging = true;
     lastX = e.clientX;
     lastY = e.clientY;
-    viewport.classList.add("dragging");
   });
 
   viewport.addEventListener("mousemove", (e) => {
     if (!dragging) return;
+    viewport.classList.add("dragging");
     camera.x -= (e.clientX - lastX) / camera.zoom;
     camera.y -= (e.clientY - lastY) / camera.zoom;
     lastX = e.clientX;
