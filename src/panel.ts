@@ -188,6 +188,7 @@ export function openPanel(nodeId: string, nodeLabel?: string): void {
   panelOpen.href = `/${nodeId}`;
 
   const node = graphRef.nodes.find(n => n.id === nodeId);
+  const isEssay = node?.tags.includes("essay") ?? false;
   if (node) {
     setFocus(graphRef, node);
     animateTo(cam, node.x, node.y, Math.max(cam.zoom, 1.5));
@@ -196,7 +197,7 @@ export function openPanel(nodeId: string, nodeLabel?: string): void {
   const cached = contentCache.get(nodeId);
   if (cached !== undefined) {
     panelBody.innerHTML = cached;
-    prepareContent(panelBody);
+    if (isEssay) prepareContent(panelBody);
     updateTransform(cam);
     return;
   }
@@ -207,7 +208,7 @@ export function openPanel(nodeId: string, nodeLabel?: string): void {
   fetchContent(nodeId).then((html) => {
     if (currentNodeId === nodeId) {
       panelBody.innerHTML = html;
-      prepareContent(panelBody);
+      if (isEssay) prepareContent(panelBody);
     }
   });
 }
@@ -215,7 +216,6 @@ export function openPanel(nodeId: string, nodeLabel?: string): void {
 export function closePanel(): void {
   panel.hidden = true;
   currentNodeId = null;
-  setFocus(graphRef, null);
   updateTransform(cam);
 }
 

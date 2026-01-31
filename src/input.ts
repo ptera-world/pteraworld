@@ -1,8 +1,8 @@
 import type { Camera } from "./camera";
-import type { Graph } from "./graph";
+import type { Graph, Node } from "./graph";
 import { updateTransform, setFocus, getHitNode, animateTo } from "./dom";
 import { showCard, hideCard, isCardOpen, setCardNavigate } from "./card";
-import { isPanelOpen, closePanel, openPanel, panelNode } from "./panel";
+import { isPanelOpen, closePanel, openPanel } from "./panel";
 
 export function setupInput(
   viewport: HTMLElement,
@@ -14,8 +14,10 @@ export function setupInput(
   let lastY = 0;
   let downX = 0;
   let downY = 0;
+  let focusedNode: Node | null = null;
 
   setCardNavigate((node) => {
+    focusedNode = node;
     if (isPanelOpen()) {
       openPanel(node.id, node.label);
     } else {
@@ -51,7 +53,7 @@ export function setupInput(
   viewport.addEventListener("mouseleave", () => {
     dragging = false;
     viewport.classList.remove("dragging");
-    setFocus(graph, panelNode());
+    setFocus(graph, focusedNode);
   });
 
   // Hover
@@ -66,7 +68,7 @@ export function setupInput(
     const from = (e.target as HTMLElement).closest?.(".node-hit");
     const to = (e.relatedTarget as HTMLElement | null)?.closest?.(".node-hit");
     if (from && from !== to && !to) {
-      setFocus(graph, panelNode());
+      setFocus(graph, focusedNode);
     }
   });
 
@@ -78,6 +80,8 @@ export function setupInput(
     if (dx * dx + dy * dy > 16 * 16) return;
     const node = getHitNode(e.target);
     if (node) {
+      focusedNode = node;
+      setFocus(graph, node);
       if (e.ctrlKey || e.metaKey) {
         window.open(`/${node.id}`, "_blank");
         return;
@@ -87,10 +91,15 @@ export function setupInput(
       } else {
         showCard(node, graph);
       }
-    } else if (isPanelOpen()) {
-      closePanel();
-    } else if (isCardOpen()) {
-      hideCard();
+    } else {
+      // Background click - clear focus
+      focusedNode = null;
+      setFocus(graph, null);
+      if (isPanelOpen()) {
+        closePanel();
+      } else if (isCardOpen()) {
+        hideCard();
+      }
     }
   });
 

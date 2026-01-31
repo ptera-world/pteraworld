@@ -26,24 +26,40 @@ export function toggleTag(filter: FilterState, tag: string): void {
 }
 
 export function applyFilter(filter: FilterState, graph: Graph): void {
-  // Determine which nodes pass the filter
+  const filtering = filter.active.size > 0;
+  const world = document.getElementById("world")!;
+
+  // Signal filtering state for landing fade
+  if (filtering) {
+    world.dataset.filtering = "";
+  } else {
+    delete world.dataset.filtering;
+  }
+
+  // Determine which non-ecosystem nodes pass the filter
   const visible = new Set<string>();
   for (const node of graph.nodes) {
-    if (node.tags.includes("ecosystem")) {
-      visible.add(node.id);
-      continue;
-    }
-    const passes = filter.active.size === 0 || node.tags.some((t) => filter.active.has(t));
+    if (node.tags.includes("ecosystem")) continue;
+    const passes = !filtering || node.tags.some((t) => filter.active.has(t));
     if (passes) visible.add(node.id);
+  }
+
+  // Ecosystems: visible only if they have at least one visible child (or no filter active)
+  for (const node of graph.nodes) {
+    if (!node.tags.includes("ecosystem")) continue;
+    if (!filtering) {
+      visible.add(node.id);
+    } else {
+      const hasChild = graph.nodes.some(n => n.parent === node.id && visible.has(n.id));
+      if (hasChild) visible.add(node.id);
+    }
   }
 
   // Apply to DOM nodes
   for (const node of graph.nodes) {
     const el = nodeEls.get(node.id);
     if (!el) continue;
-    if (node.tags.includes("ecosystem")) {
-      delete el.dataset.filtered;
-    } else if (visible.has(node.id)) {
+    if (visible.has(node.id)) {
       delete el.dataset.filtered;
     } else {
       el.dataset.filtered = "hidden";
