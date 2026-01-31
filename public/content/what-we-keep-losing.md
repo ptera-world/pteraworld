@@ -48,6 +48,8 @@ These weren't "projects." They were civilizational organs.
 
 We don't build those anymore. We build products. Platforms. Services. Ecosystems. APIs. Not millennium-scale institutions. Not knowledge systems designed to outlive their creators.
 
+The internet was supposed to fix this. It made the world feel small — anyone can reach anyone, instantly, anywhere. But connection isn't closeness. We're more reachable than ever and not much closer. Billions of people on the same network, mostly consuming in parallel rather than building together.
+
 The capacity isn't gone. The infrastructure isn't gone. The intelligence isn't gone. What's missing is the shared horizon — the cognitive category for "we are allowed to build things bigger than ourselves that aren't about power."
 
 ## Games keep proving it works
