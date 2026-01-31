@@ -1,10 +1,11 @@
 import { createCamera } from "./camera";
 import { createGraph } from "./graph";
-import { buildWorld, updateTransform, setFilterRef, setFocus, animateTo } from "./dom";
+import { buildWorld, updateTransform, setFilterRef, setFocus, animateTo, updatePositions } from "./dom";
 import { setupInput } from "./input";
 import { initPanel, openPanel } from "./panel";
-import { showCard } from "./card";
-import { createFilter, buildFilterUI, applyFilter } from "./filter";
+import { showCard, hideCard } from "./card";
+import { createFilter, buildFilterUI, applyFilter, getVisibleIds } from "./filter";
+import { runLayout, resetLayout } from "./layout";
 
 const camera = createCamera();
 const graph = createGraph();
@@ -16,6 +17,13 @@ setFilterRef(filter);
 applyFilter(filter, graph);
 buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   applyFilter(filter, graph);
+  if (filter.active.size > 0) {
+    runLayout(graph, getVisibleIds(filter, graph));
+  } else {
+    resetLayout(graph);
+  }
+  updatePositions(graph);
+  hideCard();
 });
 
 updateTransform(camera);

@@ -25,26 +25,15 @@ export function toggleTag(filter: FilterState, tag: string): void {
   }
 }
 
-export function applyFilter(filter: FilterState, graph: Graph): void {
+/** Return the set of node IDs that pass the current filter. */
+export function getVisibleIds(filter: FilterState, graph: Graph): Set<string> {
   const filtering = filter.active.size > 0;
-  const world = document.getElementById("world")!;
-
-  // Signal filtering state for landing fade
-  if (filtering) {
-    world.dataset.filtering = "";
-  } else {
-    delete world.dataset.filtering;
-  }
-
-  // Determine which non-ecosystem nodes pass the filter
   const visible = new Set<string>();
   for (const node of graph.nodes) {
     if (node.tags.includes("ecosystem")) continue;
     const passes = !filtering || node.tags.some((t) => filter.active.has(t));
     if (passes) visible.add(node.id);
   }
-
-  // Ecosystems: visible only if they have at least one visible child (or no filter active)
   for (const node of graph.nodes) {
     if (!node.tags.includes("ecosystem")) continue;
     if (!filtering) {
@@ -54,6 +43,20 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
       if (hasChild) visible.add(node.id);
     }
   }
+  return visible;
+}
+
+export function applyFilter(filter: FilterState, graph: Graph): void {
+  const world = document.getElementById("world")!;
+
+  // Signal filtering state for landing fade
+  if (filter.active.size > 0) {
+    world.dataset.filtering = "";
+  } else {
+    delete world.dataset.filtering;
+  }
+
+  const visible = getVisibleIds(filter, graph);
 
   // Apply to DOM nodes
   for (const node of graph.nodes) {

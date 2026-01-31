@@ -9,9 +9,12 @@ export interface Node {
   tier: "ecosystem" | "project" | "detail";
   /** Parent ecosystem id, if any. */
   parent?: string;
-  /** Base position - layout shifts these based on focus. */
+  /** Current position (mutated by layout). */
   x: number;
   y: number;
+  /** Original position - reset target after layout changes. */
+  baseX: number;
+  baseY: number;
   /** Visual radius at native zoom. */
   radius: number;
   color: string;
@@ -30,7 +33,7 @@ export interface Graph {
 }
 
 export function createGraph(): Graph {
-  const nodes: Node[] = [
+  const defs: Omit<Node, "baseX" | "baseY">[] = [
     // Ecosystems
     {
       id: "rhi",
@@ -379,6 +382,8 @@ export function createGraph(): Graph {
       tags: ["essay", "infrastructure", "games"],
     },
   ];
+
+  const nodes: Node[] = defs.map((n) => ({ ...n, baseX: n.x, baseY: n.y }));
 
   const containmentEdges: Edge[] = nodes
     .filter((n) => n.parent)

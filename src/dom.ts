@@ -53,8 +53,7 @@ export function buildWorld(graph: Graph): void {
     el.dataset.to = to.id;
     el.style.left = `${from.x}px`;
     el.style.top = `${from.y}px`;
-    el.style.width = `${len}px`;
-    el.style.transform = `rotate(${angle}rad)`;
+    el.style.transform = `rotate(${angle}rad) scaleX(${len})`;
     world.appendChild(el);
 
     edgeRefs.push({ el, from: from.id, to: to.id, labelEl: null });
@@ -200,4 +199,34 @@ export function setFocus(graph: Graph, hovered: Node | null): void {
 export function getHitNode(target: EventTarget | null): Node | null {
   const hitEl = (target as HTMLElement)?.closest?.(".node-hit");
   return hitEl ? hitNodes.get(hitEl as HTMLElement) ?? null : null;
+}
+
+/** Apply current node.x/y positions to DOM via compositor-friendly properties. */
+export function updatePositions(graph: Graph): void {
+  const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+
+  for (const node of graph.nodes) {
+    const el = nodeEls.get(node.id);
+    if (!el) continue;
+    const dx = node.x - node.baseX;
+    const dy = node.y - node.baseY;
+    el.style.translate = dx === 0 && dy === 0 ? "" : `${dx}px ${dy}px`;
+  }
+
+  for (const ref of edgeRefs) {
+    const from = nodeMap.get(ref.from);
+    const to = nodeMap.get(ref.to);
+    if (!from || !to) continue;
+
+    const dx = to.x - from.x;
+    const dy = to.y - from.y;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx);
+
+    const fromDx = from.x - from.baseX;
+    const fromDy = from.y - from.baseY;
+    ref.el.style.translate =
+      fromDx === 0 && fromDy === 0 ? "" : `${fromDx}px ${fromDy}px`;
+    ref.el.style.transform = `rotate(${angle}rad) scaleX(${len})`;
+  }
 }
