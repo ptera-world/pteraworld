@@ -58,7 +58,7 @@ export function setupInput(
   viewport.addEventListener("click", (e) => {
     const node = getHitNode(e.target);
     if (node) {
-      showCard(node, graph, e.clientX, e.clientY);
+      showCard(node, graph);
     } else if (isCardOpen()) {
       hideCard();
     }

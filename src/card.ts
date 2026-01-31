@@ -81,12 +81,12 @@ function buildCard(node: Node, graph: Graph): DocumentFragment {
   return frag;
 }
 
-export function showCard(node: Node, graph: Graph, cx: number, cy: number): void {
+export function showCard(node: Node, graph: Graph): void {
   const card = document.getElementById("card");
   if (!card) return;
   card.replaceChildren(buildCard(node, graph));
-  card.style.left = `${cx + 16}px`;
-  card.style.top = `${cy}px`;
+  card.style.left = `${node.x + node.radius + 12}px`;
+  card.style.top = `${node.y}px`;
   card.hidden = false;
 }
 
