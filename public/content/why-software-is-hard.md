@@ -22,7 +22,7 @@ Complexity as moat. If software is hard to learn, it's hard to leave. You've inv
 
 Features as marketing. More checkboxes on the comparison page. Doesn't matter if they make the app worse to use - they make it easier to sell. Features accumulate. Nobody removes them.
 
-The result: bloated software that does everything, where finding anything takes expertise.
+The result: bloated software that does everything, where finding anything takes expertise. And when someone asks how to do something, the answer is often ["just..."](https://www.todepond.com/wikiblogarden/better-computing/just/) — a word that hides an entire iceberg of assumed knowledge.
 
 ## The wrong people decide
 
