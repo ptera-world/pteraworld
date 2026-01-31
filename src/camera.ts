@@ -6,12 +6,12 @@ export interface Camera {
 }
 
 export function createCamera(): Camera {
-  return { x: 0, y: 0, zoom: 1 };
+  return { x: 0, y: 0, zoom: 1.5 };
 }
 
 export function currentTier(camera: Camera): "far" | "mid" | "near" {
-  if (camera.zoom < 0.6) return "far";
-  if (camera.zoom < 2) return "mid";
+  if (camera.zoom < 1.5) return "far";
+  if (camera.zoom < 3.5) return "mid";
   return "near";
 }
 
