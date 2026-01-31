@@ -8,9 +8,11 @@
     "build": "bun build src/main.ts --outdir dist --minify",
     "preview": "bun run src/dev.ts --production",
     "lint": "oxlint src/",
-    "check:types": "bun x tsgo --check"
+    "check:types": "tsgo --noEmit"
   },
   "devDependencies": {
+    "@types/bun": "^1.0.0",
+    "@typescript/native-preview": "^7.0.0-dev",
     "oxlint": "^1.0.0"
   }
 }

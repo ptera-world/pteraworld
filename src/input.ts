@@ -1,6 +1,7 @@
 import type { Camera } from "./camera";
 import { screenToWorld, worldToScreen } from "./camera";
 import type { Graph, Node } from "./graph";
+import { showCard, hideCard, isCardOpen } from "./card";
 
 export interface InputState {
   dragging: boolean;
@@ -38,14 +39,14 @@ export function setupInput(
       requestRender();
     } else {
       state.hovered = hitTest(canvas, camera, graph, e.clientX, e.clientY);
-      canvas.style.cursor = state.hovered?.url ? "pointer" : "grab";
+      canvas.style.cursor = state.hovered ? "pointer" : "grab";
       requestRender();
     }
   });
 
   canvas.addEventListener("mouseup", () => {
     state.dragging = false;
-    canvas.style.cursor = state.hovered?.url ? "pointer" : "grab";
+    canvas.style.cursor = state.hovered ? "pointer" : "grab";
   });
 
   canvas.addEventListener("mouseleave", () => {
@@ -57,8 +58,10 @@ export function setupInput(
 
   canvas.addEventListener("click", (e) => {
     const node = hitTest(canvas, camera, graph, e.clientX, e.clientY);
-    if (node?.url) {
-      window.open(node.url, "_blank");
+    if (node) {
+      showCard(node, graph);
+    } else if (isCardOpen()) {
+      hideCard();
     }
   });
 
@@ -81,6 +84,13 @@ export function setupInput(
     camera.y += (sy2 - e.clientY) / camera.zoom;
     requestRender();
   }, { passive: false });
+
+  // Escape to close card
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isCardOpen()) {
+      hideCard();
+    }
+  });
 
   // Touch support
   let lastTouchDist = 0;

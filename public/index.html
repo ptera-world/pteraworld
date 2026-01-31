@@ -6,12 +6,78 @@
   <title>pteraworld</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden; background: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
     canvas { display: block; width: 100%; height: 100%; }
+
+    #card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 400px;
+      min-width: 280px;
+      color: #ddd;
+      z-index: 10;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .card-close {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .card-close:hover { color: #fff; }
+    .card-desc {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .card-link {
+      display: inline-block;
+      color: #6a9;
+      font-size: 13px;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .card-link:hover { text-decoration: underline; }
+    .card-refs {
+      border-top: 1px solid #333;
+      padding-top: 8px;
+    }
+    .card-ref {
+      font-size: 13px;
+      color: #999;
+      padding: 2px 0;
+    }
+    .card-ref-label {
+      color: #666;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
   <canvas id="world"></canvas>
+  <div id="card" hidden></div>
   <script type="module" src="/main.js"></script>
 </body>
 </html>
