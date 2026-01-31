@@ -1,8 +1,8 @@
-# Why software is hard
+# Why is software hard?
 
 You're not bad at computers. Software is actually hard to use. Here's why.
 
-## It hides what it can do
+## Why can't you find anything?
 
 You know the app can do something. You've done it before. You just can't find it.
 
@@ -16,7 +16,7 @@ The pattern: software has capabilities, but won't tell you what they are. You hu
 
 This isn't your fault. It's a design choice. The functionality is *hidden* - buried in menus, implicit in code, never surfaced. There's no way to ask "what can I do here?"
 
-## It's complicated on purpose
+## Is complexity intentional?
 
 Complexity as moat. If software is hard to learn, it's hard to leave. You've invested in mastering the hiding places. Switching costs are high. Some companies benefit from this.
 
@@ -24,7 +24,7 @@ Features as marketing. More checkboxes on the comparison page. Doesn't matter if
 
 The result: bloated software that does everything, where finding anything takes expertise. And when someone asks how to do something, the answer is often ["just..."](https://www.todepond.com/wikiblogarden/better-computing/just/) — a word that hides an entire iceberg of assumed knowledge.
 
-## The wrong people decide
+## Who decides how software works?
 
 Software is built by engineers. Engineers optimize for what engineers value: features, flexibility, power. Not simplicity, not learnability, not "can my mom use this?"
 
@@ -34,7 +34,7 @@ And when designers *are* involved, they're often overruled by product managers o
 
 The people building the software aren't the people using it. And the incentives don't align.
 
-## It got stuck
+## Why hasn't it changed?
 
 The way software works - windows, icons, menus, clicking - was invented in the 1970s. It was revolutionary then.
 
@@ -46,7 +46,7 @@ We once had spatial interfaces (the original Mac Finder remembered where each fo
 
 We inherited the paradigm, not the reasoning behind it.
 
-## It doesn't respect your time
+## Does it respect your time?
 
 Good software values your hours. Bad software wastes them to inflate metrics.
 
@@ -58,7 +58,7 @@ Good software values your hours. Bad software wastes them to inflate metrics.
 
 None of this helps you do what you came to do. It helps the software company hit their numbers.
 
-## What good software feels like
+## What does good software feel like?
 
 It exists. You've probably used some. It feels different:
 
@@ -71,7 +71,7 @@ It exists. You've probably used some. It feels different:
 
 This isn't magic. It's choices. Someone decided to prioritize your experience over their metrics.
 
-## What you can do
+## What can you do?
 
 **Recognize it's not you.** When software is frustrating, the frustration is valid. It's not a skill issue - it's a design issue.
 
@@ -81,7 +81,7 @@ This isn't magic. It's choices. Someone decided to prioritize your experience ov
 
 **Accept that expertise is contextual.** Being good at one app doesn't transfer. Each app has its own arbitrary hiding places. You're not dumb for not knowing them.
 
-## The deeper problem
+## What's the deeper problem?
 
 Software is hard because the people building it benefit from it being hard, or don't prioritize it being easy, or simply don't know how to make it easier.
 

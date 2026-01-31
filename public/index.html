@@ -210,11 +210,14 @@
 
     /* Collapsible content sections */
     .section-body {
-      opacity: 0.15; pointer-events: none;
+      opacity: 0.15; cursor: pointer;
       transition: opacity 200ms;
     }
+    .section-body:hover {
+      opacity: 0.6;
+    }
     .collapsible-section.expanded .section-body {
-      opacity: 1; pointer-events: auto;
+      opacity: 1; cursor: auto;
     }
 
     /* Essay dot shape */

@@ -26,9 +26,19 @@ function prepareContent(container: HTMLElement): void {
   let section: HTMLElement | null = null;
   let body: HTMLElement | null = null;
 
+  const NAV_HEADINGS = ["see also", "related projects"];
+
   for (const child of children) {
     if (child.tagName === "H2") {
       if (section) container.appendChild(section);
+
+      const text = (child.textContent ?? "").toLowerCase().trim();
+      if (NAV_HEADINGS.includes(text)) {
+        section = null;
+        body = null;
+        container.appendChild(child);
+        continue;
+      }
 
       const sec = document.createElement("section");
       sec.className = "collapsible-section";
@@ -40,6 +50,13 @@ function prepareContent(container: HTMLElement): void {
 
       child.addEventListener("click", () => {
         sec.classList.toggle("expanded");
+      });
+
+      bd.addEventListener("click", (e) => {
+        if (!sec.classList.contains("expanded")) {
+          e.stopPropagation();
+          sec.classList.add("expanded");
+        }
       });
 
       section = sec;

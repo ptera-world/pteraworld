@@ -1,4 +1,4 @@
-# Problems
+# What's actually wrong?
 
 Before solutions. Before tools. What's actually wrong?
 

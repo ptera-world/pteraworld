@@ -1,10 +1,10 @@
-# What we keep losing
+# What do we keep losing?
 
 Technology isn't preserved by existence. It's preserved by continuous practice.
 
 If the guild dies, the funding dies, the use-case disappears, the institution collapses, the knowledge becomes irrelevant — the tech evaporates, even if the idea was known.
 
-## Things that vanished
+## What has already vanished?
 
 Roman concrete that self-heals in seawater. Formula gone for 1,500 years. Not because it was impossible — the knowledge chain just broke.
 
@@ -12,7 +12,7 @@ Greek fire. Damascus steel. The Antikythera mechanism — a 2,000-year-old analo
 
 The pattern isn't dramatic. No fire. No catastrophe. Just: nobody kept doing it, so nobody remembered how.
 
-## The real loss is always systems
+## What's actually being lost?
 
 We romanticize these as objects. Pyramids = big stones. Alexandria = burned scrolls. But the actual loss was systems.
 
@@ -22,7 +22,7 @@ Alexandria wasn't just a library. It was a research institute, translation hub, 
 
 Physical things survive neglect. But knowledge systems require continuous care. They can't be abandoned, defunded, deprecated, or sunset. And modern systems all can be.
 
-## Digital is more fragile
+## Is digital more fragile?
 
 Stone tablets last 5,000 years. Magnetic tape lasts 50. Cloud services last as long as the company exists.
 
@@ -34,7 +34,7 @@ We once had HyperCard — anyone could build interactive things, and many did. A
 
 The technology existed. It proved useful. Then it got captured, or neglected, or superseded by something worse but better-funded.
 
-## We forgot how to align
+## Did we forget how to align?
 
 We still have megascale systems. Markets, militaries, supply chains, platforms. We can coordinate billions of people.
 
@@ -52,7 +52,7 @@ The internet was supposed to fix this. It made the world feel small — anyone c
 
 The capacity isn't gone. The infrastructure isn't gone. The intelligence isn't gone. What's missing is the shared horizon — the cognitive category for "we are allowed to build things bigger than ourselves that aren't about power."
 
-## Games keep proving it works
+## Why do games keep getting it right?
 
 Minecraft — you just join their world. You see what they're building. You can help. No screen share, no special tools, no "can you show me your screen?" The context is shared by design, so collaboration is natural.
 
@@ -62,7 +62,7 @@ The rest of software made collaboration so hard that we forgot it was natural. G
 
 The technology for real-time collaboration is "solved" — CRDTs exist, sync is a library. But "solved" means "exists as a library." The gap between capability existing and capability being accessible is where most things get lost.
 
-## What this means for building
+## What does this mean for building?
 
 If knowledge dies without practice, the answer isn't just better archives — it's composable tools that stay useful across contexts, so the practice continues.
 
