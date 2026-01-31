@@ -283,9 +283,6 @@ export function createGraph(): Graph {
     { from: "exo", to: "hologram" },
     { from: "exo", to: "aspect" },
 
-    // Cross-ecosystem
-    { from: "rhi", to: "exo", label: "substrate → biome" },
-
     // Internal dependencies
     { from: "unshape", to: "dew", label: "uses" },
     { from: "moonlet", to: "normalize", label: "plugin" },
