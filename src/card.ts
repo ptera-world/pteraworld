@@ -85,7 +85,8 @@ export function showCard(node: Node, graph: Graph): void {
   const card = document.getElementById("card");
   if (!card) return;
   card.replaceChildren(buildCard(node, graph));
-  card.style.left = `${node.x + node.radius + 12}px`;
+  const coreR = node.tier === "ecosystem" ? node.radius * 0.15 : node.radius;
+  card.style.left = `${node.x + coreR + 12}px`;
   card.style.top = `${node.y}px`;
   card.hidden = false;
 }

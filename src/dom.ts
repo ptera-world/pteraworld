@@ -56,18 +56,17 @@ export function buildWorld(graph: Graph): void {
     el.dataset.id = node.id;
     el.style.left = `${node.x}px`;
     el.style.top = `${node.y}px`;
-    el.style.setProperty("--r", `${node.radius}px`);
     el.style.setProperty("--color", node.color);
 
     if (node.tier === "ecosystem") {
-      const glow = document.createElement("div");
-      glow.className = "node-glow";
-      el.appendChild(glow);
+      el.style.setProperty("--r", `${node.radius * 0.15}px`);
+      el.style.setProperty("--glow-r", `${node.radius}px`);
       const core = document.createElement("div");
       core.className = "node-core node-hit";
       el.appendChild(core);
       hitNodes.set(core, node);
     } else {
+      el.style.setProperty("--r", `${node.radius}px`);
       const dot = document.createElement("div");
       dot.className = "node-dot node-hit";
       el.appendChild(dot);
