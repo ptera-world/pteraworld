@@ -346,7 +346,7 @@ export function createGraph(): Graph {
 
     // Essays
     {
-      id: "problems",
+      id: "whats-actually-wrong",
       label: "what's actually wrong?",
       description: "Before solutions. Before tools. What's actually wrong?",
       tier: "project",
@@ -357,7 +357,7 @@ export function createGraph(): Graph {
       tags: ["essay", "design", "social"],
     },
     {
-      id: "why-software-is-hard",
+      id: "why-is-software-hard",
       label: "why is software hard?",
       description: "You're not bad at computers. Software is actually hard to use.",
       tier: "project",
@@ -368,7 +368,7 @@ export function createGraph(): Graph {
       tags: ["essay", "design"],
     },
     {
-      id: "what-we-keep-losing",
+      id: "what-do-we-keep-losing",
       label: "what do we keep losing?",
       description: "Technology isn't preserved by existence. It's preserved by continuous practice.",
       tier: "project",

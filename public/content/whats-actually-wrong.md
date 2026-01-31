@@ -130,7 +130,7 @@ And collaboration is nearly impossible in most software. Debug someone's setup? 
 
 ## See also
 
-- [why software is hard](/why-software-is-hard) - accessible explainer for why software is frustrating
+- [why is software hard?](/why-is-software-hard) - accessible explainer for why software is frustrating
 - [playmate](/playmate) - game design primitives that respect players
 - [dusklight](/dusklight) - UI that surfaces what's possible instead of hiding it
 - [interconnect](/interconnect) - federation for persistent shared worlds

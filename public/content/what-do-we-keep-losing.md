@@ -78,7 +78,7 @@ And the things that last are the ones that don't need permission to keep existin
 
 ## See also
 
-- [problems](/problems) - the broader question of what's actually wrong
+- [what's actually wrong?](/whats-actually-wrong) - the broader question of what's actually wrong
 - [reincarnate](/reincarnate) - lifting legacy software before it disappears
 - [rescribe](/rescribe) - lossless document conversion across formats
 - [interconnect](/interconnect) - federation for persistent shared worlds

@@ -89,7 +89,7 @@ This isn't inevitable. Different incentives produce different software. The tool
 
 ## See also
 
-- [problems](/problems) - the broader context of what's actually wrong
+- [what's actually wrong?](/whats-actually-wrong) - the broader context of what's actually wrong
 - [dusklight](/dusklight) - UI that surfaces affordances instead of hiding them
 - [keybinds](/keybinds) - making keyboard shortcuts discoverable
 - [normalize](/normalize) - CLI that exposes structure instead of hiding it
