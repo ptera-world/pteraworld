@@ -1,30 +1,20 @@
-API bindings intermediate representation and code generation.
+API bindings intermediate representation and code generation. Generates idiomatic language bindings from API specifications like OpenAPI.
 
 ## What it is
 
-A tool that generates idiomatic language bindings from API specifications. Concord parses API definitions (like OpenAPI specs) into an intermediate representation, then generates client libraries for target languages.
+A tool that parses API definitions into a universal intermediate representation, then generates client libraries for target languages. The IR captures full API semantics — endpoints, types, authentication, pagination — so generated code handles real-world patterns correctly.
 
-The pipeline:
+The pipeline: parse spec into IR, transform and optimize, emit idiomatic bindings for the target language. Multi-language support: Rust, TypeScript, Python, and more.
 
-1. **Parse** — read API specification into IR
-2. **Transform** — normalize and optimize the IR
-3. **Generate** — emit idiomatic bindings for the target language
+Branch structure: master holds core infrastructure, the bindings branch merges master and adds generated API bindings in categories (web-* for browser APIs, openapi-* from specs, ffi-* for foreign function interfaces). Generated code is a build artifact, not checked into master.
 
-The IR captures the full semantics of an API — endpoints, types, authentication, pagination — so generated code handles real-world API patterns correctly.
+## Key design decisions
 
-## What it isn't
-
-- Not an API client — it generates clients, not a runtime library
-- Not a spec validator — it reads specs to produce code
-- Not language-specific — the IR is target-agnostic
-
-## Prior art
-
-- [openapi-generator](https://openapi-generator.tech/) — multi-language API client generation
-- [protobufs](https://protobuf.dev/) — schema-driven code generation
-- [smithy](https://smithy.io/) — AWS API modeling language
+- Universal IR captures full API semantics
+- Generated code is build artifact
+- Multi-language codegen from single IR
+- Branch separation: infrastructure vs generated bindings
 
 ## Related projects
 
 - [server-less](/server-less) — generates servers (concord generates clients)
-- [paraphase](/paraphase) — could use concord-generated clients in conversion pipelines

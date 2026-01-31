@@ -1,35 +1,21 @@
-Standard library interfaces for the rhi ecosystem.
+Standard library of interfaces inspired by WASI. Capability-based, async-first traits for I/O, networking, cryptography, filesystem, HTTP, SQL, and more. Implementable on native, WASM, and embedded targets.
 
 ## What it is
 
-A set of capability-based, async-first interfaces inspired by WASI. Portals defines *what* operations are available without dictating *how* they're implemented. Any runtime that implements portals interfaces gets access to the full ecosystem.
+Trait definitions — not implementations. Portals defines *what* operations are available without dictating *how*. Any runtime that implements portals interfaces gets access to the full ecosystem.
 
-Interface categories:
+Interface categories: clocks, cli, crypto, encoding, filesystem, http, io, random, sockets, sql, blobstore, cache, config, cron, dns, keyvalue, logging, markdown, messaging, nanoid, observe, snowflake, timezone, websocket.
 
-- **clocks** — time and timers
-- **cli** — command-line argument parsing and output
-- **crypto** — hashing, encryption, signatures
-- **encoding** — serialization and deserialization
-- **filesystem** — file and directory operations
-- **http** — HTTP client and server
-- **io** — streams and buffers
-- **random** — random number generation
-- **sockets** — TCP/UDP networking
-- **sql** — database queries
+Backends: native (OS implementations), wasm (browser), portable (pure Rust), mock (testing). Includes a portable HTTP/1.1 parser used by both native and wasm backends.
 
-## What it isn't
+## Key design decisions
 
-- Not an implementation — it defines interfaces, not code
-- Not WASI itself — inspired by WASI's capability model but not limited to WebAssembly
-- Not a standard library — it's a set of *interfaces* to standard capabilities
-
-## Prior art
-
-- [WASI](https://wasi.dev/) — WebAssembly System Interface
-- [Rust std traits](https://doc.rust-lang.org/std/) — standard library abstractions
-- [Go interfaces](https://go.dev/doc/effective_go#interfaces) — implicit interface satisfaction
+- Interfaces only (traits), backends implement
+- Capability-based: access via pre-opened handles, no ambient authority
+- WASI-inspired scope but not a WASI wrapper
+- Portability over power: simpler APIs that work everywhere
+- Intentional gaps: doesn't wrap application protocols (LSP, MCP, gRPC)
 
 ## Related projects
 
-- [moonlet](/moonlet) — exposes portals interfaces to Lua scripts
-- [server-less](/server-less) — uses portals for transport-agnostic implementations
+- [moonlet](/moonlet) — uses portals-io and portals-filesystem

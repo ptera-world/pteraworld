@@ -1,32 +1,26 @@
-Fast code intelligence CLI. Structural awareness of codebases through AST-based analysis across 98 languages.
+Fast code intelligence CLI providing structural awareness of codebases through AST-based analysis. Supports 98 languages via tree-sitter with unified commands for navigation, analysis, linting, search, and package management.
 
 ## What it is
 
-A command-line tool for understanding code structurally. Instead of treating source files as text, normalize parses them into syntax trees and works with the shapes — functions, types, modules, imports — directly.
+A command-line tool that treats source code structurally. Instead of text, normalize works with syntax trees — functions, types, modules, imports — across 98 languages through a single interface.
 
 Core commands:
 
-- `normalize view` — structural outline with line numbers
-- `normalize analyze` — symbol analysis and dependency tracking
-- `normalize text-search` — search with structural context
-- `normalize lint` — pattern-based code quality checks
-- `normalize health` — codebase health metrics
+- `normalize view` — structural outline of files and directories with line numbers
+- `normalize analyze` — codebase health metrics, complexity, hotspots, duplicates, documentation coverage
+- `normalize tools` — unified interface to linters, formatters, test runners
+- `normalize text-search` — full-text search with ripgrep backend and file filtering
+- `normalize packages` — query package registries (Cargo, npm, pip, Go, Bundler, Composer, Hex, Maven, NuGet, Nix, Conan)
 
-Built on tree-sitter for parsing, with custom structural analysis on top. Supports 98 languages out of the box.
+Also serves as MCP server, HTTP REST API, or LSP server. Can parse Claude Code session logs and run Lua scripts for automation.
 
-## What it isn't
+## Key design decisions
 
-- Not an LSP server — it's a CLI tool, not an IDE backend
-- Not a linter replacement — it finds structural patterns, not style issues
-- Not a code search engine — it provides context-aware search, not indexed full-text search
-
-## Prior art
-
-- [tree-sitter](https://tree-sitter.github.io/) — the parsing foundation
-- [ctags](https://ctags.io/) — symbol indexing (normalize goes deeper into structure)
-- [semgrep](https://semgrep.dev/) — pattern-based code analysis
+- Index-first architecture: core extraction lives in Rust index, commands work without index via graceful degradation
+- OutputFormatter trait: consistent `--pretty`/`--compact`/`--json` output across all commands
+- Dog-fooding: uses its own commands instead of builtin tools
 
 ## Related projects
 
-- [moonlet](/moonlet) — uses normalize as a plugin for code-aware Lua scripting
+- [moonlet](/moonlet) — normalize is available as a moonlet plugin (moonlet-normalize)
 - [zone](/zone) — Lua tooling that leverages normalize for project scaffolding

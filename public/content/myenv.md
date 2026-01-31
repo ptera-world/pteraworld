@@ -1,30 +1,23 @@
-Rhi ecosystem configuration manager.
+Configuration manager for the rhi ecosystem. Generates per-tool config files from a central `myenv.toml` manifest. Tools never read myenv.toml directly — they only read generated native configs.
 
 ## What it is
 
-A tool that generates per-tool configuration files from a central `myenv.toml` manifest. Instead of maintaining separate config files for every tool in a project, you define everything in one place and myenv generates the rest.
+One source of truth for project configuration. You define everything in `myenv.toml`, and myenv generates native config files for each tool. Tools stay dumb — they have no idea myenv exists at runtime.
 
-Supported tools:
+Features:
 
-- **siphon** — data pipeline configuration
-- **dew** — expression language settings
-- **spore** — project scaffolding templates
+- Variable substitution across tool configs
+- Schema validation via `tool --schema` convention (validate before write)
+- Project scaffolding via seeds (creation, archaeology, lab templates from [zone](/zone))
 
-Myenv supports project variables — shared values that get substituted into generated configs — so you can keep things like project names, paths, and version numbers consistent across all tooling.
+## Key design decisions
 
-## What it isn't
-
-- Not a package manager — it generates config files, not installs software
-- Not a build system — it configures tools, not builds projects
-- Not dotfile management — it's project-scoped, not user-scoped
-
-## Prior art
-
-- [direnv](https://direnv.net/) — per-directory environment variables
-- [mise](https://mise.jdx.dev/) — polyglot tool version manager
-- [nx](https://nx.dev/) — monorepo toolchain coordination
+- Config generation, not orchestration (spore orchestrates)
+- Tools stay dumb: no myenv conventions at runtime
+- Invisible manifest: tools unaware of myenv
+- Validate before write: catch errors before generating
 
 ## Related projects
 
-- [zone](/zone) — Lua tooling that uses myenv for project scaffolding
+- [zone](/zone) — hosts seed templates that myenv reads for project scaffolding
 - [moonlet](/moonlet) — runtime configured via myenv manifests

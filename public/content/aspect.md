@@ -1,28 +1,20 @@
-Card-based identity exploration sandbox.
+Card-based identity exploration sandbox. Local-first web app where everything is a card with edges, navigable as both an infinite graph and an experiential place. Real-time multiplayer via Y.js CRDTs.
 
 ## What it is
 
-A tool for exploring and expressing identity through collectible cards. Each card represents a facet — a personality trait, aesthetic preference, value, or role — and you build a deck that represents who you are or who you want to be.
+Every card is an atomic unit of existence — a place, trait, relationship, or state. Cards connect via typed directional edges. You navigate by following edges, edit by changing card content, and explore identity by building and rearranging the graph.
 
-The card system supports:
+Features:
 
-- **Facets** — individual identity dimensions represented as cards
-- **Decks** — curated collections that represent a persona or mood
-- **Spreads** — layouts that reveal relationships between facets
-- **Evolution** — tracking how identity shifts over time
+- **Canvas mode** — infinite pan/zoom graph diagram with drag, resize, edge-drag, brush selection, minimap
+- **Projection mode** — experiential "place" view with location descriptions, categorized panels by edge type, breadcrumbs, drill-down navigation
+- **World packs** — portable JSON definitions with kinds (icons, colors) and edge type constraints
+- **Actions** — declarative when/do system with JSONLogic predicates for graph transformations
+- **Multiplayer** — Y.js CRDT sync via WebSocket, room-scoped SQLite persistence, per-client undo/redo
+- **Snapshots** — export/import full graph state as JSON
 
-## What it isn't
-
-- Not a personality test — it's exploratory, not diagnostic
-- Not a trading card game — cards represent identity facets, not game mechanics
-- Not social media — it's personal exploration, not public performance
-
-## Prior art
-
-- [tarot](https://en.wikipedia.org/wiki/Tarot) — card-based introspection system
-- [Obsidian](https://obsidian.md/) — personal knowledge management
-- [character.ai](https://character.ai/) — AI-driven character interaction
+Built with vanilla TypeScript, direct DOM manipulation, Bun server with WebSocket + SQLite WAL mode. Size budget: <120 KB gzip.
 
 ## Related projects
 
-- [hologram](/hologram) — roleplay bot that could use aspect cards for character creation
+- [hologram](/hologram) — aspect cards could define hologram entities and world structure

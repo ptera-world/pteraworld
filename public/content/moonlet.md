@@ -1,32 +1,30 @@
-Lua runtime with plugin system for the rhi ecosystem.
+Lua runtime with plugin system for agentic AI execution. Multi-provider LLM client, SQLite-backed memory store, dynamic C ABI plugin loading, and capability-based security.
 
 ## What it is
 
-A core Lua runtime that serves as the scripting backbone of rhi. Moonlet provides a plugin system where Rust crates expose functionality to Lua scripts, creating a bridge between high-performance native code and flexible scripting.
+The scripting backbone of rhi. Moonlet provides a LuaJIT runtime where Rust crates expose functionality to Lua scripts via a C ABI plugin system. Scripts receive capabilities through a `caps` table — no ambient authority.
 
-Key integrations:
+Plugins:
 
-- **Moss** — code analysis plugin powered by [normalize](/normalize)
-- **Lotus** — world state management for persistent environments
-- **Portals** — capability-based interfaces via [portals](/portals)
+- **llm** — multi-provider client (Anthropic, OpenAI, Azure, Gemini, Cohere, DeepSeek, Groq, Mistral, Ollama, OpenRouter, Perplexity, Together, XAI)
+- **embed** — embedding generation (OpenAI, Azure, Gemini, Cohere, Mistral, Ollama, Together)
+- **libsql** — SQLite-backed memory store with metadata and weights
+- **fs** — capability-based filesystem access
+- **normalize** — code analysis integration via [normalize](/normalize)
+- **sessions** — session management
+- **tools** — tool execution
+- **packages** — package management
 
-Moonlet scripts can combine capabilities from different plugins, making it the composition layer for the ecosystem.
+## Key design decisions
 
-## What it isn't
-
-- Not a standalone Lua distribution — it's an embedded runtime with ecosystem integrations
-- Not a scripting-only solution — the plugins provide native-speed operations
-- Not a replacement for application code — it's for orchestration and configuration
-
-## Prior art
-
-- [Neovim Lua](https://neovim.io/doc/user/lua.html) — embedded Lua with plugin system
-- [Roblox Luau](https://luau-lang.org/) — typed Lua variant
-- [mlua](https://github.com/mlua-rs/mlua) — Rust-Lua bindings (used internally)
+- Moonlet = agency/execution (LLM, memory, running agents); moss = intelligence (analysis, understanding)
+- Capability-based security: scripts receive pre-opened handles, not path strings
+- C ABI plugin system for language interop
+- Not hard-linked to any single analysis tool; integrates via dynamically loaded plugins
 
 ## Related projects
 
-- [normalize](/normalize) — provides code intelligence as a moonlet plugin
-- [portals](/portals) — defines the capability interfaces moonlet exposes
-- [zone](/zone) — Lua-based tooling built on moonlet
-- [dew](/dew) — expression language with a Lua backend for moonlet
+- [normalize](/normalize) — available as moonlet-normalize plugin
+- [portals](/portals) — moonlet uses portals-io and portals-filesystem
+- [zone](/zone) — Lua projects run on moonlet
+- [dew](/dew) — Lua backend for moonlet

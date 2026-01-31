@@ -1,29 +1,23 @@
-The rhi ecosystem is a glue layer for computers — a collection of libraries, runtimes, and tools that make software talk to other software.
+A glue layer for computers — finding common abstractions across fragmented domains.
 
 ## What it is
 
-A set of Rust-first projects that share a common design philosophy: capability-based interfaces, structural awareness, and composable pipelines. Every project in rhi is designed to interoperate with the others through [portals](/portals) — a standard set of async-first interfaces.
+Every domain has its own tools, formats, and conventions that don't talk to each other. rhi finds the structural overlap and builds unified interfaces. 98 languages share the same code intelligence CLI. 50+ document formats pass through a single IR. One Rust impl block projects to HTTP, CLI, MCP, WebSocket, and GraphQL simultaneously.
 
-The ecosystem spans code intelligence, media generation, data transformation, runtime infrastructure, and UI — connected by the idea that these are all fundamentally the same problem: converting structured data from one form to another.
+The ecosystem is Rust-first, capability-based, and offline-first. Projects interoperate through [portals](/portals) — async-first interfaces inspired by WASI — and compose through [moonlet](/moonlet)'s plugin system.
 
-## What it isn't
+## Guiding principles
 
-- Not a framework — each project is independently useful
-- Not a platform — there's no central runtime or service to depend on
-- Not a monorepo — each project has its own repository, CI, and release cycle
+- **Unification through abstraction** — find common structure across domains
+- **Structure over text** — work on AST, graph, hierarchy directly
+- **Lazy by default** — evaluate on demand, no upfront cost for unused features
+- **Works anywhere** — handle legacy systems, graceful degradation
 
 ## Key projects
 
-- [normalize](/normalize) — structural code intelligence
-- [moonlet](/moonlet) — Lua runtime with plugin system
+- [normalize](/normalize) — structural code intelligence across 98 languages
 - [unshape](/unshape) — constructive media generation
-- [paraphase](/paraphase) — pipeline orchestrator for data conversion
 - [server-less](/server-less) — one impl, many protocols
-- [dusklight](/dusklight) — universal UI client
-
-## Design principles
-
-- **Capability-based** — components declare what they can do, not what they need
-- **Structural** — work with the shape of data, not just its bytes
-- **Composable** — small pieces that combine predictably
-- **Offline-first** — no cloud dependencies for core functionality
+- [rescribe](/rescribe) — lossless document conversion with 50+ formats
+- [moonlet](/moonlet) — Lua runtime with plugin system
+- [paraphase](/paraphase) — type-driven data conversion route planner

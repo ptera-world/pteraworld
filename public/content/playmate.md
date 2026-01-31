@@ -1,32 +1,25 @@
-Game design primitives library.
+Game design primitives library. Reusable building blocks for state machines, character controllers, camera systems, and procedural generation. Multi-engine support: Godot, Bevy, Unity, Love2D, custom.
 
 ## What it is
 
-A collection of reusable building blocks for game development. Playmate provides the fundamental systems that most games need — state machines, character controllers, camera systems, procedural generation — without coupling them to a specific engine.
+Building blocks, not a framework. Playmate provides the fundamental systems that most games need, without coupling them to a specific engine:
 
-Included primitives:
-
-- **State machines** — finite and hierarchical state machines for game logic
-- **Character controllers** — physics-based movement systems
+- **State machines** — finite and hierarchical, for animation, AI, and gameplay
+- **Character controllers** — kinematic (code-driven, predictable), not dynamic (floaty)
 - **Camera systems** — follow cameras, free cameras, cinematic rails
 - **Procedural generation** — terrain, dungeons, item distribution
-- **Inventory systems** — item management with constraints
+- **Spatial/pathfinding** — performance-critical primitives in Rust
 
-Designed to integrate with Bevy and other Rust game engines.
+Three layers: Core (pure Rust, perf-critical), Bindings (engine adapters via GDExtension, Bevy systems, etc.), Scripting (game logic in GDScript, Lua, C#).
 
-## What it isn't
+## Key design decisions
 
-- Not a game engine — it provides components, not a full runtime
-- Not a game — it's a library of reusable pieces
-- Not engine-specific — primitives are designed to be engine-agnostic where possible
-
-## Prior art
-
-- [Bevy](https://bevyengine.org/) — ECS game engine (playmate integrates with Bevy)
-- [Unity packages](https://docs.unity3d.com/Manual/PackagesList.html) — modular game components
-- [Godot addons](https://godotengine.org/asset-library/asset) — reusable game modules
+- Kinematic over dynamic: movement feel over physics-driven
+- Data-driven: magic numbers in config/asset files, logic in Rust
+- Hot-reloadable feel: parameters tunable without recompilation
+- Rule: if modders should change it, scripting; if fast, core
 
 ## Related projects
 
-- [unshape](/unshape) — generates meshes and textures that playmate systems can use
+- [unshape](/unshape) — generates meshes and textures playmate systems can use
 - [interconnect](/interconnect) — federation protocol for connecting playmate-powered worlds

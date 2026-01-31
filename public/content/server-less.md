@@ -1,29 +1,31 @@
-Composable derive macros for Rust. Write your implementation once, project it into multiple protocols.
+Composable derive macros for Rust. Write your implementation once, project it into multiple protocols. 18 macros, impl-first design, zero runtime overhead.
 
 ## What it is
 
-A set of derive macros that generate protocol-specific server and client code from a single Rust implementation. You write your logic once and server-less generates:
+A set of derive macros that generate protocol-specific code from a single Rust impl block. You write business logic once and stack macros to get:
 
-- **HTTP** — REST API with routing and serialization
-- **CLI** — command-line interface with argument parsing
-- **MCP** — Model Context Protocol for AI tool integration
-- **WebSocket** — real-time bidirectional communication
+**Runtime handlers:**
+- `#[http]` — Axum + OpenAPI
+- `#[cli]` — Clap argument parsing
+- `#[mcp]` — Model Context Protocol
+- `#[ws]` — WebSocket JSON-RPC 2.0
+- `#[json_rpc]` — JSON-RPC
+- `#[graphql]` — async-graphql
 
-The macros analyze your function signatures and produce idiomatic implementations for each target protocol, handling serialization, error mapping, and transport concerns automatically.
+**Schema generators:** gRPC (Protocol Buffers), Cap'n Proto, Apache Thrift, AWS Smithy, Connect RPC
 
-## What it isn't
+**Spec generators:** OpenRPC, AsyncAPI, JSON Schema, Markdown docs
 
-- Not a web framework — it generates code for multiple protocols, not just HTTP
-- Not an RPC system — it projects *implementations*, not interface definitions
-- Not code generation from specs — it works from your Rust code directly
+Method naming drives routing: `create_*` maps to POST, `get_*` to GET, `list_*` to collection endpoints. Return types (Result, Option, Vec, ()) are handled automatically. SSE streaming via `impl Stream<Item=T>`.
 
-## Prior art
+## Key design decisions
 
-- [tonic](https://github.com/hyperium/tonic) — gRPC code generation for Rust
-- [axum](https://github.com/tokio-rs/axum) — ergonomic HTTP framework
-- [clap](https://github.com/clap-rs/clap) — derive-based CLI parsing
+- Impl-first: write business logic, derive protocol handlers
+- Progressive disclosure: simple cases work zero-config, complexity available on demand
+- Composable: stack multiple macros on same impl block
+- Pure compile-time codegen, zero runtime overhead
+- Feature-gated everything
 
 ## Related projects
 
 - [concord](/concord) — generates client bindings (server-less generates server implementations)
-- [dusklight](/dusklight) — can consume server-less HTTP/WebSocket endpoints

@@ -1,33 +1,27 @@
-Legacy software lifting framework.
+Legacy software lifting framework. Extracts and transforms applications from obsolete runtimes into modern web equivalents. Works on bytecode and scripts, not native binaries.
 
 ## What it is
 
-A tool for extracting and transforming applications from obsolete runtimes into modern equivalents. Reincarnate targets platforms that are no longer maintained but still have valuable content trapped inside:
+A tool for extracting applications from dead runtimes and bringing them to the modern web. Targets platforms with valuable content trapped inside:
 
-- **Flash / SWF** — browser games and interactive content
-- **VB6** — desktop applications
-- **GameMaker** — indie games in older GM formats
-- **HyperCard** — early hypertext stacks
+- **Flash** — ABC bytecode
+- **Director** — Lingo scripts
+- **VB6** — P-Code
+- **Java Applets**
+- **Silverlight** — .NET IL
+- **HyperCard / ToolBook**
+- **RPG Maker**
+- **Ren'Py**
+- **GameMaker**
 
-The approach works in tiers:
+Two-tier approach:
 
-1. **Native patching** — minimal changes to run on modern runtimes
-2. **Runtime replacement** — swap the obsolete runtime for a modern one
-3. **Full lifting** — translate the application logic to a new platform
+1. **Native patching** — hex editing, font replacement, pointer relocation for minimal changes to run on modern runtimes
+2. **Runtime replacement** — hook internal draw calls, replace rendering with HTML/CSS overlay
 
-## What it isn't
+## Key design decisions
 
-- Not an emulator — it transforms applications, not simulates runtimes
-- Not a decompiler — it works with application structure, not raw bytecode
-- Not automatic — complex applications need manual guidance
-
-## Prior art
-
-- [Ruffle](https://ruffle.rs/) — Flash player emulator in Rust
-- [Flashpoint](https://flashpointarchive.org/) — web game preservation project
-- [Wine](https://www.winehq.org/) — Windows API compatibility layer
-
-## Related projects
-
-- [normalize](/normalize) — structural analysis helps understand legacy code
-- [rescribe](/rescribe) — document conversion techniques apply to application lifting
+- Lazy extraction: extract on demand, cache aggressively
+- Preserve fidelity: reproduce accurately, don't redesign
+- Overlay over patch: modern UI layer over original
+- Both full lifts and binary patching accepted

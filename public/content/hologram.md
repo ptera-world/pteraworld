@@ -1,22 +1,22 @@
-Discord bot for entity-based roleplay with knowledge graph and RAG.
+Discord bot for collaborative worldbuilding and roleplay. Entity-facts model with declarative response control, multi-provider LLM integration, and Nunjucks templating.
 
 ## What it is
 
-A Discord bot that enables collaborative roleplay with persistent entities. Characters, locations, items, and events are stored in a knowledge graph. When players interact, hologram uses retrieval-augmented generation to maintain consistency with established lore.
+Everything in hologram is an **entity** with **facts**. Characters, locations, items, help topics — all represented the same way. Responses are controlled via declarative `$respond` directives (always/never/conditional) and `$if` expressions for rate limiting, mention detection, random triggers.
 
-Key features:
+Features:
 
-- **Entity system** — characters and world elements with text-based definitions
-- **Knowledge graph** — relationships between entities tracked and queryable
-- **RAG** — AI responses grounded in established world knowledge
-- **Session management** — separate roleplay contexts within the same server
+- **Multi-character** — XML tag-based or name-prefix formatting for multiple entities in one channel
+- **15+ LLM providers** — Anthropic, OpenAI, Google, Groq, Mistral, xAI, DeepSeek, Cohere, Cerebras, Perplexity, Together AI, Fireworks, DeepInfra, Hugging Face, Amazon Bedrock, and more via unified `provider:model` spec
+- **Streaming responses** — configurable chunking strategies
+- **Custom templates** — per-entity Nunjucks templates with inheritance and role blocks
+- **Fact evaluation** — JavaScript runtime for context variables (mentioned, replied, content, author, time, channel, server)
+- **Model override** — per-entity `$model` directive with allowlist
+- **Tool system** — fact manipulation via LLM tool calls with permission checks
+- **Bindings** — Discord channels/users/servers map to entities for persona dispatch
 
-## Prior art
-
-- [AI Dungeon](https://aidungeon.com/) — AI-driven interactive fiction
-- [World Anvil](https://www.worldanvil.com/) — worldbuilding and lore management
-- [Character.AI](https://character.ai/) — AI character interaction
+Built with Bun, Discordeno, Vercel AI SDK v6, and bun:sqlite.
 
 ## Related projects
 
-- [aspect](/aspect) — card-based identity system that could feed hologram entities
+- [aspect](/aspect) — identity exploration sandbox; cards could become hologram entities

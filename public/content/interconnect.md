@@ -1,24 +1,25 @@
-Federation protocol for persistent worlds.
+Federation protocol for persistent worlds. Enables Lotus servers to form interconnected networks with single-authority ownership — no distributed state resolution.
 
 ## What it is
 
-A protocol that enables Lotus servers (persistent world instances) to form interconnected networks. Interconnect solves the hard problem of multi-server virtual worlds: how do you let players travel between independently-operated worlds without complex distributed state?
+A protocol for connecting independently-operated persistent worlds. When a player crosses between worlds, their state is transferred — not replicated. Each world instance owns its state completely.
 
-The key insight is **single-authority ownership**: each world instance owns its state completely. When a player crosses between worlds, their state is transferred — not replicated. This avoids the consistency problems of distributed state while enabling seamless travel.
+Two-layer architecture:
 
-## What it isn't
+- **Substrate** — static, replicated, cacheable (the world's unchanging structure)
+- **Simulation** — dynamic, authoritative, ephemeral (the world's live state)
 
-- Not a game server — it's a protocol for connecting game servers
-- Not a database — state lives in individual world instances
-- Not peer-to-peer — it uses server-to-server federation (like email or ActivityPub)
+Protocol primitives: Manifest (what a server allows/requires), Intent (client action request), Snapshot (world state at tick), Transfer (handoff with passport token). Import policies ("customs") validate player passports when crossing servers — clamp stats, filter items, accept or reject explicitly.
 
-## Prior art
+Ghost mode: when authority dies, the world desaturates, the player becomes an observer, but the substrate remains visible.
 
-- [ActivityPub](https://www.w3.org/TR/activitypub/) — federation protocol for social networks
-- [Matrix](https://matrix.org/) — decentralized communication protocol
-- [SpatialOS](https://ims.improbable.io/) — distributed world simulation (now defunct)
+## Key design decisions
+
+- Authority over consensus: no split-brain, no state merging
+- Intent over state: never trust client-provided state
+- Graceful degradation: static world better than void
+- Explicit import policies: accept or reject, no silent drops
 
 ## Related projects
 
-- [moonlet](/moonlet) — Lotus world state management runs on moonlet
 - [playmate](/playmate) — game primitives for worlds connected via interconnect

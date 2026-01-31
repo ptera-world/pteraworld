@@ -1,29 +1,20 @@
-Universal document conversion library with lossless intermediate representation.
+Universal document conversion library with lossless intermediate representation. Pandoc-inspired, 50+ formats, open node kinds, fidelity tracking, and roundtrip-friendly design.
 
 ## What it is
 
-A pandoc-inspired document converter built in Rust. Rescribe converts between document formats through an intermediate representation designed to preserve as much information as possible across conversions.
+A document converter built in Rust. Rescribe converts between 50+ document formats through an IR designed to preserve as much information as possible. Unlike Pandoc's fixed Haskell ADT, rescribe's NodeKind is a string type — the schema is open-ended.
 
 Key design choices:
 
-- **Open node kinds** — the IR isn't limited to a fixed set of document elements
-- **Fidelity tracking** — each conversion reports what was preserved and what was lost
-- **Embedded resources** — images and other assets are handled as first-class citizens
-- **Roundtrip-friendly** — format-specific metadata is preserved for roundtrip conversion
+- **Open node kinds** — not limited to a fixed set of document elements
+- **Property bags** — key-value properties with namespaces (semantic, style, layout, format-specific like `html:class` or `latex:env`)
+- **Fidelity tracking** — warnings on conversion loss, never silent
+- **Embedded resources** — images, fonts, and data as first-class ResourceMap
+- **Roundtrip-friendly** — source format metadata preserved
 
-## What it isn't
-
-- Not a text-only converter — it handles rich documents with embedded media
-- Not lossy by design — fidelity tracking makes information loss explicit
-- Not a markup language — the IR is a data structure, not a syntax
-
-## Prior art
-
-- [pandoc](https://pandoc.org/) — the original universal document converter
-- [unified](https://unifiedjs.com/) — AST-based content transformation in JS
-- [docx-rs](https://github.com/bokuweb/docx-rs) — DOCX manipulation in Rust
+Standard nodes: document, paragraph, heading, code_block, blockquote, list, table, figure, emphasis, strong, link, image. Optional math crate adds math_inline, fraction, matrix, etc.
 
 ## Related projects
 
 - [paraphase](/paraphase) — rescribe plugs into paraphase as a document conversion backend
-- [ooxml](/ooxml) — Office Open XML library that could serve as a rescribe format plugin
+- [ooxml](/ooxml) — Office Open XML library for DOCX format support

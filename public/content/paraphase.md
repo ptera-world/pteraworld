@@ -1,31 +1,25 @@
-Type-driven data transformation pipeline.
+Type-driven data transformation pipeline orchestrator. Given source and target properties, automatically finds conversion paths through available converters.
 
 ## What it is
 
-An automatic conversion route planner. Given a source format and a target format, paraphase finds the shortest path through available converters and executes the pipeline. Think of it as a router for data formats.
+A route planner for data conversion. You describe what you have (Properties) and what you want (PropertyPattern), and paraphase finds the shortest path through registered converters. Think of it as a router for data formats.
 
-The CLI supports multiple format families:
+Supported format families:
 
-- **serde** — structured data (JSON, TOML, YAML, etc.)
-- **image** — raster image formats (PNG, JPEG, WebP, etc.)
-- **video** — video container formats
-- **audio** — audio formats and codecs
+- **Serde** — JSON, YAML, TOML, RON, JSON5, XML, S-expressions, URL-encoded, MessagePack, CBOR, Bincode, Postcard, BSON, FlexBuffers, Bencode, Pickle, Property Lists
+- **Image** — PNG, JPEG, WebP, GIF, BMP, ICO, TIFF, TGA, PNM, Farbfeld, QOI, AVIF, OpenEXR, Radiance HDR
+- **Video** — MP4, WebM, MKV, AVI, MOV, GIF (requires FFmpeg)
+- **Audio** — WAV, FLAC, MP3, OGG, AAC
 
-Converters are registered as plugins. Paraphase builds a graph of possible conversions and finds optimal paths automatically.
+Image transforms: resize, scale, crop (aspect + gravity), watermark. Workflows in YAML/TOML/JSON with auto-planning or explicit steps.
 
-## What it isn't
+## Key design decisions
 
-- Not a file converter — it's a conversion *planner* that orchestrates converters
-- Not format-specific — it works with any registered converter
-- Not lossy by default — it tracks fidelity through conversion chains
-
-## Prior art
-
-- [pandoc](https://pandoc.org/) — universal document converter (paraphase generalizes this idea)
-- [ffmpeg](https://ffmpeg.org/) — media conversion pipelines
-- [ImageMagick](https://imagemagick.org/) — image format conversion
+- Type-driven via Properties and PropertyPattern matching
+- Automatic path finding removes need for manual pipeline specification
+- Feature-flagged converter backends
+- Registry system for extensibility via plugins
 
 ## Related projects
 
-- [rescribe](/rescribe) — lossless document conversion (plugs into paraphase)
-- [concord](/concord) — API codegen that could feed paraphase pipelines
+- [rescribe](/rescribe) — lossless document conversion plugs into paraphase as a backend

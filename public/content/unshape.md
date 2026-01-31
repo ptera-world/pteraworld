@@ -1,32 +1,27 @@
-Constructive generation and manipulation of media in Rust.
+Constructive generation and manipulation of media in Rust. Covers 3D meshes, audio synthesis, textures, 2D vectors, rigging, physics simulation, procedural generation, and node graphs. Bevy-compatible with no hard dependency.
 
 ## What it is
 
-A comprehensive media generation library that treats all media — meshes, audio, textures, vectors, animations — as constructive pipelines. You describe *how* to build media rather than editing existing assets.
+A media generation library where every operation is a value. You describe how to build media rather than editing existing assets. Operations are structs — serializable, composable, optimizable.
 
-Supported domains:
+Domains:
 
-- **Meshes** — procedural 3D geometry with CSG operations
-- **Audio** — synthesis, sampling, and processing
-- **Textures** — procedural texture generation and compositing
-- **2D vectors** — SVG-compatible path operations
-- **Rigging** — skeletal animation systems
-- **Physics** — simulation for procedural animation
-- **Node graphs** — visual dataflow for combining generators
+- **Meshes** — procedural geometry, booleans, decimation, LOD, topology analysis, UV atlas packing
+- **Audio** — FM/wavetable/granular synthesis, effects, 3D spatial HRTF, pattern sequencing
+- **Textures** — Perlin, Simplex, fBm with lazy Field trait, signed distance fields
+- **2D vector** — SVG-like paths, bezier curves, booleans, hatching, rasterization
+- **Rigging** — skeletons, IK solvers, weight painting, heat diffusion skinning
+- **Physics** — rigid bodies, soft bodies, cloth, fluids, smoke simulation
+- **Procedural** — L-systems, wave function collapse, mazes, terrain erosion, space colonization
+- **Node graphs** — dynamic typed execution with type-safe connections
 
-## What it isn't
+## Key design decisions
 
-- Not an asset editor — it generates media programmatically
-- Not a game engine — it produces assets, not interactive applications
-- Not a renderer — it creates geometry and textures, not final images
-
-## Prior art
-
-- [Blender geometry nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/) — visual procedural generation
-- [Houdini](https://www.sidefx.com/) — procedural content creation
-- [nannou](https://nannou.cc/) — creative coding in Rust
+- Operations as values: every operation is a struct (serializable), with optional method sugar
+- Three-layer architecture: primitives, helpers, optimizer
+- General-internal, constrained-API pattern (e.g., VectorNetwork internally, Path API externally)
+- Uses glam for math (Bevy-compatible) but no hard engine dependency
 
 ## Related projects
 
 - [dew](/dew) — expression language used for procedural parameters
-- [playmate](/playmate) — game primitives that consume unshape output
