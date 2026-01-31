@@ -14,8 +14,10 @@ export function render(
 
   const tier = currentTier(camera);
 
+  // Build focus set — hovered node + its neighbors
+  const focused = buildFocusSet(graph, hovered);
+
   // Draw edges
-  ctx.globalAlpha = tier === "far" ? 0.08 : tier === "mid" ? 0.15 : 0.25;
   for (const edge of graph.edges) {
     const from = graph.nodes.find((n) => n.id === edge.from);
     const to = graph.nodes.find((n) => n.id === edge.to);
@@ -26,18 +28,22 @@ export function render(
       if (from.tier !== to.tier) continue;
     }
 
+    const edgeFocused = !hovered || focused.has(from.id) && focused.has(to.id);
+    const baseAlpha = tier === "far" ? 0.08 : tier === "mid" ? 0.15 : 0.25;
+    ctx.globalAlpha = edgeFocused ? baseAlpha : baseAlpha * 0.2;
+
     const [x1, y1] = worldToScreen(camera, from.x, from.y, canvas);
     const [x2, y2] = worldToScreen(camera, to.x, to.y, canvas);
 
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
-    ctx.strokeStyle = "#555";
+    ctx.strokeStyle = edgeFocused && hovered ? "#888" : "#555";
     ctx.lineWidth = 1;
     ctx.stroke();
 
     // Edge labels at near zoom
-    if (tier === "near" && edge.label) {
+    if (tier === "near" && edge.label && edgeFocused) {
       const mx = (x1 + x2) / 2;
       const my = (y1 + y2) / 2;
       ctx.globalAlpha = 0.4;
@@ -62,6 +68,10 @@ export function render(
     if (sy + sr < 0 || sy - sr > canvas.height) continue;
 
     const isHovered = hovered?.id === node.id;
+    const isFocused = !hovered || focused.has(node.id);
+    const dimAlpha = isFocused ? 1 : 0.15;
+
+    ctx.globalAlpha = dimAlpha;
 
     // Ecosystem regions at far zoom: soft glow
     if (node.tier === "ecosystem" && tier === "far") {
@@ -101,7 +111,7 @@ export function render(
     }
 
     // Description at near zoom
-    if (tier === "near" && (node.tier === "project" || isHovered)) {
+    if (tier === "near" && (node.tier === "project" || isHovered) && isFocused) {
       const fontSize = Math.max(9, Math.min(11, sr * 0.3));
       ctx.font = `${fontSize}px monospace`;
       ctx.fillStyle = "#888";
@@ -109,6 +119,26 @@ export function render(
       ctx.fillText(node.description, sx, sy + sr + 16 + fontSize);
     }
   }
+  ctx.globalAlpha = 1;
+}
+
+/** Build set of node IDs that should be fully visible when a node is focused. */
+function buildFocusSet(graph: Graph, hovered: Node | null): Set<string> {
+  const set = new Set<string>();
+  if (!hovered) return set;
+  set.add(hovered.id);
+  // Add parent ecosystem
+  if (hovered.parent) set.add(hovered.parent);
+  // Add children if hovering an ecosystem
+  for (const node of graph.nodes) {
+    if (node.parent === hovered.id) set.add(node.id);
+  }
+  // Add edge neighbors
+  for (const edge of graph.edges) {
+    if (edge.from === hovered.id) set.add(edge.to);
+    if (edge.to === hovered.id) set.add(edge.from);
+  }
+  return set;
 }
 
 function isVisible(node: Node, tier: "far" | "mid" | "near"): boolean {

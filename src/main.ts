@@ -31,3 +31,7 @@ function scheduleRender() {
 setupInput(canvas, camera, graph, input, scheduleRender);
 window.addEventListener("resize", resize);
 resize();
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
