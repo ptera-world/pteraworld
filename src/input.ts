@@ -68,8 +68,11 @@ export function setupInput(
     if (dx * dx + dy * dy > 16 * 16) return;
     const node = getHitNode(e.target);
     if (node) {
-      if (isPanelOpen()) openPanel(node.id, node.label);
-      else showCard(node, graph);
+      if (isPanelOpen()) {
+        openPanel(node.id, node.label);
+      } else {
+        showCard(node, graph);
+      }
     } else if (isCardOpen()) {
       hideCard();
     }
