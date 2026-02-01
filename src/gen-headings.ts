@@ -7,7 +7,7 @@ const outFile = join(import.meta.dir, "../public/headings.json");
 const files = await readdir(contentDir);
 const headings: { nodeId: string; heading: string; slug: string; body: string }[] = [];
 
-const NAV_HEADINGS = new Set(["related projects", "see also"]);
+const NAV_HEADINGS = new Set(["related projects", "see also", "what it is"]);
 
 for (const file of files) {
   if (!file.endsWith(".md")) continue;
