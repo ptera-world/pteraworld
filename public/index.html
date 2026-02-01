@@ -247,9 +247,10 @@
     .filter-pill[data-active] { background: #2a2a2a; color: #ddd; border-color: #666; }
 
     /* Filtered / surfaced / adjacent states */
+    #world[data-filtering] .node.project:not([data-filtered]) { scale: 1.08; }
     .node[data-filtered="hidden"],
     .edge[data-filtered="hidden"] { opacity: 0.08; pointer-events: none; }
-    .node[data-filtered="adjacent"] { opacity: calc(0.12 + 0.5 * var(--filter-strength, 0.5)); }
+    .node[data-filtered="adjacent"] { opacity: calc(0.12 + 0.5 * var(--filter-strength, 0.5)); scale: calc(1 + 0.04 * var(--filter-strength, 0.5)); }
     .edge[data-filtered="adjacent"] { opacity: calc(0.06 + 0.3 * var(--filter-strength, 0.5)); }
     .node[data-filtered="surfaced"] { opacity: 0.4; pointer-events: auto; }
     .edge[data-filtered="surfaced"] { opacity: 0.3; }
