@@ -57,6 +57,7 @@ function prepareContent(container: HTMLElement): void {
 
       bd.addEventListener("click", (e) => {
         if (!sec.classList.contains("expanded")) {
+          e.preventDefault();
           e.stopPropagation();
           sec.classList.add("expanded");
         } else if (!(e.target as HTMLElement).closest?.("a")) {
