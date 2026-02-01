@@ -29,11 +29,11 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
     vy.set(n.id, 0);
   }
 
-  const REPEL = 12000;
-  const SPRING_K = 0.005;
-  const SPRING_LEN = 120;
-  const ANCHOR_K = 0.05;
-  const CENTER_K = 0.003;
+  const REPEL = 5000;
+  const SPRING_K = 0.008;
+  const SPRING_LEN = 80;
+  const ANCHOR_K = 0.08;
+  const CENTER_K = 0.006;
   const DAMPING = 0.85;
   const MAX_FORCE = 10;
   const MAX_STEPS = 200;
