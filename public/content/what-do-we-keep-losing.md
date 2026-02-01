@@ -58,7 +58,7 @@ Minecraft - you just join their world. You see what they're building. You can he
 
 People help each other constantly in games because the friction is zero. Not because gamers are special, but because the infrastructure doesn't get in the way.
 
-The rest of software made collaboration so hard that we forgot it was natural. Games kept it easy, so people kept doing it.
+The rest of software [made collaboration so hard](/why-is-software-hard) that we forgot it was natural. Games kept it easy, so people kept doing it.
 
 The technology for real-time collaboration is "solved" - CRDTs exist, sync is a library. But "solved" means "exists as a library." The gap between capability existing and capability being accessible is where most things get lost.
 
@@ -79,6 +79,7 @@ And the things that last are the ones that don't need permission to keep existin
 ## See also
 
 - [what's actually wrong?](/whats-actually-wrong) - the broader question of what's actually wrong
+- [why is software hard?](/why-is-software-hard) - how the frozen paradigm replaced what we lost
 - [reincarnate](/reincarnate) - lifting legacy software before it disappears
 - [rescribe](/rescribe) - lossless document conversion across formats
 - [interconnect](/interconnect) - federation for persistent shared worlds

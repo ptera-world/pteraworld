@@ -126,11 +126,12 @@ If these values are good, why aren't they the default?
 
 The ideal is **local-first, network-capable**. Your stuff lives on your machine, but you CAN access it remotely. You CAN share and collaborate. The network is optional capability, not required dependency.
 
-And collaboration is nearly impossible in most software. Debug someone's setup? You can't see their machine. Help with their issue? Screen share and verbal remote-piloting. Games solved this decades ago - you just join their world and help directly. The rest of software just... didn't.
+And collaboration is nearly impossible in most software. Debug someone's setup? You can't see their machine. Help with their issue? Screen share and verbal remote-piloting. Games [solved this decades ago](/what-do-we-keep-losing) - you just join their world and help directly. The rest of software just... didn't.
 
 ## See also
 
 - [why is software hard?](/why-is-software-hard) - accessible explainer for why software is frustrating
+- [what do we keep losing?](/what-do-we-keep-losing) - why good solutions vanish even after they're proven
 - [playmate](/playmate) - game design primitives that respect players
 - [dusklight](/dusklight) - UI that surfaces what's possible instead of hiding it
 - [interconnect](/interconnect) - federation for persistent shared worlds

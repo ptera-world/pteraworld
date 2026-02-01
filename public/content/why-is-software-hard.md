@@ -44,7 +44,7 @@ Then it froze. The paradigm calcified before anyone questioned whether it was ac
 
 Worse: the toolkits locked it in. Windows gives developers `CreateMenu()` but not `CreateRadialMenu()`. So everyone uses linear menus - not because they're better, but because they're *there*.
 
-We once had spatial interfaces (the original Mac Finder remembered where each folder's window was). We threw them away for "efficiency." We once had HyperCard - anyone could build interactive things. Apple neglected it to death. The dream of "everyone can make software" died with it.
+We once had spatial interfaces (the original Mac Finder remembered where each folder's window was). We threw them away for "efficiency." We once had HyperCard - anyone could build interactive things. Apple [neglected it to death](/what-do-we-keep-losing). The dream of "everyone can make software" died with it.
 
 We inherited the paradigm, not the reasoning behind it.
 
@@ -92,6 +92,7 @@ This isn't inevitable. Different incentives produce different software. The tool
 ## See also
 
 - [what's actually wrong?](/whats-actually-wrong) - the broader context of what's actually wrong
+- [what do we keep losing?](/what-do-we-keep-losing) - the pattern of abandoning paradigms that worked
 - [dusklight](/dusklight) - UI that surfaces affordances instead of hiding them
 - [keybinds](/keybinds) - making keyboard shortcuts discoverable
 - [normalize](/normalize) - CLI that exposes structure instead of hiding it
