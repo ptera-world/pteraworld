@@ -154,9 +154,13 @@ export function setFocus(graph: Graph, hovered: Node | null): void {
 
   if (!hovered) {
     delete world.dataset.hovering;
-    for (const el of nodeEls.values()) el.classList.remove("focused");
+    for (const el of nodeEls.values()) {
+      el.classList.remove("focused");
+      el.style.removeProperty("--fs");
+    }
     for (const ref of edgeRefs) {
       ref.el.classList.remove("focused");
+      ref.el.style.removeProperty("--es");
       ref.labelEl?.classList.remove("focused");
     }
     return;
@@ -175,12 +179,63 @@ export function setFocus(graph: Graph, hovered: Node | null): void {
     if (edge.to === hovered.id) focused.add(edge.from);
   }
 
+  // Build tag set for hovered node (exclude structural tags)
+  const structural = new Set(["project", "ecosystem"]);
+  const hoveredNode = graph.nodes.find((n) => n.id === hovered.id)!;
+  const hoveredTags = new Set(hoveredNode.tags.filter((t) => !structural.has(t)));
+
+  // Compute per-node strength
+  const nodeStrength = new Map<string, number>();
+  nodeStrength.set(hovered.id, 1.0);
+
+  for (const id of focused) {
+    if (id === hovered.id) continue;
+    // Edge strength: find the edge connecting this node to hovered
+    let edgeStr = 0;
+    for (const edge of graph.edges) {
+      if ((edge.from === hovered.id && edge.to === id) || (edge.to === hovered.id && edge.from === id)) {
+        edgeStr = Math.max(edgeStr, edge.strength);
+      }
+    }
+    // Tag similarity (Jaccard)
+    const node = graph.nodes.find((n) => n.id === id);
+    let tagSim = 0;
+    if (node) {
+      const nodeTags = new Set(node.tags.filter((t) => !structural.has(t)));
+      if (hoveredTags.size > 0 || nodeTags.size > 0) {
+        let shared = 0;
+        for (const t of nodeTags) if (hoveredTags.has(t)) shared++;
+        const union = new Set([...hoveredTags, ...nodeTags]).size;
+        tagSim = union > 0 ? shared / union : 0;
+      }
+    }
+    nodeStrength.set(id, Math.max(edgeStr, tagSim));
+  }
+
+  // Build edge strength map (edge from→to key to strength)
+  const edgeStrengthMap = new Map<string, number>();
+  for (const edge of graph.edges) {
+    edgeStrengthMap.set(`${edge.from}|${edge.to}`, edge.strength);
+  }
+
   for (const [id, el] of nodeEls) {
-    el.classList.toggle("focused", focused.has(id));
+    const isFocused = focused.has(id);
+    el.classList.toggle("focused", isFocused);
+    if (isFocused) {
+      el.style.setProperty("--fs", `${nodeStrength.get(id) ?? 0}`);
+    } else {
+      el.style.removeProperty("--fs");
+    }
   }
   for (const ref of edgeRefs) {
     const f = ref.el.dataset.type !== "containment" && focused.has(ref.from) && focused.has(ref.to);
     ref.el.classList.toggle("focused", f);
+    if (f) {
+      const es = edgeStrengthMap.get(`${ref.from}|${ref.to}`) ?? edgeStrengthMap.get(`${ref.to}|${ref.from}`) ?? 0.5;
+      ref.el.style.setProperty("--es", `${es}`);
+    } else {
+      ref.el.style.removeProperty("--es");
+    }
   }
 
   // Surface filtered-out nodes that are connected to the hovered node

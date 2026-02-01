@@ -25,6 +25,7 @@ export interface Node {
 export interface Edge {
   from: string;
   to: string;
+  strength: number; // 0–1
 }
 
 export interface Graph {
@@ -387,7 +388,7 @@ export function createGraph(): Graph {
 
   const containmentEdges: Edge[] = nodes
     .filter((n) => n.parent)
-    .map((n) => ({ from: n.parent!, to: n.id }));
+    .map((n) => ({ from: n.parent!, to: n.id, strength: 0.7 }));
 
   const edges: Edge[] = [...containmentEdges, ...relatedEdges];
 
