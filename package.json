@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "bun run src/dev.ts",
     "gen-edges": "bun run src/gen-edges.ts",
-    "build": "bun run src/gen-edges.ts && bun build src/main.ts --outdir dist --minify && bun run src/gen-pages.ts",
+    "build": "bun run src/gen-edges.ts && bun run src/gen-headings.ts && bun build src/main.ts --outdir dist --minify && bun run src/gen-pages.ts",
     "preview": "bun run src/dev.ts --production",
     "lint": "oxlint src/",
     "check:types": "tsgo --noEmit"
@@ -15,5 +15,8 @@
     "@types/bun": "^1.0.0",
     "@typescript/native-preview": "^7.0.0-dev",
     "oxlint": "^1.0.0"
+  },
+  "dependencies": {
+    "keybinds": "github:pterror/keybinds"
   }
 }

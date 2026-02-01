@@ -3,11 +3,65 @@ import type { Graph, Node } from "./graph";
 import { updateTransform, setFocus, getHitNode, animateTo } from "./dom";
 import { showCard, hideCard, isCardOpen, setCardNavigate } from "./card";
 import { isPanelOpen, closePanel, openPanel } from "./panel";
+
 import { initSearch, openSearch, closeSearch, isSearchOpen } from "./search";
+import { keybinds, defineSchema, fromBindings, registerComponents, fuzzyMatcher } from "keybinds";
+import type { Command } from "keybinds";
 
 export interface InputHandle {
   navigateTo(node: Node, push?: boolean): void;
+  commands: Command[];
 }
+
+// --- Keybind schema (data only — no closures) ---
+
+const schema = defineSchema({
+  close: {
+    label: "Close",
+    keys: ["Escape"],
+    captureInput: true,
+  },
+  search: {
+    label: "Search nodes",
+    category: "Navigation",
+    keys: ["/"],
+  },
+  "nav-right": {
+    label: "Navigate right",
+    category: "Navigation",
+    keys: ["ArrowRight"],
+  },
+  "nav-left": {
+    label: "Navigate left",
+    category: "Navigation",
+    keys: ["ArrowLeft"],
+  },
+  "nav-up": {
+    label: "Navigate up",
+    category: "Navigation",
+    keys: ["ArrowUp"],
+  },
+  "nav-down": {
+    label: "Navigate down",
+    category: "Navigation",
+    keys: ["ArrowDown"],
+  },
+  "zoom-in": {
+    label: "Zoom in",
+    category: "View",
+    keys: ["="],
+  },
+  "zoom-out": {
+    label: "Zoom out",
+    category: "View",
+    keys: ["-"],
+  },
+  "reset-view": {
+    label: "Reset view",
+    category: "View",
+    keys: ["0"],
+  },
+});
 
 export function setupInput(
   viewport: HTMLElement,
@@ -44,6 +98,12 @@ export function setupInput(
     if (push) {
       history.pushState(null, "", location.pathname);
     }
+  }
+
+  function arrowNav(dir: [number, number]): void {
+    if (!focusedNode) return;
+    const next = bestNeighbor(focusedNode, dir, graph);
+    if (next) navigateTo(next);
   }
 
   // --- Card cross-link navigation ---
@@ -159,37 +219,60 @@ export function setupInput(
     updateTransform(camera);
   }, { passive: false });
 
-  // --- Keyboard ---
+  // --- Keybinds (replaces manual keydown handler) ---
 
-  document.addEventListener("keydown", (e) => {
-    // Escape: close the topmost overlay
-    if (e.key === "Escape") {
+  const handlers: Record<string, (ctx: Record<string, unknown>, event?: Event) => unknown> = {
+    close: () => {
       if (isSearchOpen()) { closeSearch(); return; }
       if (isPanelOpen()) { closePanel(); return; }
       if (isCardOpen()) { hideCard(); return; }
       if (focusedNode) { clearFocus(); return; }
-      return;
-    }
+    },
+    search: () => openSearch(),
+    "nav-right": () => arrowNav([1, 0]),
+    "nav-left": () => arrowNav([-1, 0]),
+    "nav-up": () => arrowNav([0, -1]),
+    "nav-down": () => arrowNav([0, 1]),
+    "zoom-in": () => {
+      camera.zoom = Math.min(10, camera.zoom * 1.25);
+      updateTransform(camera);
+    },
+    "zoom-out": () => {
+      camera.zoom = Math.max(0.3, camera.zoom / 1.25);
+      updateTransform(camera);
+    },
+    "reset-view": () => animateTo(camera, 0, 0, 1.5),
+  };
 
-    // Don't handle other keys when typing in an input
-    const tag = (e.target as HTMLElement).tagName;
-    if (tag === "INPUT" || tag === "TEXTAREA") return;
-
-    // Search
-    if (e.key === "/" || (e.key === "k" && (e.ctrlKey || e.metaKey))) {
-      e.preventDefault();
-      openSearch();
-      return;
-    }
-
-    // Arrow key traversal between connected nodes
-    const dir = arrowDir(e.key);
-    if (dir && focusedNode) {
-      e.preventDefault();
-      const next = bestNeighbor(focusedNode, dir, graph);
-      if (next) navigateTo(next);
-    }
+  const commands = fromBindings(schema, handlers, {
+    "nav-right": { when: (ctx) => !!ctx.hasFocus },
+    "nav-left": { when: (ctx) => !!ctx.hasFocus },
+    "nav-up": { when: (ctx) => !!ctx.hasFocus },
+    "nav-down": { when: (ctx) => !!ctx.hasFocus },
   });
+
+  // Node navigation commands (no key binding — palette-only)
+  const nodeMap = new Map(graph.nodes.map(n => [n.id, n]));
+  const nodeCommands: Command[] = graph.nodes.map(node => {
+    const parent = node.parent ? nodeMap.get(node.parent) : null;
+    const category = node.tier === "ecosystem" ? "Ecosystems"
+      : node.tags.includes("essay") ? "Essays"
+      : parent ? parent.label
+      : "Projects";
+    return {
+      id: `go-to-${node.id}`,
+      label: node.label,
+      category,
+      execute: () => navigateTo(node),
+    };
+  });
+
+  keybinds(commands, () => ({
+    hasFocus: !!focusedNode,
+    searchOpen: isSearchOpen(),
+    panelOpen: isPanelOpen(),
+    cardOpen: isCardOpen(),
+  }));
 
   // --- History (popstate) ---
 
@@ -239,17 +322,85 @@ export function setupInput(
 
   initSearch(graph.nodes, (node) => navigateTo(node));
 
-  return { navigateTo };
-}
+  const allCommands = [...commands, ...nodeCommands];
 
-function arrowDir(key: string): [number, number] | null {
-  switch (key) {
-    case "ArrowRight": return [1, 0];
-    case "ArrowLeft": return [-1, 0];
-    case "ArrowUp": return [0, -1];
-    case "ArrowDown": return [0, 1];
-    default: return null;
+  // --- Web components (palette + cheatsheet) ---
+
+  registerComponents();
+
+  // Body text index: label → searchable text (descriptions + section bodies)
+  const bodyIndex = new Map<string, string>();
+  for (const node of graph.nodes) {
+    bodyIndex.set(node.label, node.description);
   }
+
+  const palette = document.createElement("command-palette") as import("keybinds").CommandPalette;
+  palette.setAttribute("auto-trigger", "");
+  palette.commands = allCommands;
+  palette.context = {};
+  palette.matcher = ((query: string, text: string) => {
+    const labelMatch = fuzzyMatcher(query, text);
+    const body = bodyIndex.get(text);
+    if (body) {
+      const bodyMatch = fuzzyMatcher(query, body);
+      if (bodyMatch) {
+        const bodyScore = bodyMatch.score * 0.7;
+        if (!labelMatch || bodyScore > labelMatch.score) {
+          return { score: bodyScore };
+        }
+      }
+    }
+    return labelMatch;
+  }) as import("keybinds").CommandPalette["matcher"];
+  document.body.appendChild(palette);
+
+  // Lazy-load heading commands on first palette open
+  let headingsLoaded = false;
+  async function loadHeadings() {
+    if (headingsLoaded) return;
+    headingsLoaded = true;
+    try {
+      const res = await fetch("/headings.json");
+      if (!res.ok) return;
+      const headings: { nodeId: string; heading: string; slug: string; body: string }[] = await res.json();
+      const headingCommands: Command[] = headings.flatMap(h => {
+        const node = nodeMap.get(h.nodeId);
+        if (!node) return [];
+        return [{
+          id: `go-to-${h.nodeId}-${h.slug}`,
+          label: h.heading,
+          category: node.label,
+          execute: () => {
+            openPanel(h.nodeId, node.label);
+            requestAnimationFrame(() => {
+              const panelBody = document.getElementById("panel-body");
+              const sec = panelBody?.querySelector<HTMLElement>(`#${CSS.escape(h.slug)}`);
+              if (sec?.classList.contains("collapsible-section")) {
+                sec.classList.add("expanded");
+                sec.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            });
+          },
+        }];
+      });
+      for (const h of headings) {
+        bodyIndex.set(h.heading, h.body);
+      }
+      allCommands.push(...headingCommands);
+      palette.commands = allCommands;
+    } catch { /* headings unavailable — degrade gracefully */ }
+  }
+  new MutationObserver(() => {
+    if (palette.hasAttribute("open")) loadHeadings();
+  }).observe(palette, { attributes: true, attributeFilter: ["open"] });
+
+  const cheatsheet = document.createElement("keybind-cheatsheet") as import("keybinds").KeybindCheatsheet;
+  cheatsheet.setAttribute("auto-trigger", "");
+  cheatsheet.commands = commands;
+  cheatsheet.context = {};
+  document.body.appendChild(cheatsheet);
+
+  return { navigateTo, commands: allCommands };
 }
 
 function bestNeighbor(from: Node, dir: [number, number], graph: Graph): Node | null {

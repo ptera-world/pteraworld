@@ -16,6 +16,7 @@ result
 
 # Generated (regenerated on build)
 src/generated-edges.ts
+public/headings.json
 
 # Editor
 .vscode/
