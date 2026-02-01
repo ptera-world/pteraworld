@@ -18,24 +18,11 @@ applyFilter(filter, graph);
 buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   applyFilter(filter, graph);
   if (filter.active.size > 0) {
-    const vis = getVisibleIds(filter, graph);
-    runLayout(graph, vis);
-    updatePositions(graph);
-
-    // Center camera on visible non-ecosystem nodes (keep current zoom)
-    const visible = graph.nodes.filter(
-      (n) => vis.has(n.id) && n.tier !== "ecosystem",
-    );
-    if (visible.length > 0) {
-      let sumX = 0, sumY = 0;
-      for (const n of visible) { sumX += n.x; sumY += n.y; }
-      animateTo(camera, sumX / visible.length, sumY / visible.length, camera.zoom);
-    }
+    runLayout(graph, getVisibleIds(filter, graph));
   } else {
     resetLayout(graph);
-    updatePositions(graph);
-    animateTo(camera, 0, 0, 1.5);
   }
+  updatePositions(graph);
   hideCard();
 });
 
