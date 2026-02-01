@@ -85,7 +85,7 @@ export function setupInput(
     } else {
       showCard(node, graph);
     }
-    animateTo(camera, node.x, node.y, 3);
+    animateTo(camera, node.x, node.y, Math.max(camera.zoom, 1.5));
     if (push) {
       history.pushState({ focus: node.id }, "", `?focus=${node.id}`);
     }
