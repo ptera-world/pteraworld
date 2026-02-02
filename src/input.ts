@@ -520,11 +520,13 @@ export function setupInput(
   ctxMenu.context = {};
   document.body.appendChild(ctxMenu);
 
-  // Before the component handles contextmenu, navigate to the right-clicked node
+  // Before the component handles contextmenu, focus the right-clicked node
+  // without panning (panning would move the node away from the cursor)
   viewport.addEventListener("contextmenu", (e) => {
     const node = getHitNode(e.target);
     if (node) {
-      navigateTo(node);
+      focusedNode = node;
+      setFocus(graph, node, true);
     }
     ctxMenu.context = getContext();
   }, { capture: true });
