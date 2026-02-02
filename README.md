@@ -20,6 +20,16 @@ Traditional portfolio sites are lists of pages. Graph editors are powerful but h
 
 Projections shift dynamically - the layout isn't fixed. What's "nearby" depends on what you're focused on. A project's neighbors change based on whether you approached it from its ecosystem, its tech stack, or its problem domain.
 
+## Keyboard navigation
+
+- **WASD** - smooth camera panning (zoom-proportional speed)
+- **Arrow keys** - snap to connected neighbor; falls back to nearest visible node in that direction
+- **Enter** - show card on focused node; press again to open panel
+- **Escape** - dismiss panel → card → focus
+- **/** - open command palette (fuzzy search across nodes, essays, headings, commands)
+- **+/-** - zoom in/out
+- **0** - reset view
+
 ## Development
 
 ```bash

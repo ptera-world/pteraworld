@@ -57,6 +57,7 @@ function prepareContent(container: HTMLElement): void {
 
       bd.addEventListener("click", (e) => {
         if (!sec.classList.contains("expanded")) {
+          if ((e.target as HTMLElement).closest?.("a")) return; // let links through
           e.preventDefault();
           e.stopPropagation();
           sec.classList.add("expanded");
@@ -184,6 +185,7 @@ export function openPanel(nodeId: string, nodeLabel?: string): void {
   hideCard();
   currentNodeId = nodeId;
   panel.hidden = false;
+  panelBody.scrollTop = 0;
 
   panelTitle.textContent = nodeLabel ?? nodeId;
   panelOpen.href = `/${nodeId}`;

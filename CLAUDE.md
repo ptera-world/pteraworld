@@ -29,7 +29,7 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - `graph.ts` - node/edge data model. Hardcoded node definitions with positions, tiers, colors. Imports auto-generated edges from `generated-edges.ts`
 - `camera.ts` - camera state (x, y, zoom) and tier system. Screen-to-world coordinate conversion
 - `dom.ts` - DOM construction, CSS transform animations, focus/hover state
-- `input.ts` - mouse/touch/wheel event handling, drag panning, zoom
+- `input.ts` - mouse/touch/wheel event handling, drag panning, zoom, WASD smooth panning, arrow key spatial navigation, Enter key confirm, keybinds schema + command palette
 - `card.ts` - popup quick-preview card shown on node click
 - `panel.ts` - side panel that fetches and displays markdown content, with in-memory cache
 - `markdown.ts` - minimal homegrown markdown-to-HTML parser (no dependencies)
@@ -51,3 +51,4 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - Nix flake provides the dev environment (activated via direnv)
 - Node tiers: `ecosystem` (large regions), `project` (dots), `detail` (future)
 - Recent commit style uses conventional commits (feat:, fix:, style:, docs:)
+- Always update docs (ROADMAP.md, CLAUDE.md, README.md) before committing if behavior changed

@@ -1,6 +1,7 @@
 import type { Camera } from "./camera";
+import { currentTier } from "./camera";
 import type { Graph, Node } from "./graph";
-import { updateTransform, setFocus, getHitNode, animateTo } from "./dom";
+import { updateTransform, setFocus, getHitNode, animateTo, nodeEls } from "./dom";
 import { showCard, hideCard, isCardOpen, setCardNavigate } from "./card";
 import { isPanelOpen, closePanel, openPanel } from "./panel";
 
@@ -60,6 +61,11 @@ const schema = defineSchema({
     category: "View",
     keys: ["0"],
   },
+  confirm: {
+    label: "Open card / panel",
+    category: "Navigation",
+    keys: ["Enter"],
+  },
 });
 
 export function setupInput(
@@ -102,7 +108,7 @@ export function setupInput(
 
   function arrowNav(dir: [number, number]): void {
     if (!focusedNode) return;
-    const next = bestNeighbor(focusedNode, dir, graph);
+    const next = bestNeighbor(focusedNode, dir, graph, camera);
     if (next) navigateTo(next);
   }
 
@@ -241,6 +247,15 @@ export function setupInput(
       updateTransform(camera);
     },
     "reset-view": () => animateTo(camera, 0, 0, 1.5),
+    confirm: () => {
+      if (!focusedNode) return;
+      if (isPanelOpen()) return; // no-op when panel already open
+      if (isCardOpen()) {
+        openPanel(focusedNode.id, focusedNode.label);
+      } else {
+        showCard(focusedNode, graph);
+      }
+    },
   };
 
   const commands = fromBindings(schema, handlers, {
@@ -248,6 +263,7 @@ export function setupInput(
     "nav-left": { when: (ctx) => !!ctx.hasFocus },
     "nav-up": { when: (ctx) => !!ctx.hasFocus },
     "nav-down": { when: (ctx) => !!ctx.hasFocus },
+    confirm: { when: (ctx) => !!ctx.hasFocus },
   });
 
   // Node navigation commands (no key binding — palette-only)
@@ -316,6 +332,62 @@ export function setupInput(
   }, { passive: false });
 
   viewport.addEventListener("touchend", () => { dragging = false; });
+
+  // --- WASD smooth panning ---
+
+  const PAN_SPEED = 600; // world-units per second at zoom=1
+  const heldKeys = new Set<string>();
+  let panRAF = 0;
+  let lastPanTime = 0;
+
+  function isInputFocused(): boolean {
+    const el = document.activeElement;
+    if (!el) return false;
+    const tag = el.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+    if ((el as HTMLElement).isContentEditable) return true;
+    // palette open = typing in search
+    if (paletteEl?.hasAttribute("open")) return true;
+    return false;
+  }
+
+  function panLoop(now: number): void {
+    if (heldKeys.size === 0) { panRAF = 0; return; }
+    const dt = lastPanTime ? (now - lastPanTime) / 1000 : 0;
+    lastPanTime = now;
+    let dx = 0, dy = 0;
+    if (heldKeys.has("w")) dy -= 1;
+    if (heldKeys.has("s")) dy += 1;
+    if (heldKeys.has("a")) dx -= 1;
+    if (heldKeys.has("d")) dx += 1;
+    if (dx !== 0 || dy !== 0) {
+      const move = PAN_SPEED * dt / camera.zoom;
+      camera.x += dx * move;
+      camera.y += dy * move;
+      updateTransform(camera);
+    }
+    panRAF = requestAnimationFrame(panLoop);
+  }
+
+  window.addEventListener("keydown", (e) => {
+    const key = e.key.toLowerCase();
+    if (!"wasd".includes(key)) return;
+    if (isInputFocused()) return;
+    if (heldKeys.has(key)) return; // key repeat
+    heldKeys.add(key);
+    if (!panRAF) {
+      lastPanTime = 0;
+      panRAF = requestAnimationFrame(panLoop);
+    }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    heldKeys.delete(e.key.toLowerCase());
+  });
+
+  window.addEventListener("blur", () => {
+    heldKeys.clear();
+  });
 
   // --- Search init ---
 
@@ -402,7 +474,8 @@ export function setupInput(
   return { navigateTo, commands: allCommands };
 }
 
-function bestNeighbor(from: Node, dir: [number, number], graph: Graph): Node | null {
+function bestNeighbor(from: Node, dir: [number, number], graph: Graph, camera: Camera): Node | null {
+  // Phase 1: edge-connected neighbors (cosine threshold 0.2)
   const candidates = new Set<string>();
   for (const edge of graph.edges) {
     if (edge.from === from.id) candidates.add(edge.to);
@@ -410,7 +483,7 @@ function bestNeighbor(from: Node, dir: [number, number], graph: Graph): Node | n
   }
 
   let best: Node | null = null;
-  let bestScore = 0.2; // minimum cosine threshold
+  let bestScore = 0.2;
 
   for (const id of candidates) {
     const node = graph.nodes.find(n => n.id === id);
@@ -426,7 +499,36 @@ function bestNeighbor(from: Node, dir: [number, number], graph: Graph): Node | n
     }
   }
 
-  return best;
+  if (best) return best;
+
+  // Phase 2: spatial fallback — all visible nodes
+  const tier = currentTier(camera);
+  let bestSpatial: Node | null = null;
+  let bestSpatialScore = 0;
+
+  for (const node of graph.nodes) {
+    if (node.id === from.id) continue;
+    // Tier visibility filter
+    if (tier === "far" && node.tier !== "ecosystem") continue;
+    if (tier !== "far" && node.tier === "ecosystem") continue;
+    // Respect active filters
+    const el = nodeEls.get(node.id);
+    if (el?.dataset.filtered === "hidden") continue;
+
+    const dx = node.x - from.x;
+    const dy = node.y - from.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist === 0) continue;
+    const cos = (dx * dir[0] + dy * dir[1]) / dist;
+    if (cos <= 0.5) continue; // ~60° cone
+    const score = cos / dist;
+    if (score > bestSpatialScore) {
+      bestSpatialScore = score;
+      bestSpatial = node;
+    }
+  }
+
+  return bestSpatial;
 }
 
 function touchDist(e: TouchEvent): number {
