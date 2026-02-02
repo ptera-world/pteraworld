@@ -23,10 +23,17 @@ function worldToMinimap(wx: number, wy: number): [number, number] {
   ];
 }
 
+function minimapToWorld(mx: number, my: number): [number, number] {
+  return [
+    WORLD_X_MIN + (mx / WIDTH) * WORLD_W,
+    WORLD_Y_MIN + (my / HEIGHT) * WORLD_H,
+  ];
+}
+
 export function createMinimap(
   camera: Camera,
   graph: Graph,
-  panTo: (x: number, y: number) => void,
+  panTo: (x: number, y: number, animate: boolean) => void,
 ): void {
   graphRef = graph;
 
@@ -39,14 +46,31 @@ export function createMinimap(
 
   document.getElementById("viewport")!.appendChild(canvas);
 
-  // Click to pan camera
-  canvas.addEventListener("click", (e) => {
+  // Click + drag to pan camera
+  let dragging = false;
+
+  function panFromEvent(e: MouseEvent, animate: boolean): void {
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
-    const wx = WORLD_X_MIN + (mx / WIDTH) * WORLD_W;
-    const wy = WORLD_Y_MIN + (my / HEIGHT) * WORLD_H;
-    panTo(wx, wy);
+    const mx = (e.clientX - rect.left) * (WIDTH / rect.width);
+    const my = (e.clientY - rect.top) * (HEIGHT / rect.height);
+    const [wx, wy] = minimapToWorld(mx, my);
+    panTo(wx, wy, animate);
+  }
+
+  canvas.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragging = true;
+    panFromEvent(e, false);
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    panFromEvent(e, false);
+  });
+
+  window.addEventListener("mouseup", () => {
+    dragging = false;
   });
 }
 

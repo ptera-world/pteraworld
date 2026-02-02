@@ -50,8 +50,14 @@ buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   updateFilterUrl();
 });
 
-createMinimap(camera, graph, (x, y) => {
-  animateTo(camera, x, y, camera.zoom);
+createMinimap(camera, graph, (x, y, animate) => {
+  if (animate) {
+    animateTo(camera, x, y, camera.zoom);
+  } else {
+    camera.x = x;
+    camera.y = y;
+    updateTransform(camera);
+  }
 });
 updateTransform(camera);
 const input = setupInput(document.getElementById("viewport")!, camera, graph);
