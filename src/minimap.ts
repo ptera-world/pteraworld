@@ -1,9 +1,6 @@
 import type { Camera } from "./camera";
 import type { Graph } from "./graph";
 
-const WIDTH = 160;
-const HEIGHT = 100;
-
 // World bounds (encompass all node positions with padding)
 const WORLD_X_MIN = -590;
 const WORLD_X_MAX = 590;
@@ -11,6 +8,9 @@ const WORLD_Y_MIN = -350;
 const WORLD_Y_MAX = 350;
 const WORLD_W = WORLD_X_MAX - WORLD_X_MIN;
 const WORLD_H = WORLD_Y_MAX - WORLD_Y_MIN;
+
+const WIDTH = 160;
+const HEIGHT = Math.round(WIDTH * (WORLD_H / WORLD_W));
 
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
