@@ -11,4 +11,4 @@ plugins include an LLM client (Anthropic, OpenAI, Azure, Gemini, Cohere, DeepSee
 - [normalize](/normalize) - available as moonlet-normalize plugin
 - [portals](/portals) - moonlet uses portals-io and portals-filesystem
 - [zone](/zone) - Lua projects run on moonlet
-- [dew](/dew) - Lua backend for moonlet
+- [wick](/wick) - Lua backend for moonlet

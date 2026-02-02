@@ -10,4 +10,4 @@ three layers internally: primitives, helpers, and an optimizer. uses glam for ma
 
 ## Related projects
 
-- [dew](/dew) - expression language used for procedural parameters
+- [wick](/wick) - expression language used for procedural parameters

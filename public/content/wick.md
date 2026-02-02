@@ -1,4 +1,4 @@
-minimal expression language that compiles to multiple backends. parse once, emit to WGSL, Cranelift, Lua, GLSL, OpenCL, CUDA, C, Rust, or TokenStream.
+minimal expression language that compiles to multiple backends. parse once, emit to WGSL, Cranelift, Lua, GLSL, OpenCL, CUDA, HIP, C, Rust, or TokenStream.
 
 ## what it is
 
@@ -8,5 +8,5 @@ domain crates provide independent type systems (scalar math, linear algebra, com
 
 ## Related projects
 
-- [unshape](/unshape) - uses dew for procedural generation parameters
-- [moonlet](/moonlet) - hosts dew's Lua backend
+- [unshape](/unshape) - uses wick for procedural generation parameters
+- [moonlet](/moonlet) - hosts wick's Lua backend
