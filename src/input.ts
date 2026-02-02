@@ -97,9 +97,10 @@ export function setupInput(
   }
 
   function navigateTo(node: Node, push = true): void {
+    const wasThisNode = focusedNode === node;
     focusedNode = node;
     setFocus(graph, node, true);
-    if (isPanelOpen() || isCardOpen()) {
+    if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
       openPanel(node.id, node.label);
     } else {
       showCard(node, graph);
