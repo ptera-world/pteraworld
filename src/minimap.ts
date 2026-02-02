@@ -53,25 +53,41 @@ export function createMinimap(
 
   // Click + drag to pan camera
   let dragging = false;
+  let grabOffsetX = 0;
+  let grabOffsetY = 0;
 
-  function panFromEvent(e: MouseEvent, animate: boolean): void {
+  function eventToWorld(e: MouseEvent): [number, number] {
     const rect = canvas.getBoundingClientRect();
     const mx = (e.clientX - rect.left) * (WIDTH / rect.width);
     const my = (e.clientY - rect.top) * (HEIGHT / rect.height);
-    const [wx, wy] = minimapToWorld(mx, my);
-    panTo(wx, wy, animate);
+    return minimapToWorld(mx, my);
   }
 
   canvas.addEventListener("mousedown", (e) => {
     e.preventDefault();
     e.stopPropagation();
     dragging = true;
-    panFromEvent(e, false);
+    const [wx, wy] = eventToWorld(e);
+    // If clicking inside the viewport rect, preserve offset so it doesn't snap
+    const vw = viewportEl.clientWidth;
+    const vh = viewportEl.clientHeight;
+    const halfW = vw / (2 * camera.zoom);
+    const halfH = vh / (2 * camera.zoom);
+    if (wx >= camera.x - halfW && wx <= camera.x + halfW &&
+        wy >= camera.y - halfH && wy <= camera.y + halfH) {
+      grabOffsetX = camera.x - wx;
+      grabOffsetY = camera.y - wy;
+    } else {
+      grabOffsetX = 0;
+      grabOffsetY = 0;
+      panTo(wx, wy, false);
+    }
   });
 
   window.addEventListener("mousemove", (e) => {
     if (!dragging) return;
-    panFromEvent(e, false);
+    const [wx, wy] = eventToWorld(e);
+    panTo(wx + grabOffsetX, wy + grabOffsetY, false);
   });
 
   window.addEventListener("mouseup", () => {
