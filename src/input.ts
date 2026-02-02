@@ -277,10 +277,6 @@ export function setupInput(
   };
 
   const commands = fromBindings(schema, handlers, {
-    "nav-right": { when: (ctx) => !!ctx.hasFocus },
-    "nav-left": { when: (ctx) => !!ctx.hasFocus },
-    "nav-up": { when: (ctx) => !!ctx.hasFocus },
-    "nav-down": { when: (ctx) => !!ctx.hasFocus },
     confirm: { when: (ctx) => !!ctx.hasFocus },
   });
 
