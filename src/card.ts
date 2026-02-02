@@ -123,6 +123,7 @@ export function showCard(node: Node, graph: Graph): void {
   const card = document.getElementById("card");
   if (!card) return;
   card.replaceChildren(buildCard(node, graph));
+  card.setAttribute("aria-label", node.label);
   const coreR = node.tier === "ecosystem" ? node.radius * 0.15 : node.radius;
   const vertical = window.matchMedia("(max-width: 640px)").matches;
   if (vertical) {

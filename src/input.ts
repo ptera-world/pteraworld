@@ -20,6 +20,7 @@ const schema = defineSchema({
     label: "Close",
     keys: ["Escape"],
     captureInput: true,
+    menu: "node",
   },
   search: {
     label: "Search nodes",
@@ -65,6 +66,7 @@ const schema = defineSchema({
     label: "Open card / panel",
     category: "Navigation",
     keys: ["Enter"],
+    menu: "node",
   },
 });
 
@@ -83,9 +85,20 @@ export function setupInput(
 
   // --- Navigation helpers ---
 
+  function preserveParams(setFocusId?: string): string {
+    const params = new URLSearchParams(location.search);
+    if (setFocusId) {
+      params.set("focus", setFocusId);
+    } else {
+      params.delete("focus");
+    }
+    const qs = params.toString();
+    return qs ? `?${qs}` : location.pathname;
+  }
+
   function navigateTo(node: Node, push = true): void {
     focusedNode = node;
-    setFocus(graph, node);
+    setFocus(graph, node, true);
     if (isPanelOpen()) {
       openPanel(node.id, node.label);
     } else {
@@ -93,7 +106,7 @@ export function setupInput(
     }
     animateTo(camera, node.x, node.y, Math.max(camera.zoom, 1.5));
     if (push) {
-      history.pushState({ focus: node.id }, "", `?focus=${node.id}`);
+      history.pushState({ focus: node.id }, "", preserveParams(node.id));
     }
   }
 
@@ -102,7 +115,7 @@ export function setupInput(
     setFocus(graph, null);
     hideCard();
     if (push) {
-      history.pushState(null, "", location.pathname);
+      history.pushState(null, "", preserveParams());
     }
   }
 
@@ -283,11 +296,15 @@ export function setupInput(
     };
   });
 
-  keybinds(commands, () => ({
-    hasFocus: !!focusedNode,
-    panelOpen: isPanelOpen(),
-    cardOpen: isCardOpen(),
-  }));
+  function getContext() {
+    return {
+      hasFocus: !!focusedNode,
+      panelOpen: isPanelOpen(),
+      cardOpen: isCardOpen(),
+    };
+  }
+
+  keybinds(commands, getContext);
 
   // --- History (popstate) ---
 
@@ -470,6 +487,47 @@ export function setupInput(
   cheatsheet.commands = commands;
   cheatsheet.context = {};
   document.body.appendChild(cheatsheet);
+
+  // --- Context menu ---
+
+  const contextMenuCommands: Command[] = [
+    {
+      id: "open-panel",
+      label: "Open details",
+      menu: "node",
+      when: (ctx) => !!ctx.hasFocus,
+      execute: () => {
+        if (focusedNode) openPanel(focusedNode.id, focusedNode.label);
+      },
+    },
+    {
+      id: "open-new-tab",
+      label: "Open in new tab",
+      menu: "node",
+      when: (ctx) => !!ctx.hasFocus,
+      execute: () => {
+        if (focusedNode) window.open(`/${focusedNode.id}`, "_blank");
+      },
+    },
+  ];
+  allCommands.push(...contextMenuCommands);
+
+  const ctxMenu = document.createElement("context-menu") as import("keybinds").ContextMenu;
+  ctxMenu.setAttribute("auto-trigger", "");
+  ctxMenu.setAttribute("target", "#viewport");
+  ctxMenu.menu = "node";
+  ctxMenu.commands = allCommands;
+  ctxMenu.context = {};
+  document.body.appendChild(ctxMenu);
+
+  // Before the component handles contextmenu, navigate to the right-clicked node
+  viewport.addEventListener("contextmenu", (e) => {
+    const node = getHitNode(e.target);
+    if (node) {
+      navigateTo(node);
+    }
+    ctxMenu.context = getContext();
+  }, { capture: true });
 
   return { navigateTo, commands: allCommands };
 }

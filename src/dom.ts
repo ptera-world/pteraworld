@@ -2,6 +2,7 @@ import type { Camera } from "./camera";
 import { currentTier } from "./camera";
 import type { Graph, Node } from "./graph";
 import type { FilterState } from "./filter";
+import { updateMinimap } from "./minimap";
 
 const viewport = document.getElementById("viewport")!;
 const world = document.getElementById("world")!;
@@ -20,6 +21,11 @@ let landingEl: HTMLElement;
 
 let filterRef: FilterState | null = null;
 const surfacedNodes = new Set<string>();
+const liveRegion = document.getElementById("live-region");
+
+function announce(text: string): void {
+  if (liveRegion) liveRegion.textContent = text;
+}
 
 export function setFilterRef(filter: FilterState): void {
   filterRef = filter;
@@ -73,12 +79,18 @@ export function buildWorld(graph: Graph): void {
       el.style.setProperty("--glow-r", `${node.radius}px`);
       const core = document.createElement("div");
       core.className = "node-core node-hit";
+      core.setAttribute("role", "button");
+      core.tabIndex = -1;
+      core.setAttribute("aria-label", node.label);
       el.appendChild(core);
       hitNodes.set(core, node);
     } else {
       el.style.setProperty("--r", `${node.radius}px`);
       const dot = document.createElement("div");
       dot.className = "node-dot node-hit";
+      dot.setAttribute("role", "button");
+      dot.tabIndex = -1;
+      dot.setAttribute("aria-label", node.label);
       el.appendChild(dot);
       hitNodes.set(dot, node);
     }
@@ -115,6 +127,7 @@ export function updateTransform(camera: Camera): void {
   world.dataset.tier = currentTier(camera);
   const landingOpacity = Math.max(0, Math.min(1, (3.0 - camera.zoom) / 1.5));
   landingEl.style.opacity = `${landingOpacity}`;
+  updateMinimap(camera);
 }
 
 /**
@@ -138,7 +151,7 @@ export function animateTo(camera: Camera, tx: number, ty: number, tz: number): v
   requestAnimationFrame(step);
 }
 
-export function setFocus(graph: Graph, hovered: Node | null): void {
+export function setFocus(graph: Graph, hovered: Node | null, announceNav = false): void {
   // Restore any previously surfaced nodes
   for (const id of surfacedNodes) {
     const el = nodeEls.get(id);
@@ -166,6 +179,13 @@ export function setFocus(graph: Graph, hovered: Node | null): void {
   }
 
   world.dataset.hovering = "";
+
+  if (announceNav) {
+    announce(`Focused on ${hovered.label}`);
+    // Focus the hit element for screen readers
+    const hitEl = nodeEls.get(hovered.id)?.querySelector<HTMLElement>(".node-hit");
+    if (hitEl) hitEl.focus({ preventScroll: true });
+  }
 
   const focused = new Set<string>();
   focused.add(hovered.id);

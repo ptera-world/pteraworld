@@ -20,7 +20,7 @@ Traditional portfolio sites are lists of pages. Graph editors are powerful but h
 
 Projections shift dynamically - the layout isn't fixed. What's "nearby" depends on what you're focused on. A project's neighbors change based on whether you approached it from its ecosystem, its tech stack, or its problem domain.
 
-## Keyboard navigation
+## Interaction
 
 - **WASD** - smooth camera panning (zoom-proportional speed)
 - **Arrow keys** - snap to connected neighbor; falls back to nearest visible node in that direction
@@ -29,6 +29,9 @@ Projections shift dynamically - the layout isn't fixed. What's "nearby" depends 
 - **/** - open command palette (fuzzy search across nodes, essays, headings, commands)
 - **+/-** - zoom in/out
 - **0** - reset view
+- **Right-click** a node to open context menu (open details, open in new tab)
+- **Filter pills** at the bottom filter by tag; state persists in URL (`?filter=rust,ui`)
+- **Minimap** appears in the bottom-right corner when zoomed in past 1.5×; click to pan
 
 ## Development
 

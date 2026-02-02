@@ -29,8 +29,9 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - `graph.ts` - node/edge data model. Hardcoded node definitions with positions, tiers, colors. Imports auto-generated edges from `generated-edges.ts`
 - `camera.ts` - camera state (x, y, zoom) and tier system. Screen-to-world coordinate conversion
 - `dom.ts` - DOM construction, CSS transform animations, focus/hover state
-- `input.ts` - mouse/touch/wheel event handling, drag panning, zoom, WASD smooth panning, arrow key spatial navigation, Enter key confirm, keybinds schema + command palette
+- `input.ts` - mouse/touch/wheel event handling, drag panning, zoom, WASD smooth panning, arrow key spatial navigation, Enter key confirm, keybinds schema + command palette + context menu
 - `card.ts` - popup quick-preview card shown on node click
+- `minimap.ts` - canvas-based minimap for spatial orientation at deep zoom, click-to-pan
 - `panel.ts` - side panel that fetches and displays markdown content, with in-memory cache
 - `markdown.ts` - minimal homegrown markdown-to-HTML parser (no dependencies)
 - `gen-edges.ts` - build-time script that reads `public/content/*.md`, extracts `## Related projects` links, and writes `src/generated-edges.ts`

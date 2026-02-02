@@ -19,7 +19,14 @@ Landing hint shows "scroll to zoom · click to explore · / to search" with affo
 
 ## Lower priority
 
-- **Mini-map** in corner for spatial orientation at deep zoom
-- **Right-click context menu** to skip card → go straight to panel
-- **Filter persistence** via URL params (shareable filter state)
-- **Accessibility** — ARIA labels, keyboard focus management
+### 6. ~~Right-click context menu~~ Done
+`<context-menu>` web component with "Open details" (skip card → panel) and "Open in new tab" commands. Right-clicking a node navigates to it first so context is correct.
+
+### 7. ~~Filter persistence via URL params~~ Done
+Active filter tags serialized to `?filter=tag1,tag2` via `replaceState`. Restored on page load and popstate. Preserves existing `?focus=` param.
+
+### 8. ~~Accessibility~~ Done
+ARIA roles/labels on viewport (`role="application"`), nodes (`role="button"`), card (`role="dialog"`), panel (`role="complementary"`), filter pills (`aria-pressed`), collapsible sections (`aria-expanded`). Live region announces node focus changes for screen readers.
+
+### 9. ~~Mini-map~~ Done
+Canvas-based minimap in bottom-right corner shows all nodes as colored dots with a viewport rectangle. Click to pan. Fades out at far zoom (< 1.5) since the whole graph is already visible.

@@ -46,13 +46,19 @@ function prepareContent(container: HTMLElement): void {
       sec.className = "collapsible-section";
       sec.id = slug;
       sec.appendChild(child);
+      child.setAttribute("aria-expanded", "false");
 
       const bd = document.createElement("div");
       bd.className = "section-body";
       sec.appendChild(bd);
 
+      function syncExpanded(): void {
+        child.setAttribute("aria-expanded", sec.classList.contains("expanded") ? "true" : "false");
+      }
+
       child.addEventListener("click", () => {
         sec.classList.toggle("expanded");
+        syncExpanded();
       });
 
       bd.addEventListener("click", (e) => {
@@ -61,8 +67,10 @@ function prepareContent(container: HTMLElement): void {
           e.preventDefault();
           e.stopPropagation();
           sec.classList.add("expanded");
+          syncExpanded();
         } else if (!(e.target as HTMLElement).closest?.("a")) {
           sec.classList.remove("expanded");
+          syncExpanded();
         }
       });
 
@@ -168,6 +176,8 @@ export function initPanel(camera: Camera, graph: Graph): void {
       const sec = panelBody.querySelector<HTMLElement>(href);
       if (sec?.classList.contains("collapsible-section")) {
         sec.classList.add("expanded");
+        const heading = sec.querySelector("h2");
+        if (heading) heading.setAttribute("aria-expanded", "true");
         sec.scrollIntoView({ behavior: "smooth", block: "start" });
       }
       return;

@@ -25,6 +25,16 @@ export function toggleTag(filter: FilterState, tag: string): void {
   }
 }
 
+/** Replace active tags with the given set (only adds valid tags). */
+export function setActive(filter: FilterState, tags: string[]): void {
+  filter.active.clear();
+  for (const tag of tags) {
+    if (filter.available.includes(tag)) {
+      filter.active.add(tag);
+    }
+  }
+}
+
 /** Return the set of node IDs that pass the current filter. */
 export function getVisibleIds(filter: FilterState, graph: Graph): Set<string> {
   const filtering = filter.active.size > 0;
@@ -161,13 +171,21 @@ export function buildFilterUI(
     pill.className = "filter-pill";
     pill.textContent = tag;
     pill.dataset.tag = tag;
+    if (filter.active.has(tag)) {
+      pill.dataset.active = "";
+      pill.setAttribute("aria-pressed", "true");
+    } else {
+      pill.setAttribute("aria-pressed", "false");
+    }
 
     pill.addEventListener("click", () => {
       toggleTag(filter, tag);
       if (filter.active.has(tag)) {
         pill.dataset.active = "";
+        pill.setAttribute("aria-pressed", "true");
       } else {
         delete pill.dataset.active;
+        pill.setAttribute("aria-pressed", "false");
       }
       onToggle();
     });
