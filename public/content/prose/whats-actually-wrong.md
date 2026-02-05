@@ -6,7 +6,7 @@ This isn't about software. It's about people - people who want to create but [do
 
 ## Why do people not do things?
 
-They want to create. They have ideas. They don't start. Or they start and don't finish. Why?
+They want to create. They have ideas. They [don't start](/prose/how-do-i-do-things). Or they start and don't finish. Why?
 
 - **Fear of failure** - What if it's bad? What if I'm bad?
 - **Fear of judgment** - What will people think?
@@ -132,6 +132,8 @@ And collaboration is nearly impossible in most software. Debug someone's setup? 
 
 - [why is software hard?](/prose/why-is-software-hard) - accessible explainer for why software is frustrating
 - [what do we keep losing?](/prose/what-do-we-keep-losing) - why good solutions vanish even after they're proven
+- [how do I do things?](/prose/how-do-i-do-things) - practical advice for starting and following through
+- [what are labels anyway?](/prose/what-are-labels-anyway) - the ceilings we put on ourselves
 - [playmate](/project/playmate) - game design primitives that respect players
 - [dusklight](/project/dusklight) - UI that surfaces what's possible instead of hiding it
 - [interconnect](/project/interconnect) - federation for persistent shared worlds

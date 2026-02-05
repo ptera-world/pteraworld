@@ -18,7 +18,7 @@ Not a system. Not productivity advice. Just patterns that seem to make it easier
 
 **Making it small.** Not "my big project" but "what's the smallest piece I could try right now?" Small enough that it doesn't matter if it's bad. Small enough that failure is cheap. Small enough to actually start.
 
-**Dropping the identity frame.** Not "am I a writer / artist / person who does things?" Just "I'm messing with this today." No declaration. No commitment. Just action without the weight.
+**Dropping the identity frame.** Not "am I a writer / artist / person who does things?" Just "I'm messing with this today." No declaration. No commitment. Just action without the weight. (More on this in [what are labels anyway?](/prose/what-are-labels-anyway))
 
 **Accepting that first attempts are bad.** Not as a motivational slogan - actually expecting it. The first version will be rough. That's not failure; that's how it works. The goal isn't a good first attempt. The goal is a first attempt at all.
 
@@ -59,3 +59,4 @@ There's no guarantee that trying works. But not trying has a guaranteed outcome.
 
 - [what's actually wrong?](/prose/whats-actually-wrong) - why it's hard to start things
 - [what are labels anyway?](/prose/what-are-labels-anyway) - the ceilings we put on ourselves
+- [what can I change?](/prose/what-can-i-change) - when you want to change something bigger

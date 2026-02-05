@@ -66,7 +66,7 @@ More like:
 
 Just the world getting smoother and more optimized along existing lines.
 
-Here's the thing: that's not reassuring. The present is already the problem. Systems that treat people as variables, optimization that ignores what can't be measured, institutions that serve their own persistence. AGI doesn't need to go rogue to make things worse. It just needs to be good at what it's told to do.
+Here's the thing: that's not reassuring. The present is [already the problem](/prose/whats-actually-wrong). Systems that treat people as variables, optimization that ignores what can't be measured, institutions that serve their own persistence. AGI doesn't need to go rogue to make things worse. It just needs to be good at what it's told to do.
 
 You don't need paperclips to be concerned. You need to look at the present and ask: what happens when this runs faster, with fewer humans in the loop, and less friction to slow it down?
 
@@ -102,3 +102,4 @@ That's not a technology problem. It's a governance problem. It exists right now,
 
 - [what's actually wrong?](/prose/whats-actually-wrong) - the systems we already have
 - [what do we keep losing?](/prose/what-do-we-keep-losing) - how institutions shape what survives
+- [what can I change?](/prose/what-can-i-change) - finding leverage in systems

@@ -40,7 +40,7 @@ Are you inside or outside? Do you have access? Standing? History?
 
 Your position shapes what's available. Someone inside a company can change things an outsider can't. Someone outside might see things insiders are blind to. Neither is better - they're just different.
 
-Also: what can you afford to risk? Some people can be loud. Some people need to keep their head down. Some have resources to spend. Some are barely getting by. Your capacity is part of the picture.
+Also: what can you afford to risk? Some people can be loud. Some people need to keep their head down. Some have resources to spend. Some are [barely getting by](/prose/whats-actually-wrong). Your capacity is part of the picture.
 
 ## What are the leverage points?
 
@@ -63,7 +63,7 @@ Some options that exist:
 - **Show up.** Presence matters. At meetings, at events, in the space. Being there is information.
 - **Talk to people.** One on one. Not broadcasting - conversing. Opinions move through networks.
 - **Find the others.** You're probably not alone. Latent support becomes real when it finds itself.
-- **Build the alternative.** If the thing should exist and doesn't, make it. Even a rough version proves it's possible.
+- **Build the alternative.** If the thing should exist and doesn't, [make it](/prose/how-do-i-do-things). Even a rough version proves it's possible.
 - **Document.** Write down what's happening. Make the invisible visible. Records matter.
 - **Support who's already doing it.** With time, money, skills, attention. You don't have to start from scratch.
 - **Use your position.** If you're inside, you can do things outsiders can't. That's not selling out - that's leverage.
@@ -93,7 +93,7 @@ But "didn't work" isn't the same as "wasted." You learn what doesn't move. You f
 
 And sometimes things that seemed stuck suddenly move - because enough small pushes accumulated, because conditions changed, because the right moment arrived.
 
-You don't control the outcome. You control whether you try.
+You don't control the outcome. You control [whether you try](/prose/how-do-i-do-things).
 
 ## See also
 

@@ -26,7 +26,7 @@ You collected these. You built a self-concept out of them. And now you live insi
 
 Labels aren't just descriptions. They're constraints.
 
-Once you believe you're "not creative," you stop trying creative things. Why would you? You already know the outcome. The label becomes a filter - you notice evidence that confirms it, dismiss evidence that contradicts it.
+Once you believe you're "not creative," you [stop trying](/prose/how-do-i-do-things) creative things. Why would you? You already know the outcome. The label becomes a filter - you notice evidence that confirms it, dismiss evidence that contradicts it.
 
 This is the part that's hard to see from inside: **you are living as if the label is true, which makes it true, which confirms the label.**
 
@@ -70,7 +70,7 @@ The shift is from identity to pattern. From permanent to contextual. From "this 
 
 **Notice the function.** When you reach for a self-label, ask: what is this doing for me? Is it helping me understand, or helping me avoid trying?
 
-**Test the edges.** Do something the label says you can't. See what happens. Maybe the label was right. Maybe it wasn't. You won't know until you check.
+**Test the edges.** Do something the label says you can't. [See what happens](/prose/how-do-i-do-things). Maybe the label was right. Maybe it wasn't. You won't know until you check.
 
 **Update the story.** You're allowed to. The person who wrote your self-concept was younger, knew less, had different contexts. You can revise.
 
@@ -87,4 +87,5 @@ The insight transfers. Start with yourself.
 ## See also
 
 - [what's actually wrong?](/prose/whats-actually-wrong) - the broader question of what we're missing
+- [how do I do things?](/prose/how-do-i-do-things) - starting without the identity weight
 - [aspect](/project/aspect) - identity exploration without fixed categories
