@@ -261,19 +261,53 @@
     /* Grouping bar */
     #grouping-bar {
       position: absolute; top: 12px; left: 0; right: 0; z-index: 5;
-      display: flex; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
     .grouping-selector {
       display: flex; gap: 4px;
     }
-    .grouping-btn {
-      padding: 4px 10px; border-radius: 10px; border: 1px solid #333;
-      background: #1a1a1a; color: #777; font-size: 11px;
-      cursor: pointer; user-select: none;
-      transition: background 200ms, color 200ms, border-color 200ms;
+    .grouping-pill {
+      display: flex; align-items: stretch;
+      border-radius: 10px; border: 1px solid #333;
+      background: #1a1a1a; overflow: hidden;
+      transition: border-color 200ms;
     }
-    .grouping-btn:hover { border-color: #666; color: #aaa; }
-    .grouping-btn[data-active] { background: #2a2a2a; color: #ccc; border-color: #555; }
+    .grouping-pill:hover { border-color: #555; }
+    .grouping-layout {
+      padding: 4px 8px; border: none; background: transparent;
+      color: #777; font-size: 11px; cursor: pointer; user-select: none;
+      transition: background 200ms, color 200ms;
+    }
+    .grouping-layout:hover { color: #aaa; background: #222; }
+    .grouping-layout[data-active] { background: #2a2a2a; color: #ccc; }
+    .grouping-divider {
+      width: 1px; background: #333; margin: 4px 0;
+    }
+    .grouping-color {
+      padding: 4px 6px; border: none; background: transparent;
+      font-size: 9px; cursor: pointer; user-select: none;
+      filter: grayscale(1) brightness(0.5);
+      transition: background 200ms, filter 200ms;
+    }
+    .grouping-color:hover { filter: grayscale(0.5) brightness(0.8); background: #222; }
+    .grouping-color[data-active] { filter: grayscale(0) brightness(1); background: #2a2a2a; }
+
+    /* Color legend */
+    .color-legend {
+      display: flex; gap: 12px; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 300ms;
+    }
+    .color-legend[data-visible] { opacity: 1; }
+    .legend-item {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .legend-swatch {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .legend-label {
+      font-size: 10px; color: #888;
+    }
 
     /* Filtered / surfaced / adjacent states */
     #world[data-filtering] .node.project:not([data-filtered]) { scale: 1.08; }
