@@ -10,5 +10,5 @@ standard nodes cover the usual things (paragraphs, headings, code blocks, lists,
 
 ## Related projects
 
-- [paraphase](/paraphase) - rescribe plugs into paraphase as a document conversion backend
-- [ooxml](/ooxml) - Office Open XML library for DOCX format support
+- [paraphase](/project/paraphase) - rescribe plugs into paraphase as a document conversion backend
+- [ooxml](/project/ooxml) - Office Open XML library for DOCX format support

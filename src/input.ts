@@ -211,11 +211,11 @@ export function setupInput(
     if (pteraworld) navigateTo(pteraworld);
   });
 
-  // Double-click: zoom to fit ecosystem
+  // Double-click: zoom to fit region
   viewport.addEventListener("dblclick", (e) => {
     const node = getHitNode(e.target);
     if (!node) return;
-    const eco = node.tier === "ecosystem"
+    const eco = node.tier === "region"
       ? node
       : graph.nodes.find(n => n.id === node.parent);
     if (eco) {
@@ -292,7 +292,7 @@ export function setupInput(
   const nodeMap = new Map(graph.nodes.map(n => [n.id, n]));
   const nodeCommands: Command[] = graph.nodes.map(node => {
     const parent = node.parent ? nodeMap.get(node.parent) : null;
-    const category = node.tier === "ecosystem" ? "Ecosystems"
+    const category = node.tier === "region" ? "Regions"
       : node.tags.includes("essay") ? "Essays"
       : parent ? parent.label
       : "Projects";
@@ -578,8 +578,8 @@ function bestNeighbor(from: Node, dir: [number, number], graph: Graph, camera: C
   for (const node of graph.nodes) {
     if (node.id === from.id) continue;
     // Tier visibility filter
-    if (tier === "far" && node.tier !== "ecosystem") continue;
-    if (tier !== "far" && node.tier === "ecosystem") continue;
+    if (tier === "far" && node.tier !== "region") continue;
+    if (tier !== "far" && node.tier === "region") continue;
     // Respect active filters
     const el = nodeEls.get(node.id);
     if (el?.dataset.filtered === "hidden") continue;
@@ -605,8 +605,8 @@ function nearestToCamera(graph: Graph, camera: Camera): Node | null {
   let best: Node | null = null;
   let bestDist = Infinity;
   for (const node of graph.nodes) {
-    if (tier === "far" && node.tier !== "ecosystem") continue;
-    if (tier !== "far" && node.tier === "ecosystem") continue;
+    if (tier === "far" && node.tier !== "region") continue;
+    if (tier !== "far" && node.tier === "region") continue;
     const el = nodeEls.get(node.id);
     if (el?.dataset.filtered === "hidden") continue;
     const dx = node.x - camera.x;

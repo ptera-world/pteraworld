@@ -30,7 +30,7 @@ We've already lost software ecosystems, game engines, file formats, source code,
 
 No ruins. No rubble. No broken arches. Just 404s and dead repos.
 
-We once had HyperCard - anyone could build interactive things, and many did. Apple neglected it to death. We once had [spatial interfaces that remembered where things lived](/why-is-software-hard). Thrown away for "efficiency." Cloud9, a collaborative coding environment that proved real-time pair editing works - acquired by AWS, absorbed, effectively gone as what it was.
+We once had HyperCard - anyone could build interactive things, and many did. Apple neglected it to death. We once had [spatial interfaces that remembered where things lived](/prose/why-is-software-hard). Thrown away for "efficiency." Cloud9, a collaborative coding environment that proved real-time pair editing works - acquired by AWS, absorbed, effectively gone as what it was.
 
 The technology existed. It proved useful. Then it got captured, or neglected, or superseded by something worse but better-funded.
 
@@ -48,7 +48,7 @@ These weren't "projects." They were civilizational organs.
 
 We don't build those anymore. We build products. Platforms. Services. Ecosystems. APIs. Not millennium-scale institutions. Not knowledge systems designed to outlive their creators.
 
-The internet was supposed to fix this. It made the world feel small - anyone can reach anyone, instantly, anywhere. But [connection isn't closeness](/whats-actually-wrong). We're more reachable than ever and not much closer. Billions of people on the same network, mostly consuming in parallel rather than building together.
+The internet was supposed to fix this. It made the world feel small - anyone can reach anyone, instantly, anywhere. But [connection isn't closeness](/prose/whats-actually-wrong). We're more reachable than ever and not much closer. Billions of people on the same network, mostly consuming in parallel rather than building together.
 
 The capacity isn't gone. The infrastructure isn't gone. The intelligence isn't gone. What's missing is the shared horizon - the cognitive category for "we are allowed to build things bigger than ourselves that aren't about power."
 
@@ -58,7 +58,7 @@ Minecraft - you just join their world. You see what they're building. You can he
 
 People help each other constantly in games because the friction is zero. Not because gamers are special, but because the infrastructure doesn't get in the way.
 
-The rest of software [made collaboration so hard](/why-is-software-hard) that we forgot it was natural. Games kept it easy, so people kept doing it.
+The rest of software [made collaboration so hard](/prose/why-is-software-hard) that we forgot it was natural. Games kept it easy, so people kept doing it.
 
 The technology for real-time collaboration is "solved" - CRDTs exist, sync is a library. But "solved" means "exists as a library." The gap between capability existing and capability being accessible is where most things get lost.
 
@@ -78,9 +78,9 @@ And the things that last are the ones that don't need permission to keep existin
 
 ## See also
 
-- [what's actually wrong?](/whats-actually-wrong) - the broader question of what's actually wrong
-- [why is software hard?](/why-is-software-hard) - how the frozen paradigm replaced what we lost
-- [reincarnate](/reincarnate) - lifting legacy software before it disappears
-- [rescribe](/rescribe) - lossless document conversion across formats
-- [interconnect](/interconnect) - federation for persistent shared worlds
-- [playmate](/playmate) - game design that respects collaboration
+- [what's actually wrong?](/prose/whats-actually-wrong) - the broader question of what's actually wrong
+- [why is software hard?](/prose/why-is-software-hard) - how the frozen paradigm replaced what we lost
+- [reincarnate](/project/reincarnate) - lifting legacy software before it disappears
+- [rescribe](/project/rescribe) - lossless document conversion across formats
+- [interconnect](/project/interconnect) - federation for persistent shared worlds
+- [playmate](/project/playmate) - game design that respects collaboration

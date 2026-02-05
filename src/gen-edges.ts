@@ -1,17 +1,38 @@
-import { readdir, readFile, writeFile } from "fs/promises";
+import { readdir, readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 
 const contentDir = join(import.meta.dir, "../public/content");
 const outFile = join(import.meta.dir, "generated-edges.ts");
 
-const files = await readdir(contentDir);
 const seen = new Set<string>();
 const edges: { from: string; to: string; strength: number }[] = [];
 
-for (const file of files) {
-  if (!file.endsWith(".md")) continue;
-  const id = file.replace(/\.md$/, "");
-  const text = await readFile(join(contentDir, file), "utf-8");
+// Recursively find all .md files in content directory
+async function findMarkdownFiles(dir: string, prefix = ""): Promise<{ id: string; path: string }[]> {
+  const entries = await readdir(dir);
+  const results: { id: string; path: string }[] = [];
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry);
+    const entryStat = await stat(fullPath);
+
+    if (entryStat.isDirectory()) {
+      const subResults = await findMarkdownFiles(fullPath, prefix ? `${prefix}/${entry}` : entry);
+      results.push(...subResults);
+    } else if (entry.endsWith(".md")) {
+      const basename = entry.replace(/\.md$/, "");
+      const id = prefix ? `${prefix}/${basename}` : basename;
+      results.push({ id, path: fullPath });
+    }
+  }
+
+  return results;
+}
+
+const files = await findMarkdownFiles(contentDir);
+
+for (const { id, path } of files) {
+  const text = await readFile(path, "utf-8");
 
   const match = text.match(/## (?:Related projects|See also)\n([\s\S]*?)(?=\n## |\n$|$)/);
   if (!match) continue;

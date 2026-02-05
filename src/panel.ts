@@ -183,8 +183,8 @@ export function initPanel(camera: Camera, graph: Graph): void {
       return;
     }
 
-    // Cross-node link
-    if (/^\/[a-z][\w-]*$/.test(href)) {
+    // Cross-node link (e.g., /project/normalize, /ecosystem/rhi)
+    if (/^\/[a-z][\w-]*(\/[a-z][\w-]*)*$/.test(href)) {
       e.preventDefault();
       openPanel(href.slice(1));
     }

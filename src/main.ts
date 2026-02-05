@@ -7,11 +7,16 @@ import { hideCard } from "./card";
 import { createFilter, buildFilterUI, applyFilter, getVisibleIds, setActive } from "./filter";
 import { runLayout, resetLayout } from "./layout";
 import { createMinimap } from "./minimap";
+import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl } from "./grouping-state";
 
 const camera = createCamera();
 const graph = createGraph();
 
 buildWorld(graph);
+
+// Initialize grouping state and restore from URL
+initGroupingState(graph, camera);
+restoreGroupingFromUrl();
 
 const filter = createFilter(graph.nodes);
 setFilterRef(filter);
@@ -38,6 +43,7 @@ if (filter.active.size > 0) {
   runLayout(graph, getVisibleIds(filter, graph));
   updatePositions(graph);
 }
+buildGroupingUI(document.getElementById("grouping-bar")!);
 buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   applyFilter(filter, graph);
   if (filter.active.size > 0) {

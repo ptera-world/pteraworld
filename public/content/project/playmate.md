@@ -10,5 +10,5 @@ three layers: core (pure Rust, performance-critical), bindings (engine adapters 
 
 ## Related projects
 
-- [unshape](/unshape) - generates meshes and textures playmate systems can use
-- [interconnect](/interconnect) - federation protocol for connecting playmate-powered worlds
+- [unshape](/project/unshape) - generates meshes and textures playmate systems can use
+- [interconnect](/project/interconnect) - federation protocol for connecting playmate-powered worlds

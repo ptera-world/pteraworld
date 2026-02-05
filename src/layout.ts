@@ -1,17 +1,17 @@
 import type { Graph } from "./graph";
 
 /**
- * Run a synchronous force-directed simulation on visible non-ecosystem nodes.
+ * Run a synchronous force-directed simulation on visible non-region nodes.
  * Mutates node.x / node.y in place. Ecosystem nodes stay pinned.
  */
 export function runLayout(graph: Graph, visibleIds: Set<string>): void {
   const nodes = graph.nodes.filter(
-    (n) => visibleIds.has(n.id) && n.tier !== "ecosystem",
+    (n) => visibleIds.has(n.id) && n.tier !== "region",
   );
   if (nodes.length === 0) return;
 
   // Fade layout effect to zero as visible count approaches half of all nodes
-  const totalNonEco = graph.nodes.filter((n) => n.tier !== "ecosystem").length;
+  const totalNonEco = graph.nodes.filter((n) => n.tier !== "region").length;
   const THRESHOLD = 0.45;
   const ratio = nodes.length / totalNonEco;
   const weight = Math.max(0, (THRESHOLD - ratio) / THRESHOLD);
@@ -39,7 +39,7 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
   const MAX_STEPS = 200;
 
   for (let step = 0; step < MAX_STEPS; step++) {
-    // Repulsion between all visible non-ecosystem pairs
+    // Repulsion between all visible non-region pairs
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i]!;
@@ -63,7 +63,7 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
       const a = nodeMap.get(edge.from);
       const b = nodeMap.get(edge.to);
       if (!a || !b) continue;
-      if (a.tier === "ecosystem" && b.tier === "ecosystem") continue;
+      if (a.tier === "region" && b.tier === "region") continue;
 
       const dx = b.x - a.x;
       const dy = b.y - a.y;
@@ -72,11 +72,11 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
       const fx = (dx / d) * f;
       const fy = (dy / d) * f;
 
-      if (a.tier !== "ecosystem") {
+      if (a.tier !== "region") {
         vx.set(a.id, vx.get(a.id)! + fx);
         vy.set(a.id, vy.get(a.id)! + fy);
       }
-      if (b.tier !== "ecosystem") {
+      if (b.tier !== "region") {
         vx.set(b.id, vx.get(b.id)! - fx);
         vy.set(b.id, vy.get(b.id)! - fy);
       }

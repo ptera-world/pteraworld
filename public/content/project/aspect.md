@@ -10,4 +10,4 @@ built with vanilla TypeScript and direct DOM manipulation, targeting under 120KB
 
 ## Related projects
 
-- [hologram](/hologram) - aspect cards could define hologram entities and world structure
+- [hologram](/project/hologram) - aspect cards could define hologram entities and world structure

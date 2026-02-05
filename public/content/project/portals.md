@@ -10,4 +10,4 @@ the focus is portability over power - simpler APIs that work everywhere, with in
 
 ## Related projects
 
-- [moonlet](/moonlet) - uses portals-io and portals-filesystem
+- [moonlet](/project/moonlet) - uses portals-io and portals-filesystem

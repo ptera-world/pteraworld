@@ -8,5 +8,5 @@ domain crates provide independent type systems (scalar math, linear algebra, com
 
 ## Related projects
 
-- [unshape](/unshape) - uses wick for procedural generation parameters
-- [moonlet](/moonlet) - hosts wick's Lua backend
+- [unshape](/project/unshape) - uses wick for procedural generation parameters
+- [moonlet](/project/moonlet) - hosts wick's Lua backend

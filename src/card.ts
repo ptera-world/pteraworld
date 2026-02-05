@@ -124,7 +124,7 @@ export function showCard(node: Node, graph: Graph): void {
   if (!card) return;
   card.replaceChildren(buildCard(node, graph));
   card.setAttribute("aria-label", node.label);
-  const coreR = node.tier === "ecosystem" ? node.radius * 0.15 : node.radius;
+  const coreR = node.tier === "region" ? node.radius * 0.15 : node.radius;
   const vertical = window.matchMedia("(max-width: 640px)").matches;
   if (vertical) {
     card.style.left = `${node.x}px`;

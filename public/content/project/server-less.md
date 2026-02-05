@@ -12,4 +12,4 @@ method naming drives routing (`create_*` maps to POST, `get_*` to GET, `list_*` 
 
 ## Related projects
 
-- [concord](/concord) - generates client bindings (server-less generates server implementations)
+- [concord](/project/concord) - generates client bindings (server-less generates server implementations)

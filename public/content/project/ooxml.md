@@ -10,4 +10,4 @@ built with quick-xml, serde, and insta for snapshot testing.
 
 ## Related projects
 
-- [rescribe](/rescribe) - document conversion library that uses ooxml for DOCX support
+- [rescribe](/project/rescribe) - document conversion library that uses ooxml for DOCX support

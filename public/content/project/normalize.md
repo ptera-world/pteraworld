@@ -31,5 +31,5 @@ instead of treating source code as text, normalize works with syntax trees (func
 
 ## Related projects
 
-- [moonlet](/moonlet) - normalize is available as a moonlet plugin (moonlet-normalize)
-- [zone](/zone) - Lua tooling that leverages normalize for project scaffolding
+- [moonlet](/project/moonlet) - normalize is available as a moonlet plugin (moonlet-normalize)
+- [zone](/project/zone) - Lua tooling that leverages normalize for project scaffolding

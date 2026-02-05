@@ -6,4 +6,4 @@ examples get tokenized, traits get detected, and the result is either a language
 
 ## Related projects
 
-- [normalize](/normalize) - structural code intelligence that complements grammar detection
+- [normalize](/project/normalize) - structural code intelligence that complements grammar detection

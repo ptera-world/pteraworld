@@ -10,4 +10,4 @@ supports streaming responses with configurable chunking. built with Bun, Discord
 
 ## Related projects
 
-- [aspect](/aspect) - identity exploration sandbox; cards could become hologram entities
+- [aspect](/project/aspect) - identity exploration sandbox; cards could become hologram entities

@@ -10,7 +10,7 @@ export function createFilter(nodes: Node[]): FilterState {
   const tagSet = new Set<string>();
   for (const node of nodes) {
     for (const tag of node.tags) {
-      if (tag !== "ecosystem") tagSet.add(tag);
+      if (tag !== "region") tagSet.add(tag);
     }
   }
   const available = [...tagSet].sort();
@@ -40,12 +40,12 @@ export function getVisibleIds(filter: FilterState, graph: Graph): Set<string> {
   const filtering = filter.active.size > 0;
   const visible = new Set<string>();
   for (const node of graph.nodes) {
-    if (node.tags.includes("ecosystem")) continue;
+    if (node.tags.includes("region")) continue;
     const passes = !filtering || node.tags.some((t) => filter.active.has(t));
     if (passes) visible.add(node.id);
   }
   for (const node of graph.nodes) {
-    if (!node.tags.includes("ecosystem")) continue;
+    if (!node.tags.includes("region")) continue;
     if (!filtering) {
       visible.add(node.id);
     } else {
@@ -71,12 +71,12 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
   const filtering = filter.active.size > 0;
 
   // Compute filter strength for non-visible project nodes
-  const structural = new Set(["project", "ecosystem"]);
+  const structural = new Set(["project", "region"]);
   const filterStrength = new Map<string, number>();
 
   if (filtering) {
     for (const node of graph.nodes) {
-      if (visible.has(node.id) || node.tags.includes("ecosystem")) continue;
+      if (visible.has(node.id) || node.tags.includes("region")) continue;
 
       let maxStr = 0;
       const nodeTags = new Set(node.tags.filter((t) => !structural.has(t)));
@@ -90,7 +90,7 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
       // Tag similarity to visible nodes
       for (const vId of visible) {
         const vNode = graph.nodes.find((n) => n.id === vId);
-        if (!vNode || vNode.tags.includes("ecosystem")) continue;
+        if (!vNode || vNode.tags.includes("region")) continue;
         const vTags = new Set(vNode.tags.filter((t) => !structural.has(t)));
         let shared = 0;
         for (const t of nodeTags) if (vTags.has(t)) shared++;
@@ -107,7 +107,7 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
     const el = nodeEls.get(node.id);
     if (!el) continue;
 
-    if (node.tags.includes("ecosystem")) {
+    if (node.tags.includes("region")) {
       // Ecosystem opacity scales with proportion of visible children
       if (!filtering) {
         delete el.dataset.filtered;

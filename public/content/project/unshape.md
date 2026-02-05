@@ -10,4 +10,4 @@ three layers internally: primitives, helpers, and an optimizer. uses glam for ma
 
 ## Related projects
 
-- [wick](/wick) - expression language used for procedural parameters
+- [wick](/project/wick) - expression language used for procedural parameters

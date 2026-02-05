@@ -12,12 +12,17 @@ interface EdgeRef {
   from: string;
   to: string;
   labelEl: HTMLElement | null;
+  isContainment?: boolean;
 }
 
 export const nodeEls = new Map<string, HTMLElement>();
 const hitNodes = new Map<HTMLElement, Node>();
 const edgeRefs: EdgeRef[] = [];
+const containmentEdgeRefs: EdgeRef[] = []; // Dynamic containment edges for current grouping
 export let landingEl: HTMLElement;
+const regionEls = new Map<string, HTMLElement>();
+const regionPositions = new Map<string, { x: number; y: number }>(); // Current region positions for edge updates
+let svgLayer: SVGSVGElement;
 
 let filterRef: FilterState | null = null;
 const surfacedNodes = new Set<string>();
@@ -44,24 +49,27 @@ export function buildWorld(graph: Graph): void {
 
   // Edges (behind nodes) — SVG lines for CSS-transitionable coordinates
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(SVG_NS, "svg");
-  svg.id = "edge-layer";
-  world.appendChild(svg);
+  svgLayer = document.createElementNS(SVG_NS, "svg");
+  svgLayer.id = "edge-layer";
+  world.appendChild(svgLayer);
 
   for (const edge of graph.edges) {
     const from = graph.nodes.find(n => n.id === edge.from);
     const to = graph.nodes.find(n => n.id === edge.to);
     if (!from || !to) continue;
 
+    const isContainment = to.parent === edge.from;
     const path = document.createElementNS(SVG_NS, "path");
     path.classList.add("edge");
-    if (to.parent === edge.from) path.dataset.type = "containment";
+    if (isContainment) path.dataset.type = "containment";
     path.dataset.from = from.id;
     path.dataset.to = to.id;
     path.style.setProperty("d", `path("M ${from.x} ${from.y} L ${to.x} ${to.y}")`);
-    svg.appendChild(path);
+    svgLayer.appendChild(path);
 
-    edgeRefs.push({ el: path, from: from.id, to: to.id, labelEl: null });
+    const ref = { el: path, from: from.id, to: to.id, labelEl: null, isContainment };
+    edgeRefs.push(ref);
+    if (isContainment) containmentEdgeRefs.push(ref);
   }
 
   // Nodes
@@ -77,7 +85,7 @@ export function buildWorld(graph: Graph): void {
     el.style.top = `${node.y}px`;
     el.style.setProperty("--color", node.color);
 
-    if (node.tier === "ecosystem") {
+    if (node.tier === "region") {
       el.style.setProperty("--r", `${node.radius * 0.15}px`);
       el.style.setProperty("--glow-r", `${node.radius}px`);
       const core = document.createElement("div");
@@ -87,6 +95,8 @@ export function buildWorld(graph: Graph): void {
       core.setAttribute("aria-label", node.label);
       el.appendChild(core);
       hitNodes.set(core, node);
+      regionEls.set(node.id, el);
+      regionPositions.set(node.id, { x: node.x, y: node.y });
     } else {
       el.style.setProperty("--r", `${node.radius}px`);
       const dot = document.createElement("div");
@@ -202,7 +212,7 @@ export function setFocus(graph: Graph, hovered: Node | null, announceNav = false
   }
 
   // Build tag set for hovered node (exclude structural tags)
-  const structural = new Set(["project", "ecosystem"]);
+  const structural = new Set(["project", "region"]);
   const hoveredNode = graph.nodes.find((n) => n.id === hovered.id)!;
   const hoveredTags = new Set(hoveredNode.tags.filter((t) => !structural.has(t)));
 
@@ -303,10 +313,166 @@ export function updatePositions(graph: Graph): void {
   }
 
   for (const ref of edgeRefs) {
-    const from = nodeMap.get(ref.from);
-    const to = nodeMap.get(ref.to);
-    if (!from || !to) continue;
+    // For containment edges, 'from' might be a region (not in nodeMap)
+    const fromNode = nodeMap.get(ref.from);
+    const fromRegion = regionPositions.get(ref.from);
+    const toNode = nodeMap.get(ref.to);
 
-    ref.el.style.setProperty("d", `path("M ${from.x} ${from.y} L ${to.x} ${to.y}")`);
+    const fromPos = fromNode ?? fromRegion;
+    const toPos = toNode;
+    if (!fromPos || !toPos) continue;
+
+    ref.el.style.setProperty("d", `path("M ${fromPos.x} ${fromPos.y} L ${toPos.x} ${toPos.y}")`);
   }
+}
+
+export interface RegionDef {
+  id: string;
+  label: string;
+  description: string;
+  x: number;
+  y: number;
+  radius: number;
+  color: string;
+}
+
+function createRegionElement(region: RegionDef): HTMLElement {
+  const el = document.createElement("div");
+  el.className = "node region";
+  el.dataset.id = region.id;
+  el.style.left = `${region.x}px`;
+  el.style.top = `${region.y}px`;
+  el.style.setProperty("--color", region.color);
+  el.style.setProperty("--r", `${region.radius * 0.15}px`);
+  el.style.setProperty("--glow-r", `${region.radius}px`);
+
+  const core = document.createElement("div");
+  core.className = "node-core node-hit";
+  core.setAttribute("role", "button");
+  core.tabIndex = -1;
+  core.setAttribute("aria-label", region.label);
+  el.appendChild(core);
+
+  const text = document.createElement("div");
+  text.className = "node-text";
+  const label = document.createElement("div");
+  label.className = "node-label";
+  label.textContent = region.label;
+  text.appendChild(label);
+
+  if (region.description) {
+    const desc = document.createElement("div");
+    desc.className = "node-desc";
+    desc.textContent = region.description;
+    text.appendChild(desc);
+  }
+
+  el.appendChild(text);
+  return el;
+}
+
+/** Fade out and remove current region elements and their containment edges. */
+export function fadeOutRegions(duration = 300): void {
+  // Capture elements to remove NOW, before new ones are added
+  const elementsToRemove = Array.from(regionEls.values());
+  const edgesToRemove = [...containmentEdgeRefs];
+
+  // Clear immediately so new ones can be added
+  regionEls.clear();
+  regionPositions.clear();
+  containmentEdgeRefs.length = 0;
+
+  // Fade out regions
+  for (const el of elementsToRemove) {
+    el.style.transition = `opacity ${duration}ms ease-out`;
+    el.style.opacity = "0";
+  }
+
+  // Fade out containment edges
+  for (const ref of edgesToRemove) {
+    ref.el.style.transition = `opacity ${duration}ms ease-out`;
+    ref.el.style.opacity = "0";
+  }
+
+  // Remove elements after animation completes
+  setTimeout(() => {
+    for (const el of elementsToRemove) {
+      el.remove();
+    }
+    for (const ref of edgesToRemove) {
+      ref.el.remove();
+      // Remove from edgeRefs too
+      const idx = edgeRefs.indexOf(ref);
+      if (idx !== -1) edgeRefs.splice(idx, 1);
+    }
+  }, duration);
+}
+
+export interface NodePositionWithRegion {
+  nodeId: string;
+  x: number;
+  y: number;
+  regionId?: string;
+}
+
+/** Create and fade in new region elements with containment edges. */
+export function fadeInRegions(
+  regions: RegionDef[],
+  positions: NodePositionWithRegion[],
+  duration = 300
+): void {
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  // Create region elements and store positions
+  for (const region of regions) {
+    const el = createRegionElement(region);
+    el.style.opacity = "0";
+    el.style.transition = `opacity ${duration}ms ease-in`;
+    world.appendChild(el);
+    regionEls.set(region.id, el);
+    regionPositions.set(region.id, { x: region.x, y: region.y });
+
+    // Trigger reflow then fade in
+    void el.offsetWidth;
+    el.style.opacity = "1";
+  }
+
+  // Create containment edges from regions to nodes
+  const regionMap = new Map(regions.map(r => [r.id, r]));
+  for (const pos of positions) {
+    if (!pos.regionId) continue;
+    const region = regionMap.get(pos.regionId);
+    if (!region) continue;
+
+    const path = document.createElementNS(SVG_NS, "path");
+    path.classList.add("edge");
+    path.dataset.type = "containment";
+    path.dataset.from = region.id;
+    path.dataset.to = pos.nodeId;
+    path.style.setProperty("d", `path("M ${region.x} ${region.y} L ${pos.x} ${pos.y}")`);
+    path.style.opacity = "0";
+    path.style.transition = `opacity ${duration}ms ease-in`;
+    svgLayer.appendChild(path);
+
+    const ref: EdgeRef = { el: path, from: region.id, to: pos.nodeId, labelEl: null, isContainment: true };
+    edgeRefs.push(ref);
+    containmentEdgeRefs.push(ref);
+
+    // Trigger reflow then fade in
+    void path.getBBox();
+    path.style.opacity = "";
+  }
+}
+
+/** Register a region element created during initial buildWorld. */
+export function registerRegion(id: string, el: HTMLElement): void {
+  regionEls.set(id, el);
+}
+
+/** Get a region element by ID for hit detection. */
+export function getRegionHitNode(target: EventTarget | null, regions: RegionDef[]): RegionDef | null {
+  const hitEl = (target as HTMLElement)?.closest?.(".node.region");
+  if (!hitEl) return null;
+  const id = (hitEl as HTMLElement).dataset.id;
+  return regions.find(r => r.id === id) ?? null;
 }

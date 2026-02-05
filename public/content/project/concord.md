@@ -8,4 +8,4 @@ master holds core infrastructure, and a separate bindings branch adds generated 
 
 ## Related projects
 
-- [server-less](/server-less) - generates servers (concord generates clients)
+- [server-less](/project/server-less) - generates servers (concord generates clients)

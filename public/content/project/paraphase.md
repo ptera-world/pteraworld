@@ -8,4 +8,4 @@ workflows can be defined in YAML/TOML/JSON with auto-planning or explicit steps.
 
 ## Related projects
 
-- [rescribe](/rescribe) - lossless document conversion plugs into paraphase as a backend
+- [rescribe](/project/rescribe) - lossless document conversion plugs into paraphase as a backend

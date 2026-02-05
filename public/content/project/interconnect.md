@@ -10,4 +10,4 @@ if authority dies, the world desaturates and the player becomes an observer, but
 
 ## Related projects
 
-- [playmate](/playmate) - game primitives for worlds connected via interconnect
+- [playmate](/project/playmate) - game primitives for worlds connected via interconnect
