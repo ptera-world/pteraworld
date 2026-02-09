@@ -245,6 +245,18 @@ export function createGraph(): Graph {
       status: "early",
       tags: ["project", "lua", "cli"],
     },
+    {
+      id: "project/motif",
+      label: "motif",
+      description: "structural exploration of mathematics across fields",
+      url: "https://docs.rhi.zone/motif",
+      tier: "project",
+      parent: "ecosystem/rhi",
+      radius: 22,
+      color: "oklch(0.78 0.09 155)",
+      status: "planned",
+      tags: ["project", "rust", "data"],
+    },
   ]);
 
   const defs: Omit<Node, "baseX" | "baseY">[] = [
