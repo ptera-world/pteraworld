@@ -259,6 +259,74 @@ export function createGraph(): Graph {
     },
   ]);
 
+  // Essays — ring, center (40, 100), radius 120
+  // Top: most personal/actionable, bottom: systems-level
+  const essayNodes = ringLayout(80, 40, 120, [
+    {
+      id: "prose/whats-actually-wrong",
+      label: "what's actually wrong?",
+      description: "before solutions. before tools.\nwhat's actually wrong?",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "design", "social"],
+    },
+    {
+      id: "prose/how-do-i-do-things",
+      label: "how do I do things?",
+      description: "not a system. not productivity advice.\njust what seems to help.",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "social"],
+    },
+    {
+      id: "prose/what-can-i-change",
+      label: "what can I change?",
+      description: "what do you want to change?\nwhat's your relationship to it?",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "social"],
+    },
+    {
+      id: "prose/what-do-we-keep-losing",
+      label: "what do we keep losing?",
+      description: "technology isn't preserved by existence.\nit's preserved by continuous practice.",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "infrastructure", "games"],
+    },
+    {
+      id: "prose/what-will-agi-actually-want",
+      label: "what will AGI actually want?",
+      description: "alignment isn't safety. it's direction.",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "ai", "social"],
+    },
+    {
+      id: "prose/why-is-software-hard",
+      label: "why is software hard?",
+      description: "you're not bad at computers.\nsoftware is actually hard to use.",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "design"],
+    },
+    {
+      id: "prose/what-are-labels-anyway",
+      label: "what are labels anyway?",
+      description: "you live inside the stories\nyou tell yourself.",
+      tier: "project",
+      radius: 24,
+      color: "oklch(0.78 0.09 45)",
+      tags: ["essay", "social"],
+    },
+  ]);
+
   const defs: Omit<Node, "baseX" | "baseY">[] = [
     // Meta (landing)
     {
@@ -267,7 +335,7 @@ export function createGraph(): Graph {
       description: "i think about how software and people shape each other.",
       tier: "meta",
       x: 0,
-      y: -120,
+      y: -170,
       radius: 0,
       color: "#fff",
       tags: ["meta"],
@@ -365,8 +433,8 @@ export function createGraph(): Graph {
       description: "Office Open XML library for Rust",
       url: "https://pterror.github.io/ooxml",
       tier: "project",
-      x: -70,
-      y: 220,
+      x: -60,
+      y: 210,
       radius: 24,
       color: "oklch(0.78 0.09 85)",
       status: "early",
@@ -378,8 +446,8 @@ export function createGraph(): Graph {
       description: "catches and organizes data from the terminal",
       url: "https://pterror.github.io/pad",
       tier: "project",
-      x: 170,
-      y: 220,
+      x: 230,
+      y: 210,
       radius: 22,
       color: "oklch(0.78 0.09 85)",
       status: "early",
@@ -391,48 +459,16 @@ export function createGraph(): Graph {
       description: "a playground for Lua experiments",
       url: "https://github.com/pterror/lua",
       tier: "project",
-      x: 50,
-      y: 270,
+      x: 90,
+      y: 260,
       radius: 22,
       color: "oklch(0.78 0.09 85)",
       status: "early",
       tags: ["project", "lua"],
     },
 
-    // Essays
-    {
-      id: "prose/whats-actually-wrong",
-      label: "what's actually wrong?",
-      description: "before solutions. before tools. what's actually wrong?",
-      tier: "project",
-      x: 0,
-      y: 40,
-      radius: 24,
-      color: "oklch(0.78 0.09 45)",
-      tags: ["essay", "design", "social"],
-    },
-    {
-      id: "prose/why-is-software-hard",
-      label: "why is software hard?",
-      description: "you're not bad at computers.\nsoftware is actually hard to use.",
-      tier: "project",
-      x: -50,
-      y: 90,
-      radius: 24,
-      color: "oklch(0.78 0.09 45)",
-      tags: ["essay", "design"],
-    },
-    {
-      id: "prose/what-do-we-keep-losing",
-      label: "what do we keep losing?",
-      description: "technology isn't preserved by existence.\nit's preserved by continuous practice.",
-      tier: "project",
-      x: 50,
-      y: 90,
-      radius: 24,
-      color: "oklch(0.78 0.09 45)",
-      tags: ["essay", "infrastructure", "games"],
-    },
+    // Essays - ring layout
+    ...essayNodes,
   ];
 
   const nodes: Node[] = defs.map((n) => ({ ...n, baseX: n.x, baseY: n.y }));
