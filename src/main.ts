@@ -2,7 +2,7 @@ import { createCamera } from "./camera";
 import { createGraph } from "./graph";
 import { buildWorld, updateTransform, setFilterRef, updatePositions, animateTo, worldEl } from "./dom";
 import { setupInput } from "./input";
-import { initPanel } from "./panel";
+import { initPanel, openPanel } from "./panel";
 import { hideCard } from "./card";
 import { createFilter, buildFilterUI, applyFilter, getVisibleIds, setActive } from "./filter";
 import { runLayout, resetLayout } from "./layout";
@@ -79,6 +79,7 @@ if (focusId) {
   const node = graph.nodes.find((n) => n.id === focusId);
   if (node) {
     input.navigateTo(node, false, false);
+    openPanel(node.id, node.label);
   }
 }
 
