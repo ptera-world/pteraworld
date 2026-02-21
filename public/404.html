@@ -55,7 +55,7 @@
   </article>
   <script type="module">
     const id = location.pathname.replace(/^\/|\/$/g, "");
-    if (!id || id.includes("/")) {
+    if (!id) {
       document.getElementById("content").innerHTML =
         '<div class="not-found"><h1>not found</h1><p>this page doesn\'t exist. <a href="/">back to map</a></p></div>';
     } else {
