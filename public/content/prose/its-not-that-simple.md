@@ -60,11 +60,9 @@ But then the question becomes:
 
 Every step in this progression — one-sided, binary, spectrum, multifaceted — is a level of compression. Each step decompresses a little. Each step gets closer to reality. But each step is also harder to hold in your head, harder to communicate, harder to act on.
 
-And that's the answer. We compress because we have to. Brains are finite. Conversations are finite. Decisions require reducing options. You can't navigate the world by considering every dimension of every thing simultaneously.
+We compress because we have to. Brains are finite. Conversations are finite. Decisions require reducing options. But — [there's always a but](/prose/but) — compression has costs. The [label](/prose/what-are-labels-anyway) that becomes a ceiling. The binary that erases the middle. The "just" that [shrinks something enormous](/prose/is-it-just-interpolation) to something dismissable.
 
-But — [there's always a but](/prose/but) — compression has costs. And most people don't notice them. The [label](/prose/what-are-labels-anyway) that becomes a ceiling. The binary that erases the middle. The spectrum that drops every axis but one. The "just" that [shrinks something enormous](/prose/is-it-just-interpolation) to something dismissable.
-
-The point isn't "never compress." You have to compress. The point is knowing that you're doing it. And asking, each time: [what am I losing?](/prose/why-are-we-compressing-things)
+[What are we losing?](/prose/why-are-we-compressing-things)
 
 ## See also
 
