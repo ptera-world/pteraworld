@@ -1,3 +1,12 @@
+---
+label: "server-less"
+description: "write it once, speak every protocol"
+url: https://docs.rhi.zone/server-less
+parent: ecosystem/rhi
+status: fleshed-out
+tags: [rust, infrastructure]
+---
+
 composable derive macros for Rust. write your implementation once, project it into multiple protocols. 18 macros, zero runtime overhead.
 
 ## what it is

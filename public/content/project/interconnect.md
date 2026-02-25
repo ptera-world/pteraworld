@@ -1,3 +1,12 @@
+---
+label: "interconnect"
+description: "how game worlds stay connected"
+url: https://docs.rhi.zone/interconnect
+parent: ecosystem/rhi
+status: planned
+tags: [rust, infrastructure, games]
+---
+
 federation protocol for persistent worlds. connects independently-operated game servers with single-authority ownership, no distributed state resolution.
 
 ## what it is

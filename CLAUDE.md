@@ -11,11 +11,11 @@ Pteraworld is a personal portfolio website that renders projects as a spatial, z
 ```bash
 bun install          # install dependencies
 bun run dev          # dev server at localhost:3000
-bun run build        # generate edges + bundle with minification to dist/
+bun run build        # generate graph + bundle with minification to dist/
 bun run preview      # preview production build locally
 bun lint             # oxlint on src/
 bun check:types      # type check with tsgo (native TS compiler)
-bun run gen-edges    # regenerate src/generated-edges.ts from markdown files
+bun run gen-edges    # regenerate src/generated-graph.ts from markdown files
 ```
 
 ## Architecture
@@ -26,15 +26,18 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 
 **Key modules:**
 
-- `graph.ts` - node/edge data model. Hardcoded node definitions with positions, tiers, colors. Imports auto-generated edges from `generated-edges.ts`
+- `graph.ts` - node/edge data model (interfaces + `createGraph()`). Imports auto-generated nodes and edges from `generated-graph.ts`
+- `frontmatter.ts` - zero-dep YAML frontmatter parser for build-time use
+- `gen-graph.ts` - build-time script that reads `public/content/**/*.md` frontmatter + `## Related projects` links, computes layout (positions, colors), and writes `src/generated-graph.ts`
 - `camera.ts` - camera state (x, y, zoom) and tier system. Screen-to-world coordinate conversion
 - `dom.ts` - DOM construction, CSS transform animations, focus/hover state
 - `input.ts` - mouse/touch/wheel event handling, drag panning, zoom, WASD smooth panning, arrow key spatial navigation, Enter key confirm, keybinds schema + command palette + cheatsheet + context menu
 - `card.ts` - popup quick-preview card shown on node click
 - `minimap.ts` - canvas-based minimap for spatial orientation at deep zoom, click-to-pan
 - `panel.ts` - side panel that fetches and displays markdown content, with in-memory cache
-- `markdown.ts` - minimal homegrown markdown-to-HTML parser (no dependencies)
-- `gen-edges.ts` - build-time script that reads `public/content/*.md`, extracts `## Related projects` links, and writes `src/generated-edges.ts`
+- `markdown.ts` - minimal homegrown markdown-to-HTML parser (no dependencies), strips frontmatter at runtime
+- `gen-headings.ts` - build-time script that extracts headings from content files for search
+- `gen-pages.ts` - build-time script that generates static HTML pages from content files
 - `dev.ts` - Bun-based dev server with on-demand TS compilation
 
 **Zoom tier system** controls visibility:
@@ -42,7 +45,9 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - Mid (1.5-3.5): project dots + names
 - Near (≥ 3.5): full detail
 
-**Content pipeline:** markdown files in `public/content/` are fetched at runtime and parsed in-browser. The `## Related projects` sections in those files are also parsed at build time by `gen-edges.ts` to auto-generate graph edges. `src/generated-edges.ts` is gitignored and regenerated on build.
+**Content pipeline:** Markdown files in `public/content/` have YAML frontmatter (label, description, tags, parent, status, url, etc.) that defines graph node metadata. At build time, `gen-graph.ts` reads all frontmatter and `## Related projects` links to generate `src/generated-graph.ts` with computed positions, colors, and edges. At runtime, markdown is fetched and parsed in-browser (frontmatter is stripped). `src/generated-graph.ts` is gitignored and regenerated on build.
+
+**Adding a new project:** Create a markdown file in the appropriate `public/content/` subdirectory with frontmatter, then rebuild. The node will appear automatically with algorithmically-computed position and color.
 
 **Styling** is embedded in `public/index.html` as inline CSS. Dark theme, responsive (side panel on desktop, bottom panel on mobile).
 
@@ -53,3 +58,6 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - Node tiers: `ecosystem` (large regions), `project` (dots), `detail` (future)
 - Recent commit style uses conventional commits (feat:, fix:, style:, docs:)
 - Always update docs (ROADMAP.md, CLAUDE.md, README.md) before committing if behavior changed
+- Content files use YAML frontmatter as single source of truth for node metadata
+- Directories in `public/content/` determine tier inference: `ecosystem/` → region, `project/` → project, `prose/` → project, `meta/` → meta
+- `domain/`, `technology/`, `status/` directories contain content-only pages (not graph nodes) unless frontmatter explicitly sets `tier:`

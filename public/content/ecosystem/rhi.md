@@ -1,3 +1,9 @@
+---
+label: "rhi"
+description: "glue layer for computers"
+url: https://docs.rhi.zone
+---
+
 a glue layer for computers - finding common abstractions across fragmented domains.
 
 ## what it is

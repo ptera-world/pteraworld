@@ -1,3 +1,12 @@
+---
+label: "myenv"
+description: "keeps all the pieces running together"
+url: https://docs.rhi.zone/myenv
+parent: ecosystem/rhi
+status: fleshed-out
+tags: [rust, cli, infrastructure]
+---
+
 configuration manager for the rhi ecosystem. you define everything in one `myenv.toml` and it generates native config files for each tool. tools never know myenv exists.
 
 ## what it is

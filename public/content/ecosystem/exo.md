@@ -1,3 +1,9 @@
+---
+label: "exo"
+description: "places to exist"
+url: https://docs.exo.place
+---
+
 places to exist - digital spaces for identity, narrative, and interaction.
 
 ## what it is

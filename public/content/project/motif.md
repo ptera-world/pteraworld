@@ -1,3 +1,12 @@
+---
+label: "motif"
+description: "structural exploration of mathematics across fields"
+url: https://docs.rhi.zone/motif
+parent: ecosystem/rhi
+status: planned
+tags: [rust, data]
+---
+
 treats mathematics as a graph of structural relationships rather than a tree of fields. extracts invariants, detects recurring structural patterns across domains, and enables cross-field translation through shared intermediate representations.
 
 ## key ideas

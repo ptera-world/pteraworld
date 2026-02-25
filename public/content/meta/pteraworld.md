@@ -1,9 +1,6 @@
 ---
-title: ptera
-problem: "how do you build a space that shapes exploration without controlling it?"
-tech: [typescript, bun]
-status: active
-type: app
+label: "ptera"
+description: "i think about how software and people shape each other."
 ---
 
 a map of things i've been exploring. projects, questions, ecosystems - positioned because of how they relate, not listed because of when they happened.

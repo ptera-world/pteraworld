@@ -1,3 +1,9 @@
+---
+label: "why is software hard?"
+description: "you're not bad at computers.\nsoftware is actually hard to use."
+tags: [design]
+---
+
 # Why is software hard?
 
 You're not bad at computers. Software is actually hard to use.

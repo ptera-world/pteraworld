@@ -1,3 +1,12 @@
+---
+label: "normalize"
+description: "understands the shape of code across languages"
+url: https://docs.rhi.zone/normalize
+parent: ecosystem/rhi
+status: fleshed-out
+tags: [rust, cli]
+---
+
 code intelligence CLI that works structurally across 98 languages via tree-sitter. navigation, editing, analysis, search, and package management through a single interface.
 
 ## what it is

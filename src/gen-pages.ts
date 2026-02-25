@@ -1,9 +1,7 @@
-import { readdir, mkdir } from "node:fs/promises";
+import { readdir, mkdir, readFile, stat } from "node:fs/promises";
+import { join } from "path";
 import { parseMarkdown } from "./markdown";
-import { createGraph } from "./graph";
-
-const graph = createGraph();
-const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+import { parseFrontmatter, stripFrontmatter } from "./frontmatter";
 
 function pageHtml(
   id: string,
@@ -72,19 +70,40 @@ ${body}
 </html>`;
 }
 
-const contentDir = "public/content";
-const files = await readdir(contentDir);
+const contentDir = join(import.meta.dir, "../public/content");
+
+async function findMarkdownFiles(dir: string, prefix = ""): Promise<{ id: string; path: string }[]> {
+  const entries = await readdir(dir);
+  const results: { id: string; path: string }[] = [];
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry);
+    const entryStat = await stat(fullPath);
+
+    if (entryStat.isDirectory()) {
+      const subResults = await findMarkdownFiles(fullPath, prefix ? `${prefix}/${entry}` : entry);
+      results.push(...subResults);
+    } else if (entry.endsWith(".md")) {
+      const basename = entry.replace(/\.md$/, "");
+      const id = prefix ? `${prefix}/${basename}` : basename;
+      results.push({ id, path: fullPath });
+    }
+  }
+
+  return results;
+}
+
+const files = await findMarkdownFiles(contentDir);
 
 let count = 0;
-for (const file of files) {
-  if (!file.endsWith(".md")) continue;
-  const id = file.slice(0, -3);
-  const md = await Bun.file(`${contentDir}/${file}`).text();
+for (const { id, path } of files) {
+  const raw = await readFile(path, "utf-8");
+  const fm = parseFrontmatter(raw);
+  const md = stripFrontmatter(raw);
   const html = parseMarkdown(md);
 
-  const node = nodeMap.get(id);
-  const title = node?.label ?? id;
-  const description = node?.description ?? "";
+  const title = fm?.label ?? id.split("/").pop() ?? id;
+  const description = fm?.description?.replace(/\n/g, " ") ?? "";
 
   const outDir = `dist/${id}`;
   await mkdir(outDir, { recursive: true });

@@ -1,3 +1,11 @@
+---
+label: "lua"
+description: "a playground for Lua experiments"
+url: https://github.com/pterror/lua
+status: early
+tags: [lua]
+---
+
 a luajit monorepo that kept growing. libraries, ffi bindings, cli experiments.
 
 ## what it is

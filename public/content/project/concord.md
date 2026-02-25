@@ -1,3 +1,12 @@
+---
+label: "concord"
+description: "generates the glue between languages"
+url: https://docs.rhi.zone/concord
+parent: ecosystem/rhi
+status: early
+tags: [rust, infrastructure]
+---
+
 API bindings IR and code generation. parses API specs (like OpenAPI) into a universal intermediate representation, then generates idiomatic client libraries for different languages.
 
 ## what it is

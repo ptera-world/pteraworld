@@ -1,3 +1,9 @@
+---
+label: "what can I change?"
+description: "what do you want to change?\nwhat's your relationship to it?"
+tags: [social]
+---
+
 # What can I change?
 
 "I want things to be different." Okay. What things? Different how? And what's your relationship to them?

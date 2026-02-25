@@ -34,6 +34,12 @@ function inlineMarkup(line: string): string {
 }
 
 export function parseMarkdown(src: string): string {
+  // Strip YAML frontmatter if present
+  if (src.startsWith("---\n")) {
+    const end = src.indexOf("\n---", 4);
+    if (end !== -1) src = src.slice(end + 4).trimStart();
+  }
+
   const lines = src.split("\n");
   const out: string[] = [];
   let i = 0;

@@ -1,3 +1,9 @@
+---
+label: "what do we keep losing?"
+description: "technology isn't preserved by existence.\nit's preserved by continuous practice."
+tags: [infrastructure, games]
+---
+
 # What do we keep losing?
 
 Technology isn't preserved by existence. It's preserved by continuous practice.

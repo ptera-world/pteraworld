@@ -1,3 +1,9 @@
+---
+label: "how do I do things?"
+description: "not a system. not productivity advice.\njust what seems to help."
+tags: [social]
+---
+
 # How do I do things?
 
 This is a real question. Not rhetorical. Not a setup for advice.

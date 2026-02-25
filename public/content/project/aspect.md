@@ -1,3 +1,12 @@
+---
+label: "aspect"
+description: "exploring who you are through cards"
+url: https://docs.exo.place/aspect
+parent: ecosystem/exo
+status: early
+tags: [typescript, social]
+---
+
 card-based identity exploration sandbox. everything is a card with edges, and you can navigate it as a graph or as a place to walk around in. local-first, real-time multiplayer via Y.js CRDTs.
 
 ## what it is

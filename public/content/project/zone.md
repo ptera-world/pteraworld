@@ -1,3 +1,12 @@
+---
+label: "zone"
+description: "Lua scripts that wire things together"
+url: https://docs.rhi.zone/zone
+parent: ecosystem/rhi
+status: early
+tags: [lua, cli]
+---
+
 rhi ecosystem monorepo for Lua-based tools, project scaffolds, and orchestration.
 
 ## what it is

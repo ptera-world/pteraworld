@@ -1,3 +1,9 @@
+---
+label: "what will AGI actually want?"
+description: "alignment isn't safety. it's direction."
+tags: [ai, social]
+---
+
 # What will AGI actually want?
 
 Paperclip maximizers. Computronium. Gray goo. Rogue superintelligence tiling the universe with something inhuman.

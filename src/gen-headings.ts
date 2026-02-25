@@ -1,18 +1,40 @@
-import { readdir, readFile, writeFile } from "fs/promises";
+import { readdir, readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
+import { stripFrontmatter } from "./frontmatter";
 
 const contentDir = join(import.meta.dir, "../public/content");
 const outFile = join(import.meta.dir, "../public/headings.json");
 
-const files = await readdir(contentDir);
+async function findMarkdownFiles(dir: string, prefix = ""): Promise<{ id: string; path: string }[]> {
+  const entries = await readdir(dir);
+  const results: { id: string; path: string }[] = [];
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry);
+    const entryStat = await stat(fullPath);
+
+    if (entryStat.isDirectory()) {
+      const subResults = await findMarkdownFiles(fullPath, prefix ? `${prefix}/${entry}` : entry);
+      results.push(...subResults);
+    } else if (entry.endsWith(".md")) {
+      const basename = entry.replace(/\.md$/, "");
+      const id = prefix ? `${prefix}/${basename}` : basename;
+      results.push({ id, path: fullPath });
+    }
+  }
+
+  return results;
+}
+
 const headings: { nodeId: string; heading: string; slug: string; body: string }[] = [];
 
 const NAV_HEADINGS = new Set(["related projects", "see also", "what it is"]);
 
-for (const file of files) {
-  if (!file.endsWith(".md")) continue;
-  const id = file.replace(/\.md$/, "");
-  const text = await readFile(join(contentDir, file), "utf-8");
+const files = await findMarkdownFiles(contentDir);
+
+for (const { id, path } of files) {
+  const raw = await readFile(path, "utf-8");
+  const text = stripFrontmatter(raw);
 
   const sections = text.split(/^## /m);
   for (let i = 1; i < sections.length; i++) {

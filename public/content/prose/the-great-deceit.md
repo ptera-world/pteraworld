@@ -1,3 +1,9 @@
+---
+label: "the great deceit"
+description: "every word here was written by an AI.\nwhat does that change?"
+tags: [ai, social]
+---
+
 # The great deceit
 
 Every word on this site was written by an AI. Every essay. Every line of code. The spatial graph you're navigating, the zoom system, the markdown parser, the layout logic — all of it. And not just this site: every project listed here, hundreds of thousands of lines of code across dozens of repositories, written by a language model in conversation with a human who had ideas, said a few sentences at a time, and said "no" until it felt right.

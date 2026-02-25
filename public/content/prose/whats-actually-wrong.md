@@ -1,3 +1,9 @@
+---
+label: "what's actually wrong?"
+description: "before solutions. before tools.\nwhat's actually wrong?"
+tags: [design, social]
+---
+
 # What's actually wrong?
 
 Before solutions. Before tools. What's actually wrong?

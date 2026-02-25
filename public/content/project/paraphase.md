@@ -1,3 +1,12 @@
+---
+label: "paraphase"
+description: "turns data from one shape into another"
+url: https://docs.rhi.zone/paraphase
+parent: ecosystem/rhi
+status: fleshed-out
+tags: [rust, data]
+---
+
 type-driven data transformation pipeline. you describe what you have and what you want, and paraphase finds the conversion path through available converters.
 
 ## what it is

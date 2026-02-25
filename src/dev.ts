@@ -91,9 +91,9 @@ const server = Bun.serve({
       return new Response(file);
     }
 
-    // Fallback: try serving as a content page
+    // Fallback: try serving as a content page (supports category/slug paths)
     const slug = path.replace(/^\/|\/$/g, "");
-    if (slug && !slug.includes("/")) {
+    if (slug) {
       const mdFile = Bun.file(`${dir}/content/${slug}.md`);
       if (await mdFile.exists()) {
         const md = await mdFile.text();

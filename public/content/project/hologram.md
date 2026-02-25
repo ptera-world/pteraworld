@@ -1,3 +1,12 @@
+---
+label: "hologram"
+description: "a Discord bot where you describe things into existence"
+url: https://docs.exo.place/hologram
+parent: ecosystem/exo
+status: fleshed-out
+tags: [typescript, ai, social]
+---
+
 Discord bot for collaborative worldbuilding and roleplay. everything is an entity with facts, responses are controlled declaratively, and it talks to 15+ LLM providers.
 
 ## what it is

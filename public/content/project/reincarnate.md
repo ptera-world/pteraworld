@@ -1,3 +1,12 @@
+---
+label: "reincarnate"
+description: "bringing old software back to life"
+url: https://docs.rhi.zone/reincarnate
+parent: ecosystem/rhi
+status: planned
+tags: [rust, games]
+---
+
 legacy software lifting. extracts applications from obsolete runtimes and brings them to the modern web. works on bytecode and scripts, not native binaries.
 
 ## what it is

@@ -1,3 +1,12 @@
+---
+label: "dusklight"
+description: "one interface that connects to anything"
+url: https://docs.rhi.zone/dusklight
+parent: ecosystem/rhi
+status: planned
+tags: [typescript, ui]
+---
+
 universal UI client that can view any data source. JSON, protobuf, msgpack, SSE, video, audio, binary - it renders appropriate interfaces from structural descriptions without knowing specific formats.
 
 ## what it is

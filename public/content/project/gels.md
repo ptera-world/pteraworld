@@ -1,3 +1,12 @@
+---
+label: "gels"
+description: "detects the shape of languages"
+url: https://docs.rhi.zone/gels
+parent: ecosystem/rhi
+status: planned
+tags: [rust, cli]
+---
+
 trait-based grammar inference engine targeting tree-sitter output. detects syntactic traits from example source files, identifies known languages, or synthesizes tree-sitter grammars for unknown ones.
 
 ## what it is

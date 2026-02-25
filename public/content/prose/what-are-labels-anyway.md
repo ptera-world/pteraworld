@@ -1,3 +1,9 @@
+---
+label: "what are labels anyway?"
+description: "you live inside the stories\nyou tell yourself."
+tags: [social]
+---
+
 # What are labels anyway?
 
 You're not your Myers-Briggs type. You're not your diagnosis. You're not your generation, your zodiac sign, your attachment style, your Hogwarts house.

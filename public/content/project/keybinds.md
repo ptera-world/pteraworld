@@ -1,3 +1,11 @@
+---
+label: "keybinds"
+description: "declarative keybindings for the web"
+url: https://pterror.github.io/keybinds
+status: fleshed-out
+tags: [javascript, ui]
+---
+
 keyboard shortcuts for the web, defined as data instead of imperative listeners.
 
 ## what it is
