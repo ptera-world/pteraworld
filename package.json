@@ -17,6 +17,7 @@
     "oxlint": "^1.0.0"
   },
   "dependencies": {
-    "keybinds": "github:pterror/keybinds"
+    "keybinds": "github:pterror/keybinds",
+    "yaml": "^2.8.2"
   }
 }

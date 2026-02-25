@@ -1,12 +1,12 @@
 /**
- * Zero-dep YAML frontmatter parser for build-time use.
- * Parses the subset of YAML used in content frontmatter.
+ * YAML frontmatter parser for build-time use.
  */
+import { parse as parseYaml } from "yaml";
 
 export interface Frontmatter {
   label: string;
   description: string;
-  tier?: "region" | "project" | "meta";
+  tier?: "region" | "artifact" | "meta";
   parent?: string;
   tags?: string[];
   url?: string;
@@ -31,57 +31,22 @@ export function parseFrontmatter(src: string): Frontmatter | null {
   if (end === -1) return null;
 
   const yaml = src.slice(4, end);
-  const result: Record<string, unknown> = {};
+  const result = parseYaml(yaml);
 
-  for (const line of yaml.split("\n")) {
-    if (line.trim() === "" || line.startsWith("#")) continue;
+  if (!result || typeof result !== "object") return null;
+  if (typeof result.label !== "string" || typeof result.description !== "string") return null;
 
-    const colonIdx = line.indexOf(":");
-    if (colonIdx === -1) continue;
-
-    const key = line.slice(0, colonIdx).trim();
-    let value: string | number | string[] = line.slice(colonIdx + 1).trim();
-
-    // Array: [item1, item2]
-    if (value.startsWith("[") && value.endsWith("]")) {
-      result[key] = value
-        .slice(1, -1)
-        .split(",")
-        .map((s) => s.trim().replace(/^["']|["']$/g, ""))
-        .filter(Boolean);
-      continue;
-    }
-
-    // Strip surrounding quotes
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-      value = value.slice(1, -1);
-    }
-
-    // Number
-    if (/^\d+(\.\d+)?$/.test(value)) {
-      result[key] = Number(value);
-      continue;
-    }
-
-    result[key] = value;
-  }
-
-  // Validate required fields
-  if (typeof result.label !== "string" || typeof result.description !== "string") {
-    return null;
-  }
-
-  return result as unknown as Frontmatter;
+  return result as Frontmatter;
 }
 
 /** Infer tier from content directory path. */
-export function inferTier(category: string): "region" | "project" | "meta" | null {
+export function inferTier(category: string): "region" | "artifact" | "meta" | null {
   switch (category) {
     case "ecosystem":
       return "region";
     case "project":
     case "prose":
-      return "project";
+      return "artifact";
     case "meta":
       return "meta";
     default:
@@ -92,7 +57,7 @@ export function inferTier(category: string): "region" | "project" | "meta" | nul
 /** Infer auto-tags based on category and tier. */
 export function inferTags(category: string, tier: string): string[] {
   const auto: string[] = [];
-  if (tier === "project") auto.push("project");
+  if (tier === "artifact" && category !== "prose") auto.push("code");
   if (tier === "region") auto.push("region");
   if (tier === "meta") auto.push("meta");
   if (category === "prose") auto.push("essay");
