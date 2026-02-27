@@ -383,7 +383,7 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
       const clusterMembers = projectNodes.filter((n) => n.cluster === c.id);
       const maxMemberR = clusterMembers.length > 0
         ? Math.max(...clusterMembers.map((m) => m.radius), 20) : 20;
-      const padding = c.padding ?? 40;
+      const padding = c.padding ?? 15;
       const outerR = (c.ringRadius ?? Math.max(80, 60 + clusterMembers.length * 15)) + maxMemberR + padding;
       return Math.max(maxR, outerR);
     }, 0);
@@ -393,7 +393,7 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
     const region = regions[0]!;
     if (anchoredOuterR > 0) {
       // Place single region to the left (angle=π), far enough to clear anchored clusters
-      const clearance = anchoredOuterR + region.radius + 80;
+      const clearance = anchoredOuterR + region.radius + 40;
       region.x = -clearance;
       region.y = 0;
     } else {
@@ -406,7 +406,7 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
     // Ensure region ring clears anchored clusters: every region must be at least
     // (anchoredOuterR + region.radius + margin) from origin
     const ringR = anchoredOuterR > 0
-      ? Math.max(baseRingR, anchoredOuterR + maxRadius + 80)
+      ? Math.max(baseRingR, anchoredOuterR + maxRadius + 40)
       : baseRingR;
     for (let i = 0; i < regions.length; i++) {
       const angle = Math.PI + (2 * Math.PI * i) / regions.length;
@@ -475,7 +475,7 @@ function computeClusterCenter(
     : initialForceParams(members).seedR;
 
   const placementR = Math.max(...regions.map((r) => r.radius), 100)
-    + spreadEstimate + 150;
+    + spreadEstimate + 80;
 
   // Try 72 angles; score by hull-based clearance from regions and placed clusters.
   // The candidate cluster is approximated as a circle at (cx, cy) with radius spreadEstimate.
@@ -542,7 +542,7 @@ for (const [clusterId, config] of clusterConfigs) {
   // Compute hull of placed members for subsequent placement scoring.
   // Outliers discounted (k=1.5) so a few stray force-layout nodes don't over-inflate bounds.
   const maxMemberR = Math.max(...members.map((m) => m.radius), 20);
-  const padding = config.padding ?? 40;
+  const padding = config.padding ?? 15;
   const corePts = filterOutliers(members.map((m) => ({ x: m.x, y: m.y })));
   const hull = expandHull(convexHull(corePts), maxMemberR + padding);
   placedHulls.push(hull);

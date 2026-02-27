@@ -51,6 +51,14 @@ function fgArea(wx: number, wy: number, wr: number, ch: string) {
     }
   }
 }
+/** Draw an axis-aligned bounding box outline in the background layer. */
+function drawRect(wxMin: number, wyMin: number, wxMax: number, wyMax: number, ch: string) {
+  const [x0, y0] = toC(wxMin, wyMin);
+  const [x1, y1] = toC(wxMax, wyMax);
+  for (let cx = x0; cx <= x1; cx++) { bgSet(cx, y0, ch); bgSet(cx, y1, ch); }
+  for (let cy = y0; cy <= y1; cy++) { bgSet(x0, cy, ch); bgSet(x1, cy, ch); }
+}
+
 function drawCircle(wx: number, wy: number, wr: number, ch: string) {
   const steps = Math.max(80, Math.ceil(2 * Math.PI * wr * Math.max(scaleX, scaleY) * 2));
   for (let i = 0; i < steps; i++) {
@@ -95,6 +103,32 @@ for (const [clusterId, members] of clusterMap) {
   const lbl = `${clusterId}(${members.length})`;
   const [cx, cy] = toC(b.cx, b.cy);
   bgStr(cx - Math.floor(lbl.length / 2), cy, lbl, true);
+}
+
+// AABBs — axis-aligned bounding boxes for every group (drawn as outlines in background)
+type AABB = { minX: number; minY: number; maxX: number; maxY: number; label: string };
+const aabbs: AABB[] = [];
+
+function groupAABB(nodes: typeof artifacts): { minX: number; minY: number; maxX: number; maxY: number } {
+  return {
+    minX: Math.min(...nodes.map((n) => n.x - n.radius)),
+    minY: Math.min(...nodes.map((n) => n.y - n.radius)),
+    maxX: Math.max(...nodes.map((n) => n.x + n.radius)),
+    maxY: Math.max(...nodes.map((n) => n.y + n.radius)),
+  };
+}
+
+for (const [clusterId, members] of clusterMap) {
+  const bb = groupAABB(members);
+  aabbs.push({ ...bb, label: clusterId });
+  drawRect(bb.minX, bb.minY, bb.maxX, bb.maxY, "·");
+}
+for (const region of generatedNodes.filter((n) => n.tier === "region")) {
+  const children = generatedNodes.filter((c) => c.parent === region.id && c.tier === "artifact");
+  if (children.length === 0) continue;
+  const bb = groupAABB(children as typeof artifacts);
+  aabbs.push({ ...bb, label: region.label });
+  drawRect(bb.minX, bb.minY, bb.maxX, bb.maxY, "·");
 }
 
 // Build hulls for clusters (used for collision reporting below; display uses bounding circles)
@@ -226,6 +260,12 @@ for (const [clusterId, members] of clusterMap) {
   const b = boundingCircle(members.map((n) => ({ x: n.x, y: n.y })));
   const extra = members.length <= 6 ? `  nodes: ${members.map((n) => n.label).join(", ")}` : "";
   console.log(`  ${clusterId}(${members.length}): centroid=(${Math.round(b.cx)},${Math.round(b.cy)})  r=${Math.round(b.r)}${extra}`);
+}
+
+console.log("\nAABBs (minX minY → maxX maxY):");
+for (const { label, minX, minY, maxX, maxY } of aabbs) {
+  const w = maxX - minX, h = maxY - minY;
+  console.log(`  ${label.padEnd(14)} (${Math.round(minX)}, ${Math.round(minY)}) → (${Math.round(maxX)}, ${Math.round(maxY)})  ${Math.round(w)}×${Math.round(h)}`);
 }
 
 const metaNodes = generatedNodes.filter((n) => n.tier === "meta");
