@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "bun run src/dev.ts",
     "gen-edges": "bun run src/gen-graph.ts",
+    "inspect": "bun run src/inspect-layout.ts",
+    "analyze": "bun run src/analyze-content.ts",
     "build": "bun run src/gen-graph.ts && bun run src/gen-headings.ts && bun build src/main.ts --outdir dist --minify && bun run src/gen-pages.ts",
     "preview": "bun run src/dev.ts --production",
     "lint": "oxlint src/",

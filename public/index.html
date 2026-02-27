@@ -248,6 +248,14 @@
     /* Essay dot shape */
     .node[data-kind="essay"] .node-dot { border-radius: 25%; }
 
+    /* Grouping-aware visibility */
+    /* Hide essays in code-focused views */
+    #world[data-grouping="domain"] .node[data-kind="essay"],
+    #world[data-grouping="tech"] .node[data-kind="essay"],
+    #world[data-grouping="status"] .node[data-kind="essay"] { opacity: 0; pointer-events: none; }
+    /* De-emphasize code in essays view */
+    #world[data-grouping="essays"] .node.artifact:not([data-kind="essay"]) { opacity: 0.12; pointer-events: none; }
+
     /* Filter bar */
     #filter-bar {
       position: absolute; bottom: 12px; left: 0; right: 0; z-index: 5;

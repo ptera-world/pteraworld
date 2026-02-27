@@ -290,7 +290,7 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
     if (!parent) continue;
 
     const maxChildR = Math.max(...children.map((c) => c.radius), 20);
-    const ringR = Math.max(55, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
+    const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
     ringLayout(parent.x, parent.y, ringR, children);
 
     // Derive child color from parent's oklch hue
@@ -588,6 +588,16 @@ const generatedGroupings: GroupingOutput[] = [];
     label: "Ecosystems",
     regions: ecoRegions,
     positions: {}, // default positions from graph
+  });
+}
+
+// --- Essays grouping: essays at home positions, code de-emphasized via CSS ---
+{
+  generatedGroupings.push({
+    id: "essays",
+    label: "Essays",
+    regions: [],
+    positions: {}, // all nodes stay at ecosystem positions; CSS hides code
   });
 }
 

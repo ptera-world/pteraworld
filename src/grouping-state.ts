@@ -4,7 +4,7 @@
 
 import type { Graph, Node } from "./graph";
 import { groupings, defaultGrouping, getGrouping, type Grouping } from "./groupings";
-import { updatePositions, animateTo, fadeOutRegions, fadeInRegions, nodeEls, type NodePositionWithRegion } from "./dom";
+import { updatePositions, animateTo, fadeOutRegions, fadeInRegions, nodeEls, worldEl, type NodePositionWithRegion } from "./dom";
 import type { Camera } from "./camera";
 
 let currentLayoutGrouping: Grouping = defaultGrouping;
@@ -93,6 +93,7 @@ export function setLayoutGrouping(groupingId: string, updateColors = true): void
   }, fadeDuration * 0.3);
 
   currentLayoutGrouping = grouping;
+  worldEl.dataset.grouping = grouping.id;
 
   // If colors were linked to layout, keep them linked
   if (wasLinked && updateColors) {
@@ -234,6 +235,8 @@ export function restoreGroupingFromUrl(): void {
       fadeInRegions(layoutGrouping.regions, positions, 0);
     }
   }
+
+  worldEl.dataset.grouping = currentLayoutGrouping.id;
 
   // Restore color grouping (defaults to layout if not specified)
   if (colorId) {

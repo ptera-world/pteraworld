@@ -83,7 +83,7 @@ export function buildWorld(graph: Graph): void {
     const el = document.createElement("div");
     el.className = `node ${node.tier}`;
     el.dataset.id = node.id;
-    if (node.tags.includes("essay")) el.dataset.kind = "essay";
+    if (node.id.startsWith("prose/")) el.dataset.kind = "essay";
     el.style.left = `${node.x}px`;
     el.style.top = `${node.y}px`;
     el.style.setProperty("--color", node.color);

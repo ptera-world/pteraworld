@@ -16,6 +16,7 @@ bun run preview      # preview production build locally
 bun lint             # oxlint on src/
 bun check:types      # type check with tsgo (native TS compiler)
 bun run gen-edges    # regenerate src/generated-graph.ts from markdown files
+bun run inspect      # ASCII scatter plot + collision report for current layout
 ```
 
 ## Architecture
