@@ -10,7 +10,7 @@ Because I don't know what else to build.
 
 That's the honest answer. Not the aspirational one. Not "I'm passionate about developer experience" or "I believe in infrastructure." I build tools because when I sit down and ask "what should I make," the answer is always another tool. Another system. Another framework that makes some category of thing easier.
 
-I've shipped expression languages, Office format parsers, document converters, code analysis tools, derive macros. They're good. They work. And finishing them feels like... nothing. Like crossing an item off a list that nobody wrote.
+I've shipped parsers, format converters, code analysis tools, language runtimes. They're good. They work. And finishing them feels like... nothing. Like crossing an item off a list that nobody wrote.
 
 ## It's not about the tools
 
@@ -34,11 +34,11 @@ The tools don't do that. You act on code, it doesn't act on you. The relationshi
 
 ## Architect mode vs inhabit mode
 
-There are two completely different cognitive states:
+There are two completely different ways of relating to what you've made:
 
-When you're **building**, you see seams. Edge cases. Unimplemented branches. TODOs. Abstractions. You're outside the system, looking at its structure.
+When you're **building**, you see seams. Edge cases. Unfinished branches. Abstractions. You're outside the system, looking at its structure.
 
-When you're **inhabiting**, you see the next choice. You feel pressure. You respond. You don't think about the engine.
+When you're **inhabiting**, you see the next choice. You feel pressure. You respond. You don't think about the scaffolding.
 
 I'm stuck in architect mode. Not because I can't inhabit — but because the things I build aren't finished enough to inhabit yet. I'm comparing a construction site to a building people live in and wondering why the construction site doesn't feel like home.
 
@@ -46,7 +46,7 @@ I'm stuck in architect mode. Not because I can't inhabit — but because the thi
 
 Yes. And the reason is **emergence**.
 
-You design the rules, but you don't design what emerges from them. You know exactly how chess works and you still experience a real game. You know existence's sensory system inside out, but you don't know what happens when introversion + dental pain + sleep deprivation + grocery shopping interact in a specific moment.
+You design the rules, but you don't design what emerges from them. You know exactly how chess works and you still experience a real game. You know existence's systems inside out, but you don't know what happens when introversion + dental pain + sleep deprivation + grocery shopping interact in a specific moment.
 
 The surprise isn't in the rules. It's in the combinatorics. Complex systems produce behavior their architects can't predict. That's not a bug in the design — it's [the whole point](#the-whole-point).
 

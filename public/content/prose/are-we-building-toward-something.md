@@ -8,19 +8,19 @@ tags: [identity, technology]
 
 The counterargument writes itself: "This is procrastination dressed as productivity."
 
-And you can't dismiss it. Because look at the evidence. A code analyzer. A decompiler. A document converter. An expression language. An Office format parser. A derive macro library. A Lua runtime. A game design primitives library. A federation protocol. An API codegen tool. A file workspace server.
+And you can't dismiss it. Because look at the evidence. A code analyzer. A decompiler. A document converter. An expression language. A file format parser. A macro library. A language runtime. A game design primitives library. A federation protocol. A codegen tool. A file workspace server.
 
 That's not a product. That's not even a roadmap. That's someone [wandering through a hardware store](/prose/why-do-i-reinvent-everything) buying tools for a house they haven't designed yet.
 
 ## The honest inventory
 
-Some of it shipped. An expression language that's [feature complete](/project/wick). An Office parser that's [codegen'd and done](/project/ooxml). A keybind library that two projects actually use. These exist, they work, nobody asked for them, and finishing them felt like nothing.
+Some of it shipped. An expression language that's [feature complete](/project/wick). A file format parser that's done and generated from specs. A keybind library that two projects actually use. These exist, they work, nobody asked for them, and finishing them felt like nothing.
 
-Some of it's active. A [decompiler](/project/reincarnate) that actually decompiles real games — motivated by a port you wrote by hand years ago. A [game about being a person](/project/existence) that's technically playable. A [code analyzer](/project/normalize) you use every day. These have momentum because they have pull.
+Some of it's active. A [decompiler](/project/reincarnate) that actually decompiles real games — motivated by a port you wrote by hand years ago. A [game about being a person](/project/existence) that's technically playable. A [code analyzer](/project/normalize) that other tools depend on. These have momentum because they have pull.
 
-Most of it's sleeping. Ten repos with scaffolding and no users. Waiting for demand that may or may not come. Cheap to build, cheap to maintain, potentially worthless.
+Most of it's sleeping. Repos with scaffolding and no users. Waiting for demand that may or may not come. Cheap to build, cheap to maintain, potentially worthless.
 
-And then there's the graveyard. A program synthesis experiment [shut down](/prose/why-do-i-build-tools) because writing programs is hard. A Repology clone killed after one day. A game fork abandoned for something more original. These aren't failures. They're [closed doors that taught you the floor plan](#what-the-dead-projects-say).
+And then there's the graveyard. A program synthesis experiment [shut down](/prose/why-do-i-build-tools) because writing programs is hard. A package index clone killed after one day. A game fork abandoned for something more original. These aren't failures. They're [closed doors that taught you the floor plan](#what-the-dead-projects-say).
 
 ## What the dead projects say
 
@@ -55,7 +55,7 @@ That's not useful yet. It might never be. Or it might turn out that one of those
 
 You're not building toward something. You're also not just building.
 
-You're exploring a space. The tools are how you explore — each one is a probe into "what if software worked differently here?" The dead projects mark the boundaries. The sleeping projects mark the possibilities. The active projects mark where the space [pushed back with something interesting](/prose/why-do-i-build-tools#but-can-you-inhabit-what-you-built).
+You're exploring a space. The tools are how you explore — each one is a probe into "what if this worked differently?" The dead projects mark the boundaries. The sleeping projects mark the possibilities. The active projects mark where the space [pushed back with something interesting](/prose/why-do-i-build-tools#but-can-you-inhabit-what-you-built).
 
 Is that enough? Is exploration without a destination [a purpose](/prose/whats-the-purpose-of-life)?
 

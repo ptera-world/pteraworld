@@ -14,19 +14,19 @@ Yes. Probably. Let's do it anyway.
 
 It's become a ritual at this point. Every single project gets the question. Sometimes you ask yourself. Sometimes someone else asks. Sometimes the LLM asks.
 
-Are we reinventing Repology? Are we reinventing Pandoc? Are we reinventing CodeQL? Are we reinventing copyparty? Are we reinventing Tower? Are we reinventing the wheel?
+Are we reinventing this? Are we rebuilding that? Are we just making a worse version of something that already exists?
 
 The answer is almost always yes. And the answer to "should we stop?" is almost always no.
 
 ## Not because i think i can do it better
 
-Let's be clear about what this isn't. It's not ego. It's not "I'm smarter than the people who built Pandoc." They did incredible work. Years of it. Battle-tested, community-supported, production-hardened work.
+Let's be clear about what this isn't. It's not ego. It's not "I'm smarter than the people who built the original." They did incredible work. Years of it. Battle-tested, community-supported, production-hardened work.
 
 It's not about the destination. It's about [what you learn on the way](#what-if).
 
 ## What if?
 
-The instinct isn't "I can do this better." It's "what if I do this differently?" What if document conversion wasn't a monolith but [a pipeline of tiny transforms](/project/rescribe)? What if code analysis used [Datalog instead of visitors](/project/normalize)? What if a game decompiler had [pluggable frontends and backends](/project/reincarnate) instead of one hardcoded path?
+The instinct isn't "I can do this better." It's "what if I do this differently?" What if document conversion wasn't a monolith but a pipeline of tiny transforms? What if code analysis used a query language instead of hand-written visitors? What if a decompiler had pluggable frontends and backends instead of one hardcoded path?
 
 These aren't improvements. They're *explorations*. The existing tool made choices. Reasonable choices, often. But choices that closed off other paths. Reinventing is reopening those paths to see where they go.
 
@@ -44,7 +44,7 @@ Reinventing — badly, naively, from the wrong angle — is how you notice the c
 
 ## Popularity is a ratchet
 
-Good software sometimes wins. But winning locks everything in. The winner's API becomes the standard. The standard becomes the assumption. The assumption becomes invisible. And then when someone asks "why is it like this?" the answer is "because that's how it is."
+Good software sometimes wins. But winning locks everything in. The winner's interface becomes the standard. The standard becomes the assumption. The assumption becomes invisible. And then when someone asks "why is it like this?" the answer is "because that's how it is."
 
 [Excel doesn't need to be freeform](/prose/why-is-software-hard). But it is, because VisiCalc was. Notes apps don't need to be linear documents. But they are, because paper was. Filesystems don't need to be hierarchical. But they are, because directories were easier to implement than tags in 1970.
 
@@ -67,7 +67,7 @@ Let's be honest about the cost. Reinventing everything means:
 - The constant question of [whether any of this matters](/prose/am-i-just-pretending)
 - A workshop full of prototypes and no products
 
-But here's the thing. Before LLMs, reinventing a document converter would take a year. Now it takes a week. The cost of exploration collapsed. The [seven failed prototypes](/prose/why-do-i-build-tools) that used to span years now fit in a month.
+But here's the thing. The cost of exploration has collapsed. The seven failed prototypes that used to span years now fit in a month.
 
 That changes the calculus. When exploration is expensive, you should use the wheel. When exploration is cheap, you should question it. Not because you'll build a better wheel. But because you might discover the wheel was never the right shape for what you actually needed.
 
