@@ -543,6 +543,28 @@ for (const [clusterId, config] of clusterConfigs) {
     }
     console.warn("  separation applied.");
   }
+
+  // Push parentless nodes out of region circles (e.g. essays that drifted inside rhi)
+  let regionPushCount = 0;
+  for (let pass = 0; pass < 20; pass++) {
+    for (const region of regions) {
+      for (const n of projectNodes) {
+        if (n.parent) continue; // ecosystem children are fixed
+        const dist = Math.hypot(n.x - region.x, n.y - region.y);
+        if (dist < region.radius + n.radius + 8) {
+          const push = region.radius + n.radius + 8 - dist + 0.5;
+          const nx = dist > 0 ? (n.x - region.x) / dist : 1;
+          const ny = dist > 0 ? (n.y - region.y) / dist : 0;
+          n.x = Math.round(n.x + nx * push);
+          n.y = Math.round(n.y + ny * push);
+          regionPushCount++;
+        }
+      }
+    }
+  }
+  if (regionPushCount > 0) {
+    console.warn(`  pushed ${regionPushCount} region-vs-artifact overlaps.`);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -742,6 +764,7 @@ const nodeLines = nodes.map((n) => {
   fields.push(`color: ${quote(n.color)}`);
   if (n.status) fields.push(`status: "${n.status}"`);
   fields.push(`tags: [${n.tags.map((t) => `"${t}"`).join(", ")}]`);
+  if (n.cluster) fields.push(`cluster: "${n.cluster}"`);
   return `  { ${fields.join(", ")} },`;
 }).join("\n");
 

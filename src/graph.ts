@@ -20,6 +20,8 @@ export interface Node {
   color: string;
   status?: "production" | "fleshed-out" | "early" | "planned";
   tags: string[];
+  /** Layout cluster this node belongs to (e.g. "essays", "orphans", "meta-essays"). */
+  cluster?: string;
 }
 
 /** Edge connecting two nodes. */
