@@ -50,7 +50,11 @@ This feels wrong to say. [Preservation matters](/prose/what-do-we-keep-losing). 
 
 A project that taught you something doesn't need to keep existing once the lesson is learned. A relationship that shaped you doesn't need to be maintained after it's finished shaping you. A tradition that once held meaning doesn't need to continue after the meaning has moved elsewhere. [Not everything unfinished is a failure.](/prose/are-we-building-toward-something#what-the-dead-projects-say)
 
-Letting things die is an act of honesty. It says: this was valuable, and now it's done. Not abandoned — completed. Not forgotten — released. There's a difference between loss and letting go. Loss is imposed. Letting go is chosen. Both hurt. But one is an act of [respect for what the thing was](/prose/everything-changes#loss-is-change), and the other is a demand that it be what it no longer is.
+And some things *are* finished. Not abandoned. Finished. The building phase was never meant to last forever — it was a phase. The thing you were making is made. The process that produced it is over, the same way the scaffolding comes down when the building is done. That's not loss. That's [completion](/prose/when-should-you-stop-building).
+
+The discomfort is that building felt like identity. You were "working on" the thing. It was active, alive, in progress. And now it's not. Now it's just there, and you're not building anymore, and the absence of the process feels like the absence of purpose. But the process was always temporary. Confusing "I'm done building" with "I've lost something" is confusing the scaffolding with the building.
+
+Letting things die — or letting them be done — is an act of honesty. It says: this was valuable, and now it's complete. Not forgotten — released. There's a difference between loss and letting go. Loss is imposed. Letting go is chosen. Both hurt. But one is an act of [respect for what the thing was](/prose/everything-changes#loss-is-change), and the other is a demand that it be what it no longer is.
 
 ## Decay has a texture
 
