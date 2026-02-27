@@ -26,6 +26,8 @@ Here's what catches bugs, in rough order of [how much you should rely on them](#
 
 **Tests** catch the next layer. Does it do what it's supposed to? If you wrote the tests — even if the LLM wrote the implementation — you defined the contract. The implementation either honors it or it doesn't.
 
+**Adversarial testing** catches what tests miss. Normal tests verify the happy path — does it work when the input is correct? Adversarial testing asks what happens when the input is *hostile*. Edge cases. Empty strings. Integers at the boundary. Malformed data. Inputs designed to break assumptions. This is where AI-generated code is most vulnerable, because LLMs optimize for the common case. They produce code that works beautifully on reasonable inputs and silently corrupts on unreasonable ones. The fix is the same as it's always been: think about what could go wrong, then prove it doesn't. Fuzzing helps. Property testing helps. But the instinct — "what's the worst thing someone could feed this?" — is irreplaceable.
+
 **Lints** (clippy, in Rust) catch idiom violations, common mistakes, performance issues, and suspicious patterns. They're mechanical reviewers that never get tired and never wave things through because it's Friday.
 
 **Structure** catches architectural problems. Is the code modular? Are the abstractions [at the right level](/prose/the-right-tool-for-the-job)? Do the module boundaries make sense? You don't need to read every line to see structure. You need to read signatures, trait definitions, module hierarchies. The shape of the code is visible without reading the body.
@@ -38,9 +40,9 @@ Here's the real difference between "vibe coded garbage" and "AI-assisted softwar
 
 **Garbage:** write prompt → get code → ship it. No types (or weak types). No tests. No lints. No review. You're hoping it works. It probably doesn't.
 
-**What actually works:** design the architecture → write (or dictate) the types and traits → let the LLM fill in implementations → compiler rejects the broken ones → tests verify the contracts → lints catch the smells → you review the structure → you use it and it either survives or you fix it.
+**What actually works:** design the architecture → write (or dictate) the types and traits → let the LLM fill in implementations → compiler rejects the broken ones → tests verify the contracts → edge cases break the assumptions → lints catch the smells → you review the structure → you use it and it either survives or you fix it.
 
-Every step in the second version is a filter. The LLM generates code that passes through the compiler, through the test suite, through the linter, through your structural review, through actual usage. What survives that gauntlet is... good code. Not because the LLM is perfect, but because imperfection gets caught.
+Every step in the second version is a filter. The LLM generates code that passes through the compiler, through the test suite, through adversarial inputs, through the linter, through your structural review, through actual usage. What survives that gauntlet is... good code. Not because the LLM is perfect, but because imperfection gets caught.
 
 This is exactly the same gauntlet that human-written code passes through. The only difference is who typed it.
 
@@ -60,7 +62,7 @@ That's the supposed risk, anyway. In practice? Tests are even more daunting *wit
 
 The real risk isn't skipping tests. It's skipping *thought*. Not "does it pass?" but "is this the right abstraction?" Not "does it compile?" but "will this still make sense in a month?" Those questions don't have automated filters. They require you to [actually care about the architecture](/prose/the-right-tool-for-the-job), not just accept whatever compiles first.
 
-The defense is the same defense it's always been: make the filters automatic. Pre-commit hooks that run fmt and clippy. CI that runs the test suite. Type systems that reject invalid states. The human failing has always been "I'll skip the checks just this once." AI-assisted coding just makes "just this once" happen more often.
+The defense is the same defense it's always been: make the filters automatic. Pre-commit hooks that run fmt and clippy. CI that runs the test suite. Fuzz harnesses that probe the boundaries. Type systems that reject invalid states. The human failing has always been "I'll skip the checks just this once." AI-assisted coding just makes "just this once" happen more often.
 
 ## The question you're actually asking
 

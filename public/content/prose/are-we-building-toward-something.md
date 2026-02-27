@@ -26,10 +26,10 @@ And then there's the graveyard. A program synthesis experiment [shut down](/pros
 
 Every dead project is a sentence:
 
-*Herbarium*: "Someone already solved this better; use their work."
-*Prose*: "This needs discipline I don't have yet; come back later."
-*Moue*: "I want to make my own thing, not modify someone else's."
-*Aspect*: "This is the same idea as existence but less tangible."
+*Herbarium* (a package index — Repology but yours): "Someone already solved this better; use their work."
+*Prose* (a program synthesis engine — code that writes code): "This needs discipline I don't have yet; come back later."
+*Moue* (a fork of an existing game engine): "I want to make my own thing, not modify someone else's."
+*Aspect* (a card-based identity exploration sandbox): "This is the same idea as existence but less tangible."
 
 They're not random. Each one narrows the space. Herbarium says: don't compete with solved problems. Prose says: respect the prior art. Moue says: originality matters to you. Aspect says: prefer the more concrete version.
 
