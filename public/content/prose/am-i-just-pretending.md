@@ -8,7 +8,7 @@ tags: [identity, technology]
 
 You directed it. You chose the structure, the shape, the boundaries. You rejected the wrong versions. You knew what "right" felt like even when you couldn't produce it from scratch. And then something else — a tool, a machine, a collaborator — did the part that looks like work.
 
-The thing exists. It's good. But you didn't *make* it. Not with your hands. Not in the way that counts. Not in the way you can point to and say "I did that."
+The thing exists. It's good. Code, writing, art, music — whatever it is, it holds up. But you didn't *make* it. Not with your hands. Not in the way that counts. Not in the way you can point to and say "I did that."
 
 Did you?
 
@@ -35,6 +35,18 @@ The output isn't good because a machine made it. The output is good because you 
 That's always been the skill. In any medium. Writing has never been about typing. Cooking has never been about chopping. Design has never been about pushing pixels. Architecture has never been about laying bricks. The mechanical act was just the only available interface — and people confused the interface with the [art](/prose/what-is-art).
 
 But "knowing what to build" doesn't look like work. It looks like sitting there while something else does the job. It looks like cheating. It looks like pretending.
+
+## Two kinds of using
+
+There's a distinction that gets lost in the discourse. Two people can use the same tool and be doing completely different things.
+
+One has a standard. They know what good looks like — in their field, in their medium, in the specific thing they're making. They use the tool to get closer to that standard faster. The AI proposes, they reject, they redirect, they refine. The output reflects their judgment. If the tool produced garbage, they'd know, and they'd fix it or throw it away.
+
+The other has a goal. Not a standard — a goal. "I need a blog post by Friday." "I need a cover letter." "I need something that looks professional." They don't care how it gets there. They don't evaluate the output against an internal sense of quality. They evaluate it against "does this achieve what I need it to achieve?" If it's mediocre but functional, that's fine. Ship it.
+
+The first person is using a tool. The second person is using a service. Both are valid. But they're not the same thing, and the anxiety of "am I pretending" only applies to the first. The second person isn't pretending — they're outsourcing. They know they're outsourcing. There's no identity crisis in hiring a contractor.
+
+The crisis comes when you *care* about the output — when your [taste](/prose/what-is-art) is in it, when the decisions are yours, when you'd be embarrassed if it were bad — and you still can't claim you "made" it. That's the gap this essay lives in.
 
 ## The craft question
 
