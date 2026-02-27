@@ -56,7 +56,9 @@ After a thousand test cases, after months of daily use, after dozens of bug fixe
 
 One thing is genuinely different about AI-generated code: the [speed](/prose/am-i-just-pretending#speed-is-suspicious) makes it tempting to skip the filters. When you can produce code in minutes instead of hours, the pressure to test, lint, review, and think drops. "It compiles, ship it."
 
-That's the real risk. Not that AI writes bad code — it writes mediocre code with occasional brilliance and occasional bugs, just like humans. The risk is that speed erodes discipline. That you stop writing tests because the implementation came so fast. That you stop thinking about architecture because you can always regenerate.
+That's the supposed risk, anyway. In practice? Tests are even more daunting *without* LLMs. The same speed that produces the implementation also produces the test suite. The whole stack gets cheaper together. You're not choosing between "fast implementation, no tests" and "slow implementation, careful tests." You're getting both fast.
+
+The real risk isn't skipping tests. It's skipping *thought*. Not "does it pass?" but "is this the right abstraction?" Not "does it compile?" but "will this still make sense in a month?" Those questions don't have automated filters. They require you to [actually care about the architecture](/prose/the-right-tool-for-the-job), not just accept whatever compiles first.
 
 The defense is the same defense it's always been: make the filters automatic. Pre-commit hooks that run fmt and clippy. CI that runs the test suite. Type systems that reject invalid states. The human failing has always been "I'll skip the checks just this once." AI-assisted coding just makes "just this once" happen more often.
 
