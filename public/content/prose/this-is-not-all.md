@@ -18,7 +18,7 @@ There's no essay about grief. About chronic pain. About poverty. About race. Abo
 
 Not because these don't matter. Because one person's thinking has edges. The conversations that produced these essays went certain directions and not others. The patterns that felt true came from specific experiences. The gaps are shaped like the author.
 
-Any set of essays that claims to say something about the human condition is, at best, a [slice through a space too large to map](/prose/why-are-we-compressing-things). This slice captures some things clearly. It distorts others. It misses most.
+Any set of essays that tries to say something about the human condition is, at best, a [slice through a space too large to map](/prose/why-are-we-compressing-things). This slice captures some things clearly. It distorts others. It misses most.
 
 ## It never will be
 
@@ -26,11 +26,11 @@ No amount of writing fills the gaps. Each new essay opens new gaps adjacent to i
 
 Knowledge graphs don't converge. They expand. Each node creates edges to things that don't exist yet. [It's not that simple](/prose/its-not-that-simple) — and the "it" includes this site's attempt to say something about simplicity.
 
-This is not false modesty. It's structural. A finite collection of essays about the human condition will always be incomplete. The condition is bigger than any description of it.
+This isn't false modesty. It's structural. A finite collection of essays about the human condition will always be incomplete. The condition is bigger than any description of it.
 
 ## That's the point
 
-If this site felt like it had all the answers, something would be deeply wrong. A complete set of essays about life would be either dishonest or trivial.
+If this site felt like it had all the answers, something would be off. A complete set of essays about life would be either dishonest or trivial.
 
 The value isn't coverage. It's the specific threads that are here — the connections between them, the [tensions](/prose/but) they hold, the questions they leave open. Not "here's everything" but "here's what I can see from where I'm standing."
 

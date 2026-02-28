@@ -16,9 +16,9 @@ A good abstraction doesn't know what it's abstracting. A pipeline that converts 
 
 They handle *structure*. Shape, pattern, flow. The meaning comes from somewhere else — from the person using it, from the context it's deployed in, from the data that flows through it.
 
-This feels wrong. Shouldn't the system understand what it's doing? Shouldn't a code analyzer know what code *is for*? Shouldn't a game engine know what emotions it's modeling?
+This feels wrong at first. Shouldn't the system understand what it's doing? Shouldn't a code analyzer know what code *is for*? Shouldn't a game engine know what emotions it's modeling?
 
-No. Because the moment it does, it stops being an abstraction and starts being [a shortcut](#what-are-shortcuts-pretending-to-be-concepts).
+Probably not. Because the moment it does, it stops being an abstraction and starts being [a shortcut](#what-are-shortcuts-pretending-to-be-concepts).
 
 ## What are shortcuts pretending to be concepts?
 
@@ -54,17 +54,17 @@ The way out isn't "never specialize." It's to separate the layers: a core that h
 
 ## Emergence again?
 
-This connects to something deeper. If the system doesn't contain meaning, and the user provides it, then meaning is [emergent](/prose/why-do-i-build-tools#whats-the-whole-point). It arises from the interaction between structure and intent. It's not designed. It's discovered.
+This connects to something deeper. If the system doesn't contain meaning, and the user provides it, then meaning is [emergent](/prose/why-do-i-build-tools#whats-the-whole-point). It arises from the interaction between structure and intent. It's not designed in. It's discovered.
 
-That's uncomfortable for builders. You want to know what you're making. You want the system to *be about something*. But the most powerful systems aren't about anything. The internet isn't about anything. Mathematics isn't about anything. Language isn't about anything. They're substrates. Meaning flows through them, and the meaning is always richer and stranger than anything the builder could have encoded.
+That can be uncomfortable for builders. You want to know what you're making. You want the system to *be about something*. But the most powerful systems tend not to be about anything specific. The internet isn't about anything. Mathematics isn't about anything. Language isn't about anything. They're substrates. Meaning flows through them, and the meaning is often richer and stranger than anything the builder could have encoded.
 
 A game where emotions are hardcoded has exactly the emotions the designer put in. A game where emotions [emerge from interacting systems](/prose/why-do-i-build-tools#but-can-you-inhabit-what-you-built) has emotions the designer never predicted. The second one is alive. The first one is a menu.
 
 ## So what goes in the engine?
 
-Don't put the meaning in the engine. Put the structure in the engine and let meaning arrive.
+Structure, not meaning. Put the structure in the engine and let meaning arrive.
 
-This isn't just an engineering principle. It's a [life principle](/prose/everything-changes). The people who encode their identity — "I am a programmer," "I am a parent," "I am this kind of person" — become brittle when reality shifts. The [labels calcify](/prose/what-are-labels-anyway). The specifics they encoded become walls.
+This isn't just an engineering principle. It works as a [life principle](/prose/everything-changes) too. The people who encode their identity — "I am a programmer," "I am a parent," "I am this kind of person" — become brittle when reality shifts. The [labels calcify](/prose/what-are-labels-anyway). The specifics they encoded become walls.
 
 The people who hold structure without meaning — "I make things," "I care about people," "I pay attention" — can adapt. New meaning flows through the same structure. The identity survives the [change](/prose/everything-changes) because it never depended on the specifics.
 

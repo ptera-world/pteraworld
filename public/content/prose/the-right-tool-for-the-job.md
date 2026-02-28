@@ -20,11 +20,11 @@ This accounts for maybe 5% of the times people say it.
 
 "What language should I learn?" "Use the right tool for the job."
 
-What job? The person doesn't have a job yet. They're trying to learn. The advice sounds wise and communicates nothing. It's a non-answer that performs expertise.
+What job? The person doesn't have a job yet. They're trying to learn. The advice sounds wise and communicates nothing. It's a non-answer dressed up as expertise.
 
-"Should I use X or Y?" "Use the right tool for the job." This means "I use X and I think Y is for the wrong jobs." But it's phrased as neutral principle instead of opinion. The opinion hides behind the axiom.
+"Should I use X or Y?" "Use the right tool for the job." This usually means "I use X and I think Y is for the wrong jobs." But it's phrased as neutral principle instead of opinion. The opinion hides behind the axiom.
 
-"I built this in Z." "Why didn't you use the right tool for the job?" This means "I wouldn't have used Z." But it's phrased as if there's an objective mapping from jobs to tools that the person violated. There isn't. There are tradeoffs, preferences, contexts, histories, and [it's never that simple](/prose/its-not-that-simple).
+"I built this in Z." "Why didn't you use the right tool for the job?" This usually means "I wouldn't have used Z." But it's phrased as if there's an objective mapping from jobs to tools that the person violated. There isn't. There are tradeoffs, preferences, contexts, histories, and [it's never that simple](/prose/its-not-that-simple).
 
 ## What's actually being said
 
@@ -56,23 +56,23 @@ And "wrong" is usually "different." Someone built a thing in a language you woul
 
 ## The real question
 
-"The right tool for the job" ends the conversation. The more interesting question — the one it replaces — is: "what tradeoffs did you make, and why?"
+"The right tool for the job" tends to end the conversation. The more interesting question — the one it replaces — is: "what tradeoffs did you make, and why?"
 
 That question acknowledges complexity. It treats the other person as someone who made decisions rather than someone who failed to follow the obvious path. It opens dialogue instead of closing it.
 
 But it's harder. It requires engaging. It requires admitting that you might not know better. It requires the possibility that their choice was reasonable even if it's not yours.
 
-"The right tool for the job" avoids all of that. Which is why people keep saying it.
+"The right tool for the job" avoids all of that. Which is probably why it keeps coming up.
 
 ## Tools shape thinking
 
-Here's the deeper problem. "Right tool for the job" assumes the tool is neutral — a means to an end. Pick it up, do the job, put it down.
+There's a deeper layer worth looking at. "Right tool for the job" assumes the tool is neutral — a means to an end. Pick it up, do the job, put it down.
 
-But tools aren't neutral. They shape how you think about the problem. A spreadsheet makes you think in grids. A relational database makes you think in tables. A graph database makes you think in relationships. A Lisp makes you think in transformations. The tool doesn't just solve the problem — it defines what the problem looks like.
+But tools aren't neutral. They shape how you think about the problem. A spreadsheet gets you thinking in grids. A relational database gets you thinking in tables. A graph database gets you thinking in relationships. A Lisp gets you thinking in transformations. The tool doesn't just solve the problem — it defines what the problem looks like.
 
 So "the right tool for the job" has a circularity. The job looks different depending on which tool you're holding. The "right" tool is often just the one that makes the job look like something you already know how to do.
 
-And sometimes the "wrong" tool reveals something the "right" one would have hidden. Sometimes building the thing in an unexpected way exposes an insight about the problem that the conventional approach would have buried. Sometimes the path matters more than the destination.
+And sometimes the "wrong" tool reveals something the "right" one would have hidden. Sometimes building the thing in an unexpected way exposes something about the problem that the conventional approach would have buried. Sometimes the path matters more than the destination.
 
 [Not always.](/prose/but) Sometimes a screwdriver really is better than a hammer for screws. But less often than people think.
 

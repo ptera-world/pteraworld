@@ -6,7 +6,7 @@ tags: [social, identity]
 
 # But.
 
-The most powerful word in the language. Not because of what it means — because of where it points.
+Maybe the most interesting word in the language. Not because of what it means — because of where it points.
 
 ## The hinge
 
@@ -16,7 +16,7 @@ Everything turns on "but."
 
 Everything before "but" is preamble. Everything after is what the person actually means. The first half is performance — the appearance of fairness, balance, openness. The second half is the truth.
 
-People know this instinctively. When someone starts with a compliment and you hear "but" coming, your chest tightens before the word lands. You know what's next. The compliment was just the runway.
+People pick up on this instinctively. When someone starts with a compliment and you hear "but" coming, your chest tightens before the word lands. You already know what's next. The compliment was just the runway.
 
 ## The other direction
 
@@ -30,7 +30,7 @@ But "but" isn't always a knife.
 
 Same word. Same structure. Completely different function. Here, "but" isn't erasing — it's refusing. The first half acknowledges reality. The second half pushes against it.
 
-This is the "but" that matters. The one that says: yes, I see the obstacle. I'm going anyway.
+This is the "but" worth paying attention to. The one that says: yes, I see the obstacle. I'm going anyway.
 
 ## Which way does yours point?
 
@@ -42,7 +42,7 @@ The dismisser's "but" always points toward negation. "That's impressive, *but* i
 
 And then there's the "but" that points forward. "This is hard. *But* I'm doing it." "I failed. *But* I learned something." "It's not done. *But* it exists."
 
-Same word. The direction is a choice. Most people don't realize they're making it.
+Same word. The direction is a choice — one most people don't notice they're making.
 
 ## There's always a but
 
@@ -62,15 +62,15 @@ The people who stop before the "but" are simplifying. The people who stop after 
 
 ## "But" as honesty
 
-The essays on this site are full of "buts." That's not a weakness. It's the point.
+The essays on this site are full of "buts." That's not a weakness — it's kind of the whole idea.
 
-Easy answers don't have a "but." "Just do X" doesn't have a "but." Motivational posters don't have a "but." And they don't help, because anyone who's actually stuck already knows the "but" exists. Pretending it doesn't is insulting.
+Easy answers don't have a "but." "Just do X" doesn't have a "but." Motivational posters don't have a "but." And they don't tend to help, because anyone who's actually stuck already knows the "but" exists. Pretending it doesn't is insulting.
 
 Honesty is: yes, and also. Here's the thing, *and here's the other thing*. Not resolving the tension. Not picking a side. Just acknowledging that the second half is real.
 
 "To be yourself." Three words. [The purpose of life](/prose/whats-the-purpose-of-life).
 
-*But* it's hard. *But* you try anyway. *But* it's never done. *But* that's the point.
+*But* it's hard. *But* you try anyway. *But* it's never done. *But* maybe that's the point.
 
 ## See also
 

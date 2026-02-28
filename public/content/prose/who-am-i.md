@@ -10,7 +10,7 @@ You've probably tried to answer this. Personality tests. Journaling. Therapy. In
 
 But did it stick? Or did it feel right for a while and then stop fitting?
 
-That's because "who am I" isn't a question with an answer. It's [not that kind of question](#why-isnt-it-that-kind-of-question). The self isn't something you find — it's something that [keeps emerging](#how-does-the-self-keep-emerging). And the way it emerges isn't through thinking. It's through [three things](#what-actually-builds-a-self) that feed each other.
+That might be because "who am I" isn't a question with an answer. It's [not that kind of question](#why-isnt-it-that-kind-of-question). The self isn't something you find — it's something that [keeps emerging](#how-does-the-self-keep-emerging). And the way it emerges isn't through thinking. It's through [three things](#what-actually-builds-a-self) that feed each other.
 
 ## Why isn't it that kind of question?
 
@@ -20,15 +20,15 @@ But try to say it. "I am..." What follows? A job title? A role? A personality ty
 
 And the answer changes. Who you were five years ago isn't who you are now. Who you are at work isn't who you are with friends. Who you are when you're rested isn't who you are when you're depleted. Which one is the real you?
 
-All of them. None of them. The question assumes a fixed thing to find. There isn't one.
+All of them. None of them. The question assumes a fixed thing to find. There doesn't seem to be one.
 
 ## How does the self keep emerging?
 
 You didn't decide to like the things you like. You encountered them and something resonated. You didn't decide your values — they formed through experience, conflict, mistake, and occasional clarity. You didn't plan your personality — it emerged from genetics, environment, choices, and things that happened to you.
 
-The self isn't architecture. It's weather. It has patterns, tendencies, recurring shapes. But it's not a blueprint you can read. It's something you observe, in motion, over time.
+The self isn't architecture. It's more like weather. It has patterns, tendencies, recurring shapes. But it's not a blueprint you can read. It's something you observe, in motion, over time.
 
-Which means "who am I" isn't answered by looking inward. Not only, anyway. Looking inward gives you your [existing labels](/prose/what-are-labels-anyway) — the stories you already tell about yourself. To find what's actually there, including the parts you haven't met yet, you need more than introspection.
+Which means "who am I" might not be answered by looking inward alone. Looking inward gives you your [existing labels](/prose/what-are-labels-anyway) — the stories you already tell about yourself. To find what's actually there, including the parts you haven't met yet, you probably need more than introspection.
 
 ## What actually builds a self?
 
@@ -40,7 +40,7 @@ What do you actually do when nobody's watching? Not what you think you should do
 
 Analysis isn't judgment. It's observation. The anxious pattern isn't bad — it's information. The avoidance isn't weakness — it's data. The thing you keep coming back to despite telling yourself you shouldn't — that's signal.
 
-Most people skip this because honest self-observation is uncomfortable. The gap between who you think you are and what you actually do is where the interesting stuff lives. And it's not always flattering.
+Most people skip this because honest self-observation is uncomfortable. The gap between who you think you are and what you actually do is where a lot of the interesting stuff lives. And it's not always flattering.
 
 ### Expression
 
@@ -50,7 +50,7 @@ You discover what you think by trying to say it. You discover what you care abou
 
 Expression isn't just art. It's any act of making a choice that reflects something internal. How you arrange a room. What you cook when nobody's coming over. The projects you start at midnight. The conversations you keep having.
 
-The output isn't the point. The [act of producing it](/prose/how-do-i-do-things) is. Because expression forces decisions, and decisions reveal preferences, and preferences are closer to identity than any label.
+The output isn't the point. The [act of producing it](/prose/how-do-i-do-things) is. Because expression gets you making decisions, and decisions reveal preferences, and preferences are closer to identity than any label.
 
 You don't need to be good at it. You don't need to [finish it](/prose/why-is-perfectionism-a-trap). You just need to do it and pay attention to what happens.
 
@@ -62,7 +62,7 @@ This is the one that can't be done from your room. You can't introspect your way
 
 The self has latent dimensions. Parts of you that are real but inactive because the right context hasn't happened yet. [Discovery](/prose/how-do-i-do-things) is creating the conditions where those contexts can occur.
 
-Not "find yourself" through a grand journey. More like: lower the friction between you and new experiences until you stumble into something that resonates. [Sketch-level](/prose/how-do-i-do-things) exposure. Try things that don't matter. Try things you'd never "decide" to try. The discovery happens in the things you weren't looking for.
+Not "find yourself" through a grand journey. More like: lower the friction between you and new experiences until you stumble into something that resonates. [Sketch-level](/prose/how-do-i-do-things) exposure. Try things that don't matter. Try things you'd never "decide" to try. The discovery tends to happen in the things you weren't looking for.
 
 ## How do they feed each other?
 
@@ -76,7 +76,7 @@ But together:
 
 You discover something new. You express it — make something, say something, [try something](/prose/how-do-i-do-things). You analyze what that revealed — oh, I care about this more than I thought. That analysis opens new questions. Those questions lead to new discovery. The cycle continues.
 
-And the self — the answer to "who am I" — is whatever this process is producing right now. Not a destination. A direction. Always moving, never arriving, and [that's the point](/prose/whats-the-purpose-of-life).
+And the self — the answer to "who am I" — is whatever this process is producing right now. Not a destination. A direction. Always moving, never arriving, and [that's worth sitting with](/prose/whats-the-purpose-of-life).
 
 ## Why is this hard?
 

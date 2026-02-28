@@ -30,11 +30,11 @@ Dopamine isn't pleasure. It's *anticipation*. It's the signal your brain uses to
 
 The problem isn't that your brain responds to dopamine. That's how brains work. The problem is that your environment is full of things [designed to trigger anticipation without delivery](/prose/why-is-nothing-special-anymore#what-happened). Scroll, scroll, scroll — maybe the next one. Refresh — maybe something new. Check notifications — maybe someone responded.
 
-Each cycle gives you the anticipation hit and almost nothing else. The reward never arrives, so the seeking never stops. It's not that you're addicted to your phone. It's that your phone is running an exploit against a feature of your brain that you can't turn off.
+Each cycle gives you the anticipation hit and almost nothing else. The reward rarely arrives, so the seeking never stops. It's not that you're addicted to your phone. It's that your phone is running an exploit against a feature of your brain that you can't turn off.
 
 ## What's the escape hatch?
 
-Some people accidentally escape. Not because they're smarter or more disciplined. Because they stumbled into an environment where the reward loops align with deep work instead of fighting it.
+Some people accidentally find their way out. Not because they're smarter or more disciplined. Because they stumbled into an environment where the reward loops align with deep work instead of fighting it.
 
 A musician gets lost in practice for hours. Not because they have superhuman focus — because the activity itself provides the rewards: the sound improving, the passage clicking, the feeling of the instrument responding. The dopamine cycle works *for* them: anticipation of getting the phrase right, followed by actually getting it right. Seek, find, seek, find.
 
@@ -48,11 +48,11 @@ These aren't different brains. They're different environments. Environments wher
 
 "I can't focus" might not be a description of your brain. It might be a description of your environment.
 
-In an environment designed to steal attention — infinite scroll, notifications, variable rewards — difficulty focusing is the *expected* response. Your brain is working correctly. It's responding to an environment that is [deliberately exploiting](/prose/whats-actually-wrong) its attention mechanisms. The inability to focus isn't a malfunction. It's what happens when a healthy attention system meets a hostile attention environment.
+In an environment designed to steal attention — infinite scroll, notifications, variable rewards — difficulty focusing is the *expected* response. Your brain is working correctly. It's responding to an environment that is [deliberately exploiting](/prose/whats-actually-wrong) its attention mechanisms. The difficulty focusing isn't a malfunction. It's what happens when a healthy attention system meets a hostile attention environment.
 
 This doesn't mean attention disorders aren't real. They are. But the question "is my brain broken?" and the question "am I in an environment designed to break my attention?" are two different questions. And right now, the default environment — the one most people spend most of their waking hours in — is designed to break attention as a business model.
 
-The reframe isn't "you don't have a problem." It's: before you diagnose your brain, diagnose your environment. How much of what feels like dysfunction is actually a normal response to an environment engineered against sustained attention?
+The reframe isn't "you don't have a problem." It's: before you diagnose your brain, it might be worth diagnosing your environment. How much of what feels like dysfunction is actually a normal response to an environment engineered against sustained attention?
 
 ## What do aligned reward loops feel like?
 
@@ -66,9 +66,9 @@ Flow isn't the exception. The attention economy is. Humans focused for thousands
 
 ## What's the uncomfortable implication?
 
-If the problem is the environment, the solution is changing the environment. Not fixing your brain. Not building better habits. Not developing discipline to resist the thing designed by teams of engineers to be irresistible.
+If the problem is the environment, the response is changing the environment. Not fixing your brain. Not building better habits. Not developing discipline to resist the thing designed by teams of engineers to be hard to resist.
 
-That's uncomfortable because changing your environment is hard. It means putting down the phone. It means closing the tabs. It means choosing to be somewhere with aligned reward loops instead of exploitative ones. And it means accepting that the "easy" environment — the scroll, the feed, the notification — isn't easy at all. It's draining. It's just draining in a way that feels like rest because it requires no effort.
+That's uncomfortable because changing your environment is hard. It means putting down the phone. It means closing the tabs. It means choosing to be somewhere with aligned reward loops instead of exploitative ones. And it means recognizing that the "easy" environment — the scroll, the feed, the notification — isn't easy at all. It's draining. It's just draining in a way that feels like rest because it requires no effort.
 
 Real rest restores attention. The attention economy spends it. The feeling of exhaustion after an hour of scrolling isn't tiredness — it's depletion. Your attention was spent in micro-transactions, each one too small to notice, adding up to an hour of seek-without-find that left you with less than you started with.
 
@@ -80,7 +80,7 @@ An environment where the rewards come from the work. Where each cycle of effort 
 
 That environment is different for everyone. It might be a workshop. A kitchen. A garden. A blank page. An instrument. A problem to solve. Whatever the thing is that makes you lose track of time — not because it's distracting, but because it's [engaging in the way your brain actually wants to be engaged](/prose/why-do-i-build-tools#what-actually-feels-good).
 
-Your brain isn't broken. Your environment might be. And the difference between dysfunction and function might be as simple as where you choose to sit.
+Your brain probably isn't broken. Your environment might be. And the difference between dysfunction and function might be as simple as where you choose to sit.
 
 ## See also
 

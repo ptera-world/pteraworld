@@ -8,7 +8,7 @@ tags: [technology]
 
 You didn't type every line. Maybe you didn't type most of them. An AI wrote the implementation while you held the reins. It compiles, it runs, it passes the tests. But you can't shake the feeling that you're [trusting something you don't fully understand](/prose/am-i-just-pretending).
 
-Here's the thing: you've always been trusting things you don't fully understand. You just didn't notice.
+The thing is, you've always been trusting things you don't fully understand. That's not new — it just wasn't as visible before.
 
 ## Does anyone read every line?
 
@@ -26,7 +26,7 @@ Here's what catches bugs, in rough order of [how much you should rely on them](#
 
 **Tests** catch the next layer. Does it do what it's supposed to? If you wrote the tests — even if the AI wrote the implementation — you defined the contract. The implementation either honors it or it doesn't.
 
-**Adversarial testing** catches what tests miss. Normal tests verify the happy path — does it work when the input is correct? Adversarial testing asks what happens when the input is *hostile*. Edge cases. Empty values. Integers at the boundary. Malformed data. Inputs designed to break assumptions. This is where AI-generated code is most vulnerable, because AI optimizes for the common case. It produces code that works beautifully on reasonable inputs and silently corrupts on unreasonable ones. Fuzz testing — throwing random garbage at the code to see what breaks — helps. Property testing — asserting that general rules hold across thousands of generated inputs — helps. But the instinct — "what's the worst thing someone could feed this?" — is irreplaceable.
+**Adversarial testing** catches what tests miss. Normal tests verify the happy path — does it work when the input is correct? Adversarial testing asks what happens when the input is *hostile*. Edge cases. Empty values. Integers at the boundary. Malformed data. Inputs designed to break assumptions. This is where AI-generated code tends to be most vulnerable, because AI optimizes for the common case. It produces code that works beautifully on reasonable inputs and silently corrupts on unreasonable ones. Fuzz testing — throwing random garbage at the code to see what breaks — helps. Property testing — asserting that general rules hold across thousands of generated inputs — helps. But the instinct — "what's the worst thing someone could feed this?" — is irreplaceable.
 
 **Lints** — automated style and correctness checkers — catch idiom violations, common mistakes, performance issues, and suspicious patterns. They're mechanical reviewers that never get tired and never wave things through because it's Friday.
 
@@ -36,11 +36,11 @@ Here's what catches bugs, in rough order of [how much you should rely on them](#
 
 ## What's the stack?
 
-Here's the real difference between "vibe coded garbage" and "AI-assisted software that works":
+Here's the practical difference between "vibe coded garbage" and "AI-assisted software that works":
 
-**Garbage:** write prompt → get code → ship it. No structure. No tests. No review. You're hoping it works. It probably doesn't.
+**Garbage:** write prompt, get code, ship it. No structure. No tests. No review. You're hoping it works. It probably doesn't.
 
-**What actually works:** design the architecture → define the interfaces and constraints → let the AI fill in implementations → the compiler rejects the broken ones → tests verify the contracts → edge cases break the hidden assumptions → lints catch the smells → you review the structure → you use it and it either survives or you fix it.
+**What actually works:** design the architecture, define the interfaces and constraints, let the AI fill in implementations, the compiler rejects the broken ones, tests verify the contracts, edge cases break the hidden assumptions, lints catch the smells, you review the structure, you use it and it either survives or you fix it.
 
 Every step is a filter. Code passes through the compiler, through the test suite, through adversarial inputs, through the linter, through your structural review, through actual usage. What survives that gauntlet is good code. Not because the AI is perfect, but because imperfection gets caught.
 
@@ -50,7 +50,7 @@ This is exactly the same gauntlet that human-written code passes through. The on
 
 You don't trust code because you read it. You trust code because it [survived](#what-actually-catches-bugs).
 
-The first time you run your tool on real data and it produces correct output, that's trust. Not in every line — in the *system*. The tenth time, more trust. The time it fails and you fix it and it works again, even more. Trust is empirical.
+The first time you run your tool on real data and it produces correct output, that's a bit of trust. Not in every line — in the *system*. The tenth time, more trust. The time it fails and you fix it and it works again, even more. Trust is empirical.
 
 After a thousand test cases, after months of use, after dozens of bug fixes, you know the code is good the same way you know your car works. Not because you inspected every bolt. Because you drove it to work every day and it got you there.
 
@@ -58,15 +58,15 @@ After a thousand test cases, after months of use, after dozens of bug fixes, you
 
 One thing is genuinely different about AI-generated code: the [speed](/prose/am-i-just-pretending#why-does-going-fast-look-wrong) makes it tempting to skip the filters. When you can produce code in minutes instead of hours, the pressure to test, review, and think drops. "It compiles, ship it."
 
-That's the supposed risk, anyway. In practice? Tests are even more daunting *without* AI. The same speed that produces the implementation also produces the test suite. The whole verification stack gets cheaper together. You're not choosing between "fast implementation, no tests" and "slow implementation, careful tests." You're getting both fast.
+That's the supposed risk, anyway. In practice, tests are even more daunting *without* AI. The same speed that produces the implementation also produces the test suite. The whole verification stack gets cheaper together. You're not choosing between "fast implementation, no tests" and "slow implementation, careful tests." You're getting both fast.
 
-The real risk isn't skipping tests. It's skipping *thought*. Not "does it pass?" but "is this the right abstraction?" Not "does it compile?" but "will this still make sense in a month?" Those questions don't have automated filters. They require you to [actually care about the architecture](/prose/the-right-tool-for-the-job), not just accept whatever compiles first.
+The more interesting risk isn't skipping tests. It's skipping *thought*. Not "does it pass?" but "is this the right abstraction?" Not "does it compile?" but "will this still make sense in a month?" Those questions don't have automated filters. They require you to [actually care about the architecture](/prose/the-right-tool-for-the-job), not just accept whatever compiles first.
 
 The defense is the same defense it's always been: make the filters automatic. Pre-commit hooks that enforce formatting and style. CI pipelines that run the full test suite. Fuzz harnesses that probe the boundaries. Type systems that reject invalid states. The human failing has always been "I'll skip the checks just this once." AI-assisted development just makes "just this once" happen more often.
 
 ## What's the question you're actually asking?
 
-"How do I know this code is good?" is really asking "how do I know *I'm* good?" Because the code's quality is verifiable. Compile it. Test it. Lint it. Run it. Those have answers.
+"How do I know this code is good?" might really be asking "how do I know *I'm* good?" Because the code's quality is verifiable. Compile it. Test it. Lint it. Run it. Those have answers.
 
 The harder question is whether steering an AI is a [real skill](/prose/am-i-just-pretending#what-if-the-bottleneck-isnt-the-hand), whether the architecture you designed is actually good or just happens to compile, whether your taste is refined or you're [fooling yourself](/prose/why-is-perfectionism-a-trap).
 

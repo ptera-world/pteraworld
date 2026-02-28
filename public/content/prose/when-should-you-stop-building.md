@@ -28,7 +28,7 @@ Using what you built is uncontrolled. The thing responds in ways you didn't plan
 
 That push-back is uncomfortable. It's also [the whole point](/prose/why-do-i-build-tools#whats-the-whole-point). A thing that never meets reality never becomes real. It stays a construction site forever — impressive to look at, impossible to inhabit.
 
-Building is safe because nothing can go wrong. Using is scary because something will. But "something going wrong" is just another word for [feedback](/prose/how-do-i-know-this-code-is-good#how-does-trust-accumulate). And feedback is how a construction site becomes a building.
+Building is safe because nothing can go wrong. Using is scary because something will. But "something going wrong" is really just another word for [feedback](/prose/how-do-i-know-this-code-is-good#how-does-trust-accumulate). And feedback is how a construction site becomes a building.
 
 ## What's the visceral test?
 
@@ -38,7 +38,7 @@ Not "does it work correctly?" It might work correctly and still feel wrong. The 
 
 The visceral test isn't about bugs. It's about feel. Does the thing [respect your experience](/prose/why-is-nothing-special-anymore#where-did-the-trust-go) of using it? Not your experience of building it — your experience of *being in it*?
 
-If the answer is "no, but I know how to fix it," you're still building. If the answer is "no, and I'm not sure what's wrong," you're ready to start using — because the only way to find what's wrong is to live in it.
+If the answer is "no, but I know how to fix it," you're still building. If the answer is "no, and I'm not sure what's wrong," you might be ready to start using — because the only way to find what's wrong is to live in it.
 
 ## What's the perfectionism trap?
 
@@ -46,7 +46,7 @@ If the answer is "no, but I know how to fix it," you're still building. If the a
 
 The tell is the word "yet." Everything is "not ready yet" if your standard is perfection. The construction site never becomes a building because the builder keeps adding rooms, rewiring circuits, tearing down walls and rebuilding them.
 
-At some point, "not ready" becomes the permanent state. Not because the thing isn't good enough. Because the builder [can't tolerate the vulnerability](/prose/why-is-perfectionism-a-trap#why-it-feels-productive) of saying "this is done" and having someone disagree.
+At some point, "not ready" becomes the permanent state. Not because the thing isn't good enough. Because the builder [can't quite tolerate the vulnerability](/prose/why-is-perfectionism-a-trap#why-it-feels-productive) of saying "this is done" and having someone disagree.
 
 Done doesn't mean perfect. Done means: this is what I meant. It [says what I intended](/prose/am-i-just-pretending#so-are-you-pretending). It might be wrong. It might need to change. But it's a complete thought, not an eternal draft.
 
@@ -66,7 +66,7 @@ Because fixing it before you experience it means you're fixing what you *think* 
 
 ## When do you stop?
 
-There's no formula. But here are some signs:
+There's no formula. But there are some signs worth watching for:
 
 The thing does what you set out to make it do. Not everything you could imagine it doing. What you originally wanted. If you've lost track of what you originally wanted, that itself is a sign — you've been building so long the goal dissolved into the process.
 
@@ -74,7 +74,7 @@ You're changing things without improving them. Moving code around. Rewriting wha
 
 Someone else could use it. Maybe not elegantly. Maybe with rough edges. But they could sit down and do the thing it's meant for. If they can, it's ready. If they can't, the remaining work is specific and identifiable — not the vague "it's not done yet."
 
-You're avoiding it. The most reliable sign. If you find reasons not to use the thing you built — always one more fix, one more feature, one more cleanup before it's ready — you're not building toward completion. You're building to [avoid completion](/prose/why-is-perfectionism-a-trap). Because completion means judgment. And judgment means finding out if the thing you made is what you actually wanted.
+You're avoiding it. Maybe the most reliable sign. If you find reasons not to use the thing you built — always one more fix, one more feature, one more cleanup before it's ready — you're probably not building toward completion. You're building to [avoid completion](/prose/why-is-perfectionism-a-trap). Because completion means judgment. And judgment means finding out if the thing you made is what you actually wanted.
 
 ## So stop building?
 

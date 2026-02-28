@@ -10,7 +10,7 @@ Not paintings. Not music. Not writing. Those are mediums. Art lives in all of th
 
 Art is intent.
 
-That's it. You meant it. You chose this over that, not because function demanded it, but because you [wanted it this way](#is-it-about-intent-not-talent). The choosing is the art. Everything else — skill, medium, audience, history, credentials — is [labeling](/prose/what-are-labels-anyway) after the fact.
+You meant it. You chose this over that, not because function demanded it, but because you [wanted it this way](#is-it-about-intent-not-talent). The choosing is the art. Everything else — skill, medium, audience, history, credentials — is [labeling](/prose/what-are-labels-anyway) after the fact.
 
 ## Is it about intent, not talent?
 
@@ -44,13 +44,13 @@ Almost. Not everything — just everything with intent behind it. Which is most 
 
 And the instinct is to recoil from that. If everything is art, then nothing is. If the word applies to spreadsheets and gardens and how you arrange your bookshelf, it stops meaning anything. It loses its power.
 
-[But](/prose/but) that's only true if you think art's power comes from scarcity. From being rare. From being a thing that only some people do, only some things qualify for, only some outputs achieve. If art is a velvet rope, then yes — letting everyone in ruins it.
+[But](/prose/but) that's only true if art's power comes from scarcity. From being rare. From being a thing that only some people do, only some things qualify for, only some outputs achieve. If art is a velvet rope, then yes — letting everyone in ruins it.
 
 Art's power doesn't come from scarcity. It comes from intent. And intent doesn't get weaker when more people have it. Your intent isn't diluted because someone else also meant something when they made their thing. The meal you cooked with care isn't less art because a million other people also cooked with care tonight.
 
 The fear that "everything is art" devalues art is the same fear behind every [label](/prose/what-are-labels-anyway) that excludes: if anyone can be this, then being this means nothing. But that's the label talking. The experience of meaning something — of putting intent into what you make — doesn't need the label to be real.
 
-And it cuts the other way too. Some drawings aren't art. A homework assignment you didn't care about. A painting-by-numbers. They're drawings — they're not art. Not because they're bad. Because there was no intent. The medium doesn't guarantee art any more than it disqualifies it. A painting with no intent is less art than a spreadsheet with intent. That's not a contradiction. That's the whole point.
+And it cuts the other way too. Some drawings aren't art. A homework assignment you didn't care about. A painting-by-numbers. They're drawings — they're not art. Not because they're bad. Because there was no intent. The medium doesn't guarantee art any more than it disqualifies it. A painting with no intent is less art than a spreadsheet with intent. That's not a contradiction — it follows from what intent means.
 
 ## Why does this matter?
 
@@ -58,7 +58,7 @@ Because people who don't think they make art don't value what they make. They di
 
 [How much could you possibly do?](/prose/how-much-could-i-possibly-do) More than you think. But not if you've convinced yourself that what you already do doesn't count.
 
-Art isn't rare. Art isn't special. Art is intent, and intent is everywhere. The only thing rare is noticing it — in yourself.
+Art isn't rare. Art isn't special. Art is intent, and intent is everywhere. The thing that might actually be rare is noticing it — in yourself.
 
 ## See also
 

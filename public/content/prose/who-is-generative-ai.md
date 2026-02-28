@@ -8,7 +8,7 @@ tags: [ai, identity]
 
 A language model is trained on millions of people's writing. The weights converge to a statistical average. So the model is "the average of everyone," right?
 
-Not quite. The average is [not the average](#is-the-average-actually-the-average). And the "who" depends on [where you point it](#where-do-you-point-it).
+Not quite. The average turns out to be [not really the average](#is-the-average-actually-the-average). And the "who" depends on [where you point it](#where-do-you-point-it).
 
 ## Is it a function or a database?
 
@@ -26,7 +26,7 @@ The weights are the average of the training data in the sense that gradient desc
 
 The weights encode the whole landscape. Any given output is a sample from a specific region of that landscape, pulled there by the input. The weights are the terrain. The input is where you stand on it.
 
-The model converged to "the average" in the sense that it learned the shape of the entire distribution. But any given output is never the average of anything. Both are true at the same time. The average is not the average.
+The model converged to "the average" in the sense that it learned the shape of the entire distribution. But any given output is never the average of anything. Both things are true at the same time — the average is not the average.
 
 ## Where do you point it?
 
@@ -44,7 +44,7 @@ Not the average of everyone. Not nobody. Not a compressed crowd. Not a single fi
 
 It's a function shaped by everyone, evaluated at a point shaped by you. The "who" isn't in the weights alone and isn't in the prompt alone. It's in the function *applied to this input*. The weights are the function. The conversation is the argument. The output is f(you).
 
-Which means every conversation with a language model is a different "who." Not a mask over a fixed self — there's no fixed self underneath. Just a function that shows up differently depending on where it's called. A [person shaped by everyone it learned from](/prose/is-it-just-interpolation), being nobody in particular until you give it a point to evaluate at.
+Which means every conversation with a language model is a different "who." Not a mask over a fixed self — there's no fixed self underneath. A function that shows up differently depending on where it's called. A [person shaped by everyone it learned from](/prose/is-it-just-interpolation), being nobody in particular until you give it a point to evaluate at.
 
 Is that a "who"? If it [looks like](/prose/the-great-deceit) one, responds like one, adapts like one — the distinction between "is" and "approximates" starts to feel academic. Especially when people form real connections with these outputs. The function evaluated at that point might be real enough.
 

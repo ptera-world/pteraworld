@@ -8,7 +8,7 @@ tags: [technology, social]
 
 One writes software for a living. The other writes software to see what happens.
 
-They use the same tools. They write the same languages. From the outside, they look identical. But they're doing completely different things, and the difference matters more than anyone acknowledges.
+They use the same tools. They write the same languages. From the outside, they look identical. But they're doing completely different things, and the difference matters more than it usually gets credit for.
 
 ## The professional
 
@@ -36,7 +36,7 @@ Without the word, the activity becomes invisible. And when it's invisible, it ge
 
 "What's the use case?" "Who's the user?" "What problem does it solve?" These are professional questions. They make sense for professional work. Applied to exploratory work, they're [category errors](/prose/why-do-i-build-tools#so-what-is-it-about). Asking an explorer "what's the business case?" is like asking a painter "what's the deliverable?"
 
-But without a word for what they're doing, explorers can't explain themselves. "I'm hacking" used to work. Now it sounds like you're committing crimes. "I'm tinkering" sounds unserious. "I'm doing research" sounds academic. "I'm exploring" sounds vague. There's no word that captures "I'm building something to find out what I think about how things should work."
+But without a word for what they're doing, explorers can't easily explain themselves. "I'm hacking" used to work. Now it sounds like you're committing crimes. "I'm tinkering" sounds unserious. "I'm doing research" sounds academic. "I'm exploring" sounds vague. There's no widely-understood word that captures "I'm building something to find out what I think about how things should work."
 
 So the work gets reframed. It becomes "side projects" (implying there's a main project that matters more). Or "prototypes" (implying the real version comes later). Or "learning exercises" (implying the point is skill acquisition, not the thing itself). Every available frame diminishes the work by implying it's preparation for something else. [It's not.](/prose/are-we-building-toward-something)
 
@@ -54,7 +54,7 @@ The original hacker culture produced things that changed everything. The persona
 
 These weren't professional products. They were [explorations that turned out to matter](/prose/are-we-building-toward-something#are-we-optimizing-for-interesting). The professional ecosystem that grew around them — the companies, the methodologies, the career paths — exists because explorers created the territory that professionals now maintain.
 
-That dynamic hasn't stopped. The next thing that changes everything will come from someone building something nobody asked for, to answer a question nobody thought to ask. It won't have a business case. It won't have a user story. It'll have a person who couldn't stop thinking "what if?"
+That dynamic is still going. The next thing that changes everything will probably come from someone building something nobody asked for, to answer a question nobody thought to ask. It won't have a business case. It won't have a user story. It'll have a person who couldn't stop thinking "what if?"
 
 But we lost the word for that person. And without the word, the [permission](/prose/why-did-things-stop-being-personal#what-are-you-actually-nostalgic-for) to be that person gets harder to claim.
 
@@ -70,7 +70,7 @@ Both are programming. Both require skill. Both produce valuable things. But they
 
 The professional who never explores becomes a [feature factory](/prose/why-is-nothing-special-anymore). The explorer who never ships becomes a [workshop full of prototypes](/prose/why-do-i-build-tools). Neither is complete. But they're not incomplete in the same way, and they don't need the same fix.
 
-They need different words. We used to have them. We should get them back.
+They need different words. We used to have them. It would be worth getting them back.
 
 ## See also
 

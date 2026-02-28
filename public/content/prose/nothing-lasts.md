@@ -8,13 +8,13 @@ tags: [identity, social]
 
 You already know this. [Everything changes](/prose/everything-changes). Things break, fade, disappear. People leave. Memories blur. The things you built [stop being maintained](/prose/where-is-all-the-good-software). The things you loved [stop existing](/prose/what-do-we-keep-losing). This is not news.
 
-But there's a difference between knowing it and living like you know it. And there's a difference between grief and expectation. The grief is real. The expectation — that it should have lasted — is the part that breaks you.
+But there's a difference between knowing it and living like you know it. And there's a difference between grief and expectation. The grief is real. The expectation — that it should have lasted — is the part that tends to break you.
 
 ## The beautiful version
 
 There's a Japanese word — *mono no aware* — that roughly translates to "the pathos of things." The gentle sadness of knowing that what you're experiencing right now won't last. Not tragic sadness. Quiet sadness. The cherry blossoms are beautiful *because* they fall. The season is meaningful *because* it ends. The moment matters *because* it's passing.
 
-This isn't just aesthetics. It's a claim about how beauty works. That permanence kills beauty. That a cherry tree in permanent bloom would be wallpaper, not wonder. That the thing that makes you stop and look — really look — is the knowledge that soon there'll be nothing to look at.
+This isn't just aesthetics. It's a claim about how beauty works. That permanence dulls beauty. That a cherry tree in permanent bloom would be wallpaper, not wonder. That the thing that gets you to stop and look — really look — is the knowledge that soon there'll be nothing to look at.
 
 A meal disappears as you eat it. A conversation exists only in the moment. A sunset lasts minutes. A childhood lasts years but you don't know it's happening until it's happened. The most meaningful experiences of your life have one thing in common: they ended.
 
@@ -32,15 +32,15 @@ It's not. Nothing is. And the grief of losing someone who's still alive is the s
 
 ## What you remember isn't what happened
 
-Here's an uncomfortable thing about impermanence: it goes backwards.
+There's an uncomfortable thing about impermanence: it goes backwards.
 
 You remember the relationship as better than it was. The childhood as simpler. The old neighborhood as safer. The music as more meaningful. Not because you're lying to yourself — because memory is [reconstructive, not archival](/prose/why-did-things-stop-being-personal#are-you-nostalgic-for-something-you-never-had). Every time you remember something, you rebuild it from pieces, and the pieces drift.
 
 So the thing you're grieving — the perfect version, the golden age, the time when everything was right — may never have existed. The past changes because you change. The memory you have at thirty isn't the same memory you'll have at fifty, even if you never learn anything new about the event. The event itself is impermanent, even after it happened.
 
-This should be terrifying. Your own archive is unreliable. The thing you're holding onto is shifting in your hands.
+This could be terrifying. Your own archive is unreliable. The thing you're holding onto is shifting in your hands.
 
-But it also means something else. If the past isn't fixed, then the meaning of the past isn't fixed. The thing that hurt you can become the thing that taught you. The failure can become the pivot. The loss can become the space where something new grew. Not by changing what happened — by changing what it means. And meaning was always [the part that didn't live in the event](/prose/where-does-meaning-live).
+But it also means something else. If the past isn't fixed, then the meaning of the past isn't fixed either. The thing that hurt you can become the thing that taught you. The failure can become the pivot. The loss can become the space where something new grew. Not by changing what happened — by changing what it means. And meaning was always [the part that didn't live in the event](/prose/where-does-meaning-live).
 
 ## The permission to let things die
 
@@ -74,7 +74,7 @@ But some things return. Seasons return. Skills you thought you'd lost return whe
 
 Impermanence isn't always permanent. Sometimes it's a cycle. The thing leaves and comes back changed. You leave and come back changed. The context shifts and what was impossible becomes possible again.
 
-Forest fires destroy everything. And then the soil, freed from the canopy, grows things that couldn't grow before. The fire was real destruction. The growth was real growth. Both are true. The cycle includes both. Mourning the fire without seeing the growth is as incomplete as celebrating the growth without acknowledging the fire.
+Forest fires destroy everything. And then the soil, freed from the canopy, grows things that couldn't grow before. The fire was real destruction. The growth was real growth. The cycle includes both. Mourning the fire without seeing the growth is as incomplete as celebrating the growth without acknowledging the fire.
 
 ## Holding lightly
 
@@ -88,7 +88,7 @@ This is impossibly hard. The instinct is to grip — to hold on, to preserve, to
 
 Nothing lasts. Not the grief. Not the joy. Not the thing you're reading right now or [the person who wrote it](/prose/who-am-i). Not the moment you're in or the one that comes next.
 
-That's not the sad part. That's the whole part. The everything of it. The reason any of it matters at all.
+That's not the sad part. That's the whole of it. The everything of it. The reason any of it matters at all.
 
 ## See also
 

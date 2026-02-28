@@ -30,7 +30,7 @@ Three things survived the "does this matter" filter: [SillyTavern](https://githu
 
 They share something. They're all generative — perspectives emerge from interaction rather than being pre-authored. They're all about inhabiting other ways of being. And they all have something the tools don't: **reciprocity**. They respond back with their own complexity. You act, and something you didn't fully predict acts in return.
 
-The tools don't do that. You act on code, it doesn't act on you. The relationship is one-directional. That's why finishing a tool feels empty — nothing changed except the tool exists now.
+The tools don't do that. You act on code, it doesn't act on you. The relationship is one-directional. That might be why finishing a tool feels empty — nothing changed except the tool exists now.
 
 ## What's the difference between architect mode and inhabit mode?
 
@@ -44,7 +44,7 @@ I'm stuck in architect mode. Not because I can't inhabit — but because the thi
 
 ## But can you inhabit what you built?
 
-Yes. And the reason is **emergence**.
+Yes. And the reason seems to be **emergence**.
 
 You design the rules, but you don't design what emerges from them. You know exactly how chess works and you still experience a real game. You can know a simulation's systems inside out and still not predict what happens when introversion + dental pain + sleep deprivation + grocery shopping interact in a specific moment.
 
@@ -58,4 +58,4 @@ The tools aren't the point. But they're not wasted either. They're the scaffoldi
 
 That's uncomfortable. It means you can't plan your way to the thing you want. You can only keep building and see what surprises you.
 
-But it also means: maybe you're closer than you think. You just can't see it yet. Because that's how emergence works.
+But it also means you might be closer than you think. You just can't see it yet. That's how emergence tends to work.

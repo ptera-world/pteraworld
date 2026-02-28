@@ -24,7 +24,7 @@ Budgets went up. Distribution went global. The cost of alienating anyone went up
 
 So everything converged on what works. And "what works" means "what the most people will consume without friction." Not the best. Not the most interesting. The most frictionless. The [system](/prose/whats-actually-wrong) optimized for engagement, and engagement selected against surprise.
 
-The MCU isn't bad. That's what makes it hard to criticize. It's competent. It hits every beat. It's just the same beat, every time. The formula works, so everything becomes the formula. Sequels, franchises, proven IP, tested to remove every edge. Not because the creators lack [intent](/prose/what-is-art) — but because the economics select against intent that doesn't serve the metric.
+The MCU isn't bad. That's what makes it hard to talk about. It's competent. It hits every beat. It's just the same beat, every time. The formula works, so everything becomes the formula. Sequels, franchises, proven IP, tested to remove every edge. Not because the creators lack [intent](/prose/what-is-art) — but because the economics select against intent that doesn't serve the metric.
 
 ## Where did the trust go?
 
@@ -54,7 +54,7 @@ The economics push toward the middle. But the middle is only where the money is.
 
 [How much could you possibly do?](/prose/how-much-could-i-possibly-do) Enough to make something that doesn't optimize for anyone. Something with [intent](/prose/what-is-art). Something that trusts its audience. Something that isn't content.
 
-That's what special means. Not popular. Not polished. Not frictionless. Just: someone meant it, and it shows.
+That's what special tends to mean. Not popular. Not polished. Not frictionless. Just: someone meant it, and it shows.
 
 ## See also
 

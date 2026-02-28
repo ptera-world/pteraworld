@@ -20,7 +20,7 @@ The answer is almost always yes. And the answer to "should we stop?" is almost a
 
 ## Is it because I think I can do it better?
 
-Let's be clear about what this isn't. It's not ego. It's not "I'm smarter than the people who built the original." They did incredible work. Years of it. Battle-tested, community-supported, production-hardened work.
+To be clear about what this isn't — it's not ego. It's not "I'm smarter than the people who built the original." They did incredible work. Years of it. Battle-tested, community-supported, production-hardened work.
 
 It's not about the destination. It's about [what you learn on the way](#what-if).
 
@@ -40,7 +40,7 @@ That's the trap. Not because popular tools are bad. But because [popularity is a
 
 Spreadsheets are freeform grids because VisiCalc was a freeform grid. Note apps are documents because paper was documents. [Programming is text because teletypes were text](/prose/why-is-software-hard). Nobody chose these things. They just happened, and then they [calcified](#why-do-we-keep-losing-things).
 
-Reinventing — badly, naively, from the wrong angle — is how you notice the calcification. You can't see the water you're swimming in until you try to swim in something else.
+Reinventing — badly, naively, from the wrong angle — is one way to notice the calcification. It's hard to see the water you're swimming in until you try to swim in something else.
 
 ## How does popularity become a ratchet?
 
@@ -60,14 +60,14 @@ So: reinvent. Not because the wheel is broken. Because the wheel is the only sha
 
 ## What's the cost?
 
-Let's be honest about the cost. Reinventing everything means:
+It's worth being honest about the cost. Reinventing everything means:
 
 - Dozens of projects at various stages of completion
 - No single thing polished enough to point at and say "here, use this"
 - The constant question of [whether any of this matters](/prose/am-i-just-pretending)
 - A workshop full of prototypes and no products
 
-But here's the thing. The cost of exploration has collapsed. The seven failed prototypes that used to span years now fit in a month.
+And yet the cost of exploration has collapsed. The seven failed prototypes that used to span years now fit in a month.
 
 That changes the calculus. When exploration is expensive, you should use the wheel. When exploration is cheap, you should question it. Not because you'll build a better wheel. But because you might discover the wheel was never the right shape for what you actually needed.
 

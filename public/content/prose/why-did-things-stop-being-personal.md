@@ -28,7 +28,7 @@ Why maintain a blog when you can post on Medium? Why build a portfolio when you 
 
 The answer to every one of these is: because the platform's version isn't *yours*. But "yours" stopped mattering once reach did. A blog nobody reads versus a tweet that gets engagement — the economics are obvious. The personal web couldn't compete with distribution.
 
-So people moved. Not because they wanted to. Because the audience was already there, and making something personal for an audience of nobody felt pointless. The tragedy wasn't that the platforms were bad. It was that they were [good enough](/prose/why-is-nothing-special-anymore#whats-the-convergence) — good enough that the thing they couldn't do (be personal) stopped seeming important.
+So people moved. Not because they wanted to. Because the audience was already there, and making something personal for an audience of nobody felt pointless. The loss wasn't that the platforms were bad. It was that they were [good enough](/prose/why-is-nothing-special-anymore#whats-the-convergence) — good enough that the thing they couldn't do (be personal) stopped seeming important.
 
 ## What is the Tumblr paradox?
 
@@ -38,9 +38,9 @@ And it's still *personal*.
 
 People on Tumblr have custom themes. Inside jokes that span years. Communities built around shared obsessions that no algorithm would ever surface. The site works not despite its failure but *because of it*. No one optimized it. No growth team A/B tested the culture out of existence. No algorithm learned what content performs and started selecting for it.
 
-The failure preserved it. The thing that makes a platform successful — optimization, growth, engagement metrics — is the same thing that [makes it converge](/prose/why-is-nothing-special-anymore). Tumblr never converged because it never succeeded enough to be worth optimizing.
+The failure preserved it. The thing that tends to make a platform successful — optimization, growth, engagement metrics — is the same thing that [nudges it toward convergence](/prose/why-is-nothing-special-anymore). Tumblr never converged because it never succeeded enough to be worth optimizing.
 
-That's the paradox: the conditions that make a personal space possible are the same conditions that make a business impossible. Personalization requires inefficiency. Quirks require tolerance for low engagement. Community requires friction that discourages growth. Everything that makes a space feel like *someone's* is everything a growth metric would eliminate.
+That's the paradox: the conditions that make a personal space possible are often the same conditions that make a business impossible. Personalization requires inefficiency. Quirks require tolerance for low engagement. Community requires friction that discourages growth. Everything that makes a space feel like *someone's* is everything a growth metric would eliminate.
 
 ## What are you actually nostalgic for?
 
@@ -48,19 +48,19 @@ When people miss GeoCities, they're not missing the under-construction GIFs. The
 
 Permission to make something ugly. Permission to make something that doesn't perform. Permission to have a web presence that's just... a thing you made, for no reason, with no audience in mind, that exists because you wanted it to exist.
 
-That permission hasn't been revoked. You can still make a weird website. The tools are better than ever. Hosting is free. But the *context* changed. Making a personal website in 2005 was normal. Making one now is a statement. You're opting out of something. You're choosing effort over convenience. You're building for yourself in a world that assumes everything is built for an audience.
+That permission hasn't been revoked. You can still make a weird website. The tools are better than ever. Hosting is free. But the *context* changed. Making a personal website in 2005 was normal. Making one now feels like a statement. You're opting out of something. You're choosing effort over convenience. You're building for yourself in a world that assumes everything is built for an audience.
 
 That shift — from "of course I have a website" to "why would I have a website" — is the real loss. Not the technology. The assumption.
 
 ## Are you nostalgic for something you never had?
 
-Here's the uncomfortable part. Some of the grief isn't real. Or rather, it's real grief for something that didn't exist the way you remember it.
+There's an uncomfortable side to this. Some of the grief isn't for something that existed the way we remember it.
 
 The personal web was also lonely. Most GeoCities pages had zero visitors. Most blogs were never read. Most forums had five active members and died in eight months. The "thriving personal web" was, for most people, shouting into a void and decorating the void to feel better about it.
 
 The platforms solved real problems. They connected people. They gave audiences to voices that would otherwise have had none. The personal web was *romantic*, but it wasn't functional for most of the people using it.
 
-So the nostalgia is partly for an experience you had — making something yours — and partly for an experience you're projecting backward — a time when making something personal was enough. It wasn't enough then either. You just didn't know what "enough" would feel like once reach became possible.
+So the nostalgia is partly for an experience you had — making something yours — and partly for an experience you might be projecting backward — a time when making something personal was enough. It wasn't enough then either. You just didn't know what "enough" would feel like once reach became possible.
 
 ## So what's actually missing?
 

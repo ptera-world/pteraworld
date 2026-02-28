@@ -43,11 +43,11 @@ People who can't change aren't always afraid of the new thing. Sometimes they're
 
 ## Why is it loudest when you're closest?
 
-The fear gets worse right before the change happens. Not before you start thinking about it — that's just anxiety. The real terror hits when it becomes real. When you've written the email but haven't sent it. When you've packed the box but haven't moved. When you've said "I need to tell you something" and haven't said the thing yet.
+The fear tends to get worse right before the change happens. Not before you start thinking about it — that's just anxiety. The real intensity hits when it becomes real. When you've written the email but haven't sent it. When you've packed the box but haven't moved. When you've said "I need to tell you something" and haven't said the thing yet.
 
 This is the resistance's last stand. Your system knows the change is imminent. The alarm goes to maximum. Every doubt floods in at once. "Maybe this is wrong." "Maybe I should wait." "Maybe the current situation isn't that bad."
 
-If you've felt this — the sudden certainty that you should stop, right at the edge — that's not wisdom. That's the fear recognizing it's about to lose. The closer you are to change, the louder it screams.
+If you've felt this — the sudden certainty that you should stop, right at the edge — it's worth considering that it might not be wisdom. It might be the fear recognizing it's about to lose. The closer you are to change, the louder it gets.
 
 Most people turn back at this point. And then feel relief. And then, a week later, feel the same stuck feeling they were trying to escape. Because the relief wasn't real — it was just the alarm turning off.
 
@@ -55,7 +55,7 @@ Most people turn back at this point. And then feel relief. And then, a week late
 
 Nobody can tell you what's on the other side of a specific change. It might be better. It might be worse. It might be different in ways you can't predict.
 
-But here's what's always true: on the other side, you know something you didn't know before. Whether it works or not. You know what it feels like to actually do the thing, not just think about it. That knowledge — the [felt experience](/prose/why-is-change-so-hard) of having tried — is the only thing that updates the deep systems that keep you stuck.
+But something does seem to be consistently true: on the other side, you know something you didn't know before. Whether it works or not. You know what it feels like to actually do the thing, not just think about it. That knowledge — the [felt experience](/prose/why-is-change-so-hard) of having tried — seems to be the thing that actually updates the deep systems that keep you stuck.
 
 You can't think your way through the fear. You can only walk through it and find out what's there. [Embarrassingly small steps](/prose/how-do-i-do-things) count. The first step doesn't have to be the email. It can be opening the draft.
 

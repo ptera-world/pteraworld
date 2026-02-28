@@ -28,7 +28,7 @@ They want to create. They have ideas. They [don't start](/prose/how-do-i-do-thin
 
 Some of these are ancient. Some were created by software. The infinite scroll didn't exist until someone built it. The comparison metrics didn't exist until platforms added them. The attention economy is a design choice, not a law of nature.
 
-Software has power. It's been used to create these problems. Could it be used to address them?
+Software has power. It's been used to create these problems. It could also be used to address them.
 
 ## Why are people sad?
 
@@ -43,11 +43,11 @@ Not clinically. Just... the ambient background sadness that seems everywhere.
 - **Chronic stress** - Always something. Never a break. The baseline is anxiety.
 - **Loss** - Of people, of possibilities, of the person you thought you'd be.
 
-Loneliness existed before software. But "connected to everyone, close to no one" is new. The curated highlight reel making everyone else's life look perfect is new.
+Loneliness existed before software. But "connected to everyone, close to no one" is relatively new. The curated highlight reel making everyone else's life look perfect is relatively new.
 
 And the **parasocial relationship** is new at scale. You feel like you know someone. You follow their life, their thoughts, their struggles. They don't know you exist. This asymmetry - one person broadcasting to millions, each feeling a personal connection - creates a new kind of loneliness. You have "relationships" that only flow one direction.
 
-Software created new forms of sadness. It amplified existing ones. That means software has power here too.
+Software created new forms of sadness. It amplified existing ones. That means software has some power here too.
 
 ## Why are some games good?
 
@@ -62,7 +62,7 @@ Not all. Some. What makes them work?
 - **Surprise and delight** - Moments of unexpected joy.
 - **Social connection** - Playing with others. Real connection, not leaderboard comparison.
 
-Good games are designed around what makes humans feel good. Not what extracts the most from them.
+Good games tend to be designed around what makes humans feel good. Not what extracts the most from them.
 
 ## Why is social media the worst game?
 
@@ -78,11 +78,11 @@ It's a game. It has mechanics, rewards, feedback loops. But optimized for what?
 - **Your attention is the product** - You're not the customer. Advertisers are.
 - **No endpoint** - Good games end. Social media never does. There's always more scroll.
 
-The worst game because it uses all the techniques of good games - but inverted. Exploiting instead of serving.
+It uses all the techniques of good games — but inverted. Exploiting instead of serving.
 
 ## Why does Discord work?
 
-Not perfect. But different. And the difference matters.
+Not perfect. But different. And the difference is worth noticing.
 
 - **Community, not audience** - You're in a server with people. Not broadcasting to followers.
 - **No algorithmic feed** - You see what's posted, in order. Nobody's optimizing your attention.
@@ -92,7 +92,7 @@ Not perfect. But different. And the difference matters.
 
 Different design choices lead to different outcomes. Discord isn't trying to maximize engagement metrics. It's trying to be a place where people hang out.
 
-**The telling thing:** If Discord is your primary social media, you might read the section above and think "is this even real? I'm fine." You're fine *because of the design choices*. The medium shapes the experience.
+**Something worth noticing:** If Discord is your primary social media, you might read the section above and think "is this even real? I'm fine." You might be fine *because of the design choices*. The medium shapes the experience.
 
 ## Why does software often make things worse?
 
@@ -106,7 +106,7 @@ Not all software. But a lot of it.
 - **No ownership** - You rent access. They can change terms. Your stuff lives on their servers.
 - **Subscription everything** - Pay forever or lose access.
 
-None of this is inevitable. It's choices made by people. Different choices are possible.
+None of this is inevitable. These are choices made by people. Different choices are possible.
 
 ## What would actually help?
 
@@ -130,7 +130,7 @@ If these values are good, why aren't they the default?
 - **FOSS culture rewards different things** - Clever code, performance, features. Not "fits smoothly into your life."
 - **The software stack itself doesn't encourage it** - Even good tools are steps forward but not the whole picture.
 
-The ideal is **local-first, network-capable**. Your stuff lives on your machine, but you CAN access it remotely. You CAN share and collaborate. The network is optional capability, not required dependency.
+The ideal is probably something like **local-first, network-capable**. Your stuff lives on your machine, but you CAN access it remotely. You CAN share and collaborate. The network is optional capability, not required dependency.
 
 And collaboration is nearly impossible in most software. Debug someone's setup? You can't see their machine. Help with their issue? Screen share and verbal remote-piloting. Games [solved this decades ago](/prose/what-do-we-keep-losing) - you just join their world and help directly. The rest of software just... didn't.
 

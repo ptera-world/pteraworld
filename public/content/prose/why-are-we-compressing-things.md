@@ -8,11 +8,11 @@ tags: [social, design, identity]
 
 Everything gets compressed. People into [labels](/prose/what-are-labels-anyway). Ideas into slogans. Experiences into metrics. Relationships into status. Software into features. Life into a [score](/prose/whats-actually-wrong).
 
-Sometimes this is necessary. Sometimes it's [lazy](#when-is-it-lazy). Sometimes it's [harmful](#when-is-it-harmful). And the worst part is: you usually [can't tell which](#can-you-tell) until it's too late.
+Sometimes this is necessary. Sometimes it's [lazy](#when-is-it-lazy). Sometimes it's [harmful](#when-is-it-harmful). And it's often [hard to tell which](#can-you-tell) until it's too late.
 
 ## Do we have to?
 
-This isn't optional. Human brains process a finite amount of information. To navigate the world, you have to reduce, categorize, simplify. You can't treat every person as infinitely complex in every interaction. You can't hold every dimension of a problem in mind simultaneously. You can't make decisions without collapsing options.
+This isn't really optional. Human brains process a finite amount of information. To navigate the world, you have to reduce, categorize, simplify. You can't treat every person as infinitely complex in every interaction. You can't hold every dimension of a problem in mind simultaneously. You can't make decisions without collapsing options.
 
 Compression is cognition. Categories, heuristics, stereotypes, models, summaries, [labels](/prose/what-are-labels-anyway) — these are tools for making the world manageable. Without them, you'd be paralyzed by infinite detail.
 
@@ -30,7 +30,7 @@ Every compression discards information. That's what compression means. The quest
 
 **Experience into metrics.** Mental health: 73%. Happiness index: 6.2/10. Life satisfaction: moderate. What do these numbers mean? What was lost in the measurement? The number says "moderate." The [reality](/prose/whats-actually-wrong) is a web of loneliness, purpose, fear, connection, context, and a hundred things that don't fit in a survey.
 
-**Software into features.** This app has 200 features. That app has 150. Therefore this one is better. [Obviously not.](/prose/why-is-software-hard) But the compression — counting features — made it comparable. Comparable is manageable. Manageable is how decisions get made. And [quality disappears](/prose/why-is-software-hard) because it doesn't compress well.
+**Software into features.** This app has 200 features. That app has 150. Therefore this one is better. [That doesn't follow.](/prose/why-is-software-hard) But the compression — counting features — made it comparable. Comparable is manageable. Manageable is how decisions get made. And [quality disappears](/prose/why-is-software-hard) because it doesn't compress well.
 
 ## When is it lazy?
 
@@ -38,7 +38,7 @@ Sometimes compression is just the path of least resistance.
 
 "All politicians are corrupt." That's compression. It saves you from engaging with politics. "Both sides are the same." That's compression. It saves you from making a judgment. "People don't change." That's compression. It saves you from [the hard work](/prose/why-is-change-so-hard) of updating your model of someone.
 
-Lazy compression feels like wisdom. It has the shape of a conclusion — definitive, settled, done. But it's actually a refusal to look more closely. The compression happens not because the detail is unavailable but because engaging with it is effort.
+Lazy compression can feel like wisdom. It has the shape of a conclusion — definitive, settled, done. But it's more often a refusal to look more closely. The compression happens not because the detail is unavailable but because engaging with it is effort.
 
 ## When is it harmful?
 
@@ -54,11 +54,11 @@ Social media compresses relationships into follower counts. Education compresses
 
 ## Can you tell?
 
-Here's the problem: you usually can't tell when your compression is losing something important. Because the lost information is, by definition, not visible in the compressed version.
+This is the tricky part: you usually can't tell when your compression is losing something important. Because the lost information is, by definition, not visible in the compressed version.
 
 You don't notice what the label drops until someone breaks out of it and surprises you. You don't notice what the metric misses until the thing it was supposed to measure falls apart despite the numbers looking fine. You don't notice what the category erases until you meet someone who doesn't fit.
 
-The compression hides its own losses. That's what makes it dangerous. Not that it's wrong — it might be perfectly accurate for 90% of cases. But the 10% it gets wrong are usually the cases that matter most. [The edge cases are people.](/prose/why-are-you-lonely)
+The compression hides its own losses. That's what makes it worth watching for. Not that it's wrong — it might be perfectly accurate for 90% of cases. But the 10% it gets wrong are often the cases that matter most. [The edge cases are people.](/prose/why-are-you-lonely)
 
 ## What's the alternative?
 

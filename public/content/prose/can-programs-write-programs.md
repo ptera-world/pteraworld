@@ -20,13 +20,13 @@ Both are programs writing programs. But they're different in a way that matters:
 
 ## What are the layers of description?
 
-Here's something most people don't think about: programming is already a chain of programs writing programs.
+Programming is already a chain of programs writing programs, even if it doesn't always feel that way.
 
 You write in a high-level language. A compiler transforms that into a lower-level language. An assembler transforms that into machine instructions. The machine instructions are interpreted by microcode. At every layer, a program takes a more abstract description and produces a more concrete one.
 
 Each layer is a "less detailed view" of the same thing. Your high-level code describes *what* should happen. The compiler's output describes *how* it happens on this architecture. The machine code describes *how* it happens in this instruction set. Same program, viewed at different magnifications.
 
-This is the key insight: programming has always been about writing at a comfortable level of abstraction and letting programs fill in the details below. Nobody writes machine code by hand anymore. Nobody writes assembly for most tasks. Each generation delegates a layer downward and works at a higher level.
+And this has been the pattern all along: programming has been about writing at a comfortable level of abstraction and letting programs fill in the details below. Nobody writes machine code by hand anymore. Nobody writes assembly for most tasks. Each generation delegates a layer downward and works at a higher level.
 
 AI-assisted programming is just the next layer. Instead of writing high-level code, you describe what you want in natural language, and a program fills in the code. Same pattern. Higher abstraction.
 
@@ -54,7 +54,7 @@ The question — where should that boundary be? — is actually the same questio
 
 Every time you move up a layer of abstraction, you gain power and lose control. High-level languages are more productive than assembly but you can't control the exact instruction sequence. Garbage collectors free you from memory management but you can't control when memory gets freed. Each layer trades precision for convenience.
 
-AI-assisted programming trades a lot of precision for a lot of convenience. And the things that get lost in the trade are the things that matter most: [edge cases](/prose/how-do-i-know-this-code-is-good#what-actually-catches-bugs), architectural coherence, the subtle decisions that make code maintainable rather than just functional.
+AI-assisted programming trades a lot of precision for a lot of convenience. And the things that tend to get lost in the trade are the things that matter most: [edge cases](/prose/how-do-i-know-this-code-is-good#what-actually-catches-bugs), architectural coherence, the subtle decisions that make code maintainable rather than just functional.
 
 The common case works. It almost always works. AI is extraordinary at the common case because the common case is what it's trained on. The uncommon case — the weird input, the race condition, the interaction between two features that nobody tested together — is where it falls apart. Not because it's stupid, but because uncommon cases are, by definition, underrepresented in training data.
 
@@ -64,19 +64,19 @@ This is the same tradeoff every abstraction layer makes, just more visible. High
 
 There's an old dream in computer science: a program that writes programs that write programs. Infinite recursion. The machine bootstraps itself to arbitrary capability.
 
-It doesn't work. Not because of any technical limitation, but because [meaning doesn't recurse](/prose/where-does-meaning-live). Each layer of "writing programs" still needs someone to specify what the program should do. You can automate the *how* but not the *what*. The what comes from intent, and intent comes from [the person](/prose/am-i-just-pretending#what-if-the-bottleneck-isnt-the-hand), not the process.
+It doesn't work, though. Not because of any technical limitation, but because [meaning doesn't recurse](/prose/where-does-meaning-live). Each layer of "writing programs" still needs someone to specify what the program should do. You can automate the *how* but not the *what*. The what comes from intent, and intent comes from [the person](/prose/am-i-just-pretending#what-if-the-bottleneck-isnt-the-hand), not the process.
 
 A program can write a program that writes a program. But somewhere at the top of the chain, a person has to say what they want. And "what they want" can't be generated — it can only be [discovered](/prose/why-do-i-build-tools#but-can-you-inhabit-what-you-built).
 
 ## What does this mean for you?
 
-Whether or not you write code, this pattern affects you. Every tool you use was built with some mix of human specification and automated generation. The document you're reading was shaped by tools that fill in details the author didn't specify. The systems you depend on — financial, medical, legal — increasingly use programs that write programs somewhere in their stack.
+Whether or not you write code, this pattern touches your life. Every tool you use was built with some mix of human specification and automated generation. The document you're reading was shaped by tools that fill in details the author didn't specify. The systems you depend on — financial, medical, legal — increasingly use programs that write programs somewhere in their stack.
 
 The question isn't whether to trust this. It's what to trust it *for*.
 
 Trust it for the common case. Trust it for the boilerplate. Trust it for the parts where getting it wrong is cheap and getting it right saves time.
 
-Don't trust it for the things that [matter most](/prose/can-you-tell-when-its-wrong#whats-the-epistemic-problem). Don't trust it for the edge cases. Don't trust it for the architectural decisions. Don't trust it for the parts where being subtly wrong is worse than being obviously wrong.
+Be more careful with the things that [matter most](/prose/can-you-tell-when-its-wrong#whats-the-epistemic-problem). With the edge cases. With the architectural decisions. With the parts where being subtly wrong is worse than being obviously wrong.
 
 Programs can write programs. They always could. The skill isn't in getting them to write. It's in knowing which parts to read.
 

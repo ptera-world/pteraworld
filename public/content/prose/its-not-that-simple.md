@@ -28,9 +28,9 @@ But you've actually moved from one box to two boxes.
 
 This is better than one-sidedness. But it's still a binary frame. Two options. Two poles. A balance between them.
 
-Most real things aren't two-sided. A programming language isn't "fast vs safe." It's fast, safe, ergonomic, readable, portable, ecosystem-rich, hiring-friendly, and a dozen other axes at once. Framing it as a tradeoff between two properties drops everything else on the floor.
+Most real things aren't two-sided. A programming language isn't "fast vs safe." It's fast, safe, ergonomic, readable, portable, ecosystem-rich, hiring-friendly, and a dozen other axes at once. Framing it as a tradeoff between two properties drops everything else.
 
-Relationships aren't "good vs bad." Jobs aren't "fulfilling vs well-paid." Political positions aren't "left vs right." The binary captures something real and discards everything else.
+Relationships aren't "good vs bad." Jobs aren't "fulfilling vs well-paid." Political positions aren't "left vs right." The binary captures something real and leaves out everything else.
 
 So someone says: "it's not a binary, it's a spectrum." And that feels like another step forward.
 

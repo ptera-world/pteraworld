@@ -12,7 +12,7 @@ This is obvious. And [almost nobody lives as if it's true](#almost-nobody-lives-
 
 ## Almost nobody lives like this
 
-If you really believed everything changes, you wouldn't:
+If you really believed everything changes, you probably wouldn't:
 
 - Expect your [labels](/prose/what-are-labels-anyway) to stay accurate
 - Wait until you're "ready" to [start something](/prose/how-do-i-do-things)
@@ -24,7 +24,7 @@ If you really believed everything changes, you wouldn't:
 
 But you do some of these. Everyone does. Because the alternative — actually living as if nothing is fixed — is disorienting. We want stable ground. We want to arrive somewhere and stay.
 
-There's nowhere to stay.
+There's nowhere to stay, though.
 
 ## Why is this hard?
 
@@ -46,7 +46,7 @@ The [insight trap](/prose/why-is-change-so-hard) is partly about this. People wa
 
 The things you've lost — people, possibilities, versions of yourself — weren't taken from you by some external force. They changed. Or you changed. Or the context changed. And what existed in the old configuration doesn't exist in the new one.
 
-This isn't comforting. "Everything changes" doesn't make loss hurt less. But it reframes it: loss isn't a malfunction. It's what change looks like from the inside. The grief is real. The expectation that things should have stayed — that's the part that isn't.
+This isn't comforting. "Everything changes" doesn't make loss hurt less. But it reframes it: loss isn't a malfunction. It's what change looks like from the inside. The grief is real. The expectation that things should have stayed — that's the part worth questioning.
 
 [What do we keep losing?](/prose/what-do-we-keep-losing) Everything. Always. The question is what we carry forward and what we let go. Preservation isn't about stopping change — it's about choosing what survives the transition.
 
@@ -56,13 +56,13 @@ The flip side. Every skill you've learned, every relationship that deepened, eve
 
 You can't have one without the other. The version of you that's capable of new things is not the version that existed before. Something was lost — comfort, certainty, the old self-concept — and something was gained. [Being yourself](/prose/whats-the-purpose-of-life) isn't a fixed state. It's the process of continuously becoming.
 
-The [fear of failure](/prose/why-is-perfectionism-a-trap) is partly fear of change. If you try and fail, you've changed — you're now someone who tried and failed. If you try and succeed, you've also changed — you're now someone with new capabilities and new expectations. Either way, the old you is gone. That's scary even when the change is good.
+The [fear of failure](/prose/why-is-perfectionism-a-trap) is partly fear of change. If you try and fail, you've changed — you're now someone who tried and failed. If you try and succeed, you've also changed — you're now someone with new capabilities and new expectations. Either way, the old you is gone. That can be scary even when the change is good.
 
 ## Nothing on this site is final
 
 These essays change. New ones alter the meaning of old ones just by existing nearby. Links get added. Ideas get revised. The graph shifts.
 
-That's not a limitation. [That's the point.](/prose/this-is-not-all) A finished essay would be a frozen thing pretending reality stopped moving. These don't pretend that. They're snapshots of thinking in motion — true enough for now, wrong enough later to need updating.
+That's not a limitation. [That's the point.](/prose/this-is-not-all) A finished essay would be a frozen thing pretending reality stopped moving. These don't pretend that. They're snapshots of thinking in motion — true enough for now, probably wrong enough later to need updating.
 
 The [graph structure](/prose/this-site-is-manipulative) embodies this. No beginning. No ending. No linear progression from introduction to conclusion. Just a web that grows and shifts. Because that's what's actually happening. To the ideas, to the author, to you.
 

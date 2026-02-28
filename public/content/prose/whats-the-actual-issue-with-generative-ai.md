@@ -8,7 +8,7 @@ tags: [ai, social]
 
 Not copyright. Not job loss. Not "it's just [interpolation](/prose/is-it-just-interpolation)." Those are real concerns, but they're downstream of something more fundamental.
 
-The actual issue is that the output of generative AI doesn't fully reflect [anyone's intent](#whose-intent).
+The issue that keeps coming up is that the output of generative AI doesn't fully reflect [anyone's intent](#whose-intent).
 
 ## Whose intent?
 
@@ -20,19 +20,19 @@ The prompter has intent — "I want something like this." But the gap between th
 
 ## Why does this matter?
 
-It's not that the output is bad. It's often good. Sometimes beautiful. Sometimes indistinguishable from things made with deep intent. That's the problem.
+It's not that the output is bad. It's often good. Sometimes beautiful. Sometimes indistinguishable from things made with deep intent. And that's where it gets complicated.
 
-When the output *looks like* someone meant every detail — but the prompter didn't choose those details — something breaks in how we relate to made things. We've always read intent into artifacts. We see a painting and imagine the person who chose *that* color. We read a sentence and feel the writer reaching for *that* word. Generative AI produces artifacts that invite that reading, but the person behind the prompt didn't make those choices. The [residue](/prose/this-is-not-a-personal-website) of a process where the intent and the choices lived in different places.
+When the output *looks like* someone meant every detail — but the prompter didn't choose those details — something shifts in how we relate to made things. We've always read intent into artifacts. We see a painting and imagine the person who chose *that* color. We read a sentence and feel the writer reaching for *that* word. Generative AI produces artifacts that invite that reading, but the person behind the prompt didn't make those choices. The [residue](/prose/this-is-not-a-personal-website) of a process where the intent and the choices lived in different places.
 
 This isn't the same as mass production. A factory-made chair was designed by someone. The choices were made once, then reproduced. Generative AI makes new choices every time — and they're not the prompter's.
 
-## What's the spectrum nobody talks about?
+## What's the spectrum look like?
 
 It's [not that simple](/prose/its-not-that-simple), of course. A person who generates a hundred images and carefully selects one — is the selection intent? A person who iterates on a prompt for hours, refining toward a vision — is that vision intent? A person who takes AI output and modifies it, combines it, builds on it — at what point does their intent enter the work?
 
 There's no clean line. The intent isn't binary — present or absent. It's a question of *how much* of the output reflects someone's choices versus the model's. And that ratio varies wildly. A one-shot generation with a vague prompt is almost entirely the model's choices. A careful, iterative process where the human rejects and refines and selects — that's closer to intent flowing through a tool.
 
-Image generation makes this visible. Regional prompting, LoRAs, text embeddings, IPAdapter, ControlNet, model switching — each one narrows the gap between what you meant and what the model produces. You can control the composition, the style, the palette, the pose, the structure. Each tool gets you closer to specifying your intent. None of them close the gap. The specific choices that make *this* image *this* image — those are still the model's. Not yours.
+Image generation makes this visible. Regional prompting, LoRAs, text embeddings, IPAdapter, ControlNet, model switching — each one narrows the gap between what you meant and what the model produces. You can control the composition, the style, the palette, the pose, the structure. Each tool gets you closer to specifying your intent. None of them close the gap entirely. The specific choices that make *this* image *this* image — those are still the model's. Not yours.
 
 And the more control you stack, the more it starts to resemble just... drawing it. The asymptote of maximum control over an image model is a drawing program. The tools exist because people want intent without craft — and the space between what they can specify and what the model fills in is exactly where the prompter's intent is absent.
 
@@ -52,7 +52,7 @@ So what's actually new? Not the split between intent and execution. That's ancie
 
 Generative AI removes the floor. One sentence in, a finished thing out. And then feed that into another model. And another. Each layer dilutes whatever intent was in the original prompt. Recursive generation can reduce the human's contribution to near-zero — intent at parts per billion.
 
-The spectrum didn't just get wider. It extended all the way to the ground. And that's the thing no previous tool did.
+The spectrum didn't just get wider. It extended all the way to the ground. No previous tool did that.
 
 ## Where does the intent actually live?
 
@@ -70,7 +70,7 @@ It means the relationship between maker and made is changing in a way we don't h
 
 Whether it's a problem depends on [what you think art is for](/prose/what-is-art). Whether intent in the input counts the same as intent in the output. Whether shaping the space is the same as making the thing.
 
-That's the actual issue. Not the economics. Not the legality. The question of where intent lives when the maker and the making are split across two entities — and what that means for everything we thought we knew about [who made this](/prose/the-great-deceit).
+That seems like the actual issue. Not the economics. Not the legality. The question of where intent lives when the maker and the making are split across two entities — and what that means for everything we thought we knew about [who made this](/prose/the-great-deceit).
 
 ## See also
 

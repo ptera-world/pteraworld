@@ -10,13 +10,13 @@ Open a note app. You get a blank page. Open a word processor. Blank page. Open a
 
 Everything is a document. Everything is a [flat surface with content arranged in reading order](#whats-the-paper-metaphor). And nobody questions this because paper was a document and screens replaced paper and the metaphor carried over unexamined for forty years.
 
-But information isn't a document. Information is [objects with relationships](#what-is-information-actually). And the gap between "a page" and "objects with relationships" is where most software difficulty lives.
+But information isn't a document. Information is [objects with relationships](#what-is-information-actually). And the gap between "a page" and "objects with relationships" is where a lot of software difficulty seems to live.
 
 ## What's the paper metaphor?
 
 Paper is flat. Paper is linear. Paper has a beginning and an end. Paper is one thing — you can't have half a thought on one page and the other half dynamically linked to a page across the room.
 
-These aren't features of information. They're features of *paper*. Constraints imposed by a physical medium that we transferred wholesale into a digital medium that doesn't have those constraints.
+These aren't features of information. They're features of *paper*. Constraints imposed by a physical medium that got transferred wholesale into a digital medium that doesn't have those constraints.
 
 A digital note doesn't need to be a page. It could be a node in a graph. A thought connected to other thoughts, with the connections visible and navigable. A digital spreadsheet doesn't need to be a grid. It could be a set of relationships — this depends on that, which flows into this, which constrains that. A digital presentation doesn't need to be a sequence of slides. It could be a [space you navigate](#what-if-it-wasnt-a-page).
 
@@ -36,7 +36,7 @@ Documents flatten all of this into reading order. First this, then this, then th
 
 ## What's the bridge problem?
 
-Here's where it gets concrete. You have information in one place and you need it in another.
+This is where it gets concrete. You have information in one place and you need it in another.
 
 A spreadsheet has data. You need it in a presentation. So you copy-paste it, and now you have two copies that will immediately diverge. Or you "embed" it, which sort of works until it doesn't. Or you screenshot it, which is literally taking a photo of your data.
 
@@ -52,9 +52,9 @@ This isn't a hard technical problem. It's a [metaphor problem](/prose/why-is-sof
 
 Imagine opening your note app and instead of a blank page, you see your thoughts as objects in space. Each one has a shape based on what it is — a question, an idea, a reference, a task. They cluster naturally by relationship. You can zoom into any cluster and see the details. You can draw connections between things that relate. You can see, at a glance, not just *what you wrote* but *how it connects*.
 
-Some tools try this. Mind maps. Graph-based note apps. Spatial canvases. They're all reaching for the same thing: information that isn't flat. But they're still fighting the document metaphor. The canvas is a page. The graph is rendered on a page. The mind map is a document that happens to branch.
+Some tools try this. Mind maps. Graph-based note apps. Spatial canvases. They're all reaching for the same thing: information that isn't flat. But they're still working within the document metaphor. The canvas is a page. The graph is rendered on a page. The mind map is a document that happens to branch.
 
-The metaphor runs deep. Even the alternatives are documents pretending to be something else.
+The metaphor runs deep. Even the alternatives tend to be documents pretending to be something else.
 
 ## Why does it stay?
 
