@@ -3,6 +3,8 @@
 export interface CollectionConfig {
   name: string;
   metaNodeId: string;
+  /** Content directories to include when building this collection's graph. */
+  contentDirs: string[];
 }
 
 export const siteConfig = {
@@ -14,8 +16,16 @@ export const siteConfig = {
   metaNodeId: "meta/pteraworld",
   /** Per-collection overrides. */
   collections: {
-    default: { name: "ptera", metaNodeId: "meta/pteraworld" },
-    unfiltered: { name: "unfiltered", metaNodeId: "meta/unfiltered" },
+    default: {
+      name: "ptera",
+      metaNodeId: "meta/pteraworld",
+      contentDirs: ["ecosystem", "meta", "project", "prose", "domain", "technology", "status"],
+    },
+    unfiltered: {
+      name: "unfiltered",
+      metaNodeId: "meta/unfiltered",
+      contentDirs: ["ecosystem", "meta", "unfiltered", "domain", "technology", "status"],
+    },
   } satisfies Record<string, CollectionConfig>,
 } as const;
 

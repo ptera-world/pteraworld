@@ -2,15 +2,16 @@
  * Unified build script: reads frontmatter + edges from public/content/*.md
  * and generates src/generated-graph.ts with node definitions and edges.
  *
- * Run with: bun run src/gen-graph.ts
+ * Run standalone: bun run src/gen-graph.ts [dir1 dir2 ...]
+ * Or import: import { generateGraph } from "./gen-graph";
  */
-import { readdir, readFile, writeFile, stat } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import { parse as parseYaml } from "yaml";
 import { parseFrontmatter, stripFrontmatter, inferStructuralTags } from "./frontmatter";
 import { type Point, convexHull, expandHull, filterOutliers, hullSeparation } from "./hull";
+import { findMarkdownFiles, CONTENT_DIR } from "./content";
 
-const contentDir = join(import.meta.dir, "../public/content");
 const outFile = join(import.meta.dir, "generated-graph.ts");
 const groupingsOutFile = join(import.meta.dir, "generated-groupings.ts");
 
@@ -73,33 +74,7 @@ function ringPositions(
 }
 
 // ---------------------------------------------------------------------------
-// 1. Walk content directory
-// ---------------------------------------------------------------------------
-
-async function findMarkdownFiles(dir: string, prefix = ""): Promise<{ id: string; path: string; category: string }[]> {
-  const entries = await readdir(dir);
-  const results: { id: string; path: string; category: string }[] = [];
-
-  for (const entry of entries) {
-    const fullPath = join(dir, entry);
-    const entryStat = await stat(fullPath);
-
-    if (entryStat.isDirectory()) {
-      const subResults = await findMarkdownFiles(fullPath, prefix ? `${prefix}/${entry}` : entry);
-      results.push(...subResults);
-    } else if (entry.endsWith(".md")) {
-      const basename = entry.replace(/\.md$/, "");
-      const id = prefix ? `${prefix}/${basename}` : basename;
-      const category = prefix.split("/")[0] || "";
-      results.push({ id, path: fullPath, category });
-    }
-  }
-
-  return results;
-}
-
-// ---------------------------------------------------------------------------
-// 2. Cluster configs from public/content/cluster/
+// Cluster / force layout types and helpers
 // ---------------------------------------------------------------------------
 
 interface ClusterConfig {
@@ -107,17 +82,11 @@ interface ClusterConfig {
   label: string;
   layout: "ring" | "force";
   color: string;
-  // Optional: place cluster near this node id (e.g. "meta/pteraworld")
   near?: string;
-  // Optional explicit ring radius (overrides formula)
   ringRadius?: number;
-  // Optional extra padding around cluster when computing clearance from other groups
   padding?: number;
-  // Content directories whose parentless nodes belong to this cluster
   directories?: string[];
-  // Default tier for nodes from those directories (default: "artifact")
   tier?: "region" | "artifact" | "meta";
-  // Auto-tags applied to nodes from those directories
   autoTags?: string[];
 }
 
@@ -126,25 +95,22 @@ interface ForceParams {
   attraction: number; gravity: number; iterations: number;
 }
 
-/** Derive initial force params from cluster geometry. Returns params + seedR for ring seeding. */
 function initialForceParams(members: ParsedNode[]): ForceParams & { seedR: number } {
   const n = members.length;
   const maxR = Math.max(...members.map((m) => m.radius));
   const minDist = maxR * 2 + 8;
   const restLen = minDist * 1.5;
   const repulsion = restLen ** 2 * 8;
-  // seedR: ring radius that fits all nodes at minDist spacing
   const seedR = Math.ceil((n * minDist) / (2 * Math.PI)) + 50;
-  // gravity calibrated so repulsion and gravity balance at seedR — cluster stays near center
-  const gravity = repulsion / (restLen ** 2 * seedR); // = 8 / seedR
+  const gravity = repulsion / (restLen ** 2 * seedR);
   return { minDist, restLen, repulsion, attraction: 0.15, gravity, iterations: 400 + n * 10, seedR };
 }
 
 interface LayoutQuality {
   overlaps: number;
   spreadRadius: number;
-  edgeRatio: number | null;    // mean connected dist / mean unconnected dist; null if no edges
-  clusterScore: number | null; // mean shared-neighbor dist / mean non-shared dist; null if no triangles
+  edgeRatio: number | null;
+  clusterScore: number | null;
 }
 
 function measureLayoutQuality(
@@ -180,7 +146,7 @@ function measureLayoutQuality(
   for (let i = 0; i < members.length; i++) {
     for (let j = i + 1; j < members.length; j++) {
       const a = members[i]!, b = members[j]!;
-      if (adj.get(a.id)?.has(b.id)) continue; // skip direct edges
+      if (adj.get(a.id)?.has(b.id)) continue;
       const aN = adj.get(a.id) ?? new Set<string>();
       const bN = adj.get(b.id) ?? new Set<string>();
       const hasShared = [...aN].some((id) => bN.has(id));
@@ -201,7 +167,99 @@ function qualityScore(q: LayoutQuality): number {
     + (q.clusterScore != null ? Math.max(0, q.clusterScore - 0.85) * 50 : 0);
 }
 
-/** Run force layout with an adaptive feedback loop — no manual parameter tuning needed. */
+/** Run force-directed layout on a set of nodes. Positions are modified in-place. */
+function runForceLayout(
+  members: ParsedNode[],
+  center: [number, number],
+  adj: Map<string, Set<string>>,
+  opts: ForceParams,
+): void {
+  const { minDist, restLen, repulsion, attraction, gravity, iterations } = opts;
+  const [cx, cy] = center;
+
+  const vx = new Map<string, number>(members.map((e) => [e.id, 0]));
+  const vy = new Map<string, number>(members.map((e) => [e.id, 0]));
+
+  for (let iter = 0; iter < iterations; iter++) {
+    const cooling = 1 - iter / iterations;
+    const fx = new Map<string, number>(members.map((e) => [e.id, 0]));
+    const fy = new Map<string, number>(members.map((e) => [e.id, 0]));
+
+    for (let i = 0; i < members.length; i++) {
+      for (let j = i + 1; j < members.length; j++) {
+        const a = members[i]!, b = members[j]!;
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.max(Math.hypot(dx, dy), 0.1);
+        const force = dist < minDist
+          ? repulsion * 4 / (dist * dist)
+          : repulsion / (dist * dist);
+        const nx = dx / dist, ny = dy / dist;
+        fx.set(a.id, fx.get(a.id)! + nx * force);
+        fy.set(a.id, fy.get(a.id)! + ny * force);
+        fx.set(b.id, fx.get(b.id)! - nx * force);
+        fy.set(b.id, fy.get(b.id)! - ny * force);
+      }
+    }
+
+    for (const a of members) {
+      const aDeg = Math.max(adj.get(a.id)?.size ?? 0, 1);
+      for (const bid of adj.get(a.id) ?? []) {
+        const b = members.find((e) => e.id === bid);
+        if (!b || b.id < a.id) continue;
+        const bDeg = Math.max(adj.get(b.id)?.size ?? 0, 1);
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.max(Math.hypot(dx, dy), 0.1);
+        const forceA = (attraction / aDeg) * (dist - restLen);
+        const forceB = (attraction / bDeg) * (dist - restLen);
+        const nx = dx / dist, ny = dy / dist;
+        fx.set(a.id, fx.get(a.id)! + nx * forceA);
+        fy.set(a.id, fy.get(a.id)! + ny * forceA);
+        fx.set(b.id, fx.get(b.id)! - nx * forceB);
+        fy.set(b.id, fy.get(b.id)! - ny * forceB);
+      }
+    }
+
+    for (const e of members) {
+      fx.set(e.id, fx.get(e.id)! + (cx - e.x) * gravity);
+      fy.set(e.id, fy.get(e.id)! + (cy - e.y) * gravity);
+    }
+
+    const damping = 0.85;
+    const maxStep = 20 * cooling + 2;
+    for (const e of members) {
+      const nvx = (vx.get(e.id)! + fx.get(e.id)!) * damping;
+      const nvy = (vy.get(e.id)! + fy.get(e.id)!) * damping;
+      const speed = Math.hypot(nvx, nvy);
+      const scale = speed > maxStep ? maxStep / speed : 1;
+      vx.set(e.id, nvx * scale);
+      vy.set(e.id, nvy * scale);
+      e.x += vx.get(e.id)!;
+      e.y += vy.get(e.id)!;
+    }
+
+    for (let pass = 0; pass < 4; pass++) {
+      for (let i = 0; i < members.length; i++) {
+        for (let j = i + 1; j < members.length; j++) {
+          const a = members[i]!, b = members[j]!;
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < minDist && dist > 0) {
+            const push = (minDist - dist) / 2 + 0.5;
+            const nx = dx / dist, ny = dy / dist;
+            a.x += nx * push; a.y += ny * push;
+            b.x -= nx * push; b.y -= ny * push;
+          }
+        }
+      }
+    }
+  }
+
+  for (const e of members) {
+    e.x = Math.round(e.x);
+    e.y = Math.round(e.y);
+  }
+}
+
 function runForceLayoutAdaptive(
   members: ParsedNode[],
   center: [number, number],
@@ -227,7 +285,6 @@ function runForceLayoutAdaptive(
     const clusterOk = q.clusterScore == null || q.clusterScore < 0.85;
     if (q.overlaps === 0 && edgeOk && clusterOk) break;
 
-    // Adjust toward the worst failure
     if (q.overlaps > 0) {
       params = { ...params, repulsion: params.repulsion * 1.6, minDist: params.minDist * 1.1 };
     } else {
@@ -245,7 +302,21 @@ function runForceLayoutAdaptive(
   }
 }
 
-const allFiles = await findMarkdownFiles(contentDir);
+// ---------------------------------------------------------------------------
+// Main entry point
+// ---------------------------------------------------------------------------
+
+/**
+ * Generate the graph for specified content directories.
+ * If dirs is omitted, scans all content directories.
+ */
+export async function generateGraph(dirs?: string[]): Promise<void> {
+
+const allFiles = await findMarkdownFiles(CONTENT_DIR, dirs);
+
+// ---------------------------------------------------------------------------
+// 2. Cluster configs from public/content/cluster/
+// ---------------------------------------------------------------------------
 
 const clusterConfigs = new Map<string, ClusterConfig>();
 for (const { id, path, category } of allFiles) {
@@ -275,7 +346,6 @@ for (const { id, path, category } of allFiles) {
 // 3. Parse all content files
 // ---------------------------------------------------------------------------
 
-// Build directory→cluster lookup from cluster configs (data-driven, no hardcoding)
 const dirToCluster = new Map<string, ClusterConfig>();
 for (const config of clusterConfigs.values()) {
   if (config.directories) {
@@ -285,7 +355,6 @@ for (const config of clusterConfigs.values()) {
   }
 }
 
-// Config-only directories: parsed for config, not nodes
 const CONFIG_ONLY_DIRS = new Set(["cluster"]);
 
 const files = allFiles.filter((f) => !CONFIG_ONLY_DIRS.has(f.category));
@@ -297,17 +366,14 @@ for (const { id, path, category } of files) {
   const fm = parseFrontmatter(text);
   if (!fm) continue;
 
-  // Resolve tier: frontmatter > cluster config > skip
   const clusterForDir = dirToCluster.get(category);
   const tier = fm.tier ?? clusterForDir?.tier ?? null;
   if (!tier) continue;
 
-  // Resolve cluster: frontmatter > directory lookup (parentless artifacts only)
   const cluster = fm.cluster ?? (
     !fm.parent && tier === "artifact" && clusterForDir ? clusterForDir.id : undefined
   );
 
-  // Resolve tags: structural tags from tier + cluster auto-tags + user tags
   const autoTags = [
     ...inferStructuralTags(tier),
     ...(clusterForDir?.autoTags ?? []),
@@ -335,7 +401,6 @@ for (const { id, path, category } of files) {
   nodeIds.add(id);
 }
 
-// Also collect content-only pages for grouping regions
 interface GroupingRegionDef {
   id: string;
   label: string;
@@ -346,10 +411,8 @@ interface GroupingRegionDef {
 
 const groupingRegions: GroupingRegionDef[] = [];
 
-// Grouping regions: files that aren't graph nodes (no tier from frontmatter or cluster config)
-// and aren't cluster configs. These define grouping views (domain, technology, status).
 for (const { id, path, category } of files) {
-  if (nodeIds.has(id)) continue; // already a graph node
+  if (nodeIds.has(id)) continue;
   const text = await readFile(path, "utf-8");
   const fm = parseFrontmatter(text);
   if (!fm) continue;
@@ -372,9 +435,6 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
 
 // --- Region layout: ring around origin ---
 {
-  // Step 1: Pre-compute final region radii from child ring geometry, BEFORE positioning.
-  // This is critical: regions must be placed using their true final radii so that
-  // the placement ring radius accounts for actual extents, not an initial estimate.
   for (const region of regions) {
     const children = projectNodes.filter((n) => n.parent === region.id);
     if (!region.color) {
@@ -391,9 +451,6 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
     region.radius = Math.max(140, ringR + maxChildR + 20);
   }
 
-  // Step 2: Compute outer radius of anchored clusters (those with near:).
-  // Anchored clusters are placed at/near the meta node (origin), so regions must
-  // be placed far enough that their circles don't overlap anchored cluster extents.
   const anchoredOuterR = [...clusterConfigs.values()]
     .filter((c) => c.near)
     .reduce((maxR, c) => {
@@ -405,11 +462,9 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
       return Math.max(maxR, outerR);
     }, 0);
 
-  // Step 3: Position regions, ensuring clearance from anchored clusters at origin.
   if (regions.length === 1) {
     const region = regions[0]!;
     if (anchoredOuterR > 0) {
-      // Place single region to the left (angle=π), far enough to clear anchored clusters
       const clearance = anchoredOuterR + region.radius + 40;
       region.x = -clearance;
       region.y = 0;
@@ -417,11 +472,9 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
       region.x = 0;
       region.y = 0;
     }
-  } else {
+  } else if (regions.length > 1) {
     const maxRadius = Math.max(...regions.map((r) => r.radius));
     const baseRingR = maxRadius + 100;
-    // Ensure region ring clears anchored clusters: every region must be at least
-    // (anchoredOuterR + region.radius + margin) from origin
     const ringR = anchoredOuterR > 0
       ? Math.max(baseRingR, anchoredOuterR + maxRadius + 40)
       : baseRingR;
@@ -451,9 +504,7 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
     const maxChildR = Math.max(...children.map((c) => c.radius), 20);
     const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
     ringLayout(parent.x, parent.y, ringR, children);
-    // Radius already pre-computed correctly in step 1 above — no post-hoc correction.
 
-    // Derive child color from parent's oklch hue
     if (children.some((c) => !c.color)) {
       const m = parent.color.match(/oklch\([\d.]+ ([\d.]+) ([\d.]+)\)/);
       const hue = m ? m[2] : "0";
@@ -464,16 +515,6 @@ const projectNodes = nodes.filter((n) => n.tier === "artifact");
   }
 }
 
-/**
- * Compute a placement center for a cluster.
- * If `near` is set, returns that node's position.
- * Otherwise sweeps 72 angles at a safe placement radius and picks the angle that
- * maximizes clearance from regions and already-placed cluster hulls.
- *
- * `placedHulls` — expanded convex hulls of already-placed clusters (node centers +
- * node radius + padding). Used instead of centroid-to-centroid distance so the
- * actual cluster extents drive the clearance scoring.
- */
 function computeClusterCenter(
   config: ClusterConfig,
   members: ParsedNode[],
@@ -486,7 +527,6 @@ function computeClusterCenter(
     console.warn(`  warn: cluster "${config.id}" near: "${config.near}" not found, auto-placing`);
   }
 
-  // Estimate cluster spread (outer radius) for clearance scoring
   const spreadEstimate = config.layout === "ring"
     ? (config.ringRadius ?? Math.max(80, 60 + members.length * 15))
     : initialForceParams(members).seedR;
@@ -494,21 +534,16 @@ function computeClusterCenter(
   const placementR = Math.max(...regions.map((r) => r.radius), 100)
     + spreadEstimate + 80;
 
-  // Try 72 angles; score by hull-based clearance from regions and placed clusters.
-  // The candidate cluster is approximated as a circle at (cx, cy) with radius spreadEstimate.
   let bestAngle = 0, bestScore = -Infinity;
   for (let i = 0; i < 72; i++) {
     const angle = (2 * Math.PI * i) / 72;
     const cx = placementR * Math.cos(angle);
     const cy = placementR * Math.sin(angle);
 
-    // Clearance from regions: distance from candidate center to region boundary
-    const minRegionDist = Math.min(
-      ...regions.map((r) => Math.hypot(cx - r.x, cy - r.y) - r.radius - spreadEstimate),
-    );
+    const minRegionDist = regions.length > 0
+      ? Math.min(...regions.map((r) => Math.hypot(cx - r.x, cy - r.y) - r.radius - spreadEstimate))
+      : Infinity;
 
-    // Hull-based clearance from already-placed clusters:
-    // sep = hullSeparation([candidatePoint], placedHull) - spreadEstimate
     const minHullDist = placedHulls.length > 0
       ? Math.min(...placedHulls.map((h) => hullSeparation([{ x: cx, y: cy }], h) - spreadEstimate))
       : Infinity;
@@ -523,7 +558,7 @@ function computeClusterCenter(
   ];
 }
 
-// --- Meta nodes: origin (must come before cluster layout so near: lookups work) ---
+// --- Meta nodes: origin ---
 for (const meta of metaNodes) {
   meta.x = 0;
   meta.y = 0;
@@ -531,9 +566,7 @@ for (const meta of metaNodes) {
   if (!meta.color) meta.color = "#fff";
 }
 
-// --- Cluster layout: ring clusters positioned now; force clusters seeded for later ---
-// After placing each cluster, compute its convex hull (with outlier filtering + expansion)
-// and store it for subsequent clusters to score clearance against.
+// --- Cluster layout ---
 const clusterCenters = new Map<string, [number, number]>();
 const placedHulls: Point[][] = [];
 
@@ -556,8 +589,6 @@ for (const [clusterId, config] of clusterConfigs) {
     ringLayout(center[0], center[1], seedR, members);
   }
 
-  // Compute hull of placed members for subsequent placement scoring.
-  // Outliers discounted (k=1.5) so a few stray force-layout nodes don't over-inflate bounds.
   const maxMemberR = Math.max(...members.map((m) => m.radius), 20);
   const padding = config.padding ?? 15;
   const corePts = filterOutliers(members.map((m) => ({ x: m.x, y: m.y })));
@@ -566,7 +597,7 @@ for (const [clusterId, config] of clusterConfigs) {
 }
 
 // ---------------------------------------------------------------------------
-// 5. Extract edges from ## Related projects / ## See also
+// 5. Extract edges
 // ---------------------------------------------------------------------------
 
 interface EdgeDef {
@@ -605,105 +636,6 @@ edges.sort((a, b) => a.from.localeCompare(b.from) || a.to.localeCompare(b.to));
 // 6. Force-directed layout for force clusters
 // ---------------------------------------------------------------------------
 
-/** Run force-directed layout on a set of nodes. Positions are modified in-place. */
-function runForceLayout(
-  members: ParsedNode[],
-  center: [number, number],
-  adj: Map<string, Set<string>>,
-  opts: ForceParams,
-): void {
-  const { minDist, restLen, repulsion, attraction, gravity, iterations } = opts;
-  const [cx, cy] = center;
-
-  const vx = new Map<string, number>(members.map((e) => [e.id, 0]));
-  const vy = new Map<string, number>(members.map((e) => [e.id, 0]));
-
-  for (let iter = 0; iter < iterations; iter++) {
-    const cooling = 1 - iter / iterations;
-    const fx = new Map<string, number>(members.map((e) => [e.id, 0]));
-    const fy = new Map<string, number>(members.map((e) => [e.id, 0]));
-
-    // Repulsion between all pairs
-    for (let i = 0; i < members.length; i++) {
-      for (let j = i + 1; j < members.length; j++) {
-        const a = members[i]!, b = members[j]!;
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const dist = Math.max(Math.hypot(dx, dy), 0.1);
-        const force = dist < minDist
-          ? repulsion * 4 / (dist * dist)
-          : repulsion / (dist * dist);
-        const nx = dx / dist, ny = dy / dist;
-        fx.set(a.id, fx.get(a.id)! + nx * force);
-        fy.set(a.id, fy.get(a.id)! + ny * force);
-        fx.set(b.id, fx.get(b.id)! - nx * force);
-        fy.set(b.id, fy.get(b.id)! - ny * force);
-      }
-    }
-
-    // Attraction along edges — normalized by degree so hubs don't dominate
-    for (const a of members) {
-      const aDeg = Math.max(adj.get(a.id)?.size ?? 0, 1);
-      for (const bid of adj.get(a.id) ?? []) {
-        const b = members.find((e) => e.id === bid);
-        if (!b || b.id < a.id) continue;
-        const bDeg = Math.max(adj.get(b.id)?.size ?? 0, 1);
-        const dx = b.x - a.x, dy = b.y - a.y;
-        const dist = Math.max(Math.hypot(dx, dy), 0.1);
-        const forceA = (attraction / aDeg) * (dist - restLen);
-        const forceB = (attraction / bDeg) * (dist - restLen);
-        const nx = dx / dist, ny = dy / dist;
-        fx.set(a.id, fx.get(a.id)! + nx * forceA);
-        fy.set(a.id, fy.get(a.id)! + ny * forceA);
-        fx.set(b.id, fx.get(b.id)! - nx * forceB);
-        fy.set(b.id, fy.get(b.id)! - ny * forceB);
-      }
-    }
-
-    // Gravity toward cluster center
-    for (const e of members) {
-      fx.set(e.id, fx.get(e.id)! + (cx - e.x) * gravity);
-      fy.set(e.id, fy.get(e.id)! + (cy - e.y) * gravity);
-    }
-
-    // Integrate with damping
-    const damping = 0.85;
-    const maxStep = 20 * cooling + 2;
-    for (const e of members) {
-      const nvx = (vx.get(e.id)! + fx.get(e.id)!) * damping;
-      const nvy = (vy.get(e.id)! + fy.get(e.id)!) * damping;
-      const speed = Math.hypot(nvx, nvy);
-      const scale = speed > maxStep ? maxStep / speed : 1;
-      vx.set(e.id, nvx * scale);
-      vy.set(e.id, nvy * scale);
-      e.x += vx.get(e.id)!;
-      e.y += vy.get(e.id)!;
-    }
-
-    // Hard constraint: multiple passes to fully resolve overlaps
-    for (let pass = 0; pass < 4; pass++) {
-      for (let i = 0; i < members.length; i++) {
-        for (let j = i + 1; j < members.length; j++) {
-          const a = members[i]!, b = members[j]!;
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < minDist && dist > 0) {
-            const push = (minDist - dist) / 2 + 0.5;
-            const nx = dx / dist, ny = dy / dist;
-            a.x += nx * push; a.y += ny * push;
-            b.x -= nx * push; b.y -= ny * push;
-          }
-        }
-      }
-    }
-  }
-
-  for (const e of members) {
-    e.x = Math.round(e.x);
-    e.y = Math.round(e.y);
-  }
-}
-
-// Run adaptive force layout for force clusters (after edges are extracted)
 console.log("Force layout:");
 for (const [clusterId, config] of clusterConfigs) {
   if (config.layout !== "force") continue;
@@ -727,7 +659,6 @@ for (const [clusterId, config] of clusterConfigs) {
 // 6b. Detect and resolve cross-cluster overlaps
 // ---------------------------------------------------------------------------
 {
-  // Skip same-parent pairs — their ecosystem ring handles spacing
   const overlaps: [ParsedNode, ParsedNode, number][] = [];
   for (let i = 0; i < projectNodes.length; i++) {
     for (let j = i + 1; j < projectNodes.length; j++) {
@@ -756,7 +687,6 @@ for (const [clusterId, config] of clusterConfigs) {
           if (dist < minDist && dist > 0) {
             const push = (minDist - dist) + 0.5;
             const nx = dx / dist, ny = dy / dist;
-            // Ecosystem children are fixed — only move the free (parentless) node
             if (a.parent && !b.parent) {
               b.x -= nx * push; b.y -= ny * push;
             } else if (b.parent && !a.parent) {
@@ -777,8 +707,6 @@ for (const [clusterId, config] of clusterConfigs) {
     console.warn("  separation applied.");
   }
 
-  // Push parentless nodes out of region circles (e.g. essays that drifted inside rhi).
-  // Skip nodes in anchored clusters (near:) — they're intentionally placed relative to a fixed node.
   const anchoredClusters = new Set(
     [...clusterConfigs.values()].filter((c) => c.near).map((c) => c.id),
   );
@@ -786,8 +714,8 @@ for (const [clusterId, config] of clusterConfigs) {
   for (let pass = 0; pass < 20; pass++) {
     for (const region of regions) {
       for (const n of projectNodes) {
-        if (n.parent) continue; // ecosystem children are fixed
-        if (n.cluster && anchoredClusters.has(n.cluster)) continue; // anchored clusters: don't disturb
+        if (n.parent) continue;
+        if (n.cluster && anchoredClusters.has(n.cluster)) continue;
         const dist = Math.hypot(n.x - region.x, n.y - region.y);
         if (dist < region.radius + n.radius + 8) {
           const push = region.radius + n.radius + 8 - dist + 0.5;
@@ -805,7 +733,7 @@ for (const [clusterId, config] of clusterConfigs) {
   }
 }
 
-// Final quality report for force clusters (after all post-processing)
+// Final quality report
 {
   let anyForce = false;
   for (const [clusterId, config] of clusterConfigs) {
@@ -840,10 +768,6 @@ interface GroupingOutput {
   positions: Record<string, { x: number; y: number; regionId?: string; color?: string }>;
 }
 
-/**
- * Return positions for all cluster nodes (using their actual graph positions) plus meta nodes.
- * Used in secondary groupings so essays/orphans appear at their home positions in every view.
- */
 function clusterPositionsForGroupings(): Record<string, { x: number; y: number }> {
   const result: Record<string, { x: number; y: number }> = {};
   for (const n of projectNodes) {
@@ -859,7 +783,6 @@ function clusterPositionsForGroupings(): Record<string, { x: number; y: number }
 
 const generatedGroupings: GroupingOutput[] = [];
 
-// --- Ecosystem grouping (default): uses graph positions ---
 {
   const ecoRegions = regions.map((r) => ({
     id: r.id, label: r.label, description: r.description,
@@ -869,21 +792,19 @@ const generatedGroupings: GroupingOutput[] = [];
     id: "ecosystem",
     label: "Ecosystems",
     regions: ecoRegions,
-    positions: {}, // default positions from graph
+    positions: {},
   });
 }
 
-// --- Essays grouping: essays at home positions, code de-emphasized via CSS ---
 {
   generatedGroupings.push({
     id: "essays",
     label: "Essays",
     regions: [],
-    positions: {}, // all nodes stay at ecosystem positions; CSS hides code
+    positions: {},
   });
 }
 
-// --- Tag-based groupings (domain, tech) ---
 function buildTagGrouping(
   groupingId: string, groupingLabel: string,
   category: string, brighterLightness: string,
@@ -930,7 +851,6 @@ function buildTagGrouping(
     Object.assign(allPositions, ringPositions(rx, ry, childRingR, childIds, reg.id, childColor));
   });
 
-  // Add cluster nodes and meta at their home positions
   Object.assign(allPositions, clusterPositionsForGroupings());
 
   return { id: groupingId, label: groupingLabel, regions: builtRegions, positions: allPositions };
@@ -944,7 +864,6 @@ generatedGroupings.push(
   buildTagGrouping("tech", "Technologies", "technology", "0.75"),
 );
 
-// --- Status grouping ---
 {
   const statusRegionDefs = groupingRegions
     .filter((r) => r.category === "status")
@@ -998,7 +917,6 @@ generatedGroupings.push(
 // 8. Write output
 // ---------------------------------------------------------------------------
 
-// Sort nodes by id for stable output
 nodes.sort((a, b) => a.id.localeCompare(b.id));
 
 function quote(s: string): string {
@@ -1046,7 +964,6 @@ ${edgeLines}
 await writeFile(outFile, content);
 console.log(`wrote ${nodes.length} nodes and ${edges.length} edges to ${outFile}`);
 
-// Write groupings
 function quoteGrouping(s: string): string {
   if (s.includes('"') || s.includes("\n") || s.includes("\\")) {
     return JSON.stringify(s);
@@ -1089,3 +1006,13 @@ ${groupingLines}
 
 await writeFile(groupingsOutFile, groupingsContent);
 console.log(`wrote ${generatedGroupings.length} groupings to ${groupingsOutFile}`);
+
+} // end generateGraph
+
+// ---------------------------------------------------------------------------
+// Standalone entry point
+// ---------------------------------------------------------------------------
+if (import.meta.path === Bun.main) {
+  const args = Bun.argv.slice(2).filter((a) => !a.startsWith("-"));
+  await generateGraph(args.length > 0 ? args : undefined);
+}

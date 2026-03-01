@@ -1,17 +1,38 @@
 import { parseMarkdown } from "./markdown";
 import { createGraph } from "./graph";
-import { siteConfig } from "./site-config";
+import { siteConfig, type CollectionId } from "./site-config";
+import { generateGraph } from "./gen-graph";
 
 const isProduction = Bun.argv.includes("--production");
 
 const dir = isProduction ? "dist" : "public";
 
-const graph = createGraph();
-const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+// In dev mode, generate graph for each collection at startup and cache bundles
+const bundleCache = new Map<CollectionId, { js: ArrayBuffer; timestamp: number }>();
+
+if (!isProduction) {
+  for (const [id, config] of Object.entries(siteConfig.collections) as [CollectionId, typeof siteConfig.collections[CollectionId]][]) {
+    console.log(`Generating graph for ${config.name} [${config.contentDirs.join(", ")}]...`);
+    await generateGraph(config.contentDirs);
+
+    // Bundle immediately after generating
+    const result = await Bun.build({
+      entrypoints: ["src/main.ts"],
+      target: "browser",
+    });
+    const output = result.outputs[0];
+    if (output) {
+      bundleCache.set(id, { js: await output.arrayBuffer(), timestamp: Date.now() });
+    }
+    console.log(`Cached bundle for ${config.name}`);
+  }
+}
+
+const graph = isProduction ? createGraph() : null;
+const nodeMap = graph ? new Map(graph.nodes.map((n) => [n.id, n])) : null;
 
 function contentPage(id: string, html: string): string {
-  const node = nodeMap.get(id);
-  const title = node?.label ?? id;
+  const title = nodeMap?.get(id)?.label ?? id;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,19 +92,44 @@ const server = Bun.serve({
   port: 3000,
   async fetch(req) {
     const url = new URL(req.url);
-    let path = url.pathname === "/" ? "/index.html" : url.pathname;
+    let path = url.pathname;
 
-    // In dev, serve TS files as bundled JS
-    if (!isProduction && path === "/main.js") {
-      const result = await Bun.build({
-        entrypoints: ["src/main.ts"],
-        target: "browser",
-      });
-      const output = result.outputs[0];
-      if (output) {
-        return new Response(output.stream(), {
-          headers: { "Content-Type": "application/javascript" },
-        });
+    // Detect collection from path prefix
+    let collectionId: CollectionId = "default";
+    for (const id of Object.keys(siteConfig.collections) as CollectionId[]) {
+      if (id !== "default" && (path === `/${id}` || path === `/${id}/` || path.startsWith(`/${id}/`))) {
+        collectionId = id;
+        break;
+      }
+    }
+
+    // Serve collection entry points
+    if (collectionId !== "default" && (path === `/${collectionId}` || path === `/${collectionId}/`)) {
+      path = `/${collectionId}/index.html`;
+    } else if (path === "/") {
+      path = "/index.html";
+    }
+
+    // Serve collection-specific JS bundles
+    if (!isProduction) {
+      // /main.js → default bundle, /<collection>/main.js → collection bundle
+      if (path === "/main.js") {
+        const cached = bundleCache.get("default");
+        if (cached) {
+          return new Response(cached.js, {
+            headers: { "Content-Type": "application/javascript" },
+          });
+        }
+      }
+      for (const id of Object.keys(siteConfig.collections) as CollectionId[]) {
+        if (id !== "default" && path === `/${id}/main.js`) {
+          const cached = bundleCache.get(id);
+          if (cached) {
+            return new Response(cached.js, {
+              headers: { "Content-Type": "application/javascript" },
+            });
+          }
+        }
       }
     }
 
@@ -92,7 +138,7 @@ const server = Bun.serve({
       return new Response(file);
     }
 
-    // Fallback: try serving as a content page (supports category/slug paths)
+    // Fallback: try serving as a content page
     const slug = path.replace(/^\/|\/$/g, "");
     if (slug) {
       const mdFile = Bun.file(`${dir}/content/${slug}.md`);

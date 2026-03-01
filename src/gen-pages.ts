@@ -1,8 +1,8 @@
-import { readdir, mkdir, readFile, stat } from "node:fs/promises";
-import { join } from "path";
+import { mkdir, readFile } from "node:fs/promises";
 import { parseMarkdown } from "./markdown";
 import { parseFrontmatter, stripFrontmatter } from "./frontmatter";
 import { siteConfig } from "./site-config";
+import { findMarkdownFiles, CONTENT_DIR } from "./content";
 
 function pageHtml(
   id: string,
@@ -71,30 +71,8 @@ ${body}
 </html>`;
 }
 
-const contentDir = join(import.meta.dir, "../public/content");
-
-async function findMarkdownFiles(dir: string, prefix = ""): Promise<{ id: string; path: string }[]> {
-  const entries = await readdir(dir);
-  const results: { id: string; path: string }[] = [];
-
-  for (const entry of entries) {
-    const fullPath = join(dir, entry);
-    const entryStat = await stat(fullPath);
-
-    if (entryStat.isDirectory()) {
-      const subResults = await findMarkdownFiles(fullPath, prefix ? `${prefix}/${entry}` : entry);
-      results.push(...subResults);
-    } else if (entry.endsWith(".md")) {
-      const basename = entry.replace(/\.md$/, "");
-      const id = prefix ? `${prefix}/${basename}` : basename;
-      results.push({ id, path: fullPath });
-    }
-  }
-
-  return results;
-}
-
-const files = await findMarkdownFiles(contentDir);
+export async function generatePages(): Promise<void> {
+const files = await findMarkdownFiles(CONTENT_DIR);
 
 let count = 0;
 for (const { id, path } of files) {
@@ -113,3 +91,9 @@ for (const { id, path } of files) {
 }
 
 console.log(`generated ${count} content pages`);
+}
+
+// Standalone entry point
+if (import.meta.path === Bun.main) {
+  await generatePages();
+}

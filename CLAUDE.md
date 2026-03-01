@@ -10,13 +10,20 @@ Pteraworld is a personal portfolio website that renders projects as a spatial, z
 
 ```bash
 bun install          # install dependencies
-bun run dev          # dev server at localhost:3000
-bun run build        # generate graph + bundle with minification to dist/
+bun run dev          # dev server at localhost:3000 (all collections)
+bun run build        # build all collections to dist/
 bun run preview      # preview production build locally
 bun lint             # oxlint on src/
 bun check:types      # type check with tsgo (native TS compiler)
-bun run gen-edges    # regenerate src/generated-graph.ts from markdown files
 bun run inspect      # ASCII scatter plot + collision report for current layout
+```
+
+All commands route through `src/cli.ts`. Direct subcommands:
+```bash
+bun run src/cli.ts graph [dirs...]          # generate graph for specific dirs
+bun run src/cli.ts headings [dirs...]       # extract headings for specific dirs
+bun run src/cli.ts pages                    # generate static HTML content pages
+bun run src/cli.ts build --collection <id>  # build a single collection
 ```
 
 ## Architecture
@@ -29,7 +36,9 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 
 - `graph.ts` - node/edge data model (interfaces + `createGraph()`). Imports auto-generated nodes and edges from `generated-graph.ts`
 - `frontmatter.ts` - zero-dep YAML frontmatter parser for build-time use
-- `gen-graph.ts` - build-time script that reads `public/content/**/*.md` frontmatter + `## Related projects` links, computes layout (positions, colors), generates groupings, and writes `src/generated-graph.ts` + `src/generated-groupings.ts`
+- `cli.ts` - unified CLI entry point, orchestrates build/graph/headings/pages/inspect/dev commands
+- `content.ts` - shared content utilities (`findMarkdownFiles`), single source of truth for directory walking
+- `gen-graph.ts` - build-time script that reads `public/content/**/*.md` frontmatter + `## Related projects` links, computes layout (positions, colors), generates groupings, and writes `src/generated-graph.ts` + `src/generated-groupings.ts`. Accepts directory list to scope content
 - `groupings.ts` - grouping interfaces + imports generated grouping data. Groupings (ecosystem, domain, tech, status) are derived from content: `domain/`, `technology/`, `status/` markdown files define regions, node tags/status determine membership
 - `camera.ts` - camera state (x, y, zoom) and tier system. Screen-to-world coordinate conversion
 - `dom.ts` - DOM construction, CSS transform animations, focus/hover state
