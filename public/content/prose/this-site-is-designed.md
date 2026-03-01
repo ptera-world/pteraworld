@@ -1,7 +1,7 @@
 ---
 label: "this site is designed."
 description: "every pixel is a decision.\nevery compromise is intentional."
-tags: [design]
+tags: [design, introspective]
 cluster: meta-essays
 ---
 

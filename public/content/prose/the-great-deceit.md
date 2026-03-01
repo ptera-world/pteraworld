@@ -1,7 +1,7 @@
 ---
 label: "the great deceit"
 description: "every word here was written by an AI.\nwhat does that change?"
-tags: [ai, social]
+tags: [ai, social, introspective]
 cluster: meta-essays
 ---
 

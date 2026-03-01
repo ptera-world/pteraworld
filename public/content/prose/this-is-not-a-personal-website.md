@@ -1,7 +1,7 @@
 ---
 label: "this is not a personal website."
 description: "it looks like one.\nbut it's one facet of a person, not the person."
-tags: [identity, design]
+tags: [identity, design, introspective]
 cluster: meta-essays
 ---
 

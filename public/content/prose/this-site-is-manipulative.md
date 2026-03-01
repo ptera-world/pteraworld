@@ -1,7 +1,7 @@
 ---
 label: "this site is manipulative."
 description: "and that's not an accident.\nit's the point."
-tags: [design, social]
+tags: [design, social, introspective]
 cluster: meta-essays
 ---
 

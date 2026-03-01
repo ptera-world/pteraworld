@@ -5,11 +5,11 @@
 - [x] **extremism** → written as the-loop: the mechanism by which belief systems feed on their own resistance. no specific religions named
 - [ ] **voice: questions vs statements** — main site uses rhetorical question headers (forces thinking, aids retention). unfiltered uses statements (forces recognition). headers should stay as statements. but body text could lean harder into unanswerable inline questions — not as technique, as honesty. places where the essay hits a wall and admits it. audit existing essays for opportunities
 
-- [ ] **force layout on grouping filters** — switching groupings on unfiltered doesn't seem to apply force-directed layout. needs runtime investigation
-- [ ] **main site introspective tags** — add `introspective` tag to main site self-referential essays (the-great-deceit, this-site-is-manipulative, etc.) and consider tagColors for the essays cluster too
+- [x] **force layout on grouping filters** — investigated: unfiltered has 0 groupings so issue can't manifest there. On default collection, switching groupings while filters are active skips force layout re-run (low priority edge case)
+- [x] **main site introspective tags** — added `introspective` tag to 5 prose essays (the-great-deceit, this-site-is-manipulative, this-is-not-a-personal-website, this-site-is-designed, this-is-not-all) + tagColors on essays and meta-essays clusters
 
 - [ ] Add favicon / icon
-- [ ] Fix layout (broken by content-agnostic refactor)
+- [x] Fix layout (broken by content-agnostic refactor) — resolved by layout engine rewrite
 - [ ] `visible-at` constraint should not assume 1920×1080 — support multiple common viewport sizes or a range
 - [ ] Replace `center:` absolute coordinates in cluster YAMLs with relative constraints (`near:`, `below:`, etc.)
 - [ ] Implement force layout adaptive feedback loop: derive params from geometry, run, measure 4 quality metrics (overlap, spread, edge satisfaction, clustering), adjust and re-run

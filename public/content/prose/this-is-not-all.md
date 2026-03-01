@@ -1,7 +1,7 @@
 ---
 label: "this is not all."
 description: "and it will never be."
-tags: [social, design]
+tags: [social, design, introspective]
 ---
 
 # This is not all.
