@@ -137,3 +137,20 @@ Force layout parameters are **never user-facing**. They are derived from the clu
 5. Apply the best-scoring result across all attempts
 
 The four metrics each have directional fixes: overlaps → more repulsion; poor edge satisfaction → more attraction; poor clustering → more attraction relative to repulsion; no cohesion → stronger gravity.
+
+## Session Handoff
+
+Use plan mode as a handoff mechanism when:
+- A task is fully complete (committed, pushed, docs updated)
+- The session has drifted from its original purpose
+- Context has accumulated enough that a fresh start would help
+
+Before entering plan mode:
+- Update TODO.md with any remaining work
+- Update memory files with anything worth preserving across sessions
+
+Then enter plan mode and write a plan file that either:
+- Proposes the next task if it's clear: "next up: X — see TODO.md"
+- Flags that direction is needed: "task complete / session drifted — see TODO.md"
+
+ExitPlanMode hands control back to the user to approve, redirect, or stop.
