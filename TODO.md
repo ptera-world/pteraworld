@@ -5,6 +5,9 @@
 - [x] **extremism** → written as the-loop: the mechanism by which belief systems feed on their own resistance. no specific religions named
 - [ ] **voice: questions vs statements** — main site uses rhetorical question headers (forces thinking, aids retention). unfiltered uses statements (forces recognition). headers should stay as statements. but body text could lean harder into unanswerable inline questions — not as technique, as honesty. places where the essay hits a wall and admits it. audit existing essays for opportunities
 
+- [ ] **force layout on grouping filters** — switching groupings on unfiltered doesn't seem to apply force-directed layout. needs runtime investigation
+- [ ] **main site introspective tags** — add `introspective` tag to main site self-referential essays (the-great-deceit, this-site-is-manipulative, etc.) and consider tagColors for the essays cluster too
+
 - [ ] Add favicon / icon
 - [ ] Fix layout (broken by content-agnostic refactor)
 - [ ] `visible-at` constraint should not assume 1920×1080 — support multiple common viewport sizes or a range
