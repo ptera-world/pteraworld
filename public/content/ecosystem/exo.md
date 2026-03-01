@@ -1,6 +1,7 @@
 ---
 label: "exo"
 description: "places to exist"
+tier: region
 url: https://docs.exo.place
 color: "oklch(0.7 0.12 320)"
 ---

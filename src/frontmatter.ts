@@ -40,27 +40,9 @@ export function parseFrontmatter(src: string): Frontmatter | null {
   return result as Frontmatter;
 }
 
-/** Infer tier from content directory path. */
-export function inferTier(category: string): "region" | "artifact" | "meta" | null {
-  switch (category) {
-    case "ecosystem":
-      return "region";
-    case "project":
-    case "prose":
-      return "artifact";
-    case "meta":
-      return "meta";
-    default:
-      return null;
-  }
-}
-
-/** Infer auto-tags based on category and tier. */
-export function inferTags(category: string, tier: string): string[] {
-  const auto: string[] = [];
-  if (tier === "artifact" && category !== "prose") auto.push("code");
-  if (tier === "region") auto.push("region");
-  if (tier === "meta") auto.push("meta");
-  if (category === "prose") auto.push("essay");
-  return auto;
+/** Infer auto-tags from tier. Only adds structural tags (region, meta). */
+export function inferStructuralTags(tier: string): string[] {
+  if (tier === "region") return ["region"];
+  if (tier === "meta") return ["meta"];
+  return [];
 }

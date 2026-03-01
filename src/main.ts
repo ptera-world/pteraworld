@@ -8,12 +8,14 @@ import { createFilter, buildFilterUI, applyFilter, getVisibleIds, setActive } fr
 import { runLayout, resetLayout } from "./layout";
 import { createMinimap } from "./minimap";
 import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl } from "./grouping-state";
+import { siteConfig, getActiveCollection } from "./site-config";
 
 const camera = createCamera();
 const graph = createGraph();
 
-// Center camera on the meta node (landing) if present
-const metaNode = graph.nodes.find((n) => n.tier === "meta");
+// Center camera on the active collection's meta node
+const collectionMeta = siteConfig.collections[getActiveCollection()];
+const metaNode = graph.nodes.find((n) => n.id === collectionMeta.metaNodeId);
 if (metaNode) { camera.x = metaNode.x; camera.y = metaNode.y; }
 
 // Disable transitions during initial setup

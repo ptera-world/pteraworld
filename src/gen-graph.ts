@@ -7,7 +7,7 @@
 import { readdir, readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 import { parse as parseYaml } from "yaml";
-import { parseFrontmatter, stripFrontmatter, inferTier, inferTags } from "./frontmatter";
+import { parseFrontmatter, stripFrontmatter, inferStructuralTags } from "./frontmatter";
 import { type Point, convexHull, expandHull, filterOutliers, hullSeparation } from "./hull";
 
 const contentDir = join(import.meta.dir, "../public/content");
@@ -113,6 +113,12 @@ interface ClusterConfig {
   ringRadius?: number;
   // Optional extra padding around cluster when computing clearance from other groups
   padding?: number;
+  // Content directories whose parentless nodes belong to this cluster
+  directories?: string[];
+  // Default tier for nodes from those directories (default: "artifact")
+  tier?: "region" | "artifact" | "meta";
+  // Auto-tags applied to nodes from those directories
+  autoTags?: string[];
 }
 
 interface ForceParams {
@@ -259,6 +265,9 @@ for (const { id, path, category } of allFiles) {
     near: raw.near != null ? String(raw.near) : undefined,
     ringRadius: raw.ringRadius != null ? Number(raw.ringRadius) : undefined,
     padding: raw.padding != null ? Number(raw.padding) : undefined,
+    directories: Array.isArray(raw.directories) ? raw.directories.map(String) : undefined,
+    tier: raw.tier != null ? (raw.tier as "region" | "artifact" | "meta") : undefined,
+    autoTags: Array.isArray(raw.autoTags) ? raw.autoTags.map(String) : undefined,
   });
 }
 
@@ -266,17 +275,16 @@ for (const { id, path, category } of allFiles) {
 // 3. Parse all content files
 // ---------------------------------------------------------------------------
 
-/** Infer which layout cluster a rootless artifact node belongs to. */
-function inferCluster(category: string, tier: string, parent?: string): string | undefined {
-  if (parent) return undefined; // positioned by parent region
-  if (tier !== "artifact") return undefined;
-  if (category === "prose") return "essays";
-  if (category === "project") return "orphans";
-  return undefined;
+// Build directory→cluster lookup from cluster configs (data-driven, no hardcoding)
+const dirToCluster = new Map<string, ClusterConfig>();
+for (const config of clusterConfigs.values()) {
+  if (config.directories) {
+    for (const dir of config.directories) {
+      dirToCluster.set(dir, config);
+    }
+  }
 }
 
-// Content-only directories: don't become nodes unless they have tier: in frontmatter
-const CONTENT_ONLY_DIRS = new Set(["domain", "technology", "status"]);
 // Config-only directories: parsed for config, not nodes
 const CONFIG_ONLY_DIRS = new Set(["cluster"]);
 
@@ -289,18 +297,25 @@ for (const { id, path, category } of files) {
   const fm = parseFrontmatter(text);
   if (!fm) continue;
 
-  // Skip content-only dirs unless they explicitly set tier
-  if (CONTENT_ONLY_DIRS.has(category) && !fm.tier) continue;
-
-  const tier = fm.tier ?? inferTier(category);
+  // Resolve tier: frontmatter > cluster config > skip
+  const clusterForDir = dirToCluster.get(category);
+  const tier = fm.tier ?? clusterForDir?.tier ?? null;
   if (!tier) continue;
 
-  const autoTags = inferTags(category, tier);
+  // Resolve cluster: frontmatter > directory lookup (parentless artifacts only)
+  const cluster = fm.cluster ?? (
+    !fm.parent && tier === "artifact" && clusterForDir ? clusterForDir.id : undefined
+  );
+
+  // Resolve tags: structural tags from tier + cluster auto-tags + user tags
+  const autoTags = [
+    ...inferStructuralTags(tier),
+    ...(clusterForDir?.autoTags ?? []),
+  ];
   const userTags = fm.tags ?? [];
   const allTags = [...new Set([...autoTags, ...userTags])];
 
   const radius = fm.radius ?? radiusFromStatus(fm.status);
-  const cluster = fm.cluster ?? inferCluster(category, tier, fm.parent);
 
   nodes.push({
     id,
@@ -331,8 +346,10 @@ interface GroupingRegionDef {
 
 const groupingRegions: GroupingRegionDef[] = [];
 
+// Grouping regions: files that aren't graph nodes (no tier from frontmatter or cluster config)
+// and aren't cluster configs. These define grouping views (domain, technology, status).
 for (const { id, path, category } of files) {
-  if (!CONTENT_ONLY_DIRS.has(category)) continue;
+  if (nodeIds.has(id)) continue; // already a graph node
   const text = await readFile(path, "utf-8");
   const fm = parseFrontmatter(text);
   if (!fm) continue;

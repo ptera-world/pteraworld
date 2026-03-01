@@ -144,7 +144,7 @@ for (const [clusterId, members] of clusterMap) {
 // Draw all artifact nodes as filled area disks
 // prose = ·  orphan (parentless non-prose) = O  ecosystem child = first letter of label uppercase
 for (const n of artifacts) {
-  const ch = n.id.startsWith("prose/") ? "·"
+  const ch = n.tags.includes("essay") ? "·"
     : !n.parent ? "O"
     : n.label[0]?.toUpperCase() ?? "?";
   fgArea(n.x, n.y, n.radius, ch);

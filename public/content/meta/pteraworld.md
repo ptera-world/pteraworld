@@ -1,6 +1,7 @@
 ---
 label: "ptera"
 description: "i think about how software and people shape each other."
+tier: meta
 ---
 
 a map of things i've been exploring. projects, questions, ecosystems - positioned because of how they relate, not listed because of when they happened.

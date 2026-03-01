@@ -3,7 +3,7 @@ import { currentTier } from "./camera";
 import type { Graph, Node } from "./graph";
 import type { FilterState } from "./filter";
 import { updateMinimap } from "./minimap";
-import { siteConfig } from "./site-config";
+import { siteConfig, getActiveCollection } from "./site-config";
 
 const viewport = document.getElementById("viewport")!;
 export const worldEl = document.getElementById("world")!;
@@ -41,14 +41,15 @@ export function buildWorld(graph: Graph): void {
   // Landing intro
   landingEl = document.createElement("div");
   landingEl.className = "landing";
-  const metaNode = graph.nodes.find((n) => n.id === siteConfig.metaNodeId);
+  const collection = siteConfig.collections[getActiveCollection()];
+  const metaNode = graph.nodes.find((n) => n.id === collection.metaNodeId);
   landingEl.innerHTML =
-    `<div class="landing-name">${metaNode?.label ?? siteConfig.name}</div>` +
+    `<div class="landing-name">${metaNode?.label ?? collection.name}</div>` +
     `<div class="landing-body">${metaNode?.description ?? ""}</div>` +
     `<div class="landing-trail">this is a map of things i've been exploring.</div>` +
     `<div class="landing-hint">scroll to zoom · click to explore · <kbd>/</kbd> to search</div>`;
   worldEl.appendChild(landingEl);
-  nodeEls.set(siteConfig.metaNodeId, landingEl);
+  nodeEls.set(collection.metaNodeId, landingEl);
 
   // Edges (behind nodes) — SVG lines for CSS-transitionable coordinates
   const SVG_NS = "http://www.w3.org/2000/svg";
@@ -83,7 +84,7 @@ export function buildWorld(graph: Graph): void {
     const el = document.createElement("div");
     el.className = `node ${node.tier}`;
     el.dataset.id = node.id;
-    if (node.id.startsWith("prose/")) el.dataset.kind = "essay";
+    if (node.tags.includes("essay")) el.dataset.kind = "essay";
     el.style.left = `${node.x}px`;
     el.style.top = `${node.y}px`;
     el.style.setProperty("--color", node.color);
