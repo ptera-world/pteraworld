@@ -1,22 +1,22 @@
 ---
-label: "the inheritance."
+label: "the damage passes down."
 description: "the damage passes down.\nthe blame doesn't land cleanly."
 tags: [social, identity]
 ---
 
-# The inheritance.
+# The damage passes down.
 
-[the template](/unfiltered/the-template) talks about what kids absorb by watching — the shape of a day, the rhythm of the grind, the pattern they inherit without anyone teaching it. this essay is about something sharper. what happens when the parenting itself does damage.
+[the template](/unfiltered/kids-learn-what-a-life-looks-like) talks about what kids absorb by watching — the shape of a day, the rhythm of the grind, the pattern they inherit without anyone teaching it. this essay is about something sharper. what happens when the parenting itself does damage.
 
 ## what damage looks like
 
-neglect. not always dramatic. sometimes it's the parent who's there but not there. the parent on the phone. the parent who responds to every question with "not now." the parent whose attention is so fully consumed by [the grind](/unfiltered/the-grind) and [the shelf](/unfiltered/the-shelf) that the child learns, early: my needs are an interruption. what I feel is less important than what they're dealing with.
+neglect. not always dramatic. sometimes it's the parent who's there but not there. the parent on the phone. the parent who responds to every question with "not now." the parent whose attention is so fully consumed by [the grind](/unfiltered/the-system-filled-every-gap-you-had) and [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) that the child learns, early: my needs are an interruption. what I feel is less important than what they're dealing with.
 
 the child doesn't learn this in words. they learn it in pauses. in the time it takes for the parent to look up. in the sigh before the response. in the difference between "i see you" and "what now." the data is in the microseconds, and children are extraordinary at reading microseconds.
 
-anger. the parent whose frustration — at [the job](/unfiltered/the-job), at [the gate](/unfiltered/the-gate), at the thing that broke — lands on the nearest target. not necessarily violence. sometimes it's the tone. the impatience that tells the child: you are the last straw, not the first priority. the child learns to be small. to not need things. to [flinch](/unfiltered/the-scar) before the voice gets loud.
+anger. the parent whose frustration — at [the job](/unfiltered/your-best-hours-belong-to-someone-else), at [the gate](/unfiltered/every-freedom-is-a-money-problem), at the thing that broke — lands on the nearest target. not necessarily violence. sometimes it's the tone. the impatience that tells the child: you are the last straw, not the first priority. the child learns to be small. to not need things. to [flinch](/unfiltered/the-wound-heals-the-flinch-doesnt) before the voice gets loud.
 
-control. the parent who manages their own anxiety by managing the child. every choice made for them. every deviation corrected. every expression of self met with redirection toward the acceptable. the child learns that being themselves is a problem to be solved. they get very good at [being someone else](/unfiltered/the-shelf).
+control. the parent who manages their own anxiety by managing the child. every choice made for them. every deviation corrected. every expression of self met with redirection toward the acceptable. the child learns that being themselves is a problem to be solved. they get very good at [being someone else](/unfiltered/the-parts-of-yourself-you-put-away).
 
 hovering. the parent who does the opposite of absence — who's so terrified of what might happen that they never let the child fail, choose, or navigate anything alone. every risk pre-empted. every decision pre-made. the child is safe and has no idea who they are, because finding out who you are requires friction, and the parent removed all of it. the child learns that the world is dangerous and they're not equipped for it. both lessons were taught by the protection itself.
 
@@ -28,15 +28,15 @@ absence. the parent who isn't there — working, gone, checked out, dealing with
 
 the child carries it forward. not as memory — as structure.
 
-the neglected child becomes the adult who doesn't ask for help. who assumes their needs are too much. who [people-pleases](/unfiltered/the-scar) because if they make themselves useful enough, maybe they'll earn the attention that should have been given freely.
+the neglected child becomes the adult who doesn't ask for help. who assumes their needs are too much. who [people-pleases](/unfiltered/the-wound-heals-the-flinch-doesnt) because if they make themselves useful enough, maybe they'll earn the attention that should have been given freely.
 
-the child of anger becomes the adult who scans every room. whose [hypervigilance](/unfiltered/the-scar) is so practiced it looks like intuition. who can read a mood shift from across a building and adjust before anyone else notices something changed.
+the child of anger becomes the adult who scans every room. whose [hypervigilance](/unfiltered/the-wound-heals-the-flinch-doesnt) is so practiced it looks like intuition. who can read a mood shift from across a building and adjust before anyone else notices something changed.
 
 the controlled child becomes the adult who doesn't know what they want. who's so good at reading expectations that they lost track of their own preferences. who can't answer "what do you want for dinner?" without calculating the right answer.
 
 the abandoned child becomes the adult who leaves first. or clings. or both, alternating, never trusting that someone staying is real.
 
-these aren't personality traits. they're [scars](/unfiltered/the-scar). they're the patterns the child built to survive the environment the parent created. and the patterns persist decades after the environment ends.
+these aren't personality traits. they're [scars](/unfiltered/the-wound-heals-the-flinch-doesnt). they're the patterns the child built to survive the environment the parent created. and the patterns persist decades after the environment ends.
 
 ## when there's no one to blame
 
@@ -56,11 +56,11 @@ the blame question doesn't always have a villain. sometimes it just has a situat
 
 here's where it gets complicated.
 
-the parent who neglected was probably [running on empty](/unfiltered/the-grind). the parent who raged was probably carrying damage they never had the resources to process. the parent who controlled was probably terrified — of the world, of their own history, of what might happen if they let go. the parent who was absent was probably absent for reasons the child couldn't see: [the job](/unfiltered/the-job), their own [shelf](/unfiltered/the-shelf), their own [scar](/unfiltered/the-scar), their own unmet needs.
+the parent who neglected was probably [running on empty](/unfiltered/the-system-filled-every-gap-you-had). the parent who raged was probably carrying damage they never had the resources to process. the parent who controlled was probably terrified — of the world, of their own history, of what might happen if they let go. the parent who was absent was probably absent for reasons the child couldn't see: [the job](/unfiltered/your-best-hours-belong-to-someone-else), their own [shelf](/unfiltered/the-parts-of-yourself-you-put-away), their own [scar](/unfiltered/the-wound-heals-the-flinch-doesnt), their own unmet needs.
 
 the damage to the child is real. the parent's own damage is also real. both things are true at the same time.
 
-the parent inherited [the template](/unfiltered/the-template) from their own parents. they're running the pattern that was installed in them. the rage they carry might be their parent's rage, passed down. the absence might be the same absence they experienced. the control might be the only alternative they knew to the chaos they grew up in. each generation receives the damage and transmits it, modified by their circumstances but rarely resolved.
+the parent inherited [the template](/unfiltered/kids-learn-what-a-life-looks-like) from their own parents. they're running the pattern that was installed in them. the rage they carry might be their parent's rage, passed down. the absence might be the same absence they experienced. the control might be the only alternative they knew to the chaos they grew up in. each generation receives the damage and transmits it, modified by their circumstances but rarely resolved.
 
 this doesn't mean the blame doesn't exist. it means the blame doesn't land cleanly on one person. it distributes across a chain — parent to parent to parent, each one both damaged and damaging, each one doing what they could with what they had, each one falling short in ways their children will carry.
 
@@ -68,7 +68,7 @@ this doesn't mean the blame doesn't exist. it means the blame doesn't land clean
 
 the system makes it worse. every part of it.
 
-[the grind](/unfiltered/the-grind) takes the hours that parenting needs. [the benefit](/unfiltered/the-benefit) limits the therapy that could break the cycle. [the gate](/unfiltered/the-gate) keeps the family in conditions that produce stress. [the pipeline](/unfiltered/the-pipeline) doesn't teach parenting, emotional awareness, or conflict resolution — it teaches compliance.
+[the grind](/unfiltered/the-system-filled-every-gap-you-had) takes the hours that parenting needs. [the benefit](/unfiltered/the-system-monetized-the-damage) limits the therapy that could break the cycle. [the gate](/unfiltered/every-freedom-is-a-money-problem) keeps the family in conditions that produce stress. [the pipeline](/unfiltered/school-was-never-about-learning) doesn't teach parenting, emotional awareness, or conflict resolution — it teaches compliance.
 
 a parent who's exhausted, stressed, carrying unprocessed trauma, financially strained, and never taught how to parent — what exactly is the expected outcome? the system set the conditions. the parent ran the pattern. the child received the result.
 
@@ -78,19 +78,19 @@ sometimes the answer is: the parent made choices that caused harm, and those cho
 
 ## the child's work
 
-the child doesn't get to choose the inheritance. sometimes — if they're lucky, if they have enough distance, enough safety, enough of the resources [the benefit](/unfiltered/the-benefit) rations — they get to see the pattern for what it is. and then the work starts: undoing damage you didn't cause, debugging patterns you didn't install. that's not fair. it shouldn't be yours. but it is.
+the child doesn't get to choose the inheritance. sometimes — if they're lucky, if they have enough distance, enough safety, enough of the resources [the benefit](/unfiltered/the-system-monetized-the-damage) rations — they get to see the pattern for what it is. and then the work starts: undoing damage you didn't cause, debugging patterns you didn't install. that's not fair. it shouldn't be yours. but it is.
 
 and sometimes they don't get there. sometimes the distance never comes. the pattern is too deep, the resources too thin, the damage too early. they run the inheritance forward — not because they chose to, but because they never got the conditions that would let them see it as a choice. they become the next parent in the chain, transmitting what was transmitted to them, and the cycle continues not out of failure but out of never having had the chance to interrupt it.
 
-[healing](/unfiltered/the-scar) from this — for the ones who get the chance — is the hardest kind. it means looking at the people who were supposed to protect you and seeing both the damage they caused and the damage they carried. it means holding anger and compassion in the same hand. it means the blame question never resolving cleanly, and learning to live with that.
+[healing](/unfiltered/the-wound-heals-the-flinch-doesnt) from this — for the ones who get the chance — is the hardest kind. it means looking at the people who were supposed to protect you and seeing both the damage they caused and the damage they carried. it means holding anger and compassion in the same hand. it means the blame question never resolving cleanly, and learning to live with that.
 
 and it means the possibility — not the guarantee, not even the likelihood — of being the generation that transmits something different.
 
 ## See also
 
-- [the template](/unfiltered/the-template) - what kids absorb by watching
-- [the scar](/unfiltered/the-scar) - the patterns the child builds to survive
-- [the shelf](/unfiltered/the-shelf) - what the parent puts away, the child senses anyway
-- [the grind](/unfiltered/the-grind) - the structure that takes the parent's hours
-- [the benefit](/unfiltered/the-benefit) - the limited budget for breaking the cycle
-- [the pipeline](/unfiltered/the-pipeline) - the school that doesn't teach parenting
+- [the template](/unfiltered/kids-learn-what-a-life-looks-like) - what kids absorb by watching
+- [the scar](/unfiltered/the-wound-heals-the-flinch-doesnt) - the patterns the child builds to survive
+- [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - what the parent puts away, the child senses anyway
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the structure that takes the parent's hours
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - the limited budget for breaking the cycle
+- [the pipeline](/unfiltered/school-was-never-about-learning) - the school that doesn't teach parenting

@@ -73,6 +73,10 @@ Single-page app with no framework. All source is in `src/` (~1,200 lines). Conte
 - Tier and cluster assignment are data-driven: cluster configs in `public/content/cluster/*.md` declare which `directories` they own, what `tier` and `autoTags` to apply. Files without a cluster or explicit `tier:` in frontmatter are content-only (grouping regions, etc.)
 - Structural tiers (region, meta) are declared in each file's frontmatter (`tier: region`, `tier: meta`)
 
+## Essay content index
+
+`CONTENT.md` at the repo root is a thematic index of all 74 essays (49 prose + 25 unfiltered), organized into 7 thematic clusters with per-essay one-line summaries, cross-collection resonance pairings, and non-obvious connections. Consult it when asked about essay themes or cross-essay relationships — do not re-read individual essays to answer questions that the index already covers.
+
 ## Essay voice — prose/* files
 
 **Peer voice, not authoritative.** The essays speak alongside the reader, not above them.

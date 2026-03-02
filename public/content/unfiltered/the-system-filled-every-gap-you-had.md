@@ -1,12 +1,12 @@
 ---
-label: "the grind."
+label: "the system filled every gap you had."
 description: "you can have the means and still have nothing."
 tags: [social, identity]
 ---
 
-# The grind.
+# The system filled every gap you had.
 
-[the floor](/unfiltered/the-floor) talks about the pyramid — the stack of prerequisites between you and "be yourself." safety, time, capacity, language, platform. the crossfire takes all of it from the people at the bottom.
+[the floor](/unfiltered/nobody-told-you-there-were-prerequisites) talks about the pyramid — the stack of prerequisites between you and "be yourself." safety, time, capacity, language, platform. the crossfire takes all of it from the people at the bottom.
 
 but the crossfire isn't the only thing that takes it.
 
@@ -48,7 +48,7 @@ and the kids learn what a life looks like by watching. what they see is: you gro
 
 ## not the same as the crossfire
 
-this isn't the same as [the silence](/unfiltered/the-silence). the person in the crossfire can't speak because survival took everything. the person in the grind can technically speak — they have the means, the literacy, the device. they just don't have any self left to speak *from*. the crossfire takes your capacity through violence. the grind takes it through scheduling.
+this isn't the same as [the silence](/unfiltered/expression-has-a-cost-floor). the person in the crossfire can't speak because survival took everything. the person in the grind can technically speak — they have the means, the literacy, the device. they just don't have any self left to speak *from*. the crossfire takes your capacity through violence. the grind takes it through scheduling.
 
 different mechanisms. same silence. the person at the bottom can't write because they're surviving. the person in the middle can't write because they're maintaining. the person who actually writes is the person who somehow has a gap — and gaps are increasingly rare at every level.
 
@@ -60,13 +60,13 @@ and if you're drowning — if the person behind all of it is slowly disappearing
 
 except it's not. it's a million people's problem. and they're all too tired to compare notes.
 
-and when the grind finally breaks something — when the burnout hits, when the anxiety becomes chronic, when you stop being able to feel things — [the system has a response for that too](/unfiltered/the-benefit). it's in your benefits package. between dental and the 401k match.
+and when the grind finally breaks something — when the burnout hits, when the anxiety becomes chronic, when you stop being able to feel things — [the system has a response for that too](/unfiltered/the-system-monetized-the-damage). it's in your benefits package. between dental and the 401k match.
 
 ## See also
 
-- [the floor](/unfiltered/the-floor) - the prerequisites nobody mentions
-- [the silence](/unfiltered/the-silence) - the version where you can't afford to speak at all
-- [the benefit](/unfiltered/the-benefit) - the system monetized the damage it causes
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the prerequisites nobody mentions
+- [the silence](/unfiltered/expression-has-a-cost-floor) - the version where you can't afford to speak at all
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - the system monetized the damage it causes
 - [why this exists](/unfiltered/why-this-exists) - why the neutral voice couldn't say this
 - [what's actually wrong?](/prose/whats-actually-wrong) - the version that describes the systems without naming the cost
 - [what's the purpose of life?](/prose/whats-the-purpose-of-life) - "be yourself" — when?

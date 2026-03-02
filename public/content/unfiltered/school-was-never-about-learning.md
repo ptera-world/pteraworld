@@ -1,10 +1,10 @@
 ---
-label: "the pipeline."
+label: "school was never about learning."
 description: "school's job isn't learning.\nit never was."
 tags: [social, identity]
 ---
 
-# The pipeline.
+# School was never about learning.
 
 school's stated goal is education. teaching you things. preparing you for the world.
 
@@ -20,9 +20,9 @@ school does several things. learning is one of them, and not the primary one.
 
 **credentialing.** the degree isn't proof that you learned. it's proof that you completed. you sat in the seats, did the assignments, passed the tests. the credential is what employers check. not what you know — that you finished. the system converts years of your life into a line on a resume.
 
-**compliance training.** sit in this room for six hours. do what you're told. ask permission to use the bathroom. raise your hand before speaking. follow the schedule someone else set. don't question why the schedule is what it is. the structure of school is the structure of [the job](/unfiltered/the-job), just smaller. by the time you enter the workforce, the pattern is so deep you don't notice it's a pattern.
+**compliance training.** sit in this room for six hours. do what you're told. ask permission to use the bathroom. raise your hand before speaking. follow the schedule someone else set. don't question why the schedule is what it is. the structure of school is the structure of [the job](/unfiltered/your-best-hours-belong-to-someone-else), just smaller. by the time you enter the workforce, the pattern is so deep you don't notice it's a pattern.
 
-**daycare.** parents need to work. kids need to be somewhere. school is where kids go while parents are [at the job](/unfiltered/the-job). this isn't cynical — it's structural. the economy requires two working parents. two working parents require somewhere for kids to be for eight hours. school is that somewhere. the educational mission is real but it's layered on top of a logistical necessity.
+**daycare.** parents need to work. kids need to be somewhere. school is where kids go while parents are [at the job](/unfiltered/your-best-hours-belong-to-someone-else). this isn't cynical — it's structural. the economy requires two working parents. two working parents require somewhere for kids to be for eight hours. school is that somewhere. the educational mission is real but it's layered on top of a logistical necessity.
 
 **socialization.** learning to be around other people. navigating groups, hierarchies, conflict, collaboration. this one is real and valuable. but it doesn't require the rest of the structure. kids socialize in every context where other kids exist. the school's specific contribution is socializing you into a specific kind of hierarchy — one with authorities, rules, rankings, and the expectation of compliance. you learn to be around people, yes. you learn to be around people *within a system*.
 
@@ -34,9 +34,9 @@ school does several things. learning is one of them, and not the primary one.
 
 **as credentialing:** effectively, by design. the credential works because everyone agrees it works. the degree opens doors not because it proves competence but because the doors are calibrated to require it. this is circular and self-sustaining. you need the degree because the job requires it. the job requires it because everyone has one. everyone has one because the job requires it.
 
-**as compliance training:** very effectively. this is arguably school's most successful output. after twelve-plus years, the pattern — show up on time, do assigned work, accept evaluation by authority, operate within someone else's structure — is invisible. it doesn't feel like training. it feels like reality. [the job](/unfiltered/the-job) inherits a workforce that already knows how to comply. school did that.
+**as compliance training:** very effectively. this is arguably school's most successful output. after twelve-plus years, the pattern — show up on time, do assigned work, accept evaluation by authority, operate within someone else's structure — is invisible. it doesn't feel like training. it feels like reality. [the job](/unfiltered/your-best-hours-belong-to-someone-else) inherits a workforce that already knows how to comply. school did that.
 
-**as daycare:** effectively, within its hours. the problem is when school hours don't match work hours, which is most of the time. the gap between school ending and work ending is filled by after-school programs, which cost money, which requires [the job](/unfiltered/the-job), which requires school-as-daycare. another loop.
+**as daycare:** effectively, within its hours. the problem is when school hours don't match work hours, which is most of the time. the gap between school ending and work ending is filled by after-school programs, which cost money, which requires [the job](/unfiltered/your-best-hours-belong-to-someone-else), which requires school-as-daycare. another loop.
 
 ## the template
 
@@ -44,7 +44,7 @@ school is where you absorb the template. the model of what a life looks like.
 
 you learn that days have a schedule you didn't choose. you learn that performance is measured by someone else's criteria. you learn that the things you're interested in fit into electives, if they fit at all, and the things the system considers important are mandatory. you learn that your time belongs to the institution during institution hours, and the hours that are "yours" are the leftover.
 
-this is the template [the grind](/unfiltered/the-grind) runs on. the job didn't invent the pattern. school did. the job just continued it. the transition from school to work feels natural because the structure is identical. seat time. assigned tasks. external evaluation. the authority changed. the architecture didn't.
+this is the template [the grind](/unfiltered/the-system-filled-every-gap-you-had) runs on. the job didn't invent the pattern. school did. the job just continued it. the transition from school to work feels natural because the structure is identical. seat time. assigned tasks. external evaluation. the authority changed. the architecture didn't.
 
 and the template absorbs so early that it becomes invisible. by the time you're old enough to ask "does it have to be like this?" — you've been in it for twelve years. the question feels abstract. the template feels like gravity.
 
@@ -68,9 +68,9 @@ how to cook. how to feed yourself — not as a novelty elective, if your school 
 
 how to file taxes. the government requires you to do this, every year, with penalties for getting it wrong. nobody taught you how. an entire industry exists to do it for you, because the system that requires it never bothered to teach it. and that industry lobbies to keep it complicated — to keep itself necessary. the confusion is the business model.
 
-how to find a job. how to write a resume. how to interview. how to evaluate whether the salary is fair. how to read a benefits package. how to negotiate. the thing you will spend most of your adult life doing — [the job](/unfiltered/the-job) — and the system that supposedly prepared you for adulthood sent you in with no preparation for the thing that will define it.
+how to find a job. how to write a resume. how to interview. how to evaluate whether the salary is fair. how to read a benefits package. how to negotiate. the thing you will spend most of your adult life doing — [the job](/unfiltered/your-best-hours-belong-to-someone-else) — and the system that supposedly prepared you for adulthood sent you in with no preparation for the thing that will define it.
 
-how to manage money. how to budget. what a 401k is. what compound interest does. how mortgages work. how debt works. how to plan for retirement — the concept that you need to start converting labor into future-survival from your twenties or you'll work until you die. [the gate](/unfiltered/the-gate) runs your entire life and school didn't mention it.
+how to manage money. how to budget. what a 401k is. what compound interest does. how mortgages work. how debt works. how to plan for retirement — the concept that you need to start converting labor into future-survival from your twenties or you'll work until you die. [the gate](/unfiltered/every-freedom-is-a-money-problem) runs your entire life and school didn't mention it.
 
 how to take care of your body. how to take care of your mind. how to recognize when you're not okay. how to ask for help.
 
@@ -90,9 +90,9 @@ and the cost is invisible because everyone paid it. you can't see the water when
 
 ## See also
 
-- [the shelf](/unfiltered/the-shelf) - the structure that teaches you to put yourself away
-- [the job](/unfiltered/the-job) - the structure school trained you for
-- [the grind](/unfiltered/the-grind) - the template in its adult form
-- [the gate](/unfiltered/the-gate) - the credential as a toll
+- [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - the structure that teaches you to put yourself away
+- [the job](/unfiltered/your-best-hours-belong-to-someone-else) - the structure school trained you for
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the template in its adult form
+- [the gate](/unfiltered/every-freedom-is-a-money-problem) - the credential as a toll
 - [what are labels anyway?](/prose/what-are-labels-anyway) - the sorting becomes the identity
 - [what's the purpose of life?](/prose/whats-the-purpose-of-life) - "be yourself" — after twelve years of being told who to be

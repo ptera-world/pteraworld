@@ -1,10 +1,10 @@
 ---
-label: "the floor."
+label: "nobody told you there were prerequisites."
 description: "the thing underneath everything here."
 tags: [social, identity]
 ---
 
-# The floor.
+# Nobody told you there were prerequisites.
 
 every essay on the other side of this site rests on something it doesn't examine.
 
@@ -70,6 +70,6 @@ just as the floor. the thing underneath everything here. it's there whether or n
 
 ## See also
 
-- [the grind](/unfiltered/the-grind) - what happens when you have the means and still have nothing
-- [the silence](/unfiltered/the-silence) - what it looks like when you can't afford to speak
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - what happens when you have the means and still have nothing
+- [the silence](/unfiltered/expression-has-a-cost-floor) - what it looks like when you can't afford to speak
 - [why this exists](/unfiltered/why-this-exists) - why the main voice needed a second door

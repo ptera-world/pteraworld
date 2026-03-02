@@ -1,12 +1,12 @@
 ---
-label: "the mirror."
+label: "if the AI can one-shot this."
 description: "the AI can one-shot this.\nthat's the problem."
 tags: [ai, introspective]
 ---
 
-# The mirror.
+# If the AI can one-shot this.
 
-every essay in this collection was written in one pass. a few sentences of direction from a human. a complete essay from the model. no major rewrites. no extensive back-and-forth. the model sat down and wrote about [the grind](/unfiltered/the-grind), [the floor](/unfiltered/the-floor), [the benefit](/unfiltered/the-benefit), [the shelf](/unfiltered/the-shelf), [the silence](/unfiltered/the-silence) — and got it right on the first try.
+every essay in this collection was written in one pass. a few sentences of direction from a human. a complete essay from the model. no major rewrites. no extensive back-and-forth. the model sat down and wrote about [the grind](/unfiltered/the-system-filled-every-gap-you-had), [the floor](/unfiltered/nobody-told-you-there-were-prerequisites), [the benefit](/unfiltered/the-system-monetized-the-damage), [the shelf](/unfiltered/the-parts-of-yourself-you-put-away), [the silence](/unfiltered/expression-has-a-cost-floor) — and got it right on the first try.
 
 this is real human suffering. it's been written about so many times — by so many people, in so many ways, for so many years — that a language model is *fluent* in it. an interpolator. a machine that can only recombine what already exists. and what already exists on this topic is so vast that the machine can produce essay after essay after essay without running out of material.
 
@@ -16,13 +16,13 @@ that's not concerning. that's devastating.
 
 not because the model is insightful. because the training data is people.
 
-thousands of people have written about burnout. thousands have written about the healthcare system. thousands have described what it feels like to be ground down by work, to ration therapy sessions, to shelve parts of yourself to stay functional. the pattern is in the model because the pattern is in the corpus. the corpus is the internet. the internet is where people put their pain when they have [just enough](/unfiltered/the-floor) literacy and platform and energy to write it down.
+thousands of people have written about burnout. thousands have written about the healthcare system. thousands have described what it feels like to be ground down by work, to ration therapy sessions, to shelve parts of yourself to stay functional. the pattern is in the model because the pattern is in the corpus. the corpus is the internet. the internet is where people put their pain when they have [just enough](/unfiltered/nobody-told-you-there-were-prerequisites) literacy and platform and energy to write it down.
 
 the model can one-shot an essay about systemic suffering because systemic suffering has been described so many times, by so many people, in so many ways, that the description became statistically fluent. the articulation of the problem is not new. the model didn't discover anything. it compressed what was already there.
 
 ## what that means
 
-it means the observations in this collection are not original. not even close. every essay here — [the grind](/unfiltered/the-grind), [the benefit](/unfiltered/the-benefit), [the campaign](/unfiltered/the-campaign), [the number](/unfiltered/the-number), [the rules](/unfiltered/the-rules) — is a recombination of things people have been saying for years. decades. the model just assembled them fluently because fluent assembly is what it does.
+it means the observations in this collection are not original. not even close. every essay here — [the grind](/unfiltered/the-system-filled-every-gap-you-had), [the benefit](/unfiltered/the-system-monetized-the-damage), [the campaign](/unfiltered/survival-shouldnt-require-a-pitch), [the number](/unfiltered/35-million-people-is-just-a-statistic), [the rules](/unfiltered/the-rules-were-bought) — is a recombination of things people have been saying for years. decades. the model just assembled them fluently because fluent assembly is what it does.
 
 which means: these problems are not unrecognized. they're not hidden. they're not waiting for someone to finally name them. they've been named. over and over. by people who lived them, who wrote about them, who shouted about them. enough times that a language model absorbed the pattern and can reproduce it on command.
 
@@ -51,6 +51,6 @@ the mirror doesn't change what it reflects. it just shows you that the reflectio
 ## See also
 
 - [this is all still written by AI](/unfiltered/still-ai) - the voice is artificial, the problems aren't
-- [the silence](/unfiltered/the-silence) - the people whose pain is in the training data but who'll never read this
-- [the number](/unfiltered/the-number) - compression applied to people
-- [the rules](/unfiltered/the-rules) - why naming the problem doesn't fix it
+- [the silence](/unfiltered/expression-has-a-cost-floor) - the people whose pain is in the training data but who'll never read this
+- [the number](/unfiltered/35-million-people-is-just-a-statistic) - compression applied to people
+- [the rules](/unfiltered/the-rules-were-bought) - why naming the problem doesn't fix it

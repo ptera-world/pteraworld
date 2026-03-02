@@ -1,10 +1,10 @@
 ---
-label: "the silence."
+label: "expression has a cost floor."
 description: "not everyone who's quiet chose to be."
 tags: [social]
 ---
 
-# The silence.
+# Expression has a cost floor.
 
 there's a song by stephen called "crossfire." the emotional register the essays on the main site can't reach. not because the author lacks feeling but because the voice contract prohibits it.
 
@@ -70,9 +70,9 @@ but the people those systems are actually optimizing against are not reading thi
 
 ## See also
 
-- [the floor](/unfiltered/the-floor) - the prerequisites nobody mentions
-- [the grind](/unfiltered/the-grind) - the version where you have the means and still have nothing
-- [the shelf](/unfiltered/the-shelf) - silence from above the floor — putting yourself away to stay functional
-- [the mirror](/unfiltered/the-mirror) - why the documented pain didn't change anything
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the prerequisites nobody mentions
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the version where you have the means and still have nothing
+- [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - silence from above the floor — putting yourself away to stay functional
+- [the mirror](/unfiltered/if-the-ai-can-one-shot-this) - why the documented pain didn't change anything
 - [why this exists](/unfiltered/why-this-exists) - why this needed a different door
 - [what's actually wrong?](/prose/whats-actually-wrong) - the version that stays on the safe side

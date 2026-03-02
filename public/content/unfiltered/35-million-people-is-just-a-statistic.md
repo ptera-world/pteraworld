@@ -1,10 +1,10 @@
 ---
-label: "the number."
+label: "35 million people is just a statistic."
 description: "35.9 million people.\njust a statistic."
 tags: [social]
 ---
 
-# The number.
+# 35 million people is just a statistic.
 
 10.6% of americans live below the poverty line.
 
@@ -42,7 +42,7 @@ the line creates the number. the number creates the percentage. the percentage c
 
 and the thing nobody says: even one should be horrifying. one person in the richest civilization in human history who can't afford to eat. one person who lost their home. one person who skipped treatment because the benefit ran out. the number at which this becomes unacceptable should be one. it's not. it's not even close. the system doesn't start paying attention until the number is large enough to be politically inconvenient, and by then it's been normalized for so long that the attention is just more statistics.
 
-and that's just the people below the line. above it: the working poor. paycheck-to-paycheck. medical debt. [the grind](/unfiltered/the-grind). [the benefit](/unfiltered/the-benefit) that doesn't cover enough. the people who are technically fine and functionally drowning. they're not in the number. so they don't exist in the report. so nobody has to respond to them.
+and that's just the people below the line. above it: the working poor. paycheck-to-paycheck. medical debt. [the grind](/unfiltered/the-system-filled-every-gap-you-had). [the benefit](/unfiltered/the-system-monetized-the-damage) that doesn't cover enough. the people who are technically fine and functionally drowning. they're not in the number. so they don't exist in the report. so nobody has to respond to them.
 
 the number defines the problem. and by defining it, it contains it. everything outside the number is someone else's problem. or nobody's problem. or not a problem at all.
 
@@ -72,9 +72,9 @@ so the weight stays with the person. and the number goes into the system. and th
 
 ## See also
 
-- [the campaign](/unfiltered/the-campaign) - survival as a progress bar
-- [the floor](/unfiltered/the-floor) - 35.9 million people who aren't reading this
-- [the rules](/unfiltered/the-rules) - who decides what the numbers mean
-- [the benefit](/unfiltered/the-benefit) - healthcare as a line item
-- [the shelf](/unfiltered/the-shelf) - numbing yourself the way statistics numb others
+- [the campaign](/unfiltered/survival-shouldnt-require-a-pitch) - survival as a progress bar
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - 35.9 million people who aren't reading this
+- [the rules](/unfiltered/the-rules-were-bought) - who decides what the numbers mean
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - healthcare as a line item
+- [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - numbing yourself the way statistics numb others
 - [why are we compressing things?](/prose/why-are-we-compressing-things) - the same mechanism, applied to people

@@ -1,12 +1,12 @@
 ---
-label: "the rules."
+label: "the rules were bought."
 description: "who writes them.\nwho pays to."
 tags: [social]
 ---
 
-# The rules.
+# The rules were bought.
 
-every system described in this collection — [the job](/unfiltered/the-job), [the gate](/unfiltered/the-gate), [the benefit](/unfiltered/the-benefit), [the pipeline](/unfiltered/the-pipeline), [the grind](/unfiltered/the-grind) — runs on rules. tax codes, labor laws, insurance regulations, education policy, housing policy, healthcare policy. someone wrote those rules. and the writing wasn't free.
+every system described in this collection — [the job](/unfiltered/your-best-hours-belong-to-someone-else), [the gate](/unfiltered/every-freedom-is-a-money-problem), [the benefit](/unfiltered/the-system-monetized-the-damage), [the pipeline](/unfiltered/school-was-never-about-learning), [the grind](/unfiltered/the-system-filled-every-gap-you-had) — runs on rules. tax codes, labor laws, insurance regulations, education policy, housing policy, healthcare policy. someone wrote those rules. and the writing wasn't free.
 
 ## who's in the room
 
@@ -16,7 +16,7 @@ this isn't conspiracy. it's budgeting. running for office costs millions. the mi
 
 the people who can afford to be in the room are the people whose interests the room hears. the people who can't afford to be in the room — which is most people — get represented by whoever shows up on their behalf. if anyone does.
 
-[the silence](/unfiltered/the-silence) talks about how the people closest to the problem are the most absent from the description of it. this is the political version. the people most affected by the rules are the most absent from the writing of them.
+[the silence](/unfiltered/expression-has-a-cost-floor) talks about how the people closest to the problem are the most absent from the description of it. this is the political version. the people most affected by the rules are the most absent from the writing of them.
 
 ## the loop
 
@@ -30,9 +30,9 @@ this isn't a list of villains. it's a structure. the structure says: if you have
 
 people hear "politics" and hear: left vs. right. democrat vs. republican. my team vs. your team. the word has been compressed into tribal identity so thoroughly that using it in a sentence makes half your audience stop listening.
 
-but politics — the actual thing, not the sports version — is just: who decides the rules, and how. that's it. every rule that shapes your life — what your job can require of you, what your healthcare covers, what your kids learn in [school](/unfiltered/the-pipeline), how much of your income goes to rent, whether you can afford to retire — is a political decision. someone made it. someone benefited from making it that way. and someone paid to be in the room when it was made.
+but politics — the actual thing, not the sports version — is just: who decides the rules, and how. that's it. every rule that shapes your life — what your job can require of you, what your healthcare covers, what your kids learn in [school](/unfiltered/school-was-never-about-learning), how much of your income goes to rent, whether you can afford to retire — is a political decision. someone made it. someone benefited from making it that way. and someone paid to be in the room when it was made.
 
-"i'm not political" means: i've accepted the current rules as given. which is fine — until the rules are the reason you're [grinding](/unfiltered/the-grind), the reason your [benefits](/unfiltered/the-benefit) don't cover enough, the reason [the gate](/unfiltered/the-gate) never opens. then "not political" just means the rules were written without you and you've agreed to live with whatever came out.
+"i'm not political" means: i've accepted the current rules as given. which is fine — until the rules are the reason you're [grinding](/unfiltered/the-system-filled-every-gap-you-had), the reason your [benefits](/unfiltered/the-system-monetized-the-damage) don't cover enough, the reason [the gate](/unfiltered/every-freedom-is-a-money-problem) never opens. then "not political" just means the rules were written without you and you've agreed to live with whatever came out.
 
 ## the vote
 
@@ -44,7 +44,7 @@ you voted. your candidate won, or didn't. and then... the rent is the same. the 
 
 and then there's the people who stopped. not out of ignorance. out of the math. one vote among millions, for pre-selected candidates, running on platforms shaped by donors, in a system where the lobbying continues regardless of who wins. the rational calculation isn't apathy. it's: the cost is real and the expected impact rounds to zero.
 
-and then there's the biggest group: people who vote but have no real investment in what they're voting for. they show up because they're supposed to. they pick a side because there are two sides and you have to pick one. they didn't read the policy platforms. they didn't research the ballot measures. not because they're stupid — because politics is exhausting and opaque and nobody made it accessible and they have [a job](/unfiltered/the-job) and [kids](/unfiltered/the-grind) and twelve minutes of free time and spending those twelve minutes parsing healthcare policy isn't going to happen.
+and then there's the biggest group: people who vote but have no real investment in what they're voting for. they show up because they're supposed to. they pick a side because there are two sides and you have to pick one. they didn't read the policy platforms. they didn't research the ballot measures. not because they're stupid — because politics is exhausting and opaque and nobody made it accessible and they have [a job](/unfiltered/your-best-hours-belong-to-someone-else) and [kids](/unfiltered/the-system-filled-every-gap-you-had) and twelve minutes of free time and spending those twelve minutes parsing healthcare policy isn't going to happen.
 
 so they vote on vibes. on which candidate seems more likable. on which party their family votes for. on one issue they care about, ignoring the rest. the ballot is thirty items long and they have an opinion on two of them. the system asks for an informed decision and provides no realistic path to becoming informed.
 
@@ -58,9 +58,9 @@ and doing more than voting? every rung up the ladder costs more.
 
 showing up at a town hall costs an evening. writing to a representative costs time and the belief that it matters. organizing costs weeks. running for office costs everything — money, time, privacy, your entire life rearranged around the campaign. the ladder of political participation has a price at every rung, and the prices increase faster than most people can climb.
 
-so the room stays small. the interests in the room stay concentrated. the rules keep serving the people who can afford to write them. and the people living under the rules keep being too busy, too tired, too [ground down by the grind](/unfiltered/the-grind) to change them.
+so the room stays small. the interests in the room stay concentrated. the rules keep serving the people who can afford to write them. and the people living under the rules keep being too busy, too tired, too [ground down by the grind](/unfiltered/the-system-filled-every-gap-you-had) to change them.
 
-[the floor](/unfiltered/the-floor) all over again. participation requires capacity. capacity requires safety. safety requires money. money requires [the job](/unfiltered/the-job). the job requires the rules. the rules require participation you don't have the capacity for.
+[the floor](/unfiltered/nobody-told-you-there-were-prerequisites) all over again. participation requires capacity. capacity requires safety. safety requires money. money requires [the job](/unfiltered/your-best-hours-belong-to-someone-else). the job requires the rules. the rules require participation you don't have the capacity for.
 
 ## the team sport
 
@@ -74,9 +74,9 @@ the partisan fight is real — the issues matter, the differences are genuine, t
 
 ## See also
 
-- [the gate](/unfiltered/the-gate) - every freedom has a price tag
-- [the benefit](/unfiltered/the-benefit) - the system monetized the damage it causes
-- [the pipeline](/unfiltered/the-pipeline) - who decides what gets taught
-- [the silence](/unfiltered/the-silence) - the people most affected are most absent
-- [the mirror](/unfiltered/the-mirror) - why naming the problem doesn't fix it
-- [the floor](/unfiltered/the-floor) - participation requires capacity requires safety requires money
+- [the gate](/unfiltered/every-freedom-is-a-money-problem) - every freedom has a price tag
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - the system monetized the damage it causes
+- [the pipeline](/unfiltered/school-was-never-about-learning) - who decides what gets taught
+- [the silence](/unfiltered/expression-has-a-cost-floor) - the people most affected are most absent
+- [the mirror](/unfiltered/if-the-ai-can-one-shot-this) - why naming the problem doesn't fix it
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - participation requires capacity requires safety requires money

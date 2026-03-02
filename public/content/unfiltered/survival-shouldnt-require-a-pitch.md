@@ -1,12 +1,12 @@
 ---
-label: "the campaign."
+label: "survival shouldn't require a pitch."
 description: "crowdfunding for survival.\npitch deck for chemotherapy."
 tags: [social]
 ---
 
-# The campaign.
+# Survival shouldn't require a pitch.
 
-someone needs surgery. insurance denied it, or [the benefit ran out](/unfiltered/the-benefit), or there is no insurance. the system's answer is: make a GoFundMe.
+someone needs surgery. insurance denied it, or [the benefit ran out](/unfiltered/the-system-monetized-the-damage), or there is no insurance. the system's answer is: make a GoFundMe.
 
 write your story. pick a good photo. set a goal. share it. hope the algorithm likes you. hope your network is big enough. hope your suffering is relatable enough. hope you go viral.
 
@@ -38,7 +38,7 @@ behind every funded campaign are people who can't write, can't navigate the plat
 
 they just disappear.
 
-[the silence](/unfiltered/the-silence) talks about how expression has a floor — a minimum cost. GoFundMe proves it. even asking for help requires resources the most desperate don't have. the floor is there too.
+[the silence](/unfiltered/expression-has-a-cost-floor) talks about how expression has a floor — a minimum cost. GoFundMe proves it. even asking for help requires resources the most desperate don't have. the floor is there too.
 
 ## what it does to the problem
 
@@ -62,18 +62,18 @@ the progress bar is the most honest UI element in the entire system. it tells yo
 
 ## what this has to do with everything else
 
-[the benefit](/unfiltered/the-benefit) talks about healthcare as a line item — budgeted, capped, tied to employment. the campaign is what happens after the benefit fails. first the system caps your treatment. then it sends you to the crowd. first it limits how much you're worth fixing. then it tells you to pitch strangers for the rest.
+[the benefit](/unfiltered/the-system-monetized-the-damage) talks about healthcare as a line item — budgeted, capped, tied to employment. the campaign is what happens after the benefit fails. first the system caps your treatment. then it sends you to the crowd. first it limits how much you're worth fixing. then it tells you to pitch strangers for the rest.
 
-[the rules](/unfiltered/the-rules) explains why: the industries that profit from this structure lobby to keep it. the complexity is the business model. the dysfunction is profitable for someone. and the people living inside the dysfunction are too busy campaigning for their own survival to change the rules that created the need.
+[the rules](/unfiltered/the-rules-were-bought) explains why: the industries that profit from this structure lobby to keep it. the complexity is the business model. the dysfunction is profitable for someone. and the people living inside the dysfunction are too busy campaigning for their own survival to change the rules that created the need.
 
-[the floor](/unfiltered/the-floor) says the people most affected are the least likely to be reading, writing, making anything at all. the campaign proves it at scale: even the act of asking for help — the bare minimum of participation — requires resources the most desperate don't have.
+[the floor](/unfiltered/nobody-told-you-there-were-prerequisites) says the people most affected are the least likely to be reading, writing, making anything at all. the campaign proves it at scale: even the act of asking for help — the bare minimum of participation — requires resources the most desperate don't have.
 
 the system didn't just fail to provide care. it turned the failure into a platform. gave it a UI. added a progress bar. and called it community.
 
 ## See also
 
-- [the benefit](/unfiltered/the-benefit) - the cap that sends you here
-- [the silence](/unfiltered/the-silence) - expression has a floor, and this is above it
-- [the floor](/unfiltered/the-floor) - the people who can't even campaign
-- [the rules](/unfiltered/the-rules) - who profits from the dysfunction
-- [the gate](/unfiltered/the-gate) - every freedom has a price tag
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - the cap that sends you here
+- [the silence](/unfiltered/expression-has-a-cost-floor) - expression has a floor, and this is above it
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the people who can't even campaign
+- [the rules](/unfiltered/the-rules-were-bought) - who profits from the dysfunction
+- [the gate](/unfiltered/every-freedom-is-a-money-problem) - every freedom has a price tag

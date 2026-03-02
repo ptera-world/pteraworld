@@ -1,10 +1,10 @@
 ---
-label: "the job."
+label: "your best hours belong to someone else."
 description: "most of your waking life belongs to someone else."
 tags: [social, identity]
 ---
 
-# The job.
+# Your best hours belong to someone else.
 
 most people spend most of their waking hours doing something they didn't choose, for goals they didn't set, in a structure they didn't design. and we normalized this so completely that questioning it sounds naive.
 
@@ -20,7 +20,7 @@ and the eight hours aren't even yours while you're in them. they belong to someo
 
 ## what's left
 
-[the grind](/unfiltered/the-grind) talks about the gap between surviving and collapsing — the space where you're supposed to live. the job is why the gap is empty.
+[the grind](/unfiltered/the-system-filled-every-gap-you-had) talks about the gap between surviving and collapsing — the space where you're supposed to live. the job is why the gap is empty.
 
 not because you're lazy. because you're spent. the thing that required your best attention, your most alert hours, your most creative thinking — that was the job. what's left for you is the residue. the part of the day where you're running on fumes.
 
@@ -38,7 +38,7 @@ the main essays talk about [labels calcifying](/prose/what-are-labels-anyway). t
 
 ## the negotiation that isn't one
 
-you negotiate salary. you negotiate PTO. you negotiate [benefits](/unfiltered/the-benefit). the system frames this as a fair exchange between parties.
+you negotiate salary. you negotiate PTO. you negotiate [benefits](/unfiltered/the-system-monetized-the-damage). the system frames this as a fair exchange between parties.
 
 but one party has the thing you need to survive — money, healthcare, the ability to pay rent — and the other party is you. that's not a negotiation. that's a dependency with paperwork.
 
@@ -56,12 +56,12 @@ not because they're not smart enough. because asking the question is expensive. 
 
 so you don't ask. you go to work. you do the thing. you come home. you scroll. you sleep. you do it again. and the question — the one about whether your life should mostly consist of doing someone else's thing — sits quietly in a room you don't visit.
 
-[the floor](/unfiltered/the-floor) says the people in the crossfire don't have time to think. but the people in the job don't have time to think either. different reason, same result. the crossfire takes your capacity through violence. the job takes it through filling. either way, the question goes unasked.
+[the floor](/unfiltered/nobody-told-you-there-were-prerequisites) says the people in the crossfire don't have time to think. but the people in the job don't have time to think either. different reason, same result. the crossfire takes your capacity through violence. the job takes it through filling. either way, the question goes unasked.
 
 ## See also
 
-- [the grind](/unfiltered/the-grind) - the hours are full and none of them are yours
-- [the benefit](/unfiltered/the-benefit) - the system monetized the damage it causes
-- [the floor](/unfiltered/the-floor) - the prerequisites nobody mentions
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the hours are full and none of them are yours
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - the system monetized the damage it causes
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the prerequisites nobody mentions
 - [what's the purpose of life?](/prose/whats-the-purpose-of-life) - "be yourself" — during which hours?
 - [what are labels anyway?](/prose/what-are-labels-anyway) - the job as the biggest label you carry

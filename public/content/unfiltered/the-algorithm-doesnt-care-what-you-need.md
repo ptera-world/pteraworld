@@ -1,12 +1,12 @@
 ---
-label: "the feed."
+label: "the algorithm doesn't care what you need."
 description: "the algorithm doesn't care what you need.\nit cares what you'll click."
 tags: [social, ai]
 ---
 
-# The feed.
+# The algorithm doesn't care what you need.
 
-[the grind](/unfiltered/the-grind) mentions the scroll — the thing that fits in the eleven-minute crack between obligations. the main essays talk about [software designed against you](/prose/whats-actually-wrong), the attention economy, the infinite scroll as slot machine. but both frame it as a design problem. as if the issue is that the scroll is too compelling.
+[the grind](/unfiltered/the-system-filled-every-gap-you-had) mentions the scroll — the thing that fits in the eleven-minute crack between obligations. the main essays talk about [software designed against you](/prose/whats-actually-wrong), the attention economy, the infinite scroll as slot machine. but both frame it as a design problem. as if the issue is that the scroll is too compelling.
 
 the issue is what the scroll is doing while you're in it.
 
@@ -32,17 +32,17 @@ identity works. the post that makes you feel like your group is under attack —
 
 so the feed fills with politics. not because the algorithm chose politics. because politics won. in a fair competition for human attention — no thumb on the scale, no bias, pure engagement metrics — politics and drama beat everything else. they trigger identity, tribalism, moral outrage, fear. they tap into things that are older than the internet, older than language. the algorithm didn't create the preference. it measured it. and then it gave people exactly what they responded to most.
 
-that's the uncomfortable part. the algorithm is a mirror. it showed us that politics-as-entertainment, outrage-as-engagement, and drama-as-connection are what humans gravitate toward when the friction is removed. [the rules](/unfiltered/the-rules) describes how the political system keeps you engaged without being effective. the algorithm proved it empirically: the version of politics that generates the most engagement is the version with the least substance. the take, the dunk, the team sport. not the policy. not the nuance. the fight.
+that's the uncomfortable part. the algorithm is a mirror. it showed us that politics-as-entertainment, outrage-as-engagement, and drama-as-connection are what humans gravitate toward when the friction is removed. [the rules](/unfiltered/the-rules-were-bought) describes how the political system keeps you engaged without being effective. the algorithm proved it empirically: the version of politics that generates the most engagement is the version with the least substance. the take, the dunk, the team sport. not the policy. not the nuance. the fight.
 
-and the content that doesn't generate engagement — the careful, the quiet, the uncertain, the "i don't know" — gets buried. not suppressed. just not promoted. the algorithm didn't censor nuance. it starved it. the feed is loud because loud survives, and the person scrolling at midnight after [the grind](/unfiltered/the-grind) took everything doesn't have the energy to seek out what the algorithm didn't serve.
+and the content that doesn't generate engagement — the careful, the quiet, the uncertain, the "i don't know" — gets buried. not suppressed. just not promoted. the algorithm didn't censor nuance. it starved it. the feed is loud because loud survives, and the person scrolling at midnight after [the grind](/unfiltered/the-system-filled-every-gap-you-had) took everything doesn't have the energy to seek out what the algorithm didn't serve.
 
 ## what it does to the room
 
-[the room](/unfiltered/the-room) needs conditions the system doesn't create. the algorithm actively destroys them.
+[the room](/unfiltered/safe-spaces-need-everything-to-go-right) needs conditions the system doesn't create. the algorithm actively destroys them.
 
 safe spaces require people who can hold complexity — who can sit with "this is hard" without collapsing into "this is someone's fault." the feed trains the opposite. it trains pattern-matching. snap judgments. the take. the dunk. the ratio. it trains people to respond to the surface of a thing in three seconds, not to sit with the depth of it.
 
-the person who walks into [the room](/unfiltered/the-room) after hours of feed consumption is primed for a different kind of conversation than the room needs. they're primed to react, not receive. to categorize, not hold. the algorithm didn't make them a bad person. it tuned their attention to a frequency that's incompatible with safety.
+the person who walks into [the room](/unfiltered/safe-spaces-need-everything-to-go-right) after hours of feed consumption is primed for a different kind of conversation than the room needs. they're primed to react, not receive. to categorize, not hold. the algorithm didn't make them a bad person. it tuned their attention to a frequency that's incompatible with safety.
 
 and the feed follows you into the room. the group chat where someone shares a take from twitter and now the conversation is about the take, not about each other. the dinner where someone's phone buzzes and the outrage leaks in. the algorithm doesn't stay in the app. it shapes what people bring to every space they enter.
 
@@ -52,9 +52,9 @@ the feed doesn't just show you content. it moves you.
 
 you watch one video. the algorithm offers another, slightly more intense. you engage with one community. the algorithm suggests another, slightly more extreme. not because it wants to radicalize you. because each step increased engagement, and engagement is the metric. the pipeline isn't designed. it's *emerged*. it's what optimization produces when the metric is attention and the supply of content is infinite.
 
-[the loop](/unfiltered/the-loop) describes belief systems that feed on their own resistance. the algorithm is the loop's best friend. the person who's searching for meaning — who's depleted by [the grind](/unfiltered/the-grind), carrying [the shelf](/unfiltered/the-shelf), looking for answers — gets served content that provides certainty, community, an explanation for why everything hurts. one click at a time, each step feeling like discovery, each step closing the walls a little tighter.
+[the loop](/unfiltered/the-belief-feeds-on-its-own-resistance) describes belief systems that feed on their own resistance. the algorithm is the loop's best friend. the person who's searching for meaning — who's depleted by [the grind](/unfiltered/the-system-filled-every-gap-you-had), carrying [the shelf](/unfiltered/the-parts-of-yourself-you-put-away), looking for answers — gets served content that provides certainty, community, an explanation for why everything hurts. one click at a time, each step feeling like discovery, each step closing the walls a little tighter.
 
-the algorithm didn't create the vulnerability. [the grind](/unfiltered/the-grind) did. but the algorithm is very, very good at finding vulnerable people and serving them exactly the content that converts vulnerability into engagement.
+the algorithm didn't create the vulnerability. [the grind](/unfiltered/the-system-filled-every-gap-you-had) did. but the algorithm is very, very good at finding vulnerable people and serving them exactly the content that converts vulnerability into engagement.
 
 ## the replacement
 
@@ -64,21 +64,21 @@ it replaces boredom with stimulation. boredom is uncomfortable, but it's also wh
 
 it replaces connection with the feeling of connection. you saw their post. you liked their photo. you know what they had for lunch. you haven't heard their voice in months. the feed provides the data of a relationship without the experience of one. and the data feels like enough — until it doesn't, and by then the skill of reaching out has atrophied.
 
-it replaces rest with [coping](/unfiltered/the-cope). the scroll feels like rest because the body is still. but the mind is processing — image, text, video, outrage, envy, comparison, scroll, image, text. the mind doesn't rest during the feed. it runs at low intensity on someone else's content. you put the phone down more tired than when you picked it up, and you don't know why, because you were "just relaxing."
+it replaces rest with [coping](/unfiltered/the-system-broke-you-then-sold-the-fix). the scroll feels like rest because the body is still. but the mind is processing — image, text, video, outrage, envy, comparison, scroll, image, text. the mind doesn't rest during the feed. it runs at low intensity on someone else's content. you put the phone down more tired than when you picked it up, and you don't know why, because you were "just relaxing."
 
 ## the asymmetry
 
 you didn't choose the algorithm. you chose to open the app. the algorithm chose everything after that — what you see, in what order, with what framing, next to what context. the choices that shape your perception of the world were made by a system optimizing for a metric that has nothing to do with your wellbeing.
 
-and the system has more data about you than you have about yourself. it knows what you linger on, what you skip, what time of day you're most vulnerable, what emotional state makes you engage most. it knows your [scars](/unfiltered/the-scar) better than your therapist does — not because it understands them, but because it's measured what they respond to.
+and the system has more data about you than you have about yourself. it knows what you linger on, what you skip, what time of day you're most vulnerable, what emotional state makes you engage most. it knows your [scars](/unfiltered/the-wound-heals-the-flinch-doesnt) better than your therapist does — not because it understands them, but because it's measured what they respond to.
 
 you're making decisions in a world the algorithm curated for you. your opinions, your fears, your sense of what's normal and what's threatening — all of it shaped by a feed that was shaped by a metric that was shaped by a revenue model. the person you are after a decade of algorithmic curation is not the person you would have been without it. and you can't know the difference, because you only have the one version.
 
 ## See also
 
-- [the cope](/unfiltered/the-cope) - the scroll as lowest-energy relief
-- [the room](/unfiltered/the-room) - the safe space the algorithm undermines
-- [the loop](/unfiltered/the-loop) - the belief system the algorithm accelerates
-- [the grind](/unfiltered/the-grind) - the depletion that makes the feed irresistible
-- [the scar](/unfiltered/the-scar) - the algorithm knows your vulnerabilities better than you do
+- [the cope](/unfiltered/the-system-broke-you-then-sold-the-fix) - the scroll as lowest-energy relief
+- [the room](/unfiltered/safe-spaces-need-everything-to-go-right) - the safe space the algorithm undermines
+- [the loop](/unfiltered/the-belief-feeds-on-its-own-resistance) - the belief system the algorithm accelerates
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the depletion that makes the feed irresistible
+- [the scar](/unfiltered/the-wound-heals-the-flinch-doesnt) - the algorithm knows your vulnerabilities better than you do
 - [what's actually wrong?](/prose/whats-actually-wrong) - the main site's version, which frames it as a design problem

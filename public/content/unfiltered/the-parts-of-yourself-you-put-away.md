@@ -1,10 +1,10 @@
 ---
-label: "the shelf."
+label: "the parts of yourself you put away."
 description: "the parts of yourself you put away\nbecause you can't afford to hold them."
 tags: [identity, social]
 ---
 
-# The shelf.
+# The parts of yourself you put away.
 
 not distancing yourself from something. putting something you *are* aside because you can't handle being close to it right now.
 
@@ -18,7 +18,7 @@ the grief you can't afford to process because rent is due friday. the relationsh
 
 the identity you can't afford to be because the environment punishes it. you're closeted at work. you're masking. you're performing a version of yourself that the system accepts. the real version — the one that's yours, that you know, that you've met — goes on the shelf. not because you don't want it. because wanting it right now is a luxury the situation doesn't allow.
 
-the knowledge you can't afford to act on. you know [the job](/unfiltered/the-job) is destroying you. you know the situation is wrong. you know what you need to change. but knowing and acting have a gap between them, and the gap is full of [prerequisites](/unfiltered/the-floor) you can't meet. so the knowing goes on the shelf. you live as if you don't know. the knowing waits.
+the knowledge you can't afford to act on. you know [the job](/unfiltered/your-best-hours-belong-to-someone-else) is destroying you. you know the situation is wrong. you know what you need to change. but knowing and acting have a gap between them, and the gap is full of [prerequisites](/unfiltered/nobody-told-you-there-were-prerequisites) you can't meet. so the knowing goes on the shelf. you live as if you don't know. the knowing waits.
 
 ## why it's not denial
 
@@ -42,7 +42,7 @@ and the longer something stays on the shelf, the harder it is to take down. the 
 
 the system loves the shelf. the shelf is how you stay productive while carrying damage. the shelf is how you show up on monday after the worst weekend of your life. the shelf is how you perform your annual review while knowing the job is killing you. the shelf is how you function, and function is all the system asks for.
 
-[the benefit](/unfiltered/the-benefit) exists to help you maintain the shelf. therapy, in the system's framing, isn't about taking things down and holding them — it's about better shelf management. coping strategies. resilience techniques. emotional regulation. all ways of keeping the things on the shelf *on the shelf*, so they don't interfere with output.
+[the benefit](/unfiltered/the-system-monetized-the-damage) exists to help you maintain the shelf. therapy, in the system's framing, isn't about taking things down and holding them — it's about better shelf management. coping strategies. resilience techniques. emotional regulation. all ways of keeping the things on the shelf *on the shelf*, so they don't interfere with output.
 
 and when the shelf breaks — when the thing you've been holding at arm's length finally falls and you have to catch it — that's a crisis. that's a leave of absence. that's a performance issue. the system treats the collapse as the problem, not the years of shelving that preceded it. the collapse is just the shelf giving way under weight it was never designed to hold.
 
@@ -56,9 +56,9 @@ from inside, you're running a background process that never stops. monitoring th
 
 ## See also
 
-- [the grind](/unfiltered/the-grind) - the structure that requires the shelf
-- [the benefit](/unfiltered/the-benefit) - therapy as shelf management
-- [the job](/unfiltered/the-job) - the thing that takes the hours the shelf needs
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the structure that requires the shelf
+- [the benefit](/unfiltered/the-system-monetized-the-damage) - therapy as shelf management
+- [the job](/unfiltered/your-best-hours-belong-to-someone-else) - the thing that takes the hours the shelf needs
 - [just](/unfiltered/just) - "just deal with it" — you are. this is what it looks like
 - [what's the purpose of life?](/prose/whats-the-purpose-of-life) - the thing the shelf prevents
 - [what are labels anyway?](/prose/what-are-labels-anyway) - the identity that goes on the shelf

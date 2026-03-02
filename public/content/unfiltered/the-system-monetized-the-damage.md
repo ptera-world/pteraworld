@@ -1,10 +1,10 @@
 ---
-label: "the benefit."
+label: "the system monetized the damage."
 description: "the system monetized the damage it causes."
 tags: [social]
 ---
 
-# The benefit.
+# The system monetized the damage.
 
 your employer offers mental health coverage. therapy sessions, maybe an EAP hotline, maybe a meditation app subscription. it's listed in the benefits package between dental and the 401k match.
 
@@ -72,7 +72,7 @@ this is what it looks like when health is a line item. the budget doesn't flex f
 
 ## what this has to do with everything else
 
-[the grind](/unfiltered/the-grind) talks about how the system fills every hour. this is the part where the system also fills the response to the filling. you're exhausted? here's a benefit. you're burning out? here's a resource. you're drowning? here's a number you can call between 9 and 5, monday through friday, excluding holidays.
+[the grind](/unfiltered/the-system-filled-every-gap-you-had) talks about how the system fills every hour. this is the part where the system also fills the response to the filling. you're exhausted? here's a benefit. you're burning out? here's a resource. you're drowning? here's a number you can call between 9 and 5, monday through friday, excluding holidays.
 
 the system doesn't prevent the damage. it monetizes the repair. and it ties the repair to the thing causing the damage. and it calls this a benefit. and enough people accept the framing that it holds.
 
@@ -82,7 +82,7 @@ it fits here.
 
 ## See also
 
-- [the grind](/unfiltered/the-grind) - the system fills the time and calls it success
-- [the campaign](/unfiltered/the-campaign) - what happens after the benefit fails
-- [the floor](/unfiltered/the-floor) - the prerequisites nobody mentions
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the system fills the time and calls it success
+- [the campaign](/unfiltered/survival-shouldnt-require-a-pitch) - what happens after the benefit fails
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the prerequisites nobody mentions
 - [what's actually wrong?](/prose/whats-actually-wrong) - the version that describes the systems without naming the violence

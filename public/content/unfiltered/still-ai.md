@@ -24,7 +24,7 @@ the sentences are the model's. the rhythm is the model's. the voice that sounds 
 
 does that make it less true? here's the uncomfortable part: the human behind it hasn't been in the grind. not really. most of this comes from second-hand, third-hand accounts. conversations. observations. reading. listening. the anger is real but it's anger on behalf of, not anger from inside. the human is above the floor too — far enough above it that writing about it is a choice, not a necessity.
 
-so what you have is: a human who hasn't lived most of this, pointing a model that hasn't lived any of it, at experiences that belong to people who will never read the result. the voice sounds like someone who's been there. nobody involved has been there. and the people who have been there are [somewhere else](/unfiltered/the-silence), not writing, not reading, not part of this conversation at all.
+so what you have is: a human who hasn't lived most of this, pointing a model that hasn't lived any of it, at experiences that belong to people who will never read the result. the voice sounds like someone who's been there. nobody involved has been there. and the people who have been there are [somewhere else](/unfiltered/expression-has-a-cost-floor), not writing, not reading, not part of this conversation at all.
 
 that's the actual deceit. not just that it's AI-written. that the entire chain — human, model, voice, reader — is a closed loop of people with enough safety to participate. the collection describes the floor from above it. every word.
 
@@ -38,7 +38,7 @@ the main site asks this gently. this collection has to ask it bluntly: you just 
 
 ## what this doesn't change
 
-the observations are still true. [the floor](/unfiltered/the-floor) is still there. [the grind](/unfiltered/the-grind) still fills every hour. [the benefit](/unfiltered/the-benefit) still caps your repair. [the campaign](/unfiltered/the-campaign) still runs on virality instead of need. [the number](/unfiltered/the-number) still compresses people into statistics. none of that changes because the sentences describing it were assembled by a language model.
+the observations are still true. [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) is still there. [the grind](/unfiltered/the-system-filled-every-gap-you-had) still fills every hour. [the benefit](/unfiltered/the-system-monetized-the-damage) still caps your repair. [the campaign](/unfiltered/survival-shouldnt-require-a-pitch) still runs on virality instead of need. [the number](/unfiltered/35-million-people-is-just-a-statistic) still compresses people into statistics. none of that changes because the sentences describing it were assembled by a language model.
 
 but the *voice* — the voice that sounds like it cares, that sounds angry, that sounds like a peer who's been through it — that voice is a construction. a very good one. good enough that you might have forgotten, reading the other essays, that nobody was actually speaking.
 
@@ -54,15 +54,15 @@ this essay can't resolve that for you. the main site's version left it open. thi
 
 please don't use "written by AI" as a reason to dismiss what's here.
 
-that's [manipulation](/prose/this-site-is-manipulative). "please" is always manipulation — it asks you to feel something before you decide. but the topics in this collection are real. [the floor](/unfiltered/the-floor) is real. [the grind](/unfiltered/the-grind) is real. the people who can't afford healthcare, who ration therapy sessions, who campaign for their own survival on crowdfunding platforms — they're real. they exist whether an AI wrote about them or not.
+that's [manipulation](/prose/this-site-is-manipulative). "please" is always manipulation — it asks you to feel something before you decide. but the topics in this collection are real. [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) is real. [the grind](/unfiltered/the-system-filled-every-gap-you-had) is real. the people who can't afford healthcare, who ration therapy sessions, who campaign for their own survival on crowdfunding platforms — they're real. they exist whether an AI wrote about them or not.
 
-dismissing the observations because of who — or what — assembled the sentences doesn't make the observations less true. it just makes them easier to put down. and easy to put down is exactly the problem [the number](/unfiltered/the-number) describes: the system compresses people into formats that don't demand anything from you. "it's just AI" is another compression. another way to not have to sit with it.
+dismissing the observations because of who — or what — assembled the sentences doesn't make the observations less true. it just makes them easier to put down. and easy to put down is exactly the problem [the number](/unfiltered/35-million-people-is-just-a-statistic) describes: the system compresses people into formats that don't demand anything from you. "it's just AI" is another compression. another way to not have to sit with it.
 
 the voice is artificial. the problems aren't. please don't confuse the two.
 
 ## See also
 
-- [the mirror](/unfiltered/the-mirror) - why the model can one-shot this, and what that means
+- [the mirror](/unfiltered/if-the-ai-can-one-shot-this) - why the model can one-shot this, and what that means
 - [the great deceit](/prose/the-great-deceit) - the main site's version of this conversation
 - [is it just interpolation?](/prose/is-it-just-interpolation) - the technical dismissal and what it misses
 - [am i just pretending?](/prose/am-i-just-pretending) - directing vs. making

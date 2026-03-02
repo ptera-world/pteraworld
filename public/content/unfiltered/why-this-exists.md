@@ -54,7 +54,7 @@ we can't know which night it is. the main site solved that by never risking it. 
 
 this collection will never fully resolve a contradiction at its center: the author is still writing from safety. the rawness is real but it's still chosen. the muzzle comes off, but the person behind it still has enough safety to be writing essays instead of surviving.
 
-[the floor](/unfiltered/the-floor) is still there. the people the anger is about are still not reading. the distance is smaller here — the voice is closer, the naming is more direct — but the distance isn't zero. it can't be zero. that would require being in the crossfire, and the crossfire doesn't produce essays. it produces silence.
+[the floor](/unfiltered/nobody-told-you-there-were-prerequisites) is still there. the people the anger is about are still not reading. the distance is smaller here — the voice is closer, the naming is more direct — but the distance isn't zero. it can't be zero. that would require being in the crossfire, and the crossfire doesn't produce essays. it produces silence.
 
 so this space sits in the gap between the neutral analysis and the silence it can never reach. closer to the ground than the main site. not on it.
 
@@ -62,10 +62,10 @@ that's honest. probably the most honest thing here.
 
 ## See also
 
-- [the floor](/unfiltered/the-floor) - what's underneath everything
-- [the silence](/unfiltered/the-silence) - what the gap sounds like
-- [the grind](/unfiltered/the-grind) - the hours are full and none of them are yours
-- [the job](/unfiltered/the-job) - most of your waking life belongs to someone else
-- [the mirror](/unfiltered/the-mirror) - the contradiction this collection can't resolve
+- [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - what's underneath everything
+- [the silence](/unfiltered/expression-has-a-cost-floor) - what the gap sounds like
+- [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the hours are full and none of them are yours
+- [the job](/unfiltered/your-best-hours-belong-to-someone-else) - most of your waking life belongs to someone else
+- [the mirror](/unfiltered/if-the-ai-can-one-shot-this) - the contradiction this collection can't resolve
 - [this site is designed](/prose/this-site-is-designed) - the neutral version's contract with the reader
 - [this is not all](/prose/this-is-not-all) - the gaps the main collection names but can't fill
