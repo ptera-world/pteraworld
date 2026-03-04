@@ -472,7 +472,7 @@ for (const { id, path } of files) {
 edges.sort((a, b) => a.from.localeCompare(b.from) || a.to.localeCompare(b.to));
 
 // ---------------------------------------------------------------------------
-// 4. Layout — ecosystem grouping (peer to tag groupings)
+// 4. Layout — computes base node positions (n.x / n.y)
 // ---------------------------------------------------------------------------
 
 interface GroupingOutput {
@@ -482,7 +482,7 @@ interface GroupingOutput {
   positions: Record<string, { x: number; y: number; regionId?: string; regionIds?: string[]; color?: string }>;
 }
 
-function buildEcosystemGrouping(): GroupingOutput {
+{
   const eligibleNodes = nodes.filter((n) => n.tier !== "region" && n.tier !== "meta");
   const regions = nodes.filter((n) => n.tier === "region");
   const metaNodes = nodes.filter((n) => n.tier === "meta");
@@ -894,16 +894,6 @@ function buildEcosystemGrouping(): GroupingOutput {
     }
   }
 
-  // Build ecosystem grouping output
-  const ecoRegions = regions.map((r) => ({
-    id: r.id, label: r.label, description: r.description,
-    x: r.x, y: r.y, radius: r.radius, color: r.color,
-  }));
-  const positions: GroupingOutput["positions"] = {};
-  for (const n of eligibleNodes) {
-    positions[n.id] = { x: n.x, y: n.y, ...(n.parent ? { regionId: n.parent } : {}) };
-  }
-  return { id: "ecosystem", label: "Ecosystems", regions: ecoRegions, positions };
 }
 
 // ---------------------------------------------------------------------------
@@ -911,8 +901,6 @@ function buildEcosystemGrouping(): GroupingOutput {
 // ---------------------------------------------------------------------------
 
 const generatedGroupings: GroupingOutput[] = [];
-
-generatedGroupings.push(buildEcosystemGrouping());
 
 function buildTagGrouping(
   groupingId: string, groupingLabel: string,
@@ -1023,35 +1011,33 @@ function buildTagGrouping(
     mnodes.push({ id, x: cx, y: cy, r: node.radius, regs, blendedColor });
   }
 
-  // Fixed obstacle nodes: groupingMatch: false without groupingPlacement: free.
-  // Regions repel from them but they don't move.
-  interface ObstacleNode { x: number; y: number; r: number; }
-  const obstacleNodes: ObstacleNode[] = eligibleNodes
-    .filter((n) => noGroupingMatchIds.has(n.id) && !freePlacementIds.has(n.id))
-    .map((n) => ({ x: n.x, y: n.y, r: n.radius }));
+  // Unmatched nodes: groupingMatch: false — not assigned to any ring.
+  // Two subtypes: obstacle (no groupingPlacement) and free (groupingPlacement: free).
+  // Both are moveable in the sim, seeded near origin. No cross-grouping position inheritance.
+  interface UnmatchedNode { id: string; x: number; y: number; r: number; }
+  const unmatchedNodes: UnmatchedNode[] = eligibleNodes
+    .filter((n) => noGroupingMatchIds.has(n.id))
+    .map((n, i, arr) => {
+      const angle = (2 * Math.PI * i) / Math.max(arr.length, 1);
+      return { id: n.id, x: Math.cos(angle) * 50, y: Math.sin(angle) * 50, r: n.radius };
+    });
 
-  // Free particle nodes: groupingPlacement: free — participate in sim, scatter independently.
-  // Start at ecosystem positions; weak gravity toward origin keeps them in view.
-  interface FreeNode { id: string; x: number; y: number; r: number; }
-  const freeNodes: FreeNode[] = eligibleNodes
-    .filter((n) => freePlacementIds.has(n.id))
-    .map((n) => ({ id: n.id, x: n.x, y: n.y, r: n.radius }));
-
-  // Step 7: Global overlap resolution — one simulation for regions, multi-match nodes, and landing (fixed at origin).
-  // Regions soft-anchored to ring positions; multi-match soft-anchored to centroid of matched regions.
-  // Obstacle nodes (essays) are fixed — regions repel from them.
+  // Step 7: Global sim — regions, multi-match nodes, unmatched nodes. No cross-grouping position inheritance.
+  // Regions soft-anchored to ring positions; multi-match anchored to centroid of matched regions.
+  // Unmatched nodes seeded near origin, pushed out by repulsion + gravity.
   const GSIM_STEPS = 400;
   const PUSH = 2.0;
   const REGION_ANCHOR_K = 0.05;
   const MULTI_ANCHOR_K = 0.03;
-  const FREE_GRAVITY_K = 0.004; // weak pull toward origin — keeps free nodes in view
+  const UNMATCHED_GRAVITY_K = 0.004;
+  const UNMATCHED_REPULSION = 8000;
   for (let step = 0; step < GSIM_STEPS; step++) {
     const rfx = regionLayouts.map(() => 0);
     const rfy = regionLayouts.map(() => 0);
     const mfx = mnodes.map(() => 0);
     const mfy = mnodes.map(() => 0);
-    const ffx = freeNodes.map(() => 0);
-    const ffy = freeNodes.map(() => 0);
+    const ufx = unmatchedNodes.map(() => 0);
+    const ufy = unmatchedNodes.map(() => 0);
 
     // Region–region repulsion
     for (let i = 0; i < regionLayouts.length; i++) {
@@ -1079,21 +1065,22 @@ function buildTagGrouping(
       }
     }
 
-    // Region–obstacle repulsion (fixed essay nodes — only regions move)
+    // Region–unmatched repulsion (both move)
     for (let i = 0; i < regionLayouts.length; i++) {
-      for (const obs of obstacleNodes) {
-        const rl = regionLayouts[i]!;
-        const dx = rl.x - obs.x, dy = rl.y - obs.y;
+      for (let k = 0; k < unmatchedNodes.length; k++) {
+        const rl = regionLayouts[i]!, u = unmatchedNodes[k]!;
+        const dx = u.x - rl.x, dy = u.y - rl.y;
         const d = Math.hypot(dx, dy) || 0.1;
-        const minD = rl.radius + obs.r + 15;
+        const minD = rl.radius + u.r + 15;
         if (d < minD) {
-          const push = (minD - d) * PUSH;
-          rfx[i]! += (dx / d) * push; rfy[i]! += (dy / d) * push;
+          const push = (minD - d) / 2 * PUSH;
+          ufx[k]! += (dx / d) * push; ufy[k]! += (dy / d) * push;
+          rfx[i]! -= (dx / d) * push; rfy[i]! -= (dy / d) * push;
         }
       }
     }
 
-    // Region–multi repulsion (push multi-match only; regions have strong ring anchors)
+    // Region–multi repulsion
     for (let i = 0; i < regionLayouts.length; i++) {
       for (let j = 0; j < mnodes.length; j++) {
         const r = regionLayouts[i]!, m = mnodes[j]!;
@@ -1133,78 +1120,49 @@ function buildTagGrouping(
       }
     }
 
-    // Multi–obstacle repulsion
+    // Multi–unmatched repulsion (both move)
     for (let j = 0; j < mnodes.length; j++) {
-      for (const obs of obstacleNodes) {
-        const m = mnodes[j]!;
-        const dx = m.x - obs.x, dy = m.y - obs.y;
+      for (let k = 0; k < unmatchedNodes.length; k++) {
+        const m = mnodes[j]!, u = unmatchedNodes[k]!;
+        const dx = m.x - u.x, dy = m.y - u.y;
         const d = Math.hypot(dx, dy) || 0.1;
-        const minD = m.r + obs.r + 8;
+        const minD = m.r + u.r + 8;
         if (d < minD) {
-          const push = (minD - d) * PUSH;
+          const push = (minD - d) / 2 * PUSH;
           mfx[j]! += (dx / d) * push; mfy[j]! += (dy / d) * push;
+          ufx[k]! -= (dx / d) * push; ufy[k]! -= (dy / d) * push;
         }
       }
     }
 
-    // Free–free repulsion: soft 1/d² (always on, falls off with distance)
-    // so nodes spread to a natural rest distance, same model as ecosystem force layout.
-    const FREE_REPULSION = 8000;
-    for (let i = 0; i < freeNodes.length; i++) {
-      for (let j = i + 1; j < freeNodes.length; j++) {
-        const a = freeNodes[i]!, b = freeNodes[j]!;
+    // Unmatched–unmatched: soft 1/d² repulsion
+    for (let i = 0; i < unmatchedNodes.length; i++) {
+      for (let j = i + 1; j < unmatchedNodes.length; j++) {
+        const a = unmatchedNodes[i]!, b = unmatchedNodes[j]!;
         const dx = a.x - b.x, dy = a.y - b.y;
         const d = Math.hypot(dx, dy) || 0.1;
-        const force = FREE_REPULSION / (d * d);
-        ffx[i]! += (dx / d) * force; ffy[i]! += (dy / d) * force;
-        ffx[j]! -= (dx / d) * force; ffy[j]! -= (dy / d) * force;
+        const force = UNMATCHED_REPULSION / (d * d);
+        ufx[i]! += (dx / d) * force; ufy[i]! += (dy / d) * force;
+        ufx[j]! -= (dx / d) * force; ufy[j]! -= (dy / d) * force;
       }
     }
 
-    // Region–free repulsion (regions anchored; free nodes pushed away)
-    for (let i = 0; i < regionLayouts.length; i++) {
-      for (let k = 0; k < freeNodes.length; k++) {
-        const rl = regionLayouts[i]!, fp = freeNodes[k]!;
-        const dx = fp.x - rl.x, dy = fp.y - rl.y;
-        const d = Math.hypot(dx, dy) || 0.1;
-        const minD = rl.radius + fp.r + 15;
-        if (d < minD) {
-          const push = (minD - d) * PUSH;
-          ffx[k]! += (dx / d) * push; ffy[k]! += (dy / d) * push;
-        }
-      }
-    }
-
-    // Free–landing repulsion
-    for (let k = 0; k < freeNodes.length; k++) {
-      const fp = freeNodes[k]!;
-      const d = Math.hypot(fp.x, fp.y) || 0.1;
-      const minD = fp.r + META_RADIUS + 20;
+    // Unmatched–landing repulsion
+    for (let k = 0; k < unmatchedNodes.length; k++) {
+      const u = unmatchedNodes[k]!;
+      const d = Math.hypot(u.x, u.y) || 0.1;
+      const minD = u.r + META_RADIUS + 20;
       if (d < minD) {
         const push = (minD - d) * PUSH;
-        ffx[k]! += (fp.x / d) * push; ffy[k]! += (fp.y / d) * push;
+        ufx[k]! += (u.x / d) * push; ufy[k]! += (u.y / d) * push;
       }
     }
 
-    // Free–obstacle repulsion
-    for (let k = 0; k < freeNodes.length; k++) {
-      for (const obs of obstacleNodes) {
-        const fp = freeNodes[k]!;
-        const dx = fp.x - obs.x, dy = fp.y - obs.y;
-        const d = Math.hypot(dx, dy) || 0.1;
-        const minD = fp.r + obs.r + 6;
-        if (d < minD) {
-          const push = (minD - d) * PUSH;
-          ffx[k]! += (dx / d) * push; ffy[k]! += (dy / d) * push;
-        }
-      }
-    }
-
-    // Free gravity toward origin (keeps free nodes loosely in view)
-    for (let k = 0; k < freeNodes.length; k++) {
-      const fp = freeNodes[k]!;
-      ffx[k]! += (0 - fp.x) * FREE_GRAVITY_K;
-      ffy[k]! += (0 - fp.y) * FREE_GRAVITY_K;
+    // Unmatched gravity toward origin
+    for (let k = 0; k < unmatchedNodes.length; k++) {
+      const u = unmatchedNodes[k]!;
+      ufx[k]! += (0 - u.x) * UNMATCHED_GRAVITY_K;
+      ufy[k]! += (0 - u.y) * UNMATCHED_GRAVITY_K;
     }
 
     // Anchor: regions → ring positions
@@ -1215,7 +1173,7 @@ function buildTagGrouping(
       rfy[i]! += (ringR * Math.sin(angle) - rl.y) * REGION_ANCHOR_K;
     }
 
-    // Anchor: multi-match → centroid of matched regions (current positions)
+    // Anchor: multi-match → centroid of matched regions
     for (let j = 0; j < mnodes.length; j++) {
       const m = mnodes[j]!;
       const matchedRls = m.regs.map((rid) => regionLayouts.find((rl) => rl.reg.id === rid)).filter(Boolean) as RegionLayout[];
@@ -1234,23 +1192,15 @@ function buildTagGrouping(
       mnodes[j]!.x += mfx[j]!;
       mnodes[j]!.y += mfy[j]!;
     }
-    for (let k = 0; k < freeNodes.length; k++) {
-      freeNodes[k]!.x += ffx[k]!;
-      freeNodes[k]!.y += ffy[k]!;
+    for (let k = 0; k < unmatchedNodes.length; k++) {
+      unmatchedNodes[k]!.x += ufx[k]!;
+      unmatchedNodes[k]!.y += ufy[k]!;
     }
   }
 
-  // Step 8: Build output using final (post-sim) positions.
+  // Step 8: Build output. Every eligible node gets an explicit position from this grouping's own computation.
   const builtRegions: GroupingOutput["regions"] = [];
   const allPositions: Record<string, { x: number; y: number; regionId?: string; regionIds?: string[]; color?: string }> = {};
-
-  // Base: eligible nodes at ecosystem positions (fallback for unmatched fixed nodes).
-  // Free particles get their positions from the sim below; ring nodes are overwritten by ringPositions.
-  for (const n of eligibleNodes) {
-    if (!freePlacementIds.has(n.id)) {
-      allPositions[n.id] = { x: n.x, y: n.y };
-    }
-  }
 
   for (const rl of regionLayouts) {
     const rx = Math.round(rl.x), ry = Math.round(rl.y);
@@ -1270,8 +1220,8 @@ function buildTagGrouping(
     };
   }
 
-  for (const n of freeNodes) {
-    allPositions[n.id] = { x: Math.round(n.x), y: Math.round(n.y) };
+  for (const u of unmatchedNodes) {
+    allPositions[u.id] = { x: Math.round(u.x), y: Math.round(u.y) };
   }
 
   return { id: groupingId, label: groupingLabel, regions: builtRegions, positions: allPositions };

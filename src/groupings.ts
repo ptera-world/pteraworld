@@ -36,8 +36,6 @@ export interface Grouping {
 
 export const groupings: Grouping[] = generatedGroupings;
 
-export const defaultGrouping = groupings[0] as Grouping | undefined;
-
 export function getGrouping(id: string): Grouping | undefined {
   return groupings.find((g) => g.id === id);
 }

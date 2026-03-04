@@ -3,12 +3,12 @@
  */
 
 import type { Graph, Node } from "./graph";
-import { groupings, defaultGrouping, getGrouping, type Grouping } from "./groupings";
+import { groupings, getGrouping, type Grouping } from "./groupings";
 import { updatePositions, animateTo, fadeOutRegions, fadeInRegions, snapNodePositions, nodeEls, worldEl, type NodePositionWithRegion } from "./dom";
 import type { Camera } from "./camera";
 
-let currentLayoutGrouping: Grouping | undefined = defaultGrouping;
-let currentColorGrouping: Grouping | undefined = defaultGrouping;
+let currentLayoutGrouping: Grouping | undefined = groupings[0];
+let currentColorGrouping: Grouping | undefined = groupings[0];
 let graphRef: Graph;
 let cameraRef: Camera;
 
@@ -109,12 +109,12 @@ export function setColorGrouping(groupingId: string): void {
 }
 
 function updateUrl(): void {
-  if (!currentLayoutGrouping || !currentColorGrouping || !defaultGrouping) return;
+  if (!currentLayoutGrouping || !currentColorGrouping || !groupings[0]) return;
 
   const params = new URLSearchParams(location.search);
 
   // Layout param
-  if (currentLayoutGrouping.id === defaultGrouping.id) {
+  if (currentLayoutGrouping.id === groupings[0].id) {
     params.delete("grouping");
   } else {
     params.set("grouping", currentLayoutGrouping.id);
@@ -226,7 +226,7 @@ export function restoreGroupingFromUrl(): void {
   // Restore layout grouping
   if (layoutId) {
     const layoutGrouping = getGrouping(layoutId);
-    if (layoutGrouping && defaultGrouping && layoutGrouping.id !== defaultGrouping.id) {
+    if (layoutGrouping && groupings[0] && layoutGrouping.id !== groupings[0].id) {
       currentLayoutGrouping = layoutGrouping;
       const positions = computePositionsForGrouping(layoutGrouping);
       // Swap regions immediately (no animation on page load)
