@@ -55,7 +55,7 @@ async function buildCollection(id: CollectionId): Promise<void> {
 
   // 1. Generate graph
   console.log(`\nGenerating graph for [${config.contentDirs.join(", ")}]...`);
-  await generateGraph(config.contentDirs);
+  await generateGraph(config.contentDirs, id);
 
   // 2. Generate headings
   const headingsPath = join(outDir, "headings.json");

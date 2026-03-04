@@ -311,7 +311,7 @@ function runForceLayoutAdaptive(
  * Generate the graph for specified content directories.
  * If dirs is omitted, scans all content directories.
  */
-export async function generateGraph(dirs?: string[]): Promise<void> {
+export async function generateGraph(dirs?: string[], collectionId?: string): Promise<void> {
 
 const allFiles = await findMarkdownFiles(CONTENT_DIR, dirs);
 
@@ -369,6 +369,8 @@ for (const { id, path, category } of files) {
   const text = await readFile(path, "utf-8");
   const fm = parseFrontmatter(text);
   if (!fm) continue;
+
+  if (collectionId && fm.collections && !fm.collections.includes(collectionId)) continue;
 
   const clusterForDir = dirToCluster.get(category);
   const tier = fm.tier ?? clusterForDir?.tier ?? null;

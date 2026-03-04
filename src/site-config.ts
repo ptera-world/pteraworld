@@ -26,6 +26,11 @@ export const siteConfig = {
       metaNodeId: "meta/unfiltered",
       contentDirs: ["meta", "unfiltered"],
     },
+    intent: {
+      name: "intent",
+      metaNodeId: "meta/intent",
+      contentDirs: ["meta", "intent"],
+    },
   } satisfies Record<string, CollectionConfig>,
 } as const;
 

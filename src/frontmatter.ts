@@ -14,6 +14,7 @@ export interface Frontmatter {
   radius?: number;
   color?: string;
   cluster?: string;
+  collections?: string[];
 }
 
 /** Strip frontmatter from markdown source, returning the body. */
