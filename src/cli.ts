@@ -87,6 +87,13 @@ async function buildAll(collectionFilter?: CollectionId): Promise<void> {
     await buildCollection(id);
   }
 
+  // After all collections are built, restore generated-graph.ts to the default
+  // collection so dev server and tooling see the correct data.
+  if (!collectionFilter) {
+    const def = siteConfig.collections.default;
+    await generateGraph(def.contentDirs, "default");
+  }
+
   // Generate content pages (shared, once)
   console.log("\nGenerating content pages...");
   await generatePages();
@@ -122,8 +129,12 @@ switch (command) {
   }
 
   case "graph": {
-    const dirs = args.slice(1).filter((a) => !a.startsWith("-"));
-    await generateGraph(dirs.length > 0 ? dirs : undefined);
+    const colIdx = args.indexOf("--collection");
+    const collectionId = colIdx !== -1 ? args[colIdx + 1] as CollectionId : undefined;
+    const dirs = collectionId
+      ? siteConfig.collections[collectionId].contentDirs
+      : args.slice(1).filter((a) => !a.startsWith("-"));
+    await generateGraph(dirs.length > 0 ? dirs : undefined, collectionId);
     break;
   }
 
