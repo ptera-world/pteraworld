@@ -218,7 +218,7 @@ export function setupInput(
   landingEl.addEventListener("click", (e) => {
     e.stopPropagation();
     const metaNode = graph.nodes.find((n) => n.id === metaNodeId);
-    if (metaNode) showCard(metaNode, graph);
+    if (metaNode) navigateTo(metaNode);
   });
 
   // Double-click: zoom to fit region

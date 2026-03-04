@@ -181,8 +181,8 @@ export function showCard(node: Node, graph: Graph): void {
   card.replaceChildren(buildCard(node, graph));
   card.setAttribute("aria-label", node.label);
   const coreR = node.radius;
-  const vertical = window.matchMedia("(max-width: 640px)").matches;
-  if (vertical) {
+  const below = node.tags.includes("meta") || window.matchMedia("(max-width: 640px)").matches;
+  if (below) {
     card.style.left = `${node.x}px`;
     card.style.top = `${node.y + coreR + 12}px`;
   } else {

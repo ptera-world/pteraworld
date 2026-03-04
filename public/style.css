@@ -111,6 +111,7 @@ html, body {
   padding: 0 4px; font-size: 10px; font-family: inherit; color: #555;
 }
 #world[data-hovering] .landing { opacity: calc(var(--landing-zoom, 1) * 0.15); }
+#world[data-hovering] .landing.focused { opacity: var(--landing-zoom, 1); }
 #world[data-filtering] .landing { opacity: calc(var(--landing-zoom, 1) * 0.08) !important; }
 
 /* Tier-based visibility */
