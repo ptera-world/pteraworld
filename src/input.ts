@@ -5,6 +5,7 @@ import { updateTransform, setFocus, getHitNode, animateTo, nodeEls, landingEl } 
 import { showCard, hideCard, isCardOpen, setCardNavigate } from "./card";
 import { isPanelOpen, closePanel, openPanel } from "./panel";
 
+import { siteConfig, getActiveCollection } from "./site-config";
 import { keybinds, defineSchema, fromBindings, registerComponents, fuzzyMatcher } from "keybinds";
 import type { Command } from "keybinds";
 
@@ -213,9 +214,10 @@ export function setupInput(
   });
 
   // Landing click: show card for the meta node
+  const metaNodeId = siteConfig.collections[getActiveCollection()].metaNodeId;
   landingEl.addEventListener("click", (e) => {
     e.stopPropagation();
-    const metaNode = graph.nodes.find((n) => n.tags.includes("meta"));
+    const metaNode = graph.nodes.find((n) => n.id === metaNodeId);
     if (metaNode) showCard(metaNode, graph);
   });
 
@@ -279,7 +281,7 @@ export function setupInput(
       updateTransform(camera);
     },
     "reset-view": () => {
-      const meta = graph.nodes.find((n) => n.tags.includes("meta"));
+      const meta = graph.nodes.find((n) => n.id === metaNodeId);
       animateTo(camera, meta?.x ?? 0, meta?.y ?? 0, 1.5);
     },
     confirm: () => {
