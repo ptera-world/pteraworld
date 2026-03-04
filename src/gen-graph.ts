@@ -436,196 +436,6 @@ for (const { id, path, category } of files) {
 }
 
 // ---------------------------------------------------------------------------
-// 4. Compute layout: positions and colors
-// ---------------------------------------------------------------------------
-
-const regions = nodes.filter((n) => n.tier === "region");
-const metaNodes = nodes.filter((n) => n.tier === "meta");
-const projectNodes = nodes.filter((n) => n.tier === "artifact");
-
-// Auto-tag each node from its status field so buildTagGrouping can match status regions by tag.
-for (const n of projectNodes) {
-  if (n.status && !n.tags.includes(n.status)) n.tags.push(n.status);
-}
-
-// --- Region layout: ring around origin ---
-{
-  for (const region of regions) {
-    const children = projectNodes.filter((n) => n.parent === region.id);
-    if (!region.color) {
-      const i = regions.indexOf(region);
-      const hue = Math.round((360 * i) / Math.max(regions.length, 1));
-      region.color = `oklch(0.7 0.12 ${hue})`;
-    }
-    if (children.length === 0) {
-      region.radius = Math.max(140, region.radius);
-      continue;
-    }
-    const maxChildR = Math.max(...children.map((c) => c.radius), 20);
-    const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
-    region.radius = Math.max(140, ringR + maxChildR + 20);
-  }
-
-  const anchoredOuterR = [...clusterConfigs.values()]
-    .filter((c) => c.near)
-    .reduce((maxR, c) => {
-      const clusterMembers = projectNodes.filter((n) => n.cluster === c.id);
-      const maxMemberR = clusterMembers.length > 0
-        ? Math.max(...clusterMembers.map((m) => m.radius), 20) : 20;
-      const padding = c.padding ?? 15;
-      const outerR = (c.ringRadius ?? Math.max(80, 60 + clusterMembers.length * 15)) + maxMemberR + padding;
-      return Math.max(maxR, outerR);
-    }, 0);
-
-  if (regions.length === 1) {
-    const region = regions[0]!;
-    if (anchoredOuterR > 0) {
-      const clearance = anchoredOuterR + region.radius + 40;
-      region.x = -clearance;
-      region.y = 0;
-    } else {
-      region.x = 0;
-      region.y = 0;
-    }
-  } else if (regions.length > 1) {
-    const maxRadius = Math.max(...regions.map((r) => r.radius));
-    const baseRingR = maxRadius + 100;
-    const ringR = anchoredOuterR > 0
-      ? Math.max(baseRingR, anchoredOuterR + maxRadius + 40)
-      : baseRingR;
-    for (let i = 0; i < regions.length; i++) {
-      const angle = Math.PI + (2 * Math.PI * i) / regions.length;
-      regions[i]!.x = Math.round(ringR * Math.cos(angle));
-      regions[i]!.y = Math.round(ringR * Math.sin(angle));
-    }
-  }
-}
-
-// --- Children of regions: ring around parent ---
-{
-  const parentGroups = new Map<string, ParsedNode[]>();
-  for (const node of projectNodes) {
-    if (node.parent) {
-      const group = parentGroups.get(node.parent) ?? [];
-      group.push(node);
-      parentGroups.set(node.parent, group);
-    }
-  }
-
-  for (const [parentId, children] of parentGroups) {
-    const parent = regions.find((r) => r.id === parentId);
-    if (!parent) continue;
-
-    const maxChildR = Math.max(...children.map((c) => c.radius), 20);
-    const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
-    ringLayout(parent.x, parent.y, ringR, children);
-
-    if (children.some((c) => !c.color)) {
-      const m = parent.color.match(/oklch\([\d.]+ ([\d.]+) ([\d.]+)\)/);
-      const hue = m ? m[2] : "0";
-      for (const child of children) {
-        if (!child.color) child.color = `oklch(0.78 0.09 ${hue})`;
-      }
-    }
-  }
-}
-
-function computeClusterCenter(
-  config: ClusterConfig,
-  members: ParsedNode[],
-  allNodes: ParsedNode[],
-  placedHulls: Point[][],
-): [number, number] {
-  if (config.near) {
-    const anchor = allNodes.find((n) => n.id === config.near);
-    if (anchor) return [anchor.x, anchor.y];
-    console.warn(`  warn: cluster "${config.id}" near: "${config.near}" not found, auto-placing`);
-  }
-
-  const spreadEstimate = config.layout === "ring"
-    ? (config.ringRadius ?? Math.max(80, 60 + members.length * 15))
-    : initialForceParams(members).seedR;
-
-  const placementR = Math.max(...regions.map((r) => r.radius), 100)
-    + spreadEstimate + 80;
-
-  let bestAngle = 0, bestScore = -Infinity;
-  for (let i = 0; i < 72; i++) {
-    const angle = (2 * Math.PI * i) / 72;
-    const cx = placementR * Math.cos(angle);
-    const cy = placementR * Math.sin(angle);
-
-    const minRegionDist = regions.length > 0
-      ? Math.min(...regions.map((r) => Math.hypot(cx - r.x, cy - r.y) - r.radius - spreadEstimate))
-      : Infinity;
-
-    const minHullDist = placedHulls.length > 0
-      ? Math.min(...placedHulls.map((h) => hullSeparation([{ x: cx, y: cy }], h) - spreadEstimate))
-      : Infinity;
-
-    const score = Math.min(minRegionDist, minHullDist);
-    if (score > bestScore) { bestScore = score; bestAngle = angle; }
-  }
-
-  return [
-    Math.round(placementR * Math.cos(bestAngle)),
-    Math.round(placementR * Math.sin(bestAngle)),
-  ];
-}
-
-// --- Meta nodes: origin ---
-for (const meta of metaNodes) {
-  meta.x = 0;
-  meta.y = 0;
-  meta.radius = 0;
-  if (!meta.color) meta.color = "#fff";
-}
-
-// --- Cluster layout ---
-const clusterCenters = new Map<string, [number, number]>();
-const placedHulls: Point[][] = [];
-
-for (const [clusterId, config] of clusterConfigs) {
-  const members = projectNodes.filter((n) => n.cluster === clusterId);
-  if (members.length === 0) continue;
-
-  for (const m of members) {
-    if (!m.color) {
-      if (config.tagColors) {
-        const matchingHues = m.tags
-          .filter((t) => config.tagColors![t] !== undefined)
-          .map((t) => config.tagColors![t]!);
-        if (matchingHues.length > 0) {
-          const avgHue = Math.round(matchingHues.reduce((a, b) => a + b, 0) / matchingHues.length);
-          m.color = `oklch(0.78 0.12 ${avgHue})`;
-        } else {
-          m.color = config.color;
-        }
-      } else {
-        m.color = config.color;
-      }
-    }
-  }
-
-  const center = computeClusterCenter(config, members, [...regions, ...metaNodes, ...projectNodes], placedHulls);
-  clusterCenters.set(clusterId, center);
-
-  if (config.layout === "ring") {
-    const ringR = config.ringRadius ?? Math.max(80, 60 + members.length * 15);
-    ringLayout(center[0], center[1], ringR, members);
-  } else {
-    const { seedR } = initialForceParams(members);
-    ringLayout(center[0], center[1], seedR, members);
-  }
-
-  const maxMemberR = Math.max(...members.map((m) => m.radius), 20);
-  const padding = config.padding ?? 15;
-  const corePts = filterOutliers(members.map((m) => ({ x: m.x, y: m.y })));
-  const hull = expandHull(convexHull(corePts), maxMemberR + padding);
-  placedHulls.push(hull);
-}
-
-// ---------------------------------------------------------------------------
 // 5. Extract edges
 // ---------------------------------------------------------------------------
 
@@ -662,132 +472,7 @@ for (const { id, path } of files) {
 edges.sort((a, b) => a.from.localeCompare(b.from) || a.to.localeCompare(b.to));
 
 // ---------------------------------------------------------------------------
-// 6. Force-directed layout for force clusters
-// ---------------------------------------------------------------------------
-
-console.log("Force layout:");
-for (const [clusterId, config] of clusterConfigs) {
-  if (config.layout !== "force") continue;
-  const members = projectNodes.filter((n) => n.cluster === clusterId);
-  if (members.length === 0) continue;
-
-  const memberIds = new Set(members.map((m) => m.id));
-  const adj = new Map<string, Set<string>>();
-  for (const m of members) adj.set(m.id, new Set());
-  for (const edge of edges) {
-    if (memberIds.has(edge.from) && memberIds.has(edge.to)) {
-      adj.get(edge.from)!.add(edge.to);
-      adj.get(edge.to)!.add(edge.from);
-    }
-  }
-
-  runForceLayoutAdaptive(members, clusterCenters.get(clusterId)!, adj, clusterId);
-}
-
-// ---------------------------------------------------------------------------
-// 6b. Detect and resolve cross-cluster overlaps
-// ---------------------------------------------------------------------------
-{
-  const overlaps: [ParsedNode, ParsedNode, number][] = [];
-  for (let i = 0; i < projectNodes.length; i++) {
-    for (let j = i + 1; j < projectNodes.length; j++) {
-      const a = projectNodes[i]!, b = projectNodes[j]!;
-      if (a.parent && a.parent === b.parent) continue;
-      const minDist = a.radius + b.radius + 4;
-      const dist = Math.hypot(a.x - b.x, a.y - b.y);
-      if (dist < minDist) overlaps.push([a, b, dist]);
-    }
-  }
-
-  if (overlaps.length > 0) {
-    console.warn(`\nwarn: ${overlaps.length} node overlaps — applying best-effort separation:`);
-    for (const [a, b, dist] of overlaps) {
-      console.warn(`  ${a.id} <-> ${b.id}: dist=${Math.round(dist)}, need ${Math.round(a.radius + b.radius + 4)}`);
-    }
-
-    for (let pass = 0; pass < 30; pass++) {
-      for (let i = 0; i < projectNodes.length; i++) {
-        for (let j = i + 1; j < projectNodes.length; j++) {
-          const a = projectNodes[i]!, b = projectNodes[j]!;
-          if (a.parent && a.parent === b.parent) continue;
-          const minDist = a.radius + b.radius + 4;
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < minDist && dist > 0) {
-            const push = (minDist - dist) + 0.5;
-            const nx = dx / dist, ny = dy / dist;
-            if (a.parent && !b.parent) {
-              b.x -= nx * push; b.y -= ny * push;
-            } else if (b.parent && !a.parent) {
-              a.x += nx * push; a.y += ny * push;
-            } else {
-              a.x += nx * push / 2; a.y += ny * push / 2;
-              b.x -= nx * push / 2; b.y -= ny * push / 2;
-            }
-          }
-        }
-      }
-    }
-
-    for (const n of projectNodes) {
-      n.x = Math.round(n.x);
-      n.y = Math.round(n.y);
-    }
-    console.warn("  separation applied.");
-  }
-
-  const anchoredClusters = new Set(
-    [...clusterConfigs.values()].filter((c) => c.near).map((c) => c.id),
-  );
-  let regionPushCount = 0;
-  for (let pass = 0; pass < 20; pass++) {
-    for (const region of regions) {
-      for (const n of projectNodes) {
-        if (n.parent) continue;
-        if (n.cluster && anchoredClusters.has(n.cluster)) continue;
-        const dist = Math.hypot(n.x - region.x, n.y - region.y);
-        if (dist < region.radius + n.radius + 8) {
-          const push = region.radius + n.radius + 8 - dist + 0.5;
-          const nx = dist > 0 ? (n.x - region.x) / dist : 1;
-          const ny = dist > 0 ? (n.y - region.y) / dist : 0;
-          n.x = Math.round(n.x + nx * push);
-          n.y = Math.round(n.y + ny * push);
-          regionPushCount++;
-        }
-      }
-    }
-  }
-  if (regionPushCount > 0) {
-    console.warn(`  pushed ${regionPushCount} region-vs-artifact overlaps.`);
-  }
-}
-
-// Final quality report
-{
-  let anyForce = false;
-  for (const [clusterId, config] of clusterConfigs) {
-    if (config.layout !== "force") continue;
-    const members = projectNodes.filter((n) => n.cluster === clusterId);
-    if (members.length === 0) continue;
-    if (!anyForce) { console.log("Force layout (final, post-separation):"); anyForce = true; }
-    const memberIds = new Set(members.map((m) => m.id));
-    const adj = new Map<string, Set<string>>();
-    for (const m of members) adj.set(m.id, new Set());
-    for (const edge of edges) {
-      if (memberIds.has(edge.from) && memberIds.has(edge.to)) {
-        adj.get(edge.from)!.add(edge.to);
-        adj.get(edge.to)!.add(edge.from);
-      }
-    }
-    const q = measureLayoutQuality(members, adj, clusterCenters.get(clusterId)!);
-    const edgePart = q.edgeRatio != null
-      ? `  edge=${q.edgeRatio.toFixed(2)} cluster=${q.clusterScore?.toFixed(2) ?? "n/a"}` : "";
-    console.log(`  ${clusterId}(${members.length}): overlaps=${q.overlaps} spread=${Math.round(q.spreadRadius)}${edgePart}`);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// 7. Generate groupings
+// 4. Layout — ecosystem grouping (peer to tag groupings)
 // ---------------------------------------------------------------------------
 
 interface GroupingOutput {
@@ -797,24 +482,337 @@ interface GroupingOutput {
   positions: Record<string, { x: number; y: number; regionId?: string; regionIds?: string[]; color?: string }>;
 }
 
-const generatedGroupings: GroupingOutput[] = [];
+function buildEcosystemGrouping(): GroupingOutput {
+  const eligibleNodes = nodes.filter((n) => n.tier !== "region" && n.tier !== "meta");
+  const regions = nodes.filter((n) => n.tier === "region");
+  const metaNodes = nodes.filter((n) => n.tier === "meta");
 
-{
+  // Auto-tag each node from its status field so buildTagGrouping can match status regions by tag.
+  for (const n of eligibleNodes) {
+    if (n.status && !n.tags.includes(n.status)) n.tags.push(n.status);
+  }
+
+  // --- Region layout: ring around origin ---
+  {
+    for (const region of regions) {
+      const children = eligibleNodes.filter((n) => n.parent === region.id);
+      if (!region.color) {
+        const i = regions.indexOf(region);
+        const hue = Math.round((360 * i) / Math.max(regions.length, 1));
+        region.color = `oklch(0.7 0.12 ${hue})`;
+      }
+      if (children.length === 0) {
+        region.radius = Math.max(140, region.radius);
+        continue;
+      }
+      const maxChildR = Math.max(...children.map((c) => c.radius), 20);
+      const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
+      region.radius = Math.max(140, ringR + maxChildR + 20);
+    }
+
+    const anchoredOuterR = [...clusterConfigs.values()]
+      .filter((c) => c.near)
+      .reduce((maxR, c) => {
+        const clusterMembers = eligibleNodes.filter((n) => n.cluster === c.id);
+        const maxMemberR = clusterMembers.length > 0
+          ? Math.max(...clusterMembers.map((m) => m.radius), 20) : 20;
+        const padding = c.padding ?? 15;
+        const outerR = (c.ringRadius ?? Math.max(80, 60 + clusterMembers.length * 15)) + maxMemberR + padding;
+        return Math.max(maxR, outerR);
+      }, 0);
+
+    if (regions.length === 1) {
+      const region = regions[0]!;
+      if (anchoredOuterR > 0) {
+        const clearance = anchoredOuterR + region.radius + 40;
+        region.x = -clearance;
+        region.y = 0;
+      } else {
+        region.x = 0;
+        region.y = 0;
+      }
+    } else if (regions.length > 1) {
+      const maxRadius = Math.max(...regions.map((r) => r.radius));
+      const baseRingR = maxRadius + 100;
+      const ringR = anchoredOuterR > 0
+        ? Math.max(baseRingR, anchoredOuterR + maxRadius + 40)
+        : baseRingR;
+      for (let i = 0; i < regions.length; i++) {
+        const angle = Math.PI + (2 * Math.PI * i) / regions.length;
+        regions[i]!.x = Math.round(ringR * Math.cos(angle));
+        regions[i]!.y = Math.round(ringR * Math.sin(angle));
+      }
+    }
+  }
+
+  // --- Children of regions: ring around parent ---
+  {
+    const parentGroups = new Map<string, ParsedNode[]>();
+    for (const node of eligibleNodes) {
+      if (node.parent) {
+        const group = parentGroups.get(node.parent) ?? [];
+        group.push(node);
+        parentGroups.set(node.parent, group);
+      }
+    }
+
+    for (const [parentId, children] of parentGroups) {
+      const parent = regions.find((r) => r.id === parentId);
+      if (!parent) continue;
+
+      const maxChildR = Math.max(...children.map((c) => c.radius), 20);
+      const ringR = Math.max(100, Math.ceil(children.length * (maxChildR + 8) / Math.PI));
+      ringLayout(parent.x, parent.y, ringR, children);
+
+      if (children.some((c) => !c.color)) {
+        const m = parent.color.match(/oklch\([\d.]+ ([\d.]+) ([\d.]+)\)/);
+        const hue = m ? m[2] : "0";
+        for (const child of children) {
+          if (!child.color) child.color = `oklch(0.78 0.09 ${hue})`;
+        }
+      }
+    }
+  }
+
+  function computeClusterCenter(
+    config: ClusterConfig,
+    members: ParsedNode[],
+    allNodes: ParsedNode[],
+    placedHulls: Point[][],
+  ): [number, number] {
+    if (config.near) {
+      const anchor = allNodes.find((n) => n.id === config.near);
+      if (anchor) return [anchor.x, anchor.y];
+      console.warn(`  warn: cluster "${config.id}" near: "${config.near}" not found, auto-placing`);
+    }
+
+    const spreadEstimate = config.layout === "ring"
+      ? (config.ringRadius ?? Math.max(80, 60 + members.length * 15))
+      : initialForceParams(members).seedR;
+
+    const placementR = Math.max(...regions.map((r) => r.radius), 100)
+      + spreadEstimate + 80;
+
+    let bestAngle = 0, bestScore = -Infinity;
+    for (let i = 0; i < 72; i++) {
+      const angle = (2 * Math.PI * i) / 72;
+      const cx = placementR * Math.cos(angle);
+      const cy = placementR * Math.sin(angle);
+
+      const minRegionDist = regions.length > 0
+        ? Math.min(...regions.map((r) => Math.hypot(cx - r.x, cy - r.y) - r.radius - spreadEstimate))
+        : Infinity;
+
+      const minHullDist = placedHulls.length > 0
+        ? Math.min(...placedHulls.map((h) => hullSeparation([{ x: cx, y: cy }], h) - spreadEstimate))
+        : Infinity;
+
+      const score = Math.min(minRegionDist, minHullDist);
+      if (score > bestScore) { bestScore = score; bestAngle = angle; }
+    }
+
+    return [
+      Math.round(placementR * Math.cos(bestAngle)),
+      Math.round(placementR * Math.sin(bestAngle)),
+    ];
+  }
+
+  // --- Meta nodes: origin ---
+  for (const meta of metaNodes) {
+    meta.x = 0;
+    meta.y = 0;
+    meta.radius = 0;
+    if (!meta.color) meta.color = "#fff";
+  }
+
+  // --- Cluster layout ---
+  const clusterCenters = new Map<string, [number, number]>();
+  const placedHulls: Point[][] = [];
+
+  for (const [clusterId, config] of clusterConfigs) {
+    const members = eligibleNodes.filter((n) => n.cluster === clusterId);
+    if (members.length === 0) continue;
+
+    for (const m of members) {
+      if (!m.color) {
+        if (config.tagColors) {
+          const matchingHues = m.tags
+            .filter((t) => config.tagColors![t] !== undefined)
+            .map((t) => config.tagColors![t]!);
+          if (matchingHues.length > 0) {
+            const avgHue = Math.round(matchingHues.reduce((a, b) => a + b, 0) / matchingHues.length);
+            m.color = `oklch(0.78 0.12 ${avgHue})`;
+          } else {
+            m.color = config.color;
+          }
+        } else {
+          m.color = config.color;
+        }
+      }
+    }
+
+    const center = computeClusterCenter(config, members, [...regions, ...metaNodes, ...eligibleNodes], placedHulls);
+    clusterCenters.set(clusterId, center);
+
+    if (config.layout === "ring") {
+      const ringR = config.ringRadius ?? Math.max(80, 60 + members.length * 15);
+      ringLayout(center[0], center[1], ringR, members);
+    } else {
+      const { seedR } = initialForceParams(members);
+      ringLayout(center[0], center[1], seedR, members);
+    }
+
+    const maxMemberR = Math.max(...members.map((m) => m.radius), 20);
+    const padding = config.padding ?? 15;
+    const corePts = filterOutliers(members.map((m) => ({ x: m.x, y: m.y })));
+    const hull = expandHull(convexHull(corePts), maxMemberR + padding);
+    placedHulls.push(hull);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 6. Force-directed layout for force clusters
+  // ---------------------------------------------------------------------------
+
+  console.log("Force layout:");
+  for (const [clusterId, config] of clusterConfigs) {
+    if (config.layout !== "force") continue;
+    const members = eligibleNodes.filter((n) => n.cluster === clusterId);
+    if (members.length === 0) continue;
+
+    const memberIds = new Set(members.map((m) => m.id));
+    const adj = new Map<string, Set<string>>();
+    for (const m of members) adj.set(m.id, new Set());
+    for (const edge of edges) {
+      if (memberIds.has(edge.from) && memberIds.has(edge.to)) {
+        adj.get(edge.from)!.add(edge.to);
+        adj.get(edge.to)!.add(edge.from);
+      }
+    }
+
+    runForceLayoutAdaptive(members, clusterCenters.get(clusterId)!, adj, clusterId);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 6b. Detect and resolve cross-cluster overlaps
+  // ---------------------------------------------------------------------------
+  {
+    const overlaps: [ParsedNode, ParsedNode, number][] = [];
+    for (let i = 0; i < eligibleNodes.length; i++) {
+      for (let j = i + 1; j < eligibleNodes.length; j++) {
+        const a = eligibleNodes[i]!, b = eligibleNodes[j]!;
+        if (a.parent && a.parent === b.parent) continue;
+        const minDist = a.radius + b.radius + 4;
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (dist < minDist) overlaps.push([a, b, dist]);
+      }
+    }
+
+    if (overlaps.length > 0) {
+      console.warn(`\nwarn: ${overlaps.length} node overlaps — applying best-effort separation:`);
+      for (const [a, b, dist] of overlaps) {
+        console.warn(`  ${a.id} <-> ${b.id}: dist=${Math.round(dist)}, need ${Math.round(a.radius + b.radius + 4)}`);
+      }
+
+      for (let pass = 0; pass < 30; pass++) {
+        for (let i = 0; i < eligibleNodes.length; i++) {
+          for (let j = i + 1; j < eligibleNodes.length; j++) {
+            const a = eligibleNodes[i]!, b = eligibleNodes[j]!;
+            if (a.parent && a.parent === b.parent) continue;
+            const minDist = a.radius + b.radius + 4;
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < minDist && dist > 0) {
+              const push = (minDist - dist) + 0.5;
+              const nx = dx / dist, ny = dy / dist;
+              if (a.parent && !b.parent) {
+                b.x -= nx * push; b.y -= ny * push;
+              } else if (b.parent && !a.parent) {
+                a.x += nx * push; a.y += ny * push;
+              } else {
+                a.x += nx * push / 2; a.y += ny * push / 2;
+                b.x -= nx * push / 2; b.y -= ny * push / 2;
+              }
+            }
+          }
+        }
+      }
+
+      for (const n of eligibleNodes) {
+        n.x = Math.round(n.x);
+        n.y = Math.round(n.y);
+      }
+      console.warn("  separation applied.");
+    }
+
+    const anchoredClusters = new Set(
+      [...clusterConfigs.values()].filter((c) => c.near).map((c) => c.id),
+    );
+    let regionPushCount = 0;
+    for (let pass = 0; pass < 20; pass++) {
+      for (const region of regions) {
+        for (const n of eligibleNodes) {
+          if (n.parent) continue;
+          if (n.cluster && anchoredClusters.has(n.cluster)) continue;
+          const dist = Math.hypot(n.x - region.x, n.y - region.y);
+          if (dist < region.radius + n.radius + 8) {
+            const push = region.radius + n.radius + 8 - dist + 0.5;
+            const nx = dist > 0 ? (n.x - region.x) / dist : 1;
+            const ny = dist > 0 ? (n.y - region.y) / dist : 0;
+            n.x = Math.round(n.x + nx * push);
+            n.y = Math.round(n.y + ny * push);
+            regionPushCount++;
+          }
+        }
+      }
+    }
+    if (regionPushCount > 0) {
+      console.warn(`  pushed ${regionPushCount} region-vs-artifact overlaps.`);
+    }
+  }
+
+  // Final quality report
+  {
+    let anyForce = false;
+    for (const [clusterId, config] of clusterConfigs) {
+      if (config.layout !== "force") continue;
+      const members = eligibleNodes.filter((n) => n.cluster === clusterId);
+      if (members.length === 0) continue;
+      if (!anyForce) { console.log("Force layout (final, post-separation):"); anyForce = true; }
+      const memberIds = new Set(members.map((m) => m.id));
+      const adj = new Map<string, Set<string>>();
+      for (const m of members) adj.set(m.id, new Set());
+      for (const edge of edges) {
+        if (memberIds.has(edge.from) && memberIds.has(edge.to)) {
+          adj.get(edge.from)!.add(edge.to);
+          adj.get(edge.to)!.add(edge.from);
+        }
+      }
+      const q = measureLayoutQuality(members, adj, clusterCenters.get(clusterId)!);
+      const edgePart = q.edgeRatio != null
+        ? `  edge=${q.edgeRatio.toFixed(2)} cluster=${q.clusterScore?.toFixed(2) ?? "n/a"}` : "";
+      console.log(`  ${clusterId}(${members.length}): overlaps=${q.overlaps} spread=${Math.round(q.spreadRadius)}${edgePart}`);
+    }
+  }
+
+  // Build ecosystem grouping output
   const ecoRegions = regions.map((r) => ({
     id: r.id, label: r.label, description: r.description,
     x: r.x, y: r.y, radius: r.radius, color: r.color,
   }));
-  const ecoPositions: Record<string, { x: number; y: number; regionId?: string; color?: string }> = {};
-  for (const n of projectNodes) {
-    ecoPositions[n.id] = { x: n.x, y: n.y, ...(n.parent ? { regionId: n.parent } : {}) };
+  const positions: GroupingOutput["positions"] = {};
+  for (const n of eligibleNodes) {
+    positions[n.id] = { x: n.x, y: n.y, ...(n.parent ? { regionId: n.parent } : {}) };
   }
-  generatedGroupings.push({
-    id: "ecosystem",
-    label: "Ecosystems",
-    regions: ecoRegions,
-    positions: ecoPositions,
-  });
+  return { id: "ecosystem", label: "Ecosystems", regions: ecoRegions, positions };
 }
+
+// ---------------------------------------------------------------------------
+// 7. Generate groupings
+// ---------------------------------------------------------------------------
+
+const generatedGroupings: GroupingOutput[] = [];
+
+generatedGroupings.push(buildEcosystemGrouping());
 
 function buildTagGrouping(
   groupingId: string, groupingLabel: string,
@@ -1049,18 +1047,17 @@ function buildTagGrouping(
       }
     }
 
-    // Free–free repulsion
+    // Free–free repulsion: soft 1/d² (always on, falls off with distance)
+    // so nodes spread to a natural rest distance, same model as ecosystem force layout.
+    const FREE_REPULSION = 8000;
     for (let i = 0; i < freeNodes.length; i++) {
       for (let j = i + 1; j < freeNodes.length; j++) {
         const a = freeNodes[i]!, b = freeNodes[j]!;
         const dx = a.x - b.x, dy = a.y - b.y;
         const d = Math.hypot(dx, dy) || 0.1;
-        const minD = a.r + b.r + 6;
-        if (d < minD) {
-          const push = (minD - d) / 2 * PUSH;
-          ffx[i]! += (dx / d) * push; ffy[i]! += (dy / d) * push;
-          ffx[j]! -= (dx / d) * push; ffy[j]! -= (dy / d) * push;
-        }
+        const force = FREE_REPULSION / (d * d);
+        ffx[i]! += (dx / d) * force; ffy[i]! += (dy / d) * force;
+        ffx[j]! -= (dx / d) * force; ffy[j]! -= (dy / d) * force;
       }
     }
 
