@@ -28,8 +28,7 @@ html, body {
 .edge {
   stroke: #555; stroke-width: 1;
   opacity: 0.4; pointer-events: none;
-  transition: d 400ms ease-out,
-              opacity 200ms, stroke-width 200ms, stroke 200ms;
+  transition: opacity 200ms, stroke-width 200ms, stroke 200ms;
 }
 .edge-label {
   position: absolute;
@@ -46,10 +45,12 @@ html, body {
   position: absolute;
   width: calc(var(--r) * 2); height: calc(var(--r) * 2);
   transform: translate(-50%, -50%);
-  transition: opacity 200ms, translate 400ms ease-out, scale 200ms ease-out, --color 400ms ease-out;
+  transition: opacity 200ms, scale 200ms ease-out, --color 400ms ease-out;
 }
 #world[data-no-transition] .node,
 #world[data-no-transition] .edge { transition: none; }
+/* Hide graph containment edges (ecosystem parent→child) in non-ecosystem groupings */
+#world:not([data-grouping="ecosystem"]) .edge[data-origin="graph"][data-type="containment"] { opacity: 0; pointer-events: none; }
 .node.region { z-index: 0; opacity: var(--eco-filter-opacity, 1); }
 .node.project { z-index: 1; }
 
@@ -165,6 +166,16 @@ html, body {
   transition: background 200ms, color 200ms;
 }
 .card-learn-more:hover { background: #333; color: #fff; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.card-tag {
+  padding: 2px 9px; border-radius: 10px; font-size: 11px;
+  border: 1px solid color-mix(in oklch, var(--tc, #555) 60%, transparent);
+  color: color-mix(in oklch, var(--tc, #888) 80%, #fff);
+  background: color-mix(in oklch, var(--tc, #222) 12%, #1a1a1a);
+  cursor: pointer; transition: border-color 150ms, color 150ms, background 150ms;
+}
+.card-tag:hover { border-color: var(--tc, #888); color: #ddd; }
+.card-tag[data-active] { background: color-mix(in oklch, var(--tc, #444) 25%, #1a1a1a); color: #eee; }
 
 /* App layout */
 #app { display: flex; width: 100%; height: 100%; }
@@ -241,13 +252,6 @@ html, body {
 /* Essay dot shape */
 .node[data-kind="essay"] .node-dot { border-radius: 25%; }
 
-/* Grouping-aware visibility */
-/* Hide essays in code-focused views */
-#world[data-grouping="domain"] .node[data-kind="essay"],
-#world[data-grouping="tech"] .node[data-kind="essay"],
-#world[data-grouping="status"] .node[data-kind="essay"] { opacity: 0; pointer-events: none; }
-/* De-emphasize code in essays view */
-#world[data-grouping="essays"] .node.artifact:not([data-kind="essay"]) { opacity: 0.12; pointer-events: none; }
 
 /* Filter bar */
 #filter-bar {
@@ -255,13 +259,15 @@ html, body {
   display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
 }
 .filter-pill {
-  padding: 4px 12px; border-radius: 12px; border: 1px solid #444;
-  background: #1a1a1a; color: #999; font-size: 12px;
+  padding: 4px 12px; border-radius: 12px; font-size: 12px;
+  border: 1px solid color-mix(in oklch, var(--fc, #444) 50%, transparent);
+  background: #1a1a1a;
+  color: color-mix(in oklch, var(--fc, #999) 70%, #999);
   cursor: pointer; user-select: none;
   transition: background 200ms, color 200ms, border-color 200ms;
 }
-.filter-pill:hover { border-color: #888; }
-.filter-pill[data-active] { background: #2a2a2a; color: #ddd; border-color: #666; }
+.filter-pill:hover { border-color: color-mix(in oklch, var(--fc, #888) 80%, #888); }
+.filter-pill[data-active] { background: #2a2a2a; color: color-mix(in oklch, var(--fc, #ddd) 80%, #ddd); border-color: color-mix(in oklch, var(--fc, #666) 80%, #666); }
 
 /* Grouping bar */
 #grouping-bar {

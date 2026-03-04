@@ -3,11 +3,11 @@ import { createGraph } from "./graph";
 import { buildWorld, updateTransform, setFilterRef, updatePositions, animateTo, worldEl } from "./dom";
 import { setupInput } from "./input";
 import { initPanel, openPanel } from "./panel";
-import { hideCard } from "./card";
-import { createFilter, buildFilterUI, applyFilter, getVisibleIds, setActive } from "./filter";
-import { runLayout, resetLayout } from "./layout";
+import { showCard, hideCard, getCurrentCardNode, setCardToggleFilter, setCardIsTagActive, setCardGetTagColor } from "./card";
+import { createFilter, buildFilterUI, applyFilter, getVisibleIds, setActive, updateFilterPillColors } from "./filter";
+import { runLayout } from "./layout";
 import { createMinimap } from "./minimap";
-import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl } from "./grouping-state";
+import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl, getTagColor, setOnGroupingChange, resetToCurrentGrouping } from "./grouping-state";
 import { siteConfig, getActiveCollection } from "./site-config";
 
 const camera = createCamera();
@@ -58,12 +58,43 @@ buildFilterUI(document.getElementById("filter-bar")!, filter, () => {
   if (filter.active.size > 0) {
     runLayout(graph, getVisibleIds(filter, graph));
   } else {
-    resetLayout(graph);
+    resetToCurrentGrouping(graph);
   }
   updatePositions(graph);
   hideCard();
   updateFilterUrl();
 });
+
+// Card tag support: clicking a tag on the card toggles the filter and compensates camera.
+setCardToggleFilter((tag: string) => {
+  const cardNode = getCurrentCardNode();
+  const preX = cardNode?.x ?? 0;
+  const preY = cardNode?.y ?? 0;
+
+  if (filter.active.has(tag)) filter.active.delete(tag); else filter.active.add(tag);
+  applyFilter(filter, graph);
+  if (filter.active.size > 0) runLayout(graph, getVisibleIds(filter, graph));
+  else resetToCurrentGrouping(graph);
+  updatePositions(graph);
+  updateFilterUrl();
+  syncFilterPills();
+
+  if (cardNode) {
+    const dx = cardNode.x - preX, dy = cardNode.y - preY;
+    if (dx !== 0 || dy !== 0) animateTo(camera, camera.x + dx, camera.y + dy, camera.zoom);
+    showCard(cardNode, graph);
+  }
+});
+setCardIsTagActive((tag) => filter.active.has(tag));
+setCardGetTagColor(getTagColor);
+
+// Update filter pill + card tag colors when grouping changes.
+setOnGroupingChange(() => {
+  updateFilterPillColors(getTagColor);
+  const cardNode = getCurrentCardNode();
+  if (cardNode) showCard(cardNode, graph);
+});
+updateFilterPillColors(getTagColor);
 
 createMinimap(camera, graph, (x, y, animate) => {
   if (animate) {
@@ -119,7 +150,7 @@ window.addEventListener("popstate", () => {
     if (filter.active.size > 0) {
       runLayout(graph, getVisibleIds(filter, graph));
     } else {
-      resetLayout(graph);
+      resetToCurrentGrouping(graph);
     }
     updatePositions(graph);
     syncFilterPills();

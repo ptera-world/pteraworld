@@ -14,7 +14,7 @@ export interface Node {
   /** Current position (mutated by layout). */
   x: number;
   y: number;
-  /** Original position - reset target after layout changes. */
+  /** DOM layout anchor — tracks the active grouping's rest position. Updated after grouping transitions. */
   baseX: number;
   baseY: number;
   /** Visual radius at native zoom. */

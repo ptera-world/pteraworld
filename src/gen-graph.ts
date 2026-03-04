@@ -89,6 +89,8 @@ interface ClusterConfig {
   tier?: "region" | "artifact" | "meta";
   autoTags?: string[];
   tagColors?: Record<string, number>; // tag → hue (degrees)
+  groupingMatch: boolean; // false = exclude from tag grouping rings
+  groupingPlacement?: "free"; // 'free' = free particle in alt grouping sims (not fixed obstacle)
 }
 
 interface ForceParams {
@@ -343,6 +345,8 @@ for (const { id, path, category } of allFiles) {
     tagColors: raw.tagColors != null && typeof raw.tagColors === "object" && !Array.isArray(raw.tagColors)
       ? Object.fromEntries(Object.entries(raw.tagColors as Record<string, unknown>).map(([k, v]) => [k, Number(v)]))
       : undefined,
+    groupingMatch: raw.groupingMatch === false ? false : true,
+    groupingPlacement: raw.groupingPlacement === "free" ? "free" : undefined,
   });
 }
 
@@ -438,6 +442,11 @@ for (const { id, path, category } of files) {
 const regions = nodes.filter((n) => n.tier === "region");
 const metaNodes = nodes.filter((n) => n.tier === "meta");
 const projectNodes = nodes.filter((n) => n.tier === "artifact");
+
+// Auto-tag each node from its status field so buildTagGrouping can match status regions by tag.
+for (const n of projectNodes) {
+  if (n.status && !n.tags.includes(n.status)) n.tags.push(n.status);
+}
 
 // --- Region layout: ring around origin ---
 {
@@ -785,20 +794,7 @@ interface GroupingOutput {
   id: string;
   label: string;
   regions: { id: string; label: string; description: string; x: number; y: number; radius: number; color: string }[];
-  positions: Record<string, { x: number; y: number; regionId?: string; color?: string }>;
-}
-
-function clusterPositionsForGroupings(): Record<string, { x: number; y: number }> {
-  const result: Record<string, { x: number; y: number }> = {};
-  for (const n of projectNodes) {
-    if (n.cluster && !n.parent) {
-      result[n.id] = { x: n.x, y: n.y };
-    }
-  }
-  for (const m of metaNodes) {
-    result[m.id] = { x: m.x, y: m.y };
-  }
-  return result;
+  positions: Record<string, { x: number; y: number; regionId?: string; regionIds?: string[]; color?: string }>;
 }
 
 const generatedGroupings: GroupingOutput[] = [];
@@ -808,20 +804,15 @@ const generatedGroupings: GroupingOutput[] = [];
     id: r.id, label: r.label, description: r.description,
     x: r.x, y: r.y, radius: r.radius, color: r.color,
   }));
+  const ecoPositions: Record<string, { x: number; y: number; regionId?: string; color?: string }> = {};
+  for (const n of projectNodes) {
+    ecoPositions[n.id] = { x: n.x, y: n.y, ...(n.parent ? { regionId: n.parent } : {}) };
+  }
   generatedGroupings.push({
     id: "ecosystem",
     label: "Ecosystems",
     regions: ecoRegions,
-    positions: {},
-  });
-}
-
-{
-  generatedGroupings.push({
-    id: "essays",
-    label: "Essays",
-    regions: [],
-    positions: {},
+    positions: ecoPositions,
   });
 }
 
@@ -832,106 +823,366 @@ function buildTagGrouping(
   const catRegions = groupingRegions
     .filter((r) => r.category === category)
     .sort((a, b) => a.id.localeCompare(b.id));
+  const N = catRegions.length;
 
-  const regionCount = catRegions.length;
-  const maxChildCount = Math.max(
-    ...catRegions.map((r) => {
-      const tag = r.id.split("/")[1]!;
-      return projectNodes.filter((n) => n.tags.includes(tag)).length;
-    }),
-    1,
+  // All non-structural nodes (tier is irrelevant to grouping logic).
+  const eligibleNodes = nodes.filter((n) => n.tier !== "region" && n.tier !== "meta");
+
+  // Nodes excluded from ring matching (groupingMatch: false or groupingPlacement: free).
+  const noGroupingMatchIds = new Set<string>(
+    eligibleNodes
+      .filter((n) => n.cluster && clusterConfigs.get(n.cluster)?.groupingMatch === false)
+      .map((n) => n.id),
   );
-  const ringR = Math.max(200, 100 + maxChildCount * 10);
 
-  const builtRegions: GroupingOutput["regions"] = [];
-  const allPositions: Record<string, { x: number; y: number; regionId?: string; color?: string }> = {};
+  // Subset of excluded nodes that are free particles (not fixed obstacles).
+  const freePlacementIds = new Set<string>(
+    eligibleNodes
+      .filter((n) => n.cluster && clusterConfigs.get(n.cluster)?.groupingPlacement === "free")
+      .map((n) => n.id),
+  );
 
-  catRegions.forEach((reg, i) => {
+  // Step 1: Match nodes to regions by tag (excluding groupingMatch: false clusters).
+  const nodeMatchedRegs = new Map<string, string[]>(); // nodeId → matching regIds
+  for (const reg of catRegions) {
     const tag = reg.id.split("/")[1]!;
-    const children = projectNodes.filter((n) => n.tags.includes(tag));
-    const childCount = children.length;
+    for (const n of eligibleNodes) {
+      if (!n.tags.includes(tag) || noGroupingMatchIds.has(n.id)) continue;
+      const arr = nodeMatchedRegs.get(n.id) ?? [];
+      arr.push(reg.id);
+      nodeMatchedRegs.set(n.id, arr);
+    }
+  }
 
-    const angle = -Math.PI / 2 + (2 * Math.PI * i) / regionCount;
-    const rx = Math.round(ringR * Math.cos(angle));
-    const ry = Math.round(ringR * Math.sin(angle));
+  // Step 2: Separate single-match (→ ring) from multi-match (→ force layout).
+  const singleMatchOf = new Map<string, string>(); // nodeId → regId
+  const multiMatchIds = new Set<string>();
+  for (const [id, regs] of nodeMatchedRegs) {
+    if (regs.length === 1) singleMatchOf.set(id, regs[0]!);
+    else multiMatchIds.add(id);
+  }
+
+  // Step 3: Compute region radii based on actual single-match occupants.
+  interface RegionLayout {
+    reg: (typeof catRegions)[0];
+    childIds: string[];
+    childCount: number;
+    radius: number;
+    childColor: string;
+    x: number;
+    y: number;
+  }
+  const regionLayouts: RegionLayout[] = catRegions.map((reg) => {
+    const childIds = [...singleMatchOf.entries()]
+      .filter(([, rid]) => rid === reg.id)
+      .map(([id]) => id)
+      .sort();
+    const childCount = childIds.length;
     const radius = Math.max(100, 60 + childCount * 12);
-
     const colorMatch = reg.color.match(/oklch\([\d.]+ ([\d.]+) ([\d.]+)\)/);
     const chroma = colorMatch ? colorMatch[1] : "0.12";
     const hue = colorMatch ? colorMatch[2] : "0";
-    const childColor = `oklch(${brighterLightness} ${chroma} ${hue})`;
-
-    builtRegions.push({
-      id: reg.id, label: reg.label, description: reg.description,
-      x: rx, y: ry, radius, color: reg.color,
-    });
-
-    const childIds = children.map((c) => c.id).sort();
-    const childRingR = Math.max(60, radius * 0.7 + childCount * 3);
-    Object.assign(allPositions, ringPositions(rx, ry, childRingR, childIds, reg.id, childColor));
+    return { reg, childIds, childCount, radius, childColor: `oklch(${brighterLightness} ${chroma} ${hue})`, x: 0, y: 0 };
   });
 
-  Object.assign(allPositions, clusterPositionsForGroupings());
+  // Step 4: Compute initial ringR — large enough that:
+  // a) no two adjacent regions overlap (chord formula), and
+  // b) regions clear the landing element at the origin (META_RADIUS).
+  const META_RADIUS = 100; // safe clearance around origin (landing element)
+  const maxRegRadius = regionLayouts.length > 0 ? Math.max(...regionLayouts.map((rl) => rl.radius)) : 0;
+  let ringR = Math.max(200, maxRegRadius + META_RADIUS + 40);
+  if (N >= 2) {
+    const maxPairNeed = Math.max(
+      ...regionLayouts.map((rl, i) => rl.radius + regionLayouts[(i + 1) % N]!.radius + 40),
+    );
+    ringR = Math.max(ringR, Math.ceil((maxPairNeed / 2) / Math.sin(Math.PI / N)));
+  }
+
+  // Step 5: Set initial ring positions for regions.
+  regionLayouts.forEach((rl, i) => {
+    const angle = -Math.PI / 2 + (2 * Math.PI * i) / N;
+    rl.x = ringR * Math.cos(angle);
+    rl.y = ringR * Math.sin(angle);
+  });
+
+  // Step 6: Prepare multi-match nodes (blended color, initial position = centroid of matched regions).
+  interface MNode { id: string; x: number; y: number; r: number; regs: string[]; blendedColor?: string; }
+  const mnodes: MNode[] = [];
+  for (const id of multiMatchIds) {
+    const regs = nodeMatchedRegs.get(id)!;
+    const cx = regs.reduce((s, rid) => s + (regionLayouts.find((rl) => rl.reg.id === rid)?.x ?? 0), 0) / regs.length;
+    const cy = regs.reduce((s, rid) => s + (regionLayouts.find((rl) => rl.reg.id === rid)?.y ?? 0), 0) / regs.length;
+    const node = eligibleNodes.find((n) => n.id === id)!;
+    const hues: number[] = [], chromas: number[] = [];
+    for (const rid of regs) {
+      const regColor = catRegions.find((r) => r.id === rid)?.color ?? "";
+      const m = regColor.match(/oklch\([\d.]+ ([\d.]+) ([\d.]+)\)/);
+      if (m) { chromas.push(Number(m[1])); hues.push(Number(m[2])); }
+    }
+    const blendedColor = hues.length > 0
+      ? `oklch(${brighterLightness} ${(chromas.reduce((a, b) => a + b, 0) / chromas.length).toFixed(3)} ${Math.round(hues.reduce((a, b) => a + b, 0) / hues.length)})`
+      : undefined;
+    mnodes.push({ id, x: cx, y: cy, r: node.radius, regs, blendedColor });
+  }
+
+  // Fixed obstacle nodes: groupingMatch: false without groupingPlacement: free.
+  // Regions repel from them but they don't move.
+  interface ObstacleNode { x: number; y: number; r: number; }
+  const obstacleNodes: ObstacleNode[] = eligibleNodes
+    .filter((n) => noGroupingMatchIds.has(n.id) && !freePlacementIds.has(n.id))
+    .map((n) => ({ x: n.x, y: n.y, r: n.radius }));
+
+  // Free particle nodes: groupingPlacement: free — participate in sim, scatter independently.
+  // Start at ecosystem positions; weak gravity toward origin keeps them in view.
+  interface FreeNode { id: string; x: number; y: number; r: number; }
+  const freeNodes: FreeNode[] = eligibleNodes
+    .filter((n) => freePlacementIds.has(n.id))
+    .map((n) => ({ id: n.id, x: n.x, y: n.y, r: n.radius }));
+
+  // Step 7: Global overlap resolution — one simulation for regions, multi-match nodes, and landing (fixed at origin).
+  // Regions soft-anchored to ring positions; multi-match soft-anchored to centroid of matched regions.
+  // Obstacle nodes (essays) are fixed — regions repel from them.
+  const GSIM_STEPS = 400;
+  const PUSH = 2.0;
+  const REGION_ANCHOR_K = 0.05;
+  const MULTI_ANCHOR_K = 0.03;
+  const FREE_GRAVITY_K = 0.004; // weak pull toward origin — keeps free nodes in view
+  for (let step = 0; step < GSIM_STEPS; step++) {
+    const rfx = regionLayouts.map(() => 0);
+    const rfy = regionLayouts.map(() => 0);
+    const mfx = mnodes.map(() => 0);
+    const mfy = mnodes.map(() => 0);
+    const ffx = freeNodes.map(() => 0);
+    const ffy = freeNodes.map(() => 0);
+
+    // Region–region repulsion
+    for (let i = 0; i < regionLayouts.length; i++) {
+      for (let j = i + 1; j < regionLayouts.length; j++) {
+        const a = regionLayouts[i]!, b = regionLayouts[j]!;
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = a.radius + b.radius + 40;
+        if (d < minD) {
+          const push = (minD - d) / 2 * PUSH;
+          rfx[i]! += (dx / d) * push; rfy[i]! += (dy / d) * push;
+          rfx[j]! -= (dx / d) * push; rfy[j]! -= (dy / d) * push;
+        }
+      }
+    }
+
+    // Region–landing repulsion
+    for (let i = 0; i < regionLayouts.length; i++) {
+      const rl = regionLayouts[i]!;
+      const d = Math.hypot(rl.x, rl.y) || 0.1;
+      const minD = rl.radius + META_RADIUS + 20;
+      if (d < minD) {
+        const push = (minD - d) * PUSH;
+        rfx[i]! += (rl.x / d) * push; rfy[i]! += (rl.y / d) * push;
+      }
+    }
+
+    // Region–obstacle repulsion (fixed essay nodes — only regions move)
+    for (let i = 0; i < regionLayouts.length; i++) {
+      for (const obs of obstacleNodes) {
+        const rl = regionLayouts[i]!;
+        const dx = rl.x - obs.x, dy = rl.y - obs.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = rl.radius + obs.r + 15;
+        if (d < minD) {
+          const push = (minD - d) * PUSH;
+          rfx[i]! += (dx / d) * push; rfy[i]! += (dy / d) * push;
+        }
+      }
+    }
+
+    // Region–multi repulsion (push multi-match only; regions have strong ring anchors)
+    for (let i = 0; i < regionLayouts.length; i++) {
+      for (let j = 0; j < mnodes.length; j++) {
+        const r = regionLayouts[i]!, m = mnodes[j]!;
+        const dx = m.x - r.x, dy = m.y - r.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = r.radius + m.r + 15;
+        if (d < minD) {
+          const push = (minD - d) * PUSH;
+          mfx[j]! += (dx / d) * push; mfy[j]! += (dy / d) * push;
+        }
+      }
+    }
+
+    // Multi–multi repulsion
+    for (let i = 0; i < mnodes.length; i++) {
+      for (let j = i + 1; j < mnodes.length; j++) {
+        const a = mnodes[i]!, b = mnodes[j]!;
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = a.r + b.r + 8;
+        if (d < minD) {
+          const push = (minD - d) / 2 * PUSH;
+          mfx[i]! += (dx / d) * push; mfy[i]! += (dy / d) * push;
+          mfx[j]! -= (dx / d) * push; mfy[j]! -= (dy / d) * push;
+        }
+      }
+    }
+
+    // Multi–landing repulsion
+    for (let j = 0; j < mnodes.length; j++) {
+      const m = mnodes[j]!;
+      const d = Math.hypot(m.x, m.y) || 0.1;
+      const minD = m.r + META_RADIUS + 20;
+      if (d < minD) {
+        const push = (minD - d) * PUSH;
+        mfx[j]! += (m.x / d) * push; mfy[j]! += (m.y / d) * push;
+      }
+    }
+
+    // Multi–obstacle repulsion
+    for (let j = 0; j < mnodes.length; j++) {
+      for (const obs of obstacleNodes) {
+        const m = mnodes[j]!;
+        const dx = m.x - obs.x, dy = m.y - obs.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = m.r + obs.r + 8;
+        if (d < minD) {
+          const push = (minD - d) * PUSH;
+          mfx[j]! += (dx / d) * push; mfy[j]! += (dy / d) * push;
+        }
+      }
+    }
+
+    // Free–free repulsion
+    for (let i = 0; i < freeNodes.length; i++) {
+      for (let j = i + 1; j < freeNodes.length; j++) {
+        const a = freeNodes[i]!, b = freeNodes[j]!;
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = a.r + b.r + 6;
+        if (d < minD) {
+          const push = (minD - d) / 2 * PUSH;
+          ffx[i]! += (dx / d) * push; ffy[i]! += (dy / d) * push;
+          ffx[j]! -= (dx / d) * push; ffy[j]! -= (dy / d) * push;
+        }
+      }
+    }
+
+    // Region–free repulsion (regions anchored; free nodes pushed away)
+    for (let i = 0; i < regionLayouts.length; i++) {
+      for (let k = 0; k < freeNodes.length; k++) {
+        const rl = regionLayouts[i]!, fp = freeNodes[k]!;
+        const dx = fp.x - rl.x, dy = fp.y - rl.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = rl.radius + fp.r + 15;
+        if (d < minD) {
+          const push = (minD - d) * PUSH;
+          ffx[k]! += (dx / d) * push; ffy[k]! += (dy / d) * push;
+        }
+      }
+    }
+
+    // Free–landing repulsion
+    for (let k = 0; k < freeNodes.length; k++) {
+      const fp = freeNodes[k]!;
+      const d = Math.hypot(fp.x, fp.y) || 0.1;
+      const minD = fp.r + META_RADIUS + 20;
+      if (d < minD) {
+        const push = (minD - d) * PUSH;
+        ffx[k]! += (fp.x / d) * push; ffy[k]! += (fp.y / d) * push;
+      }
+    }
+
+    // Free–obstacle repulsion
+    for (let k = 0; k < freeNodes.length; k++) {
+      for (const obs of obstacleNodes) {
+        const fp = freeNodes[k]!;
+        const dx = fp.x - obs.x, dy = fp.y - obs.y;
+        const d = Math.hypot(dx, dy) || 0.1;
+        const minD = fp.r + obs.r + 6;
+        if (d < minD) {
+          const push = (minD - d) * PUSH;
+          ffx[k]! += (dx / d) * push; ffy[k]! += (dy / d) * push;
+        }
+      }
+    }
+
+    // Free gravity toward origin (keeps free nodes loosely in view)
+    for (let k = 0; k < freeNodes.length; k++) {
+      const fp = freeNodes[k]!;
+      ffx[k]! += (0 - fp.x) * FREE_GRAVITY_K;
+      ffy[k]! += (0 - fp.y) * FREE_GRAVITY_K;
+    }
+
+    // Anchor: regions → ring positions
+    for (let i = 0; i < regionLayouts.length; i++) {
+      const rl = regionLayouts[i]!;
+      const angle = -Math.PI / 2 + (2 * Math.PI * i) / N;
+      rfx[i]! += (ringR * Math.cos(angle) - rl.x) * REGION_ANCHOR_K;
+      rfy[i]! += (ringR * Math.sin(angle) - rl.y) * REGION_ANCHOR_K;
+    }
+
+    // Anchor: multi-match → centroid of matched regions (current positions)
+    for (let j = 0; j < mnodes.length; j++) {
+      const m = mnodes[j]!;
+      const matchedRls = m.regs.map((rid) => regionLayouts.find((rl) => rl.reg.id === rid)).filter(Boolean) as RegionLayout[];
+      const cx = matchedRls.reduce((s, rl) => s + rl.x, 0) / matchedRls.length;
+      const cy = matchedRls.reduce((s, rl) => s + rl.y, 0) / matchedRls.length;
+      mfx[j]! += (cx - m.x) * MULTI_ANCHOR_K;
+      mfy[j]! += (cy - m.y) * MULTI_ANCHOR_K;
+    }
+
+    // Apply forces
+    for (let i = 0; i < regionLayouts.length; i++) {
+      regionLayouts[i]!.x += rfx[i]!;
+      regionLayouts[i]!.y += rfy[i]!;
+    }
+    for (let j = 0; j < mnodes.length; j++) {
+      mnodes[j]!.x += mfx[j]!;
+      mnodes[j]!.y += mfy[j]!;
+    }
+    for (let k = 0; k < freeNodes.length; k++) {
+      freeNodes[k]!.x += ffx[k]!;
+      freeNodes[k]!.y += ffy[k]!;
+    }
+  }
+
+  // Step 8: Build output using final (post-sim) positions.
+  const builtRegions: GroupingOutput["regions"] = [];
+  const allPositions: Record<string, { x: number; y: number; regionId?: string; regionIds?: string[]; color?: string }> = {};
+
+  // Base: eligible nodes at ecosystem positions (fallback for unmatched fixed nodes).
+  // Free particles get their positions from the sim below; ring nodes are overwritten by ringPositions.
+  for (const n of eligibleNodes) {
+    if (!freePlacementIds.has(n.id)) {
+      allPositions[n.id] = { x: n.x, y: n.y };
+    }
+  }
+
+  for (const rl of regionLayouts) {
+    const rx = Math.round(rl.x), ry = Math.round(rl.y);
+    builtRegions.push({
+      id: rl.reg.id, label: rl.reg.label, description: rl.reg.description,
+      x: rx, y: ry, radius: rl.radius, color: rl.reg.color,
+    });
+    const childRingR = Math.max(60, rl.radius * 0.7 + rl.childCount * 3);
+    Object.assign(allPositions, ringPositions(rx, ry, childRingR, rl.childIds, rl.reg.id, rl.childColor));
+  }
+
+  for (const n of mnodes) {
+    allPositions[n.id] = {
+      x: Math.round(n.x), y: Math.round(n.y),
+      ...(n.regs.length > 0 ? { regionIds: n.regs } : {}),
+      ...(n.blendedColor ? { color: n.blendedColor } : {}),
+    };
+  }
+
+  for (const n of freeNodes) {
+    allPositions[n.id] = { x: Math.round(n.x), y: Math.round(n.y) };
+  }
 
   return { id: groupingId, label: groupingLabel, regions: builtRegions, positions: allPositions };
 }
 
-generatedGroupings.push(
-  buildTagGrouping("domain", "Domains", "domain", "0.75"),
-);
-
-generatedGroupings.push(
-  buildTagGrouping("tech", "Technologies", "technology", "0.75"),
-);
-
-{
-  const statusRegionDefs = groupingRegions
-    .filter((r) => r.category === "status")
-    .sort((a, b) => a.id.localeCompare(b.id));
-
-  const statusOrder = ["planned", "early", "fleshed-out", "mature", "production"];
-
-  statusRegionDefs.sort((a, b) => {
-    const aSlug = a.id.split("/")[1]!;
-    const bSlug = b.id.split("/")[1]!;
-    return statusOrder.indexOf(aSlug) - statusOrder.indexOf(bSlug);
-  });
-
-  const regionCount = statusRegionDefs.length;
-  const builtRegions: GroupingOutput["regions"] = [];
-  const allPositions: Record<string, { x: number; y: number; regionId?: string; color?: string }> = {};
-
-  statusRegionDefs.forEach((reg, i) => {
-    const statusSlug = reg.id.split("/")[1]!;
-    const matchStatuses = statusSlug === "mature" ? ["production"] : [statusSlug];
-    const children = projectNodes.filter((n) => n.status && matchStatuses.includes(n.status));
-    const childCount = children.length;
-
-    const angle = -Math.PI / 2 + (2 * Math.PI * i) / regionCount;
-    const rx = Math.round(280 * Math.cos(angle));
-    const ry = Math.round(150 * Math.sin(angle));
-    const radius = Math.max(100, 60 + childCount * 10);
-
-    const colorMatch = reg.color.match(/oklch\(([\d.]+) ([\d.]+) ([\d.]+)\)/);
-    const lightness = colorMatch ? (Number(colorMatch[1]) + 0.05).toFixed(2) : "0.75";
-    const chroma = colorMatch ? colorMatch[2] : "0.12";
-    const hue = colorMatch ? colorMatch[3] : "0";
-    const childColor = `oklch(${lightness} ${chroma} ${hue})`;
-
-    builtRegions.push({
-      id: reg.id, label: reg.label, description: reg.description,
-      x: rx, y: ry, radius, color: reg.color,
-    });
-
-    const childIds = children.map((c) => c.id).sort();
-    const childRingR = Math.max(60, radius * 0.7 + childCount * 3);
-    Object.assign(allPositions, ringPositions(rx, ry, childRingR, childIds, reg.id, childColor));
-  });
-
-  Object.assign(allPositions, clusterPositionsForGroupings());
-
-  generatedGroupings.push({ id: "status", label: "Status", regions: builtRegions, positions: allPositions });
-}
+generatedGroupings.push(buildTagGrouping("domain", "Domains", "domain", "0.75"));
+generatedGroupings.push(buildTagGrouping("tech", "Technologies", "technology", "0.75"));
+generatedGroupings.push(buildTagGrouping("status", "Status", "status", "0.75"));
 
 // ---------------------------------------------------------------------------
 // 8. Write output

@@ -14,6 +14,8 @@ interface EdgeRef {
   to: string;
   labelEl: HTMLElement | null;
   isContainment?: boolean;
+  fromX?: number; // Grouping containment edges: region position, fixed at creation
+  fromY?: number;
 }
 
 export const nodeEls = new Map<string, HTMLElement>();
@@ -22,7 +24,6 @@ const edgeRefs: EdgeRef[] = [];
 const containmentEdgeRefs: EdgeRef[] = []; // Dynamic containment edges for current grouping
 export let landingEl: HTMLElement;
 const regionEls = new Map<string, HTMLElement>();
-const regionPositions = new Map<string, { x: number; y: number }>(); // Current region positions for edge updates
 let svgLayer: SVGSVGElement;
 
 let filterRef: FilterState | null = null;
@@ -65,7 +66,7 @@ export function buildWorld(graph: Graph): void {
     const isContainment = to.parent === edge.from;
     const path = document.createElementNS(SVG_NS, "path");
     path.classList.add("edge");
-    if (isContainment) path.dataset.type = "containment";
+    if (isContainment) { path.dataset.type = "containment"; path.dataset.origin = "graph"; }
     path.dataset.from = from.id;
     path.dataset.to = to.id;
     path.style.setProperty("d", `path("M ${from.x} ${from.y} L ${to.x} ${to.y}")`);
@@ -100,7 +101,6 @@ export function buildWorld(graph: Graph): void {
       el.appendChild(core);
       hitNodes.set(core, node);
       regionEls.set(node.id, el);
-      regionPositions.set(node.id, { x: node.x, y: node.y });
     } else {
       el.style.setProperty("--r", `${node.radius}px`);
       const dot = document.createElement("div");
@@ -317,16 +317,22 @@ export function updatePositions(graph: Graph): void {
   }
 
   for (const ref of edgeRefs) {
-    // For containment edges, 'from' might be a region (not in nodeMap)
-    const fromNode = nodeMap.get(ref.from);
-    const fromRegion = regionPositions.get(ref.from);
     const toNode = nodeMap.get(ref.to);
+    if (!toNode) continue;
 
-    const fromPos = fromNode ?? fromRegion;
-    const toPos = toNode;
-    if (!fromPos || !toPos) continue;
+    let fromX: number, fromY: number;
+    if (ref.fromX !== undefined) {
+      // Grouping containment edge: region position is fixed at creation
+      fromX = ref.fromX;
+      fromY = ref.fromY!;
+    } else {
+      const fromNode = nodeMap.get(ref.from);
+      if (!fromNode) continue;
+      fromX = fromNode.x;
+      fromY = fromNode.y;
+    }
 
-    ref.el.style.setProperty("d", `path("M ${fromPos.x} ${fromPos.y} L ${toPos.x} ${toPos.y}")`);
+    ref.el.style.setProperty("d", `path("M ${fromX} ${fromY} L ${toNode.x} ${toNode.y}")`);
   }
 }
 
@@ -387,7 +393,6 @@ export function fadeOutRegions(duration = 300): void {
 
   // Clear immediately so new ones can be added
   regionEls.clear();
-  regionPositions.clear();
   containmentEdgeRefs.length = 0;
 
   // Fade out regions
@@ -421,6 +426,7 @@ export interface NodePositionWithRegion {
   x: number;
   y: number;
   regionId?: string;
+  regionIds?: string[]; // Multi-match: edges to multiple regions
 }
 
 /** Create and fade in new region elements with containment edges. */
@@ -431,50 +437,67 @@ export function fadeInRegions(
 ): void {
   const SVG_NS = "http://www.w3.org/2000/svg";
 
-  // Create region elements and store positions
+  // Create region elements
   for (const region of regions) {
     const el = createRegionElement(region);
     el.style.opacity = "0";
     el.style.transition = `opacity ${duration}ms ease-in`;
     worldEl.appendChild(el);
     regionEls.set(region.id, el);
-    regionPositions.set(region.id, { x: region.x, y: region.y });
 
     // Trigger reflow then fade in
     void el.offsetWidth;
     el.style.opacity = "1";
   }
 
-  // Create containment edges from regions to nodes
+  // Create containment edges from regions to nodes.
+  // Single-match nodes use regionId; multi-match nodes use regionIds (one edge per region).
   const regionMap = new Map(regions.map(r => [r.id, r]));
   for (const pos of positions) {
-    if (!pos.regionId) continue;
-    const region = regionMap.get(pos.regionId);
-    if (!region) continue;
+    const regIds = pos.regionIds ?? (pos.regionId ? [pos.regionId] : []);
+    for (const rid of regIds) {
+      const region = regionMap.get(rid);
+      if (!region) continue;
 
-    const path = document.createElementNS(SVG_NS, "path");
-    path.classList.add("edge");
-    path.dataset.type = "containment";
-    path.dataset.from = region.id;
-    path.dataset.to = pos.nodeId;
-    path.style.setProperty("d", `path("M ${region.x} ${region.y} L ${pos.x} ${pos.y}")`);
-    path.style.opacity = "0";
-    path.style.transition = `opacity ${duration}ms ease-in`;
-    svgLayer.appendChild(path);
+      const path = document.createElementNS(SVG_NS, "path");
+      path.classList.add("edge");
+      path.dataset.type = "containment";
+      path.dataset.from = region.id;
+      path.dataset.to = pos.nodeId;
+      path.style.setProperty("d", `path("M ${region.x} ${region.y} L ${pos.x} ${pos.y}")`);
+      path.style.opacity = "0";
+      path.style.transition = `opacity ${duration}ms ease-in`;
+      svgLayer.appendChild(path);
 
-    const ref: EdgeRef = { el: path, from: region.id, to: pos.nodeId, labelEl: null, isContainment: true };
-    edgeRefs.push(ref);
-    containmentEdgeRefs.push(ref);
+      const ref: EdgeRef = {
+        el: path, from: region.id, to: pos.nodeId, labelEl: null,
+        isContainment: true, fromX: region.x, fromY: region.y,
+      };
+      edgeRefs.push(ref);
+      containmentEdgeRefs.push(ref);
 
-    // Trigger reflow then fade in
-    void path.getBBox();
-    path.style.opacity = "";
+      // Trigger reflow then fade in
+      void path.getBBox();
+      path.style.opacity = "";
+    }
   }
 }
 
-/** Register a region element created during initial buildWorld. */
-export function registerRegion(id: string, el: HTMLElement): void {
-  regionEls.set(id, el);
+/**
+ * Snap DOM anchors (left/top + baseX/baseY) to current node.x/y and zero the translate.
+ * Call with CSS transitions already suppressed to avoid visual glitches.
+ */
+export function snapNodePositions(graph: Graph): void {
+  for (const node of graph.nodes) {
+    if (node.tier === "meta") continue;
+    const el = nodeEls.get(node.id);
+    if (!el) continue;
+    node.baseX = node.x;
+    node.baseY = node.y;
+    el.style.left = `${node.x}px`;
+    el.style.top = `${node.y}px`;
+    el.style.translate = "";
+  }
 }
 
 /** Get a region element by ID for hit detection. */

@@ -22,6 +22,10 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
     (e) => visibleIds.has(e.from) && visibleIds.has(e.to),
   );
 
+  // Capture current positions as anchors (= current grouping positions, not build-time baseX/baseY)
+  const anchorX = new Map<string, number>(nodes.map((n) => [n.id, n.x]));
+  const anchorY = new Map<string, number>(nodes.map((n) => [n.id, n.y]));
+
   const vx = new Map<string, number>();
   const vy = new Map<string, number>();
   for (const n of nodes) {
@@ -82,10 +86,10 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
       }
     }
 
-    // Gentle anchor toward base position
+    // Gentle anchor toward pre-simulation positions (= current grouping positions)
     for (const n of nodes) {
-      const dx = n.baseX - n.x;
-      const dy = n.baseY - n.y;
+      const dx = anchorX.get(n.id)! - n.x;
+      const dy = anchorY.get(n.id)! - n.y;
       vx.set(n.id, vx.get(n.id)! + dx * ANCHOR_K);
       vy.set(n.id, vy.get(n.id)! + dy * ANCHOR_K);
     }
@@ -119,11 +123,11 @@ export function runLayout(graph: Graph, visibleIds: Set<string>): void {
     if (maxV < 0.5) break;
   }
 
-  // Blend toward base positions: weight 1 = full layout, 0 = base
+  // Blend toward pre-simulation positions: weight 1 = full layout, 0 = base
   if (weight < 1) {
     for (const n of nodes) {
-      n.x = n.baseX + (n.x - n.baseX) * weight;
-      n.y = n.baseY + (n.y - n.baseY) * weight;
+      n.x = anchorX.get(n.id)! + (n.x - anchorX.get(n.id)!) * weight;
+      n.y = anchorY.get(n.id)! + (n.y - anchorY.get(n.id)!) * weight;
     }
   }
 }

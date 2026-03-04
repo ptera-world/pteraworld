@@ -4,7 +4,7 @@
 
 import type { Graph, Node } from "./graph";
 import { groupings, defaultGrouping, getGrouping, type Grouping } from "./groupings";
-import { updatePositions, animateTo, fadeOutRegions, fadeInRegions, nodeEls, worldEl, type NodePositionWithRegion } from "./dom";
+import { updatePositions, animateTo, fadeOutRegions, fadeInRegions, snapNodePositions, nodeEls, worldEl, type NodePositionWithRegion } from "./dom";
 import type { Camera } from "./camera";
 
 let currentLayoutGrouping: Grouping | undefined = defaultGrouping;
@@ -12,28 +12,10 @@ let currentColorGrouping: Grouping | undefined = defaultGrouping;
 let graphRef: Graph;
 let cameraRef: Camera;
 
-/** Store original positions and colors from graph.ts */
-const originalData = new Map<string, { x: number; y: number; color: string; parent?: string }>();
-/** IDs of region nodes from graph.ts (for containment edge restoration) */
-const graphRegionIds = new Set<string>();
-
 export function initGroupingState(graph: Graph, camera: Camera): void {
   if (groupings.length === 0) return;
   graphRef = graph;
   cameraRef = camera;
-
-  // Store original positions, colors, and track region nodes
-  for (const node of graph.nodes) {
-    originalData.set(node.id, {
-      x: node.baseX,
-      y: node.baseY,
-      color: node.color,
-      parent: node.parent,
-    });
-    if (node.tier === "region") {
-      graphRegionIds.add(node.id);
-    }
-  }
 }
 
 export function getCurrentLayoutGrouping(): Grouping | undefined {
@@ -44,29 +26,38 @@ export function getCurrentColorGrouping(): Grouping | undefined {
   return currentColorGrouping;
 }
 
-/** Compute node positions with regionIds for a given grouping. */
-function computePositionsForGrouping(grouping: Grouping): NodePositionWithRegion[] {
-  const positions: NodePositionWithRegion[] = [];
+/** Return the region color for a tag in the current color grouping, or undefined. */
+export function getTagColor(tag: string): string | undefined {
+  const regions = currentColorGrouping?.regions ?? [];
+  return regions.find((r) => r.id.split("/")[1] === tag)?.color;
+}
 
-  for (const node of graphRef.nodes) {
-    if (node.tier === "region") continue;
+let onGroupingChangeFn: (() => void) | null = null;
+export function setOnGroupingChange(fn: () => void): void {
+  onGroupingChangeFn = fn;
+}
 
-    const override = grouping.positions[node.id];
-    const original = originalData.get(node.id);
-
-    // For ecosystem grouping, use the node's parent as regionId
-    let regionId = override?.regionId;
-    if (!regionId && grouping.id === "ecosystem" && node.parent) {
-      regionId = node.parent;
-    }
-
-    const x = override?.x ?? original?.x ?? node.x;
-    const y = override?.y ?? original?.y ?? node.y;
-
-    positions.push({ nodeId: node.id, x, y, regionId });
+/** Restore all nodes to the current grouping's rest positions (used instead of resetLayout when a grouping is active). */
+export function resetToCurrentGrouping(graph: Graph): void {
+  if (!currentLayoutGrouping) {
+    for (const node of graph.nodes) { node.x = node.baseX; node.y = node.baseY; }
+    return;
   }
+  for (const node of graph.nodes) {
+    const pos = currentLayoutGrouping.positions[node.id];
+    if (pos) { node.x = pos.x; node.y = pos.y; }
+  }
+}
 
-  return positions;
+/** Compute node positions with regionId(s) for a given grouping. */
+function computePositionsForGrouping(grouping: Grouping): NodePositionWithRegion[] {
+  return graphRef.nodes
+    .filter((n) => n.tier !== "region" && n.tier !== "meta")
+    .flatMap((n) => {
+      const pos = grouping.positions[n.id];
+      if (!pos) return [];
+      return [{ nodeId: n.id, x: pos.x, y: pos.y, regionId: pos.regionId, regionIds: pos.regionIds }];
+    });
 }
 
 export function getGroupings(): Grouping[] {
@@ -103,6 +94,7 @@ export function setLayoutGrouping(groupingId: string, updateColors = true): void
 
   applyGroupingPositions();
   updateUrl();
+  onGroupingChangeFn?.();
 }
 
 /** Set color grouping only (no position/region changes). */
@@ -113,6 +105,7 @@ export function setColorGrouping(groupingId: string): void {
   currentColorGrouping = grouping;
   applyGroupingColors();
   updateUrl();
+  onGroupingChangeFn?.();
 }
 
 function updateUrl(): void {
@@ -147,45 +140,35 @@ function applyGroupingColors(): void {
     if (!el) continue;
 
     const override = currentColorGrouping.positions[node.id];
-    const original = originalData.get(node.id);
-    const color = override?.color ?? original?.color ?? node.color;
+    const color = override?.color ?? node.color;
     el.style.setProperty("--color", color);
   }
 }
 
+let animationGeneration = 0;
+
 function applyGroupingPositions(animate = true): void {
   if (!currentLayoutGrouping) return;
-  // Compute target positions (only update x/y, NOT baseX/baseY)
-  // baseX/baseY stays as original position from buildWorld
-  // translate CSS will handle the offset
+  const generation = ++animationGeneration;
   const targets = new Map<string, { x: number; y: number }>();
 
   for (const node of graphRef.nodes) {
     if (node.tier === "region") continue;
-
-    const override = currentLayoutGrouping.positions[node.id];
-    const original = originalData.get(node.id);
-
-    if (override) {
-      targets.set(node.id, { x: override.x, y: override.y });
-    } else if (original) {
-      targets.set(node.id, { x: original.x, y: original.y });
-    }
+    const pos = currentLayoutGrouping.positions[node.id];
+    if (pos) targets.set(node.id, { x: pos.x, y: pos.y });
   }
 
   // Apply colors from color grouping
   applyGroupingColors();
 
   if (!animate) {
-    // Snap immediately
+    // Snap immediately — move nodes then snap DOM anchors (transitions already suppressed by caller)
     for (const node of graphRef.nodes) {
       const target = targets.get(node.id);
-      if (target) {
-        node.x = target.x;
-        node.y = target.y;
-      }
+      if (target) { node.x = target.x; node.y = target.y; }
     }
-    updatePositions(graphRef);
+    snapNodePositions(graphRef);
+    updatePositions(graphRef); // Also redraw edges to match new positions
     return;
   }
 
@@ -201,6 +184,7 @@ function applyGroupingPositions(animate = true): void {
   }
 
   function step(now: number) {
+    if (generation !== animationGeneration) return; // cancelled by newer animation
     const t = Math.min(1, (now - start) / duration);
     const ease = t * (2 - t); // ease-out
 
@@ -217,6 +201,14 @@ function applyGroupingPositions(animate = true): void {
 
     if (t < 1) {
       requestAnimationFrame(step);
+    } else {
+      // Snap DOM anchors so baseX/baseY tracks the grouping position.
+      // Force a style flush between setting data-no-transition and changing
+      // translate — without it the CSS transition fires during the snap.
+      worldEl.dataset.noTransition = "";
+      void worldEl.offsetWidth; // flush pending style recalc
+      snapNodePositions(graphRef);
+      requestAnimationFrame(() => delete worldEl.dataset.noTransition);
     }
   }
 

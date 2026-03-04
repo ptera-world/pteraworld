@@ -2,9 +2,25 @@ import type { Graph, Node } from "./graph";
 import { openPanel, fetchContent, contentCache } from "./panel";
 
 let navigateFn: ((node: Node, graph: Graph) => void) | null = null;
+let toggleFilterFn: ((tag: string) => void) | null = null;
+let isTagActiveFn: ((tag: string) => boolean) | null = null;
+let getTagColorFn: ((tag: string) => string | undefined) | null = null;
+let currentCardNode: Node | null = null;
 
 export function setCardNavigate(fn: (node: Node, graph: Graph) => void): void {
   navigateFn = fn;
+}
+export function setCardToggleFilter(fn: (tag: string) => void): void {
+  toggleFilterFn = fn;
+}
+export function setCardIsTagActive(fn: (tag: string) => boolean): void {
+  isTagActiveFn = fn;
+}
+export function setCardGetTagColor(fn: (tag: string) => string | undefined): void {
+  getTagColorFn = fn;
+}
+export function getCurrentCardNode(): Node | null {
+  return currentCardNode;
 }
 
 function el<K extends keyof HTMLElementTagNameMap>(
@@ -124,6 +140,24 @@ function buildCard(node: Node, graph: Graph): DocumentFragment {
     frag.appendChild(refs);
   }
 
+  // Tags
+  const visibleTags = node.tags.filter((t) => t !== "code" && t !== "region" && t !== "meta");
+  if (visibleTags.length > 0 && toggleFilterFn) {
+    const tagsEl = el("div", "card-tags");
+    for (const tag of visibleTags) {
+      const btn = el("button", "card-tag", tag);
+      const color = getTagColorFn?.(tag);
+      if (color) btn.style.setProperty("--tc", color);
+      if (isTagActiveFn?.(tag)) btn.dataset.active = "";
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleFilterFn!(tag);
+      });
+      tagsEl.appendChild(btn);
+    }
+    frag.appendChild(tagsEl);
+  }
+
   // Learn more link
   const learnMore = document.createElement("a");
   learnMore.className = "card-learn-more";
@@ -144,6 +178,7 @@ export function showCard(node: Node, graph: Graph): void {
   if (node.tier === "meta") return; // landing element handles its own click
   const card = document.getElementById("card");
   if (!card) return;
+  currentCardNode = node;
   card.replaceChildren(buildCard(node, graph));
   card.setAttribute("aria-label", node.label);
   const coreR = node.tier === "region" ? node.radius * 0.15 : node.radius;
@@ -161,6 +196,7 @@ export function showCard(node: Node, graph: Graph): void {
 export function hideCard(): void {
   const card = document.getElementById("card");
   if (!card) return;
+  currentCardNode = null;
   card.hidden = true;
   card.replaceChildren();
 }

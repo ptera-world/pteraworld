@@ -161,6 +161,19 @@ export function applyFilter(filter: FilterState, graph: Graph): void {
   }
 }
 
+/** Update filter pill hue to match the current grouping's region color for each tag. */
+export function updateFilterPillColors(getColor: (tag: string) => string | undefined): void {
+  const pills = document.querySelectorAll<HTMLElement>(".filter-pill[data-tag]");
+  for (const pill of pills) {
+    const color = getColor(pill.dataset.tag!);
+    if (color) {
+      pill.style.setProperty("--fc", color);
+    } else {
+      pill.style.removeProperty("--fc");
+    }
+  }
+}
+
 export function buildFilterUI(
   container: HTMLElement,
   filter: FilterState,

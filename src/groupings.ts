@@ -22,6 +22,7 @@ export interface NodePosition {
   x: number;
   y: number;
   regionId?: string;
+  regionIds?: string[]; // Multi-match: edges to multiple regions
   color?: string;
 }
 
