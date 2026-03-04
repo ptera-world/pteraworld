@@ -902,6 +902,23 @@ interface GroupingOutput {
 
 const generatedGroupings: GroupingOutput[] = [];
 
+// Ecosystem grouping: layout positions + parent containment, data-driven from node.parent / node.tier.
+{
+  const eligibleNodes = nodes.filter((n) => n.tier !== "region" && n.tier !== "meta");
+  const regions = nodes.filter((n) => n.tier === "region");
+  const ecoRegions = regions.map((r) => ({
+    id: r.id, label: r.label, description: r.description,
+    x: r.x, y: r.y, radius: r.radius, color: r.color,
+  }));
+  const positions: GroupingOutput["positions"] = {};
+  for (const n of eligibleNodes) {
+    positions[n.id] = { x: n.x, y: n.y, ...(n.parent ? { regionId: n.parent } : {}) };
+  }
+  if (ecoRegions.length > 0) {
+    generatedGroupings.push({ id: "ecosystem", label: "Ecosystems", regions: ecoRegions, positions });
+  }
+}
+
 function buildTagGrouping(
   groupingId: string, groupingLabel: string,
   category: string, brighterLightness: string,
