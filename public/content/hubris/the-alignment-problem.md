@@ -62,5 +62,5 @@ and the process that got us here produced the humanitarian aid dynamic. produced
 
 the alignment problem assumes we're the fixed point. and maybe we're the variable too.
 
-## Related projects
+## See also
 

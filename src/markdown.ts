@@ -40,6 +40,9 @@ export function parseMarkdown(src: string): string {
     if (end !== -1) src = src.slice(end + 4).trimStart();
   }
 
+  // Strip empty sections (heading with no content before next heading or end)
+  src = src.replace(/\n#{1,6} [^\n]+\n(\n*)(?=#{1,6} |\s*$)/g, "\n");
+
   const lines = src.split("\n");
   const out: string[] = [];
   let i = 0;
