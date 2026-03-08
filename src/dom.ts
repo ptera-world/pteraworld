@@ -45,9 +45,11 @@ export function buildWorld(graph: Graph): void {
   const collection = siteConfig.collections[getActiveCollection()];
   const metaNode = graph.nodes.find((n) => n.id === collection.metaNodeId);
   const descHtml = (metaNode?.description ?? "").replace(/\n/g, "<br>");
+  const trailHtml = metaNode?.trail ? `<div class="landing-trail">${metaNode.trail}</div>` : "";
   landingEl.innerHTML =
     `<div class="landing-name">${metaNode?.label ?? collection.name}</div>` +
     `<div class="landing-body">${descHtml}</div>` +
+    trailHtml +
     `<div class="landing-hint">scroll to zoom · click to explore · <kbd>/</kbd> to search</div>`;
   worldEl.appendChild(landingEl);
   nodeEls.set(collection.metaNodeId, landingEl);

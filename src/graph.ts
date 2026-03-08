@@ -23,6 +23,8 @@ export interface Node {
   color: string;
   status?: "production" | "fleshed-out" | "early" | "planned";
   tags: string[];
+  /** Optional tagline shown below description on the landing element. */
+  trail?: string;
 }
 
 /** Edge connecting two nodes. */

@@ -41,6 +41,7 @@ interface ParsedNode {
   radius: number;
   /** Collision radius used only at layout time (separate from render radius). */
   collisionRadius?: number;
+  trail?: string;
   color: string;
   cluster?: string;
   // Set by layout
@@ -402,6 +403,7 @@ for (const { id, path, category } of files) {
     tags: allTags,
     radius,
     collisionRadius: fm.collisionRadius != null ? Number(fm.collisionRadius) : undefined,
+    trail: (fm as any).trail,
     iconRadius: clusterForDir?.iconRadius,
     color: fm.color ?? "",
     cluster,
@@ -1252,6 +1254,7 @@ const nodeLines = nodes.map((n) => {
   fields.push(`color: ${quote(n.color)}`);
   if (n.status) fields.push(`status: "${n.status}"`);
   fields.push(`tags: [${n.tags.map((t) => `"${t}"`).join(", ")}]`);
+  if (n.trail) fields.push(`trail: ${quote(n.trail)}`);
   return `  { ${fields.join(", ")} },`;
 }).join("\n");
 
