@@ -31,6 +31,11 @@ export const siteConfig = {
       metaNodeId: "meta/intent",
       contentDirs: ["meta", "intent"],
     },
+    hubris: {
+      name: "hubris",
+      metaNodeId: "meta/hubris",
+      contentDirs: ["meta", "hubris"],
+    },
   } satisfies Record<string, CollectionConfig>,
 } as const;
 
