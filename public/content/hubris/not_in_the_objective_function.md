@@ -1,6 +1,6 @@
 ---
 label: "not in the objective function"
-description: "what it feels like when the system works exactly as intended, just not for you"
+description: "what it feels like when the system works exactly as intended,\njust not for you"
 tags: [essay, social, power, identity]
 ---
 

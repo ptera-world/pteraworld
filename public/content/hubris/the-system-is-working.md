@@ -1,6 +1,6 @@
 ---
 label: "the system is working"
-description: "why the same outcome looks like success from one angle and failure from another"
+description: "why the same outcome looks like success from one angle\nand failure from another"
 tags: [essay, systems, power, capital]
 ---
 
