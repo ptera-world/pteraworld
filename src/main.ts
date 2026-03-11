@@ -124,7 +124,9 @@ if (focusId) {
   const node = graph.nodes.find((n) => n.id === focusId);
   if (node) {
     input.navigateTo(node, false, false);
-    openPanel(node.id, node.label, false);
+    if (!node.tags.includes("fragment")) {
+      openPanel(node.id, node.label, false);
+    }
   }
 }
 

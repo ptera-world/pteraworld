@@ -110,7 +110,10 @@ export function setupInput(
     callbacks.onFocusChange?.(node);
     const isFragment = node.tags.includes("fragment");
     if (!isFragment) {
-      if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
+      if (node.url && isCardOpen() && wasThisNode) {
+        window.location.href = node.url;
+        return;
+      } else if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
         openPanel(node.id, node.label, false);
       } else if (getSettings().cardEnabled) {
         showCard(node, graph);
@@ -297,6 +300,7 @@ export function setupInput(
     },
     confirm: () => {
       if (!focusedNode) return;
+      if (focusedNode.tags.includes("fragment")) return; // fragments are self-contained on graph
       if (isPanelOpen()) return; // no-op when panel already open
       if (isCardOpen() || !getSettings().cardEnabled) {
         openPanel(focusedNode.id, focusedNode.label);
