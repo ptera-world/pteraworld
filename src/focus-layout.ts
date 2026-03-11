@@ -1,20 +1,26 @@
 /**
  * Animated force-directed layout that reorganizes the graph
  * around the currently focused node. Runs incrementally via
- * requestAnimationFrame until the simulation settles.
+ * requestAnimationFrame for smooth visual transitions.
  */
 import type { Graph, Node } from "./graph";
 import { updatePositions, nodeEls } from "./dom";
 import { getSettings } from "./settings";
 
 const REPEL = 4000;
-const SPRING_K = 0.012;
+const SPRING_K = 0.018;
 const SPRING_LEN = 80;
-const ANCHOR_K = 0.025;
+const ANCHOR_K = 0.008;
+const FOCUS_GRAVITY = 0.015;
 const DAMPING = 0.86;
 const MAX_FORCE = 8;
 const SETTLE_THRESHOLD = 0.3;
 const NEIGHBORHOOD_HOPS = 2;
+const STEPS_PER_FRAME = 8;
+
+function nodeRadius(n: Node): number {
+  return n.collisionRadius ?? n.radius;
+}
 
 export function createFocusLayout(graph: Graph) {
   let focusedId: string | null = null;
@@ -24,6 +30,7 @@ export function createFocusLayout(graph: Graph) {
   const anchorX = new Map<string, number>();
   const anchorY = new Map<string, number>();
   const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+  let rafId = 0;
 
   function getNeighborhood(nodeId: string, hops: number): Set<string> {
     const result = new Set<string>([nodeId]);
@@ -52,6 +59,8 @@ export function createFocusLayout(graph: Graph) {
     focusedId = newId;
 
     if (!focusedId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
       if (settings.dynamicLayout) {
         for (const n of graph.nodes) {
           n.x = n.baseX;
@@ -79,12 +88,10 @@ export function createFocusLayout(graph: Graph) {
       anchorY.set(n.id, n.y);
     }
 
-    settle();
-  }
-
-  /** Run simulation synchronously until settled, then update DOM once. */
-  function settle(): void {
-    if (!focusedId) return;
+    // Start animated simulation
+    cancelAnimationFrame(rafId);
+    let iterCount = 0;
+    const MAX_ITERS = 300;
 
     const active = graph.nodes.filter(
       (n) => neighborIds.has(n.id) && !n.tags.includes("meta"),
@@ -93,79 +100,95 @@ export function createFocusLayout(graph: Graph) {
       (e) => neighborIds.has(e.from) && neighborIds.has(e.to),
     );
 
-    const MAX_ITERS = 300;
-    for (let iter = 0; iter < MAX_ITERS; iter++) {
-      let maxV = 0;
+    function frame(): void {
+      if (!focusedId) return;
 
-      // Repulsion between active nodes
-      for (let i = 0; i < active.length; i++) {
-        for (let j = i + 1; j < active.length; j++) {
-          const a = active[i]!,
-            b = active[j]!;
-          const dx = b.x - a.x,
-            dy = b.y - a.y;
-          const d2 = dx * dx + dy * dy;
-          const d = Math.sqrt(d2) || 1;
-          const f = Math.min(REPEL / d2, MAX_FORCE);
-          const fx = (dx / d) * f,
-            fy = (dy / d) * f;
+      for (let step = 0; step < STEPS_PER_FRAME && iterCount < MAX_ITERS; step++, iterCount++) {
+        let maxV = 0;
+
+        // Repulsion between active nodes (collision-radius aware)
+        for (let i = 0; i < active.length; i++) {
+          for (let j = i + 1; j < active.length; j++) {
+            const a = active[i]!, b = active[j]!;
+            const minDist = nodeRadius(a) + nodeRadius(b) + 4;
+            const dx = b.x - a.x, dy = b.y - a.y;
+            const d2 = dx * dx + dy * dy;
+            const d = Math.sqrt(d2) || 1;
+            const f = Math.min(d < minDist ? REPEL * 4 / d2 : REPEL / d2, MAX_FORCE);
+            const fx = (dx / d) * f, fy = (dy / d) * f;
+            if (a.id !== focusedId) {
+              vx.set(a.id, vx.get(a.id)! - fx);
+              vy.set(a.id, vy.get(a.id)! - fy);
+            }
+            if (b.id !== focusedId) {
+              vx.set(b.id, vx.get(b.id)! + fx);
+              vy.set(b.id, vy.get(b.id)! + fy);
+            }
+          }
+        }
+
+        // Spring attraction along edges
+        for (const edge of edges) {
+          const a = nodeMap.get(edge.from), b = nodeMap.get(edge.to);
+          if (!a || !b) continue;
+          const dx = b.x - a.x, dy = b.y - a.y;
+          const d = Math.sqrt(dx * dx + dy * dy) || 1;
+          const f = (d - SPRING_LEN) * SPRING_K * edge.strength;
+          const fx = (dx / d) * f, fy = (dy / d) * f;
           if (a.id !== focusedId) {
-            vx.set(a.id, vx.get(a.id)! - fx);
-            vy.set(a.id, vy.get(a.id)! - fy);
+            vx.set(a.id, vx.get(a.id)! + fx);
+            vy.set(a.id, vy.get(a.id)! + fy);
           }
           if (b.id !== focusedId) {
-            vx.set(b.id, vx.get(b.id)! + fx);
-            vy.set(b.id, vy.get(b.id)! + fy);
+            vx.set(b.id, vx.get(b.id)! - fx);
+            vy.set(b.id, vy.get(b.id)! - fy);
           }
         }
-      }
 
-      // Spring attraction along edges (weighted by edge strength)
-      for (const edge of edges) {
-        const a = nodeMap.get(edge.from),
-          b = nodeMap.get(edge.to);
-        if (!a || !b) continue;
-        const dx = b.x - a.x,
-          dy = b.y - a.y;
-        const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        const f = (d - SPRING_LEN) * SPRING_K * edge.strength;
-        const fx = (dx / d) * f,
-          fy = (dy / d) * f;
-        if (a.id !== focusedId) {
-          vx.set(a.id, vx.get(a.id)! + fx);
-          vy.set(a.id, vy.get(a.id)! + fy);
+        // Gravity toward focused node — pulls neighborhood together
+        const fNode = nodeMap.get(focusedId)!;
+        for (const n of active) {
+          if (n.id === focusedId) continue;
+          vx.set(n.id, vx.get(n.id)! + (fNode.x - n.x) * FOCUS_GRAVITY);
+          vy.set(n.id, vy.get(n.id)! + (fNode.y - n.y) * FOCUS_GRAVITY);
         }
-        if (b.id !== focusedId) {
-          vx.set(b.id, vx.get(b.id)! - fx);
-          vy.set(b.id, vy.get(b.id)! - fy);
+
+        // Anchor toward pre-focus positions (weak — just prevents drift)
+        for (const n of active) {
+          if (n.id === focusedId) continue;
+          const ax = anchorX.get(n.id)!, ay = anchorY.get(n.id)!;
+          vx.set(n.id, vx.get(n.id)! + (ax - n.x) * ANCHOR_K);
+          vy.set(n.id, vy.get(n.id)! + (ay - n.y) * ANCHOR_K);
+        }
+
+        // Apply velocities with damping
+        for (const n of active) {
+          if (n.id === focusedId) continue;
+          const nvx = vx.get(n.id)! * DAMPING;
+          const nvy = vy.get(n.id)! * DAMPING;
+          vx.set(n.id, nvx);
+          vy.set(n.id, nvy);
+          n.x += nvx;
+          n.y += nvy;
+          maxV = Math.max(maxV, Math.abs(nvx), Math.abs(nvy));
+        }
+
+        if (maxV < SETTLE_THRESHOLD) {
+          iterCount = MAX_ITERS; // done
+          break;
         }
       }
 
-      // Anchor toward pre-focus positions
-      for (const n of active) {
-        if (n.id === focusedId) continue;
-        const ax = anchorX.get(n.id)!,
-          ay = anchorY.get(n.id)!;
-        vx.set(n.id, vx.get(n.id)! + (ax - n.x) * ANCHOR_K);
-        vy.set(n.id, vy.get(n.id)! + (ay - n.y) * ANCHOR_K);
-      }
+      updatePositions(graph);
 
-      // Apply velocities with damping
-      for (const n of active) {
-        if (n.id === focusedId) continue;
-        const nvx = vx.get(n.id)! * DAMPING;
-        const nvy = vy.get(n.id)! * DAMPING;
-        vx.set(n.id, nvx);
-        vy.set(n.id, nvy);
-        n.x += nvx;
-        n.y += nvy;
-        maxV = Math.max(maxV, Math.abs(nvx), Math.abs(nvy));
+      if (iterCount < MAX_ITERS) {
+        rafId = requestAnimationFrame(frame);
+      } else {
+        rafId = 0;
       }
-
-      if (maxV < SETTLE_THRESHOLD) break;
     }
 
-    updatePositions(graph);
+    rafId = requestAnimationFrame(frame);
   }
 
   function applyNeighborhoodAttr(): void {

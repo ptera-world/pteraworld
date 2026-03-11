@@ -85,42 +85,68 @@ export function buildWorld(graph: Graph): void {
     // Meta nodes (e.g. pteraworld) use the landing element, not a rendered dot
     if (node.tags.includes("meta")) continue;
 
+    const isFragment = node.tags.includes("fragment");
     const el = document.createElement("div");
-    el.className = "node project";
+    el.className = isFragment ? "node fragment" : "node project";
     el.dataset.id = node.id;
     if (node.tags.includes("essay")) el.dataset.kind = "essay";
     el.style.left = `${node.x}px`;
     el.style.top = `${node.y}px`;
     el.style.setProperty("--color", node.color);
 
-    el.style.setProperty("--r", `${node.iconRadius ?? node.radius}px`);
-    const dot = document.createElement("div");
-    dot.className = "node-dot node-hit";
-    dot.setAttribute("role", "button");
-    dot.tabIndex = -1;
-    dot.setAttribute("aria-label", node.label);
-    el.appendChild(dot);
-    hitNodes.set(dot, node);
-
-    const text = document.createElement("div");
-    text.className = "node-text";
-    const label = document.createElement("div");
-    label.className = "node-label";
-    label.textContent = node.label;
-    text.appendChild(label);
-
-    if (node.description) {
-      const desc = document.createElement("div");
-      desc.className = "node-desc";
-      const parts = node.description.split("\n");
-      for (let i = 0; i < parts.length; i++) {
-        if (i > 0) desc.appendChild(document.createElement("br"));
-        desc.appendChild(document.createTextNode(parts[i]!));
+    if (isFragment) {
+      // Fragments are text-based — no dot, text is the hit target
+      el.style.setProperty("--r", "0px");
+      const text = document.createElement("div");
+      text.className = "node-text node-hit";
+      text.setAttribute("role", "button");
+      text.tabIndex = -1;
+      text.setAttribute("aria-label", node.label);
+      const label = document.createElement("div");
+      label.className = "node-label";
+      label.textContent = node.label;
+      text.appendChild(label);
+      if (node.description) {
+        const desc = document.createElement("div");
+        desc.className = "node-desc";
+        const parts = node.description.split("\n");
+        for (let i = 0; i < parts.length; i++) {
+          if (i > 0) desc.appendChild(document.createElement("br"));
+          desc.appendChild(document.createTextNode(parts[i]!));
+        }
+        text.appendChild(desc);
       }
-      text.appendChild(desc);
+      el.appendChild(text);
+      hitNodes.set(text, node);
+    } else {
+      el.style.setProperty("--r", `${node.iconRadius ?? node.radius}px`);
+      const dot = document.createElement("div");
+      dot.className = "node-dot node-hit";
+      dot.setAttribute("role", "button");
+      dot.tabIndex = -1;
+      dot.setAttribute("aria-label", node.label);
+      el.appendChild(dot);
+      hitNodes.set(dot, node);
+
+      const text = document.createElement("div");
+      text.className = "node-text";
+      const label = document.createElement("div");
+      label.className = "node-label";
+      label.textContent = node.label;
+      text.appendChild(label);
+      if (node.description) {
+        const desc = document.createElement("div");
+        desc.className = "node-desc";
+        const parts = node.description.split("\n");
+        for (let i = 0; i < parts.length; i++) {
+          if (i > 0) desc.appendChild(document.createElement("br"));
+          desc.appendChild(document.createTextNode(parts[i]!));
+        }
+        text.appendChild(desc);
+      }
+      el.appendChild(text);
     }
 
-    el.appendChild(text);
     worldEl.appendChild(el);
     nodeEls.set(node.id, el);
   }

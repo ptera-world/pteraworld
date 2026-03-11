@@ -20,6 +20,8 @@ export interface Node {
   radius: number;
   /** Visual dot radius — defaults to radius if not set. */
   iconRadius?: number;
+  /** Collision radius for layout — defaults to radius if not set. */
+  collisionRadius?: number;
   color: string;
   status?: "production" | "fleshed-out" | "early" | "planned";
   tags: string[];
