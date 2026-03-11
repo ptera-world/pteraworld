@@ -6,6 +6,7 @@ import { showCard, hideCard, isCardOpen, setCardNavigate } from "./card";
 import { isPanelOpen, closePanel, openPanel } from "./panel";
 
 import { siteConfig, getActiveCollection, siteUrl } from "./site-config";
+import { getSettings } from "./settings";
 import { keybinds, defineSchema, fromBindings, registerComponents, fuzzyMatcher } from "keybinds";
 import type { Command } from "keybinds";
 
@@ -109,7 +110,7 @@ export function setupInput(
     callbacks.onFocusChange?.(node);
     if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
       openPanel(node.id, node.label, false);
-    } else {
+    } else if (getSettings().cardEnabled) {
       showCard(node, graph);
     }
     const targetZoom = Math.max(camera.zoom, 1.5);
@@ -294,7 +295,7 @@ export function setupInput(
     confirm: () => {
       if (!focusedNode) return;
       if (isPanelOpen()) return; // no-op when panel already open
-      if (isCardOpen()) {
+      if (isCardOpen() || !getSettings().cardEnabled) {
         openPanel(focusedNode.id, focusedNode.label);
       } else {
         showCard(focusedNode, graph);

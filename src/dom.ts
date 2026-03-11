@@ -4,6 +4,7 @@ import type { Graph, Node } from "./graph";
 import type { FilterState } from "./filter";
 import { updateMinimap } from "./minimap";
 import { siteConfig, getActiveCollection } from "./site-config";
+import { getSettings } from "./settings";
 
 const viewport = document.getElementById("viewport")!;
 export const worldEl = document.getElementById("world")!;
@@ -158,6 +159,8 @@ export function animateTo(camera: Camera, tx: number, ty: number, tz: number): v
 }
 
 export function setFocus(graph: Graph, hovered: Node | null, announceNav = false): void {
+  const highlight = getSettings().focusHighlight;
+
   // Restore any previously surfaced nodes
   for (const id of surfacedNodes) {
     const el = nodeEls.get(id);
@@ -171,20 +174,22 @@ export function setFocus(graph: Graph, hovered: Node | null, announceNav = false
   surfacedNodes.clear();
 
   if (!hovered) {
-    delete worldEl.dataset.hovering;
-    for (const el of nodeEls.values()) {
-      el.classList.remove("focused");
-      el.style.removeProperty("--fs");
-    }
-    for (const ref of edgeRefs) {
-      ref.el.classList.remove("focused");
-      ref.el.style.removeProperty("--es");
-      ref.labelEl?.classList.remove("focused");
+    if (highlight) {
+      delete worldEl.dataset.hovering;
+      for (const el of nodeEls.values()) {
+        el.classList.remove("focused");
+        el.style.removeProperty("--fs");
+      }
+      for (const ref of edgeRefs) {
+        ref.el.classList.remove("focused");
+        ref.el.style.removeProperty("--es");
+        ref.labelEl?.classList.remove("focused");
+      }
     }
     return;
   }
 
-  worldEl.dataset.hovering = "";
+  if (highlight) worldEl.dataset.hovering = "";
 
   if (announceNav) {
     announce(`Focused on ${hovered.label}`);
@@ -243,23 +248,25 @@ export function setFocus(graph: Graph, hovered: Node | null, announceNav = false
     edgeStrengthMap.set(`${edge.from}|${edge.to}`, edge.strength);
   }
 
-  for (const [id, el] of nodeEls) {
-    const isFocused = focused.has(id);
-    el.classList.toggle("focused", isFocused);
-    if (isFocused) {
-      el.style.setProperty("--fs", `${nodeStrength.get(id) ?? 0}`);
-    } else {
-      el.style.removeProperty("--fs");
+  if (highlight) {
+    for (const [id, el] of nodeEls) {
+      const isFocused = focused.has(id);
+      el.classList.toggle("focused", isFocused);
+      if (isFocused) {
+        el.style.setProperty("--fs", `${nodeStrength.get(id) ?? 0}`);
+      } else {
+        el.style.removeProperty("--fs");
+      }
     }
-  }
-  for (const ref of edgeRefs) {
-    const f = ref.el.dataset.type !== "containment" && focused.has(ref.from) && focused.has(ref.to);
-    ref.el.classList.toggle("focused", f);
-    if (f) {
-      const es = edgeStrengthMap.get(`${ref.from}|${ref.to}`) ?? edgeStrengthMap.get(`${ref.to}|${ref.from}`) ?? 0.5;
-      ref.el.style.setProperty("--es", `${es}`);
-    } else {
-      ref.el.style.removeProperty("--es");
+    for (const ref of edgeRefs) {
+      const f = ref.el.dataset.type !== "containment" && focused.has(ref.from) && focused.has(ref.to);
+      ref.el.classList.toggle("focused", f);
+      if (f) {
+        const es = edgeStrengthMap.get(`${ref.from}|${ref.to}`) ?? edgeStrengthMap.get(`${ref.to}|${ref.from}`) ?? 0.5;
+        ref.el.style.setProperty("--es", `${es}`);
+      } else {
+        ref.el.style.removeProperty("--es");
+      }
     }
   }
 

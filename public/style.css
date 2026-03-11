@@ -334,6 +334,18 @@ html, body {
 .node[data-neighborhood="distant"] { opacity: 0.06; pointer-events: none; transition: opacity 400ms; }
 .node[data-neighborhood="distant"] .node-text { display: none; }
 
+/* Text on canvas — descriptions become readable content at near zoom */
+#world[data-text-on-canvas] .node-text { white-space: normal; max-width: 200px; text-align: left; }
+#world[data-text-on-canvas][data-tier="near"] .node-text { transform: translateX(-50%) scale(0.45); max-width: 300px; }
+#world[data-text-on-canvas][data-tier="near"] .node-desc { font-size: 13px; line-height: 1.5; color: #aaa; }
+#world[data-text-on-canvas][data-tier="near"] .node-label { font-size: 14px; font-weight: bold; color: #ddd; }
+
+/* Configurable: hide edges */
+#world[data-edges-hidden] .edge { display: none; }
+
+/* Configurable: disable node growth on focus */
+#world[data-no-growth][data-hovering] .node.focused { scale: 1; }
+
 /* Command palette (keybinds web component) */
 command-palette { position: fixed; inset: 0; z-index: 200; }
 command-palette::part(backdrop) { position: fixed; inset: 0; background: rgba(0,0,0,0.5); }

@@ -13,6 +13,7 @@ import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl, getTagColor
 import { siteConfig, getActiveCollection, siteUrl } from "./site-config";
 
 loadSettingsFromUrl();
+import { getSettings } from "./settings";
 const camera = createCamera();
 const graph = createGraph();
 
@@ -125,6 +126,12 @@ if (focusId) {
     openPanel(node.id, node.label, false);
   }
 }
+
+// Apply settings-driven attributes
+const settings = getSettings();
+if (settings.textOnCanvas) worldEl.dataset.textOnCanvas = "";
+if (!settings.edgesVisible) worldEl.dataset.edgesHidden = "";
+if (!settings.nodeGrowth) worldEl.dataset.noGrowth = "";
 
 // Re-enable transitions after initial setup
 requestAnimationFrame(() => {
