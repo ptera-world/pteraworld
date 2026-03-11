@@ -21,7 +21,7 @@ export const siteConfig = {
     default: {
       name: "ptera",
       metaNodeId: "meta/pteraworld",
-      contentDirs: ["ecosystem", "meta", "project", "prose", "domain", "technology", "status"],
+      contentDirs: ["ecosystem", "meta", "project", "prose", "fragments", "domain", "technology", "status"],
     },
     unfiltered: {
       name: "unfiltered",
