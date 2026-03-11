@@ -62,8 +62,7 @@ html, body {
 }
 .node.fragment .node-text {
   position: relative; top: auto; left: auto;
-  transform: none;
-  white-space: normal; max-width: 220px;
+  transform: none; max-width: 280px;
   pointer-events: auto; cursor: pointer;
   text-align: left;
 }
@@ -352,11 +351,10 @@ html, body {
 .node[data-neighborhood="distant"] .node-text { display: none; }
 .node[data-neighborhood="distant"][data-filtered="hidden"] { opacity: 0.04; }
 
-/* Text on canvas — descriptions become readable content at near zoom */
-#world[data-text-on-canvas] .node-text { white-space: normal; max-width: 200px; }
-#world[data-text-on-canvas][data-tier="near"] .node-text { transform: translateX(-50%) scale(0.85); max-width: 300px; }
-#world[data-text-on-canvas][data-tier="near"] .node-desc { font-size: 13px; line-height: 1.5; color: #aaa; }
-#world[data-text-on-canvas][data-tier="near"] .node-label { font-size: 14px; font-weight: bold; color: #ddd; }
+/* Text on canvas — project nodes get enhanced text at near zoom */
+#world[data-text-on-canvas][data-tier="near"] .node.project .node-text { transform: translateX(-50%) scale(0.85); }
+#world[data-text-on-canvas][data-tier="near"] .node.project .node-desc { font-size: 13px; line-height: 1.5; color: #aaa; }
+#world[data-text-on-canvas][data-tier="near"] .node.project .node-label { font-size: 14px; font-weight: bold; color: #ddd; }
 
 /* Configurable: hide edges */
 #world[data-edges-hidden] .edge { display: none; }

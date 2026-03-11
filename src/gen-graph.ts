@@ -449,15 +449,20 @@ for (const { id, path, category } of files) {
 
   const radius = fm.radius ?? radiusFromStatus(fm.status);
 
-  // Fragments are text-based — estimate collision radius from text dimensions.
-  // At 13px bold font, ~6.5px per char. Max-width 220px CSS, plus description.
+  // Fragments are text-based — estimate collision radius from text rectangle.
+  // Label: 13px bold, ~7.5px/char. Desc: 11px, ~5.5px/char, max-width 280px CSS.
   const isFragment = allTags.includes("fragment");
   let collisionRadius = fm.collisionRadius != null ? Number(fm.collisionRadius) : undefined;
   if (isFragment && collisionRadius == null) {
-    const labelW = Math.min(fm.label.length * 6.5, 220);
-    const descLines = fm.description ? Math.ceil(fm.description.length * 5.5 / 220) : 0;
-    const textH = 17 + descLines * 16.5; // label height + desc lines
-    collisionRadius = Math.max(labelW / 2, textH / 2) + 10;
+    const labelW = fm.label.length * 7.5;
+    const descMaxW = 280;
+    const labelLines = Math.max(1, Math.ceil(labelW / descMaxW));
+    const textW = Math.min(labelW, descMaxW);
+    const descLines = fm.description
+      ? fm.description.split("\n").reduce((sum, line) => sum + Math.max(1, Math.ceil(line.length * 5.5 / descMaxW)), 0)
+      : 0;
+    const textH = labelLines * 17 + descLines * 16.5 + (descLines > 0 ? 6 : 0);
+    collisionRadius = Math.hypot(textW / 2, textH / 2) + 12;
   }
 
   nodes.push({

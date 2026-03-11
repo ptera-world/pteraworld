@@ -136,7 +136,8 @@ if (settings.textOnCanvas) worldEl.dataset.textOnCanvas = "";
 if (!settings.edgesVisible) worldEl.dataset.edgesHidden = "";
 if (!settings.nodeGrowth) worldEl.dataset.noGrowth = "";
 
-// Nudge nodes that overlap the landing element after fonts are ready
+// Nudge nodes that overlap the landing element after fonts are ready.
+// Keep noTransition active until this completes to prevent visible animation.
 document.fonts.ready.then(() => {
   const rect = landingEl.getBoundingClientRect();
   const worldRect = worldEl.getBoundingClientRect();
@@ -164,10 +165,10 @@ document.fonts.ready.then(() => {
     }
   }
   if (nudged) updatePositions(graph);
-});
-
-// Re-enable transitions after initial setup
-requestAnimationFrame(() => {
+  // Re-enable transitions now that initial layout is stable.
+  // Synchronous removal in the same microtask as updatePositions:
+  // the browser hasn't painted yet, so translate is already at its
+  // final value when transitions are re-enabled — no animation.
   delete worldEl.dataset.noTransition;
 });
 
