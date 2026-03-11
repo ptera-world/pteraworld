@@ -12,4 +12,3 @@ writing for everyone produces writing for no one. the moment you picture a speci
 
 - [defaults are opinions with plausible deniability](/fragments/defaults-are-opinions-with-plausible-deniability)
 - [everything converged on frictionless sameness](/fragments/everything-converged-on-frictionless-sameness)
-- [this site is designed](/prose/this-site-is-designed)

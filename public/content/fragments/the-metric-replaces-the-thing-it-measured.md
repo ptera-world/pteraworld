@@ -13,4 +13,3 @@ When you compress a goal into a number, people optimize the number. The goal qui
 - [compression hides its own losses](/fragments/compression-hides-its-own-losses)
 - ["just" erases prerequisites](/fragments/just-erases-prerequisites)
 - [engagement optimizes against everything that matters](/fragments/engagement-optimizes-against-everything-that-matters)
-- [why are we compressing things?](/prose/why-are-we-compressing-things)

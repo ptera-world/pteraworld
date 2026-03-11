@@ -108,14 +108,13 @@ export function setupInput(
     focusedNode = node;
     setFocus(graph, node, true);
     callbacks.onFocusChange?.(node);
-    if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
-      if (node.url?.startsWith("/")) {
-        window.location.href = node.url;
-        return;
+    const isFragment = node.tags.includes("fragment");
+    if (!isFragment) {
+      if (isPanelOpen() || (isCardOpen() && wasThisNode)) {
+        openPanel(node.id, node.label, false);
+      } else if (getSettings().cardEnabled) {
+        showCard(node, graph);
       }
-      openPanel(node.id, node.label, false);
-    } else if (getSettings().cardEnabled) {
-      showCard(node, graph);
     }
     const targetZoom = Math.max(camera.zoom, 1.5);
     if (animate) {
@@ -212,7 +211,7 @@ export function setupInput(
     const node = getHitNode(e.target);
     if (node) {
       if (e.ctrlKey || e.metaKey) {
-        window.open(node.url?.startsWith("/") ? node.url : siteUrl(`/${node.id}`), "_blank");
+        window.open(siteUrl(`/${node.id}`), "_blank");
         return;
       }
       navigateTo(node);
@@ -300,10 +299,6 @@ export function setupInput(
       if (!focusedNode) return;
       if (isPanelOpen()) return; // no-op when panel already open
       if (isCardOpen() || !getSettings().cardEnabled) {
-        if (focusedNode.url?.startsWith("/")) {
-          window.location.href = focusedNode.url;
-          return;
-        }
         openPanel(focusedNode.id, focusedNode.label);
       } else {
         showCard(focusedNode, graph);

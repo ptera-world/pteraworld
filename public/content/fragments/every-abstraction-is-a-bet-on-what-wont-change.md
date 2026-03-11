@@ -12,4 +12,3 @@ you extract a function because the pattern repeats. you create an interface beca
 
 - [the frozen thing and moving reality](/fragments/the-frozen-thing-and-moving-reality)
 - [specifics calcify into invisible assumptions](/fragments/specifics-calcify-into-invisible-assumptions)
-- [why is software hard](/prose/why-is-software-hard)

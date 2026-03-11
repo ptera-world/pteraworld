@@ -13,4 +13,3 @@ Every compression discards something, and the compressed version doesn't show yo
 - [the metric replaces the thing it measured](/fragments/the-metric-replaces-the-thing-it-measured)
 - ["just" erases prerequisites](/fragments/just-erases-prerequisites)
 - [labels create the reality they claim to describe](/fragments/labels-create-the-reality-they-claim-to-describe)
-- [why are we compressing things?](/prose/why-are-we-compressing-things)

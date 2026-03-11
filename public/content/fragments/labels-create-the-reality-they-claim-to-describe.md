@@ -12,4 +12,3 @@ tags: [identity]
 
 - [compression hides its own losses](/fragments/compression-hides-its-own-losses)
 - [specifics calcify into invisible assumptions](/fragments/specifics-calcify-into-invisible-assumptions)
-- [what are labels anyway?](/prose/what-are-labels-anyway)

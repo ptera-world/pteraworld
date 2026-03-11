@@ -12,4 +12,3 @@ tags: [ai, introspective]
 
 - ["just" erases prerequisites](/fragments/just-erases-prerequisites)
 - [art is intent, not medium](/fragments/art-is-intent-not-medium)
-- [is it just interpolation?](/prose/is-it-just-interpolation)

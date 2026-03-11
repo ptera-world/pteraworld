@@ -12,4 +12,3 @@ notifications on. sharing enabled. the feed sorted by engagement. "you can chang
 
 - [tools shape what you can think](/fragments/tools-shape-what-you-can-think)
 - [environment beats willpower](/fragments/environment-beats-willpower)
-- [this site is designed](/prose/this-site-is-designed)

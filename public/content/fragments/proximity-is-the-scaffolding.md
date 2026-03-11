@@ -11,4 +11,3 @@ An essay provides scaffolding because reading is linear — you need to know wha
 ## See also
 
 - [self-contained means redundant](/fragments/self-contained-means-redundant)
-- [this site is designed](/prose/this-site-is-designed)

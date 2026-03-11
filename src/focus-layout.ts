@@ -7,7 +7,6 @@ import type { Graph, Node } from "./graph";
 import { updatePositions, nodeEls } from "./dom";
 import { getSettings } from "./settings";
 
-const STEPS_PER_FRAME = 4;
 const REPEL = 4000;
 const SPRING_K = 0.012;
 const SPRING_LEN = 80;
@@ -24,8 +23,6 @@ export function createFocusLayout(graph: Graph) {
   const vy = new Map<string, number>();
   const anchorX = new Map<string, number>();
   const anchorY = new Map<string, number>();
-  let rafId = 0;
-
   const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
 
   function getNeighborhood(nodeId: string, hops: number): Set<string> {
@@ -80,22 +77,11 @@ export function createFocusLayout(graph: Graph) {
       anchorY.set(n.id, n.y);
     }
 
-    start();
+    settle();
   }
 
-  function start(): void {
-    if (!rafId) rafId = requestAnimationFrame(tick);
-  }
-
-  function stop(): void {
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = 0;
-    }
-  }
-
-  function tick(): void {
-    rafId = 0;
+  /** Run simulation synchronously until settled, then update DOM once. */
+  function settle(): void {
     if (!focusedId) return;
 
     const active = graph.nodes.filter(
@@ -105,10 +91,9 @@ export function createFocusLayout(graph: Graph) {
       (e) => neighborIds.has(e.from) && neighborIds.has(e.to),
     );
 
-    let maxV = 0;
-
-    for (let step = 0; step < STEPS_PER_FRAME; step++) {
-      maxV = 0;
+    const MAX_ITERS = 300;
+    for (let iter = 0; iter < MAX_ITERS; iter++) {
+      let maxV = 0;
 
       // Repulsion between active nodes
       for (let i = 0; i < active.length; i++) {
@@ -179,10 +164,6 @@ export function createFocusLayout(graph: Graph) {
     }
 
     updatePositions(graph);
-
-    if (maxV >= SETTLE_THRESHOLD) {
-      rafId = requestAnimationFrame(tick);
-    }
   }
 
   function applyNeighborhoodAttr(): void {

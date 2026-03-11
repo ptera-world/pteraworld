@@ -18,12 +18,12 @@ export interface Settings {
 
 const defaults: Settings = {
   dynamicLayout: true,
-  neighborhoodFocus: false,
+  neighborhoodFocus: true,
   focusHighlight: true,
   edgesVisible: true,
   cardEnabled: true,
   nodeGrowth: true,
-  textOnCanvas: false,
+  textOnCanvas: true,
 };
 
 let current: Settings = { ...defaults };

@@ -12,4 +12,3 @@ a complex system that shows you its state is manageable. a simple system that hi
 
 - [tools shape what you can think](/fragments/tools-shape-what-you-can-think)
 - [compression hides its own losses](/fragments/compression-hides-its-own-losses)
-- [why is software hard](/prose/why-is-software-hard)

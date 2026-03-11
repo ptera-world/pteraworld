@@ -12,4 +12,3 @@ People stay in patterns they hate because the pattern is solving something they 
 
 - [knowing doesn't produce change](/fragments/knowing-doesnt-produce-change)
 - [labels create the reality they claim to describe](/fragments/labels-create-the-reality-they-claim-to-describe)
-- [why is change so hard?](/prose/why-is-change-so-hard)

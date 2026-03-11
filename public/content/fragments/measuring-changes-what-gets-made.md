@@ -12,4 +12,3 @@ introduce a metric and the thing being measured starts to deform around it. line
 
 - [the metric replaces the thing it measured](/fragments/the-metric-replaces-the-thing-it-measured)
 - [the specification is measurable, the goal isn't](/fragments/the-specification-is-measurable-the-goal-isnt)
-- [can you tell when it's wrong](/prose/can-you-tell-when-its-wrong)

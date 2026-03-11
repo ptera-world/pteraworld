@@ -12,4 +12,3 @@ the prototype isn't a rough draft of the final product. it's the instrument you 
 
 - [emergence is the thing you can't predict from the scaffolding](/fragments/emergence-is-the-thing-you-cant-predict-from-the-scaffolding)
 - [tools shape what you can think](/fragments/tools-shape-what-you-can-think)
-- [why do I reinvent everything](/prose/why-do-i-reinvent-everything)

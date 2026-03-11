@@ -12,4 +12,3 @@ You can understand exactly why you do something and keep doing it. The behavior 
 
 - [labels create the reality they claim to describe](/fragments/labels-create-the-reality-they-claim-to-describe)
 - [environment beats willpower](/fragments/environment-beats-willpower)
-- [why is change so hard?](/prose/why-is-change-so-hard)

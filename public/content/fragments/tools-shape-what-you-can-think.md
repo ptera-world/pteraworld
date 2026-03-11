@@ -12,4 +12,3 @@ A spreadsheet makes you think in grids. A graph makes you think in relationships
 
 - [specifics calcify into invisible assumptions](/fragments/specifics-calcify-into-invisible-assumptions)
 - [meaning lives in the gap between structure and use](/fragments/meaning-lives-in-the-gap-between-structure-and-use)
-- [the right tool for the job](/prose/the-right-tool-for-the-job)

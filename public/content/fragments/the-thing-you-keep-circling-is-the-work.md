@@ -12,4 +12,3 @@ you reorganize your notes instead of writing. you research frameworks instead of
 
 - [the pattern protects against something scarier than the pattern](/fragments/the-pattern-protects-against-something-scarier-than-the-pattern)
 - [knowing doesn't produce change](/fragments/knowing-doesnt-produce-change)
-- [why do I build tools](/prose/why-do-i-build-tools)
