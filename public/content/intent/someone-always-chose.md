@@ -12,21 +12,21 @@ A radio programmer decided which songs aired. A publisher decided which manuscri
 
 These were human choices, and they looked like judgment. Sometimes they were. But they also reflected label deals, advertising relationships, format requirements, personal friendships, commercial calculations, and institutional pressures that weren't part of the surface. The radio programmer played what labels promoted. The publisher chose what sold. The editor weighed newsworthiness against the interests of people who bought ad space.
 
-This wasn't hidden, exactly. It just wasn't legible. You heard a song on the radio and the experience was: someone played this because it's good. The chain of decisions behind that moment - why this song, why this station, why this hour - wasn't available to you. You trusted the signal because you had no reason not to, and because the alternative was to curate everything yourself, which wasn't possible.
+This wasn't hidden, exactly. It just wasn't visible. You heard a song on the radio and the experience was: someone played this because it's good. The chain of decisions behind that moment - why this song, why this station, why this hour - wasn't available to you. You trusted the signal because you had no reason not to, and because the alternative was to curate everything yourself, which wasn't possible.
 
 ## when curation became visible
 
-There was a window, maybe ten years, when curation got legible.
+There was a window, maybe ten years, when curation became traceable.
 
 Webrings connected sites by hand. Blogrolls were literally lists: here are the sites I read, here are the people whose thinking I follow. A personal homepage with a links page was someone showing you their taste, explicitly, with their name attached. You could follow the chain. You could find the person behind the recommendation and look at what else they recommended and decide whether you trusted their judgment.
 
 This was different from what came before. Not just curation but *accountable* curation. The recommender had skin in it - their reputation attached to the list. If they linked you somewhere terrible, that was on them, visibly. The signal wasn't just "this is worth your time." It was "this specific person, whose other choices you can examine, thinks this is worth your time."
 
-This happened almost by accident. The early web was personal because the tools were primitive. You built a page by hand, which meant every link was a deliberate act. The legibility wasn't a design goal. It was a side effect of the friction.
+This happened almost by accident. The early web was personal because the tools were primitive. You built a page by hand, which meant every link was a deliberate act. The transparency wasn't a design goal. It was a side effect of the friction.
 
 ## when the feed replaced the list
 
-Platforms solved a real problem: there was too much to curate by hand. RSS readers, social feeds, recommendation engines - they scaled discovery beyond what any blogroll could manage. And at first the tradeoff seemed fine. You lost some legibility, but you gained access to things you'd never have found otherwise.
+Platforms solved a real problem: there was too much to curate by hand. RSS readers, social feeds, recommendation engines - they scaled discovery beyond what any blogroll could manage. And at first the tradeoff seemed fine. You lost some visibility into who was choosing, but you gained access to things you'd never have found otherwise.
 
 The shift happened gradually. The feed started showing you things based on what you'd engaged with before, rather than what someone chose for you. The recommendation started optimizing for metrics - time spent, clicks, shares - rather than for any notion of quality or relevance that a person would recognize.
 

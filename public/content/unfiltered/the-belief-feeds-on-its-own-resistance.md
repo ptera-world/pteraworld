@@ -68,7 +68,7 @@ rebuilding after the loop is rebuilding from zero. the loop replaced everything 
 
 the belief might be beautiful. the faith might be real. the community might genuinely help people. none of that is what this essay is about.
 
-this is about the loop - the structural pattern where resistance becomes reinforcement and leaving becomes proof of the system's necessity. the loop can attach to any belief system. any ideology. any community that decides its boundaries are more important than the people crossing them.
+this is about the loop - the self-reinforcing pattern where resistance becomes reinforcement and leaving becomes proof of the system's necessity. the loop can attach to any belief system. any ideology. any community that decides its boundaries are more important than the people crossing them.
 
 the question isn't whether a belief is true. the question is: does the system allow you to leave without punishing you for it? does it let doubt exist without treating it as disease? does it let you question without reframing the question as weakness?
 

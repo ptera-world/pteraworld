@@ -28,7 +28,7 @@ this isn't a list of villains. it's a structure. the structure says: if you have
 
 ## why "politics" is the wrong word and the right word
 
-people hear "politics" and hear: left vs. right. democrat vs. republican. my team vs. your team. the word has been compressed into tribal identity so thoroughly that using it in a sentence makes half your audience stop listening.
+people hear "politics" and hear: left vs. right. democrat vs. republican. my team vs. your team. the word has been flattened into tribal identity so thoroughly that using it in a sentence makes half your audience stop listening.
 
 but politics - the actual thing, not the sports version - is just: who decides the rules, and how. that's it. every rule that shapes your life - what your job can require of you, what your healthcare covers, what your kids learn in [school](/unfiltered/school-was-never-about-learning), how much of your income goes to rent, whether you can afford to retire - is a political decision. someone made it. someone benefited from making it that way. and someone paid to be in the room when it was made.
 
@@ -66,7 +66,7 @@ so the room stays small. the interests in the room stay concentrated. the rules 
 
 and then the system does something clever. it turns the whole thing into a spectacle.
 
-left vs. right. red vs. blue. us vs. them. the structural questions - who writes the rules, who profits, who pays - get buried under identity battles. you're not asking "why is healthcare tied to employment." you're asking "which party do you support." the first question threatens the structure. the second question *is* the structure, working as designed.
+left vs. right. red vs. blue. us vs. them. the real questions - who writes the rules, who profits, who pays - get buried under identity battles. you're not asking "why is healthcare tied to employment." you're asking "which party do you support." the first question threatens the structure. the second question *is* the structure, working as designed.
 
 the teams keep you engaged without being effective. you have opinions. you argue online. you feel strongly about issues. you vote for your side. and the lobbying continues regardless of who wins, because the lobbying isn't partisan. the industries funding it donate to both sides. the access is bipartisan. the room stays the same room no matter which team is in the chairs.
 

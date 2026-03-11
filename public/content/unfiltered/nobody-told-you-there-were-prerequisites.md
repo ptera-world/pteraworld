@@ -24,9 +24,9 @@ every layer filters. each one removes most of the people below it. by the time y
 
 ## what the neutral voice can't say
 
-the main essays describe systems that optimize against you. platforms that extract instead of serve. labels that compress you into categories. software that was designed for someone else's metrics.
+the main essays describe systems that optimize against you. platforms that extract instead of serve. labels that flatten you into categories. software that was designed for someone else's metrics.
 
-they describe all of this from a position of enough safety to analyze it. the prose voice can afford to be calm and structural because the writer isn't in the crossfire. they're watching it.
+they describe all of this from a position of enough safety to analyze it. the prose voice can afford to be calm and analytical because the writer isn't in the crossfire. they're watching it.
 
 that distance is a privilege. not just a perspective.
 
@@ -64,7 +64,7 @@ but they don't say: and the author is fine. and the reader probably is too. and 
 
 this essay says it.
 
-not as guilt. guilt is a performance and performances cost exactly the people who can't afford the ticket. not as an apology. apologies for structural problems are just comfort for the person apologizing.
+not as guilt. guilt is a performance and performances cost exactly the people who can't afford the ticket. not as an apology. apologies for systemic problems are just comfort for the person apologizing.
 
 just as the floor. the thing underneath everything here. it's there whether or not we name it.
 

@@ -26,7 +26,7 @@ No amount of writing fills the gaps. Each new essay opens new gaps adjacent to i
 
 Knowledge graphs don't converge. They expand. Each node creates edges to things that don't exist yet. [It's not that simple](/prose/its-not-that-simple) - and the "it" includes this site's attempt to say something about simplicity.
 
-This isn't false modesty. It's structural. A finite collection of essays about the human condition will always be incomplete. The condition is bigger than any description of it.
+This isn't false modesty. It's arithmetic. A finite collection of essays about the human condition will always be incomplete. The condition is bigger than any description of it.
 
 ## That's the point
 
@@ -43,10 +43,3 @@ If you read something here and thought "but what about -" - you're right. Whatev
 That's not an invitation to dismiss what *is* here. "This doesn't cover everything" doesn't mean "this covers nothing." [Partial isn't worthless.](/prose/but) But it is partial.
 
 If the missing thing matters to you - write it. Think it. Say it to someone. The world doesn't need this site to be complete. It needs more people saying what they can see from where they're standing.
-
-## See also
-
-- [why are we compressing things?](/prose/why-are-we-compressing-things) - every map is smaller than the territory
-- [it's not that simple](/prose/its-not-that-simple) - the progression toward honesty about complexity
-- [the great deceit](/prose/the-great-deceit) - what this site is and isn't
-- [but.](/prose/but) - partial truths held honestly

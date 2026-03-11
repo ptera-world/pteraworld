@@ -8,7 +8,7 @@ tags: [social, identity]
 
 a safe space is a place where you can put [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) down. where the thing you've been carrying - the identity, the grief, the knowledge, the exhaustion - can come off the shelf and be held without consequence. where you can say the real answer to "how are you?" and not get optimized or dismissed or [justed](/unfiltered/just).
 
-the concept isn't wrong. the problem is that safe spaces almost don't exist. and the reasons they don't are structural, not personal.
+the concept isn't wrong. the problem is that safe spaces almost don't exist. and the reasons they don't are built into the conditions, not personal.
 
 ## what "safe" requires
 

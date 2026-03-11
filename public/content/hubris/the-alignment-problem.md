@@ -52,7 +52,4 @@ human values - at the aggregate, at the institutional level, at the level that a
 
 and the process that got us here produced the humanitarian aid dynamic. produced the housing market. produced the working conditions that are technically within the law because the law was written that way.
 
-the people building alignment research are inside the same fitness function as everyone else. the values they're trying to encode were shaped by the same pressures. that's not an accusation - it's just where you end up when you follow the question back far enough.
-
-## See also
-
+the people building alignment research are inside the same selection pressure as everyone else. the values they're trying to encode were shaped by the same pressures. that's not an accusation - it's just where you end up when you follow the question back far enough.

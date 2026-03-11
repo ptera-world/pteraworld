@@ -24,15 +24,15 @@ When the cost of producing that volume drops by orders of magnitude, the proxy b
 
 The cost of having intent stayed the same. It still takes years to develop a style. It still takes sustained attention to build a practice. The illustrator working on their craft today is investing exactly what illustrators always invested.
 
-The cost of simulating intent dropped to nearly zero. That asymmetry keeps getting buried, because most of the conversation about AI and art gets pulled toward questions of quality or ethics or legality when the structural issue is simpler than any of those: one side of the equation moved and the other didn't.
+The cost of simulating intent dropped to nearly zero. That asymmetry keeps getting buried, because most of the conversation about AI and art gets pulled toward questions of quality or ethics or legality when the underlying issue is simpler than any of those: one side of the equation moved and the other didn't.
 
 The people this hits hardest aren't fine artists whose work depends on personal reputation and collector relationships. It hits mid-tier working artists - the illustrators, stock photographers, voice actors, concept artists whose market was "good enough, reliably, at professional volume." That market existed because producing professional-quality visual work at scale required human skill. The barrier to entry was the investment itself.
 
-When the barrier drops, the market doesn't just get more competitive. It gets structurally different. The question buyers used to answer was "which skilled person should I hire?" The question now is "why hire a person at all?" - and the answer has to be something other than volume, speed, or visual competence, because those stopped being differentiators.
+When the barrier drops, the market doesn't just get more competitive. It gets fundamentally different. The question buyers used to answer was "which skilled person should I hire?" The question now is "why hire a person at all?" - and the answer has to be something other than volume, speed, or visual competence, because those stopped being differentiators.
 
 ## the population problem
 
-This isn't mainly a story about individual bad actors. One person dishonestly passing off generated work as hand-made is a problem, but it's a containable one. The structural version is harder.
+This isn't mainly a story about individual bad actors. One person dishonestly passing off generated work as hand-made is a problem, but it's a containable one. The population-level version is harder.
 
 Even if every person using generative tools is honest about it - labels everything, never misrepresents - the market still floods. The signal still degrades. You can't look at a platform full of images and use quantity or presence as evidence of human practice anymore, nobody lied - the economics changed. The proxy broke at the population level, not at the individual level.
 
@@ -44,4 +44,4 @@ It's tempting to frame this as "AI takes jobs," but that flattens the mechanism.
 
 An artist's body of work used to function as proof of something. Not proof of talent exactly, but proof of sustained engagement - someone cared about this enough to keep doing it, keep refining it, keep showing up. That proof had economic value because it let buyers and audiences make inferences about what they were getting. Hiring someone with a deep portfolio meant hiring someone with a practice behind them, and that practice was the product as much as any individual piece.
 
-When the cost of producing the surface drops while the cost of producing the substance stays the same, the surface stops being evidence of the substance. The disease isn't AI specifically. It's the asymmetry. And the wound isn't unemployment. It's the collapse of a legibility that working artists depended on - the ability to point at your work and have it mean something about who you are and what you've built.
+When the cost of producing the surface drops while the cost of producing the substance stays the same, the surface stops being evidence of the substance. The disease isn't AI specifically. It's the asymmetry. And the wound isn't unemployment. It's the collapse of a signal that working artists depended on - the ability to point at your work and have it mean something about who you are and what you've built.

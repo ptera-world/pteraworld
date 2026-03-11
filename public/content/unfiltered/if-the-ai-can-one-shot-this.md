@@ -18,7 +18,7 @@ not because the model is insightful. because the training data is people.
 
 thousands of people have written about burnout. thousands have written about the healthcare system. thousands have described what it feels like to be ground down by work, to ration therapy sessions, to shelve parts of yourself to stay functional. the pattern is in the model because the pattern is in the corpus. the corpus is the internet. the internet is where people put their pain when they have [just enough](/unfiltered/nobody-told-you-there-were-prerequisites) literacy and platform and energy to write it down.
 
-the model can one-shot an essay about systemic suffering because systemic suffering has been described so many times, by so many people, in so many ways, that the description became statistically fluent. the articulation of the problem is not new. the model didn't discover anything. it compressed what was already there.
+the model can one-shot an essay about systemic suffering because systemic suffering has been described so many times, by so many people, in so many ways, that the description became statistically fluent. the articulation of the problem is not new. the model didn't discover anything. it distilled what was already there.
 
 ## what that means
 
@@ -32,7 +32,7 @@ and the systems are still there. the grind is still there. the floor is still th
 
 the training data is a sediment layer of human experience. somewhere in it: blog posts about burnout. forum threads about medical debt. reddit comments about the grind. tweets about therapy being too expensive. essays about the healthcare system. articles about housing. think pieces about voting. personal accounts of the shelf, the silence, the floor - all of it, written by real people, from real pain, into the real internet.
 
-the model consumed all of it. compressed it. learned the shape of the sentences people use when they're describing systems that hurt them. and now it can produce those sentences on demand, fluently, with the emotional register intact.
+the model consumed all of it. absorbed it. learned the shape of the sentences people use when they're describing systems that hurt them. and now it can produce those sentences on demand, fluently, with the emotional register intact.
 
 that's a mirror. the model reflects the documented pain back at you in a coherent voice. and the fact that the reflection is coherent - that it reads as a single angry voice instead of a statistical average - is what makes it uncanny. but underneath the voice, it's just an aggregate. the average of everyone who ever wrote about this. nobody's experience. everybody's pattern.
 

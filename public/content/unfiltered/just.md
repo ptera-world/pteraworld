@@ -25,7 +25,7 @@ the word that erases everything between where you are and where the advice assum
 
 which means: if you haven't done it, you chose not to. and if you chose not to, that's on you.
 
-"just" converts a structural problem into a personal failure. every time. that's its function. not as malice - most people saying "just" genuinely think they're helping. but the word carries an assumption: that the distance between the problem and the solution is trivial. and if someone hasn't crossed it, the problem is them.
+"just" converts a systemic problem into a personal failure. every time. that's its function. not as malice - most people saying "just" genuinely think they're helping. but the word carries an assumption: that the distance between the problem and the solution is trivial. and if someone hasn't crossed it, the problem is them.
 
 "you're poor? just work harder." as if they're not already working. as if [the job](/unfiltered/your-best-hours-belong-to-someone-else) that takes eight hours plus commute plus mental overhead isn't already taking everything. as if the person making survival calculations about groceries is doing so because they lack *effort*.
 
@@ -51,11 +51,11 @@ the word "just" lives at the top of [the floor](/unfiltered/nobody-told-you-ther
 
 most people saying "just" aren't cruel. they're one of four things.
 
-**distant.** they solved that problem long enough ago that the steps compressed into one. the prerequisites became invisible through familiarity. "just" is an honest description of how it feels to them - one step. they genuinely forgot it was fifteen. the way you forget that driving is hard once you've been doing it for years. the expertise erased the memory of not having it.
+**distant.** they solved that problem long enough ago that the steps collapsed into one. the prerequisites became invisible through familiarity. "just" is an honest description of how it feels to them - one step. they genuinely forgot it was fifteen. the way you forget that driving is hard once you've been doing it for years. the expertise erased the memory of not having it.
 
-**uncomfortable.** someone's suffering in front of you and you want it to stop. not their suffering - your discomfort at witnessing it. "just do X" is the fastest way to close the conversation. not because you don't care. because the helplessness of not being able to fix it is unbearable, so you offer the simplest shape of a fix and hope it lands. "just" is a compression of "i don't know how to help and that's killing me."
+**uncomfortable.** someone's suffering in front of you and you want it to stop. not their suffering - your discomfort at witnessing it. "just do X" is the fastest way to close the conversation. not because you don't care. because the helplessness of not being able to fix it is unbearable, so you offer the simplest shape of a fix and hope it lands. "just" is shorthand for "i don't know how to help and that's killing me."
 
-**scared.** if their problem is structural, it could be your problem too. "just work harder" protects you from the alternative: the system is broken and you're in it too. blaming the person keeps the world predictable. if they could have avoided it by trying harder, so can you. "just" is a defense mechanism. it keeps the floor from being visible.
+**scared.** if their problem is baked into the system, it could be your problem too. "just work harder" protects you from the alternative: the system is broken and you're in it too. blaming the person keeps the world predictable. if they could have avoided it by trying harder, so can you. "just" is a defense mechanism. it keeps the floor from being visible.
 
 **trained.** they were told "just" too. [the pipeline](/unfiltered/school-was-never-about-learning) teaches you that problems have answers and answers are simple. the grade is right or wrong. the test has a key. "just study harder." the structure trained you to believe that every problem has a one-step solution and failure to solve it is a personal deficiency. "just" isn't advice. it's the template speaking through you.
 

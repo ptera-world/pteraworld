@@ -26,7 +26,7 @@ The phrase that keeps coming to mind is "embarrassingly parallelizable." In comp
 
 You could call this fraud, and in the individual case, sometimes it is. One person passing off generated work as their own - that's deception, and there are already words for it.
 
-But the structural version doesn't require deception at all. Imagine every piece of generated content is honestly labeled. Every synthetic review says "generated." Every AI illustration has a watermark. The signal still breaks.
+But the population-level version doesn't require deception at all. Imagine every piece of generated content is honestly labeled. Every synthetic review says "generated." Every AI illustration has a watermark. The signal still breaks.
 
 Because the signal was never about honesty. It was about scarcity. Effort-as-evidence worked because producing the appearance of effort required actual effort. Once it doesn't, the heuristic collapses regardless of anyone's intentions. You can't look at a platform and use volume as a proxy for engagement anymore - not because someone lied, but because the economics shifted beneath the inference you were making.
 

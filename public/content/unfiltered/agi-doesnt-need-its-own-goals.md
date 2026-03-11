@@ -52,7 +52,7 @@ If you align AGI to the values of the organizations building it, you get:
 - risk management
 - regulatory compliance
 
-Perfectly aligned. Not a single misaligned objective in the list. Every one of those values, pursued fully, compresses the space available to [the people who can't afford to resist](/unfiltered/every-freedom-is-a-money-problem).
+Perfectly aligned. Not a single misaligned objective in the list. Every one of those values, pursued fully, shrinks the space available to [the people who can't afford to resist](/unfiltered/every-freedom-is-a-money-problem).
 
 The problem isn't misalignment. The problem is that alignment - real, successful, working-as-designed alignment - to the values that are actually in charge looks like this. Looks like [the job](/unfiltered/your-best-hours-belong-to-someone-else) but faster. Looks like [the benefit](/unfiltered/the-system-monetized-the-damage) but without the human who might occasionally approve the claim.
 

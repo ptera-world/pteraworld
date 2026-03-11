@@ -46,7 +46,7 @@ The industry tried to merge them. "Full-stack developer." "10x engineer." The id
 
 Some people are both. But the modes are different. You can't explore and ship at the same time. Exploration requires [tolerance for dead ends](/prose/why-is-perfectionism-a-trap). Shipping requires killing dead ends. Exploration follows curiosity. Shipping follows requirements. The skills overlap but the mindsets don't.
 
-What actually happened is the professional track won. It's not better - it's legible. You can measure tickets closed. You can't measure [insights gained](/prose/why-do-i-build-tools#what-actually-feels-good). You can put "shipped feature X" on a resume. You can't put "discovered that document conversion should be a pipeline not a monolith." The [metrics select](/prose/whats-actually-wrong) for the professional and render the explorer invisible.
+What actually happened is the professional track won. It's not better - it's measurable. You can measure tickets closed. You can't measure [insights gained](/prose/why-do-i-build-tools#what-actually-feels-good). You can put "shipped feature X" on a resume. You can't put "discovered that document conversion should be a pipeline not a monolith." The [metrics select](/prose/whats-actually-wrong) for the professional and render the explorer invisible.
 
 ## What got lost
 

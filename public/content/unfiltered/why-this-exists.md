@@ -34,7 +34,7 @@ same graph. same spatial navigation. same "there is no start, explore from where
 
 the graph is a substrate - [structure without meaning](/prose/where-does-meaning-live). the main essays are one meaning flowing through it. these essays are another. the graph stays neutral because it's structure. the content carries the tone.
 
-the contract here is different. this collection can be negative. it can name things. it can sit in the uncomfortable observation instead of resolving it into a structural analysis. it can say "this is violent" instead of "systems optimize against you."
+the contract here is different. this collection can be negative. it can name things. it can sit in the uncomfortable observation instead of resolving it into a systems analysis. it can say "this is violent" instead of "systems optimize against you."
 
 it can also be wrong. the main collection's restraint is also a filter - it removes the takes that are too hot, too specific, too shaped by the author's particular anger. removing the filter means some of what comes through will be less fair, less balanced, less useful. that's the trade.
 

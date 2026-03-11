@@ -16,7 +16,7 @@ that's 35.9 million people. 35.9 million nervous systems. 35.9 million sleep pat
 
 the number replaces the person. that's its function. not as conspiracy - as cognition. the human brain can hold one person's suffering. it can maybe hold ten. it cannot hold 35.9 million. so it compresses. it turns people into a percentage. and the percentage is manageable. the percentage fits in a report, a headline, a policy brief, a tweet.
 
-770,000 people are homeless in the US. say that out loud and it sounds like a fact. say "seven hundred and seventy thousand people don't have a place to sleep tonight" and it sounds like a catastrophe. same information. different compression. the number is the version that lets you keep reading.
+770,000 people are homeless in the US. say that out loud and it sounds like a fact. say "seven hundred and seventy thousand people don't have a place to sleep tonight" and it sounds like a catastrophe. same information. different packaging. the number is the version that lets you keep reading.
 
 this is [compression](/prose/why-are-we-compressing-things) applied to human beings. the same mechanism the main essays describe - labels flattening identity, formats flattening meaning, categories flattening complexity - except here the thing being flattened is someone's life. the label is a data point. the format is a spreadsheet. the category is "below the poverty line," as if poverty has a clean edge and not a gradient that reaches into the middle class and strangles people who technically count as fine.
 
@@ -54,7 +54,7 @@ and numbers are so convenient. once a person becomes a number, you don't have to
 
 and once you can process it, you can accept it. and once you can accept it, you can move on. the number doesn't demand action the way a face does. a face is a person. a number is a fact. facts are neutral. facts are just data. data doesn't cry.
 
-this is how a society lives with 770,000 homeless people. not by being cruel. by being statistical. the cruelty is in the compression, and the compression is invisible because it's how everyone - including the people who care - talks about it.
+this is how a society lives with 770,000 homeless people. not by being cruel. by being statistical. the cruelty is in the reduction, and the reduction is invisible because it's how everyone - including the people who care - talks about it.
 
 "we need to address homelessness." yes. "the numbers are trending upward." noted. "food insecurity affects X million households." concerning. the language of concern. the vocabulary of caring-at-a-distance. none of it lies. all of it numbs.
 

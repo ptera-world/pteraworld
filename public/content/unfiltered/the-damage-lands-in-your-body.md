@@ -16,7 +16,7 @@ stress isn't a feeling. it's a chemical state. cortisol, adrenaline, inflammator
 
 chronic stress isn't "being stressed out." it's your body running an emergency protocol that never ends. the inflammation becomes baseline. the tension becomes posture. the elevated cortisol becomes weight gain, insomnia, brain fog, immune suppression. the body adapts to the emergency by breaking down slowly instead of all at once.
 
-and the system calls this "aging." or "lifestyle factors." or "pre-existing conditions." as if the body deteriorating under decades of structural pressure is a personal health choice.
+and the system calls this "aging." or "lifestyle factors." or "pre-existing conditions." as if the body deteriorating under decades of systemic pressure is a personal health choice.
 
 ## what exhaustion actually is
 
@@ -28,7 +28,7 @@ the person who collapses on the couch and scrolls isn't choosing dopamine over m
 
 two to three hours a day in a car or on a train. sitting. the body was built to move and you're holding it still in a metal box because the place you can afford to live isn't the place you have to work.
 
-the back pain isn't mysterious. the weight gain isn't a puzzle. the cardiovascular decline isn't surprising. the body is doing exactly what a body does when you take away its movement for three hours a day, five days a week, for decades. the damage is mechanical. predictable. and entirely structural - it's not that you're not exercising enough. it's that [the job](/unfiltered/your-best-hours-belong-to-someone-else) requires you to not move for most of your waking life.
+the back pain isn't mysterious. the weight gain isn't a puzzle. the cardiovascular decline isn't surprising. the body is doing exactly what a body does when you take away its movement for three hours a day, five days a week, for decades. the damage is mechanical. predictable. and entirely built into the arrangement - it's not that you're not exercising enough. it's that [the job](/unfiltered/your-best-hours-belong-to-someone-else) requires you to not move for most of your waking life.
 
 ## chronic conditions
 

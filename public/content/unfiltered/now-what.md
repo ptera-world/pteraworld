@@ -10,9 +10,9 @@ you've been reading. you recognize some of this - maybe a lot of it. [the grind]
 
 now what?
 
-this essay can't give you a plan. a plan would be [just](/unfiltered/just) in disguise - "just do these five things" - and the collection spent an entire essay on why that word erases everything between where you are and where the advice assumes you are. the conditions that make this hard are structural. they don't have individual solutions. that's not a cop-out. it's the whole point.
+this essay can't give you a plan. a plan would be [just](/unfiltered/just) in disguise - "just do these five things" - and the collection spent an entire essay on why that word erases everything between where you are and where the advice assumes you are. the conditions that make this hard are built into the incentives. they don't have individual solutions. that's not a cop-out. it's the whole point.
 
-but "it's structural" can't be where it ends either. you still have to live inside the structure. you still wake up tomorrow inside [the grind](/unfiltered/the-system-filled-every-gap-you-had). and if this collection names everything that's wrong and offers nothing - not even a direction - then it's just despair with better formatting.
+but "the problem is bigger than you" can't be where it ends either. you still have to live inside the structure. you still wake up tomorrow inside [the grind](/unfiltered/the-system-filled-every-gap-you-had). and if this collection names everything that's wrong and offers nothing - not even a direction - then it's just despair with better formatting.
 
 so here's what this essay can do. not prescribe. not fix. point at things that have shifted the weight for some people, in some situations, without pretending they'll work for everyone or that they're enough.
 
@@ -46,7 +46,7 @@ these aren't solutions. the system will fill them back in tomorrow. but they're 
 
 this collection named the machinery. it pointed at the grind, the gate, the shelf, the template, the benefit, the rules. it said: this is what's happening, this is what it costs, this is why it's not your fault.
 
-it can't fix any of it. the problems are structural and the solutions - the real ones, the ones that would actually change conditions - are collective, political, generational. they're bigger than one person reading essays on a screen. this collection doesn't have the answer because the answer isn't an essay.
+it can't fix any of it. the problems are baked into the system and the solutions - the real ones, the ones that would actually change conditions - are collective, political, generational. they're bigger than one person reading essays on a screen. this collection doesn't have the answer because the answer isn't an essay.
 
 but naming the machinery matters. not because naming fixes it. because unnamed things control you differently than named things. the pattern you can see is the pattern you can push against - even if the pushing is small, even if the pattern holds. the pushing is how you know you're not the pattern. you're the person inside it.
 

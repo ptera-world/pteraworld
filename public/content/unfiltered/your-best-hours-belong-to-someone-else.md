@@ -46,7 +46,7 @@ but one party has the thing you need to survive - money, healthcare, the ability
 
 and the system needs you to believe it's a choice. because if it's a choice, then whatever happens to you in it is your responsibility. burned out? you chose this job. underpaid? you should have negotiated harder. miserable? the door is right there.
 
-the framing converts a structural problem into a personal one. every time.
+the framing converts a systemic problem into a personal one. every time.
 
 ## the quiet question
 
