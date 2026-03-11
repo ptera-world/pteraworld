@@ -8,10 +8,10 @@
 - [x] **force layout on grouping filters** — investigated: unfiltered has 0 groupings so issue can't manifest there. On default collection, switching groupings while filters are active skips force layout re-run (low priority edge case)
 - [x] **main site introspective tags** — added `introspective` tag to 5 prose essays (the-great-deceit, this-site-is-manipulative, this-is-not-a-personal-website, this-site-is-designed, this-is-not-all) + tagColors on essays and meta-essays clusters
 
-- [ ] Add favicon / icon
+- [x] Add favicon / icon — SVG graph motif, linked in all entry points + generated content pages
 - [x] Fix layout (broken by content-agnostic refactor) — resolved by layout engine rewrite
 - [ ] `visible-at` constraint should not assume 1920×1080 — support multiple common viewport sizes or a range
-- [ ] Replace `center:` absolute coordinates in cluster YAMLs with relative constraints (`near:`, `below:`, etc.)
+- [x] Replace `center:` absolute coordinates in cluster YAMLs with relative constraints — already done, no clusters use `center:`
 - [x] Implement force layout adaptive feedback loop: `runForceLayoutAdaptive` — 6 attempts, 4 quality axes, directional param adjustments
 - [x] Wire essays cluster back to force layout via adaptive loop — essays use `layout: force` + `groupingPlacement: free`, force sim runs at step 6
 - [ ] Implement dynamic layout: runtime viewport adaptation within tight bounds of build-time solution

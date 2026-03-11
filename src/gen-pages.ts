@@ -16,6 +16,7 @@ function pageHtml(
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} — ${siteConfig.name}</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="https://${siteConfig.domain}/${id}">

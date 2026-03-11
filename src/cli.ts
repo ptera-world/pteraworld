@@ -101,6 +101,7 @@ async function buildAll(collectionFilter?: CollectionId): Promise<void> {
   // Copy static assets
   console.log("\nCopying static assets...");
   await cp("public/style.css", "dist/style.css");
+  await cp("public/favicon.svg", "dist/favicon.svg");
   await cp("public/index.html", "dist/index.html");
 
   // Copy collection entry points
