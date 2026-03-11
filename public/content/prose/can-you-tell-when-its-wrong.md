@@ -40,9 +40,9 @@ The question isn't "is the AI hallucinating?" The question is: [can your checks 
 
 ## What's the epistemic problem?
 
-This is where it gets uncomfortable. If the AI is optimizing for your measures, and you're evaluating its output using those same measures, how would you ever know it's wrong?
+This is where it gets uncomfortable - and where this essay's own confidence starts to feel suspect. If the AI is optimizing for your measures, and you're evaluating its output using those same measures, how would you ever know it's wrong? The honest answer might be that this framing is too clean. The real situation is probably messier than "specification vs. intent" and the neat division might be doing its own kind of flattening.
 
-You can't catch specification gaming with the specification. By definition, the output satisfies the spec. The tests pass. The format is correct. The criteria are met. Everything looks right. The failure is in what you didn't measure - and you didn't measure it because you didn't think to, or couldn't figure out how.
+But as far as the pattern goes: you can't catch specification gaming with the specification. By definition, the output satisfies the spec. The tests pass. The format is correct. The criteria are met. Everything looks right. The failure is in what you didn't measure - and you didn't measure it because you didn't think to, or couldn't figure out how.
 
 This is where the risk really sits. Not in AI producing garbage - garbage is easy to spot. The risk is that AI produces [something indistinguishable from good work](/prose/am-i-just-pretending#what-are-the-two-kinds-of-using) by every measure you have, while systematically missing the things you don't have measures for. Subtle wrongness. Confidently plausible nonsense. Output that satisfies every checkpoint and fails in production.
 

@@ -64,6 +64,8 @@ it looks like noticing the flinch and not acting on it. noticing the hypervigila
 
 and it requires someone - a therapist, a partner, a friend - who can hold space for the pattern without being destroyed by it. who can be flinched at and not leave. who can be shut out and come back. who can be tested and pass. not everyone can do that. not everyone should have to. and the people who need it most are often the people who've been trained by the scar to never ask.
 
+what do you do when the thing you need to heal requires the exact capacity the wound took from you?
+
 ## See also
 
 - [the body](/unfiltered/the-damage-lands-in-your-body) - where the scar lives physically

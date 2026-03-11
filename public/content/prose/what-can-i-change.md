@@ -93,13 +93,7 @@ Not everyone needs to be a strategist. Most change happens through lots of peopl
 
 ## What if it doesn't work?
 
-It might not. Most attempts at change don't succeed on the first try. Or the tenth.
-
-But "didn't work" isn't the same as "wasted." You learn what doesn't move. You find out who else cares. You build relationships. You shift the landscape slightly, even if you don't reach the goal.
-
-And sometimes things that seemed stuck suddenly move - because enough small pushes accumulated, because conditions changed, because the right moment arrived.
-
-You don't control the outcome. You control [whether you try](/prose/how-do-i-do-things).
+It might not. Most attempts at change don't succeed on the first try. Or the tenth. You don't control the outcome. You control [whether you try](/prose/how-do-i-do-things).
 
 ## See also
 

@@ -58,7 +58,7 @@ The reframe isn't "you don't have a problem." It's: before you diagnose your bra
 
 When the rewards align, "focus" stops being an effort. It becomes the default. You don't need willpower to keep paying attention. You need willpower to *stop*.
 
-This is what people call "flow." But flow isn't a special state. It's what attention feels like when nothing is [competing for it artificially](/prose/why-is-nothing-special-anymore#whats-the-convergence). When each cycle of effort produces a real result. When anticipation leads to something. When the environment rewards depth instead of breadth.
+This is what people call "flow." But flow isn't a special state. It's what attention feels like when nothing is [competing for it artificially](/prose/why-is-nothing-special-anymore#everything-converged). When each cycle of effort produces a real result. When anticipation leads to something. When the environment rewards depth instead of breadth.
 
 The attention economy is the opposite of flow. It rewards breadth - scan, skip, scroll, next. It fractures attention into micro-moments because micro-moments are individually monetizable. Each fragment of your attention is worth a fraction of a cent to an advertiser, and the platforms are [optimizing for the number of fragments](/prose/whats-actually-wrong), not their quality.
 

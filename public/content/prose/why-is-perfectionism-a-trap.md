@@ -91,6 +91,8 @@ Not "just ship it." That's like telling someone with anxiety to "just relax." Tr
 - **Notice the function.** When the critic says "not yet," ask: is this taste, or is this fear? Taste has specific feedback. Fear has vague dread.
 - **Separate making from evaluating.** Don't judge while you create. Make the thing. Then, separately, with distance, evaluate it. The two modes use different parts of your brain and they interfere with each other.
 
+The trap is open. You can see it. You're probably still in it.
+
 ## See also
 
 - [how do I do things?](/prose/how-do-i-do-things) - starting without the weight of perfection

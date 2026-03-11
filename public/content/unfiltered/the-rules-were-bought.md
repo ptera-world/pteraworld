@@ -8,7 +8,7 @@ tags: [social]
 
 every system described in this collection - [the job](/unfiltered/your-best-hours-belong-to-someone-else), [the gate](/unfiltered/every-freedom-is-a-money-problem), [the benefit](/unfiltered/the-system-monetized-the-damage), [the pipeline](/unfiltered/school-was-never-about-learning), [the grind](/unfiltered/the-system-filled-every-gap-you-had) - runs on rules. tax codes, labor laws, insurance regulations, education policy, housing policy, healthcare policy. someone wrote those rules. and the writing wasn't free.
 
-## who's in the room
+## the room is small and expensive
 
 rules are made by legislators. legislators are elected. elections cost money. the money comes from donors. the donors have interests. the interests shape the rules.
 
@@ -18,7 +18,7 @@ the people who can afford to be in the room are the people whose interests the r
 
 [the silence](/unfiltered/expression-has-a-cost-floor) talks about how the people closest to the problem are the most absent from the description of it. this is the political version. the people most affected by the rules are the most absent from the writing of them.
 
-## the loop
+## profit preserves the problem that generates profit
 
 an industry profits from a problem. the profit funds lobbying. the lobbying preserves the problem. the preserved problem continues generating profit. the profit funds more lobbying.
 

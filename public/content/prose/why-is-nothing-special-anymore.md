@@ -10,7 +10,7 @@ Not nothing. There are still things that surprise. But they're harder to find. A
 
 [What happened?](#what-happened)
 
-## What used to be different?
+## Something used to be different
 
 The Twilight Zone made humans the punchline. Rendezvous with Rama presented aliens that didn't care humans existed. Old Doctor Who made the human the companion, not the hero. Avatar was a bet on an unproven world. Megamind subverted its own genre. Toy Story was a studio's first feature and it trusted the audience to care about toys.
 
@@ -26,7 +26,7 @@ So everything converged on what works. And "what works" means "what the most peo
 
 The MCU isn't bad. That's what makes it hard to talk about. It's competent. It hits every beat. It's just the same beat, every time. The formula works, so everything becomes the formula. Sequels, franchises, proven IP, tested to remove every edge. Not because the creators lack [intent](/prose/what-is-art) - but because the economics select against intent that doesn't serve the metric.
 
-## Where did the trust go?
+## The trust disappeared
 
 The difference between something special and something frictionless is trust.
 
@@ -38,7 +38,7 @@ Music: an algorithm that shows you what you already like versus a friend who say
 
 The forms didn't get worse. The trust disappeared. Because trusting the audience means some of them leave. And leaving is the one thing the metric can't tolerate.
 
-## What's the convergence?
+## Everything converged
 
 It's not just film. Not just games. Not just music. It's everything.
 

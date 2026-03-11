@@ -72,7 +72,7 @@ The boundary between raw data and structured information. The boundary between o
 
 [Software is hard](/prose/why-is-software-hard) - computers aren't stupid, boundaries are just everywhere. Every app is an island. Every format is a wall. Every protocol is a gate. The work of using a computer is mostly the work of crossing boundaries - copy-paste, export-import, save-as, [bridge after bridge](/prose/why-is-everything-a-document#the-bridge-problem) between things that should flow freely.
 
-Glue removes boundaries. Not by making everything the same - that's a platform, and platforms [have their own problems](/prose/why-did-things-stop-being-personal#what-did-platforms-replace). By making things connectable without requiring them to be identical. By translating, not flattening. By bridging, not merging.
+Glue removes boundaries. Not by making everything the same - that's a platform, and platforms [have their own problems](/prose/why-did-things-stop-being-personal#platforms-replaced-everything). By making things connectable without requiring them to be identical. By translating, not flattening. By bridging, not merging.
 
 That's harder than it sounds. Good glue preserves what matters about each side while removing only the barrier between them. Bad glue destroys the things it connects. The art is in knowing what to preserve.
 

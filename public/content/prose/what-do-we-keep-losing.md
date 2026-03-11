@@ -6,13 +6,11 @@ tags: [infrastructure, games]
 
 # What do we keep losing?
 
-Technology isn't preserved by existence. It's preserved by continuous practice.
+Roman concrete that self-heals in seawater - the formula was known, and then it wasn't. For 1,500 years. Not because it was impossible. Because the knowledge chain broke. Nobody burned the instructions. Nobody banned the technique. The people who knew how just stopped passing it on, and eventually nobody remembered.
 
-If the guild dies, the funding dies, the use-case disappears, the institution collapses, the knowledge becomes irrelevant - the tech evaporates, even if the idea was known. [This has happened before.](#what-has-already-vanished) And the real loss tends not to be the object - it's [the system that kept it alive](#whats-actually-being-lost). Digital seems to make this [worse, not better](#is-digital-more-fragile). We used to [align around preservation](#did-we-forget-how-to-align) - entire civilizations did. Games [keep showing](#why-do-games-keep-getting-it-right) what happens when friction is removed. So [what does that mean](#what-does-this-mean-for-building) for how we build?
+That pattern keeps repeating. Technology isn't preserved by existence. It's preserved by continuous practice. If the guild dies, the funding dies, the use-case disappears, the institution collapses - the tech evaporates, even if the idea was known. And the real loss tends not to be the object - it's [the system that kept it alive](#whats-actually-being-lost). Digital seems to make this [worse, not better](#is-digital-more-fragile). We used to [align around preservation](#did-we-forget-how-to-align) - entire civilizations did. Games [keep showing](#why-do-games-keep-getting-it-right) what happens when friction is removed. So [what does that mean](#what-does-this-mean-for-building) for how we build?
 
 ## What has already vanished?
-
-Roman concrete that self-heals in seawater. The formula was gone for 1,500 years. Not because it was impossible - the knowledge chain just broke.
 
 Greek fire. Damascus steel. The Antikythera mechanism - a 2,000-year-old analog computer for astronomy, with gears and differentials. Then nothing like it again for over a millennium. It could have existed. No tradition carried it forward.
 

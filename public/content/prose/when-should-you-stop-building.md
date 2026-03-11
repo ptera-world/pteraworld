@@ -36,7 +36,7 @@ You know something is ready when it passes the visceral test: can you use it wit
 
 Not "does it work correctly?" It might work correctly and still feel wrong. The timing is off. The flow is awkward. The thing you do most often takes too many steps. It works, but every time you use it, something catches - a moment of friction, a small "ugh," a micro-frustration that you've been planning to fix for weeks.
 
-The visceral test isn't about bugs. It's about feel. Does the thing [respect your experience](/prose/why-is-nothing-special-anymore#where-did-the-trust-go) of using it? Not your experience of building it - your experience of *being in it*?
+The visceral test isn't about bugs. It's about feel. Does the thing [respect your experience](/prose/why-is-nothing-special-anymore#the-trust-disappeared) of using it? Not your experience of building it - your experience of *being in it*?
 
 If the answer is "no, but I know how to fix it," you're still building. If the answer is "no, and I'm not sure what's wrong," you might be ready to start using - because the only way to find what's wrong is to live in it.
 

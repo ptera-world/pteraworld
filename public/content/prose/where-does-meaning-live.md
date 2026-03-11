@@ -22,15 +22,15 @@ Probably not. Because the moment it does, it stops being an abstraction and star
 
 ## What are shortcuts pretending to be concepts?
 
-An abstraction that encodes specifics is just a shortcut pretending to be a concept.
+An abstraction that encodes specifics is a shortcut wearing a label.
 
-A "sadness module" in a simulation engine isn't an abstraction of emotion - it's a hardcoded behavior wearing a label. It works for sadness. It doesn't work for anything else. The next emotion needs its own module. And the next. And eventually you have a hundred modules and zero understanding of what they share.
+A "sadness module" in a simulation engine works for sadness. Not for anything else. The next emotion needs its own module. A hundred modules later, zero understanding of what they share.
 
-A "function analyzer" that knows functions are callable blocks of code works great - until someone feeds it a language where functions are something else. Or a codebase where the meaningful unit isn't the function but the module. Or the trait. Or the expression. The specifics it encoded became the walls it can't see past.
+A "function analyzer" that knows functions are callable blocks of code works until the meaningful unit isn't the function. The specifics it encoded became the walls it can't see past.
 
-This happens everywhere. Note apps that know a "note" is a text document - [until you need it to be something else](/prose/why-do-i-reinvent-everything#how-does-popularity-become-a-ratchet). Spreadsheets that know a "cell" contains a value - until the relationship between cells matters more than the values. Calendars that know a "day" has 24 hours - until you're modeling something that doesn't respect that boundary.
+Note apps that know a "note" is a text document - [until you need it to be something else](/prose/why-do-i-reinvent-everything#how-does-popularity-become-a-ratchet). Spreadsheets that know a "cell" contains a value - until the relationship between cells matters more than the values. Calendars that know a "day" has 24 hours - until you're modeling something that doesn't respect that boundary.
 
-The specifics calcify. They become invisible. And then you can't imagine the thing working differently, because the assumption is load-bearing and nobody remembers it's an assumption.
+The specifics calcify. They become invisible. Nobody remembers they're assumptions.
 
 ## So where does meaning actually live?
 

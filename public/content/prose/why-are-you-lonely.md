@@ -38,7 +38,7 @@ Maybe you have safe people. People who wouldn't judge you. People who'd listen i
 
 But you still don't.
 
-Because safety is necessary but not sufficient. You can be completely yourself around someone and they still don't *see* you. Not because they're bad people - because seeing someone takes sustained attention, real curiosity, and the kind of conversation that most relationships never get to. Even the safe ones.
+And that's the part that can really ache - because you can see them right there, being kind, being patient, and you still can't cross the distance. It's not that they failed you. It's not that you failed them. It's that safety got you to the edge of the water and you still couldn't jump, and you don't fully know why, and neither do they. You can be completely yourself around someone and they still don't *see* you. Not because they're bad people - because seeing someone takes sustained attention, real curiosity, and the kind of conversation that most relationships never get to. Even the safe ones.
 
 Safe people still default to comfortable patterns. You talk about the same topics. You fill the same roles. You enjoy each other's company. And it's good - genuinely good. But "good" and "known" are different things.
 

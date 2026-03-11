@@ -8,11 +8,11 @@ tags: [social, technology]
 
 There was a period - roughly 1995 to 2008 - when the internet was full of places that belonged to someone. Not "belonged" in the legal sense. Belonged in the sense that you could feel a person behind them. A GeoCities page with a visitor counter and a MIDI that autoplayed. A LiveJournal with custom CSS that broke in Firefox. A forum with inside jokes in the sidebar. A blog with a blogroll that was also a map of someone's world.
 
-These were ugly. Broken. [Unsophisticated.](#what-is-the-sophistication-trap) Completely, unmistakably *someone's*.
+These were ugly. Broken. [Unsophisticated.](#the-sophistication-trap) Completely, unmistakably *someone's*.
 
 Where did they go?
 
-## What is the sophistication trap?
+## The sophistication trap
 
 The personal web didn't die because it was bad. It died because "good" got redefined.
 
@@ -20,7 +20,7 @@ Good used to mean: it exists, it's yours, it says something. Then "good" started
 
 A hand-coded HTML page with a tiled background and a guestbook doesn't clear that bar. Neither does a Tumblr theme you customized for six hours. Neither does a WordPress blog with seventeen plugins that barely work together. But those things had something that a Notion page and a Substack and a Linktree don't: [fingerprints](/prose/am-i-just-pretending#is-directing-a-craft).
 
-## What did platforms replace?
+## Platforms replaced everything
 
 Platforms didn't kill the personal web on purpose. They just made it unnecessary.
 
@@ -28,9 +28,9 @@ Why maintain a blog when you can post on Medium? Why build a portfolio when you 
 
 The answer to every one of these is: because the platform's version isn't *yours*. But "yours" stopped mattering once reach did. A blog nobody reads versus a tweet that gets engagement - the economics are obvious. The personal web couldn't compete with distribution.
 
-So people moved. They didn't want to. But the audience was already there, and making something personal for an audience of nobody felt pointless. The loss wasn't that the platforms were bad. It was that they were [good enough](/prose/why-is-nothing-special-anymore#whats-the-convergence) - good enough that the thing they couldn't do (be personal) stopped seeming important.
+So people moved. They didn't want to. But the audience was already there, and making something personal for an audience of nobody felt pointless. The loss wasn't that the platforms were bad. It was that they were [good enough](/prose/why-is-nothing-special-anymore#everything-converged) - good enough that the thing they couldn't do (be personal) stopped seeming important.
 
-## What is the Tumblr paradox?
+## The Tumblr paradox
 
 Tumblr is the strangest survival story on the internet. It failed as a business - repeatedly. It was sold for a fraction of what it was bought for. It has no functional recommendation algorithm. Its search barely works. It has never been profitable in any meaningful sense.
 

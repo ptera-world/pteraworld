@@ -6,19 +6,15 @@ tags: [social, design]
 
 # How much could I possibly do?
 
-"I'm just one person." "I'm not smart enough." "That's for people who know what they're doing." "It would take years." "What's the point?"
+"I'm just one person." "What's the point."
 
-The surrender tends to come before the attempt. And it [sounds like wisdom](#why-does-giving-up-sound-wise). But it might not be realism - it might be [learned helplessness](#what-is-learned-helplessness) dressed up as self-awareness. And it can [quietly close doors](#what-does-it-cost) before anything starts.
+You haven't tried yet. The surrender came first. It [sounds like wisdom](#why-does-giving-up-sound-wise) but it's [learned helplessness](#what-is-learned-helplessness) in a better outfit. And it [closes doors](#what-does-it-cost) before you touch the handle.
 
 ## Why does giving up sound wise?
 
-"I'm just being realistic."
+"I'm just being realistic." It sounds mature. Grounded.
 
-It sounds mature. Grounded. Like you've assessed the situation and made a clear-eyed judgment. Compared to someone excitedly starting something that'll probably fail, the realist seems smarter.
-
-But notice what "realistic" might actually be doing: it's pre-empting failure by refusing to try. You can't fail at something you never started. And not-failing feels like not-losing. Which feels like a kind of winning.
-
-It's not, really. It's just nothing. But nothing is comfortable, and comfort is hard to argue against.
+It's pre-empting failure by refusing to try. You can't fail at something you never started. Not-failing feels like not-losing. Not-losing feels like winning. It's not. It's nothing. But nothing is comfortable.
 
 ## What is learned helplessness?
 

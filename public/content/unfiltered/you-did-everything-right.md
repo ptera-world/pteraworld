@@ -36,13 +36,13 @@ it got you exactly what the system needed from you: a functional unit of product
 
 ## the betrayal
 
-the promise wasn't "you'll be a functional unit." the promise was "you'll be okay." the promise implied something beyond survival - happiness, fulfillment, the sense that the work was building toward something. and when the something never arrives, the system has a response:
+the promise was "you'll be okay." not "you'll be a functional unit." okay. happy. fulfilled. building toward something.
 
-you must have done it wrong.
+the something never arrived. the system's response: you did it wrong. not enough hustle. wrong degree. wrong mindset.
 
-not enough hustle. not the right degree. not the right investments. not the right mindset. the system's answer to its own broken promise is always: the failure was yours. the steps work. you just didn't step correctly.
+the steps failed. the system blamed you. that's the whole move. that's always the move. the steps work, you just didn't step correctly - said the system that wrote the steps, sold the steps, and collected at every step along the way.
 
-and the person standing in the middle of a life built entirely out of correct steps, feeling empty, feeling tired, feeling like the person inside the machine stopped mattering somewhere around year eight - that person often believes it. because the alternative is worse. the alternative is: the steps don't lead where they promised. the entire map was wrong. and you followed it for twenty years.
+and you believe it. because the alternative is: the map was wrong. the entire map. and you followed it for twenty years.
 
 ## not just you
 

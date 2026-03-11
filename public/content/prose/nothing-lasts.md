@@ -88,4 +88,4 @@ This is impossibly hard. The instinct is to grip - to hold on, to preserve, to [
 
 Nothing lasts. Not the grief. Not the joy. Not the thing you're reading right now or [the person who wrote it](/prose/who-am-i). Not the moment you're in or the one that comes next.
 
-That's not the sad part. That's the whole of it. The everything of it. The reason any of it matters at all.
+If you really lived like you knew that - not as a philosophy, but as a felt thing, in your body, every morning - what would you do differently? I don't know either.
