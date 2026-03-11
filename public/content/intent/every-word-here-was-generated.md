@@ -38,4 +38,4 @@ The honest version is that this collection sits in the territory it describes an
 
 A reader encountering this collection can't verify the claim that someone was in the loop. They can't tell the difference between "someone worked through these ideas carefully using a model" and "someone prompted a model and kept whatever came out." The evidence structures that would distinguish those - the ones this collection has spent six essays watching collapse - aren't available. You'd have to trust the disclosure, which is just another piece of text, generated the same way as everything else.
 
-That's not a comfortable place to leave it. It's also the only honest one. The collection doesn't resolve whether this counts. It puts the question in front of you, which is the only thing it was ever trying to do.
+That should lead somewhere. A resolution, or at least a stance. The collection doesn't have one.

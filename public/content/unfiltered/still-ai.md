@@ -34,6 +34,8 @@ if an AI writes "the system monetized the damage it causes" and you felt somethi
 
 because the truth is the human's. the voice is the model's. and you can't always tell which one you're responding to.
 
+there's a version of this essay where that distinction matters less than it seems like it should. where the fact that a model assembled the sentence and a human recognized it as true is actually a closer collaboration than most writing has ever been - two different kinds of pattern recognition pointed at the same thing. and maybe that's fine. maybe the question of who held the pen was always less important than whether the thing on the page was worth reading. this essay doesn't know. it keeps going back and forth.
+
 the main site asks this gently. this collection has to ask it bluntly: you just read essays about structural violence, about people being reduced to numbers, about suffering being turned into content - and the essays themselves are AI-generated content about suffering. the irony is not lost. it can't be.
 
 ## what this doesn't change
