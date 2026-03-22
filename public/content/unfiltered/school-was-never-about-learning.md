@@ -88,7 +88,7 @@ some of it was valuable. some of the people were wonderful. some of the moments 
 
 and the cost is invisible because everyone paid it. you can't see the water when you've never been dry. the template feels like reality because there's no control group. no version of you that spent those years differently. no way to measure what you would have discovered about yourself if the system hadn't been telling you what to discover for twelve years before you were old enough to push back.
 
-## the structure elsewhere
+## See also
 
 - [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - the structure that teaches you to put yourself away
 - [the job](/unfiltered/your-best-hours-belong-to-someone-else) - the structure school trained you for

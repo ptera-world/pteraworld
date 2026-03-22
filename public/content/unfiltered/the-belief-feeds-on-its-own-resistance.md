@@ -30,8 +30,6 @@ someone leaves → they couldn't handle the commitment → the system said weak 
 
 someone questions from inside → doubt is a test → the system said doubt would come → the system is right.
 
-there's no input that the loop reads as disconfirmation. agreement confirms. disagreement confirms. silence confirms. the loop doesn't process evidence. it converts it.
-
 this is the difference between a system that can be questioned and one that can't. a system that can be questioned says: here's what we believe, here's why, here's what would change our mind. the loop says: here's what we believe, here's why you'll want to leave, and here's why wanting to leave proves you should stay.
 
 ## the alienation

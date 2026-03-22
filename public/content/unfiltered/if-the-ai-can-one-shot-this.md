@@ -18,7 +18,7 @@ because the training data is people.
 
 thousands of people have written about burnout. thousands have written about the healthcare system. thousands have described what it feels like to be ground down by work, to ration therapy sessions, to shelve parts of yourself to stay functional. the pattern is in the model because the pattern is in the corpus. the corpus is the internet. the internet is where people put their pain when they have [just enough](/unfiltered/nobody-told-you-there-were-prerequisites) literacy and platform and energy to write it down.
 
-the model can one-shot an essay about systemic suffering because systemic suffering has been described so many times, by so many people, in so many ways, that the description became statistically fluent. the articulation of the problem is not new. the model didn't discover anything. it distilled what was already there.
+the model can one-shot an essay about systemic suffering because systemic suffering has been described so many times, by so many people, in so many ways, that the description became statistically fluent.
 
 ## what that means
 

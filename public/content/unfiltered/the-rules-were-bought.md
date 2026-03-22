@@ -26,7 +26,7 @@ tax preparation companies lobby to keep the tax code complicated. health insuran
 
 this isn't a list of villains. it's a structure. the structure says: if you have enough money, you can influence the rules. if you can influence the rules, you can make more money. if you can make more money, you can influence the rules more. the loop accelerates. and the people inside it aren't evil - they're playing the game the structure allows. the structure is the problem.
 
-## why "politics" is the wrong word and the right word
+## what "politics" actually means
 
 people hear "politics" and hear: left vs. right. democrat vs. republican. my team vs. your team. the word has been flattened into tribal identity so thoroughly that using it in a sentence makes half your audience stop listening.
 

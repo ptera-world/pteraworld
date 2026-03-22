@@ -14,7 +14,7 @@ a plan would be [just](/unfiltered/just) in disguise - "just do these five thing
 
 but "the problem is bigger than you" can't be where it ends either. you still have to live inside the structure. you still wake up tomorrow inside [the grind](/unfiltered/the-system-filled-every-gap-you-had). and if this collection names everything that's wrong and offers nothing - not even a direction - then it's just despair with better formatting.
 
-not prescribe. not fix. but point at things that have shifted the weight for some people, in some situations, without pretending they'll work for everyone or that they're enough.
+so: not prescribe. not fix. but point at things that have shifted the weight for some people, in some situations, without pretending they'll work for everyone or that they're enough.
 
 ## seeing it
 
@@ -43,8 +43,6 @@ the thing you make that no one asked for. the walk that isn't exercise - it's ju
 these aren't solutions. the system will fill them back in tomorrow. but they're evidence. evidence that you're still in there, underneath the pattern. that the person [the grind](/unfiltered/the-system-filled-every-gap-you-had) buries is still alive, even when they don't have room to move. the reclamation doesn't have to be big. it doesn't have to be daily. it just has to happen sometimes, so you know it can.
 
 ## the machinery, named
-
-this collection named the machinery. it pointed at the grind, the gate, the shelf, the template, the benefit, the rules. it said: this is what's happening, this is what it costs, this is why it's not your fault.
 
 the problems are baked into the system. the solutions - the ones that would actually change conditions - are collective, political, generational. they're bigger than one person reading essays on a screen.
 

@@ -65,7 +65,7 @@ none of these are evil. all of them do damage.
 
 ## the cruelty of it
 
-"just work harder" said to someone working two jobs is not advice. it's an accusation. it says: your suffering is a choice. you could stop suffering if you wanted to. the fact that you haven't means you don't want it enough.
+"just work harder" said to someone working two jobs is not advice. it says: your suffering is a choice. you could stop suffering if you wanted to. the fact that you haven't means you don't want it enough.
 
 that framing does something violent: it protects the system. if poverty is laziness, the system doesn't need to change. if depression is unwillingness to seek help, the healthcare structure is fine. if people don't vote because they don't care, the political system is working. "just" relocates the failure from the structure to the person. and the person - already exhausted, already [grinding](/unfiltered/the-system-filled-every-gap-you-had), already carrying the weight [the number](/unfiltered/35-million-people-is-just-a-statistic) can't hold - now carries the blame too.
 

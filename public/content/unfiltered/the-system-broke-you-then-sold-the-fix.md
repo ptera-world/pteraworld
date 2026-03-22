@@ -48,11 +48,7 @@ the person with the gym membership and the meal prep isn't less depleted. they j
 
 the hierarchy of coping is a class marker dressed up as a health choice.
 
-## the cycle
-
-damage → cope → judge → shame → more damage → more coping.
-
-the shame is the part that locks it in. you know the drinking isn't helping. you know the scrolling isn't rest. you know the spending is making [the gate](/unfiltered/every-freedom-is-a-money-problem) harder to reach. and knowing this, while being unable to change it because the conditions that drive it haven't changed, produces shame. and shame is a feeling you need to cope with. so you reach for the thing that helps. which produces more shame.
+the cycle is damage → cope → judge → shame → more damage → more coping. the shame is the part that locks it in. you know the drinking isn't helping. you know the scrolling isn't rest. you know the spending is making [the gate](/unfiltered/every-freedom-is-a-money-problem) harder to reach. and knowing this, while being unable to change it because the conditions that drive it haven't changed, produces shame. and shame is a feeling you need to cope with. so you reach for the thing that helps. which produces more shame.
 
 the system doesn't need to enforce this cycle. the cycle is self-sustaining. all the system needs to do is maintain the depletion. the market handles the rest.
 

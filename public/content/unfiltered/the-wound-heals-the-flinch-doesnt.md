@@ -10,8 +10,6 @@ the event ends. the pattern doesn't.
 
 someone was hurt - assaulted, abused, neglected, chronically ground down, told they were wrong for existing. the thing that did the damage may have stopped. may have been years ago. but the body and mind built something around it while it was happening. a response. a shape. a way of navigating the world that kept them alive when the world was dangerous. and the response doesn't know the danger ended. it keeps running.
 
-that's the scar. not the event. the pattern that formed around the event.
-
 ## what the patterns look like
 
 the flinch is the simplest one. someone raises their voice and your body reacts before your brain catches up. it doesn't matter that this person isn't the person who hurt you. your nervous system learned that raised voice means danger, and it learned it with the kind of certainty that doesn't respond to logic. the flinch is faster than thought. it was designed to be. that's how it kept you alive.

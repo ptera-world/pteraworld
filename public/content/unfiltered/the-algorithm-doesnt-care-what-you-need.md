@@ -16,7 +16,7 @@ engagement. not satisfaction. not understanding. not connection. not truth. enga
 
 and the algorithm learned something about engagement that the designers may not have intended but certainly didn't stop: outrage engages. fear engages. tribalism engages. the content that makes you angry keeps you scrolling longer than the content that makes you think. the content that confirms what you already believe feels better than the content that challenges it. the algorithm doesn't have opinions. it has metrics. and the metrics say: show them the thing that makes them react.
 
-so it does. and the feed becomes a mirror that shows you a version of the world optimized for your reaction, not your understanding.
+so it does. the feed becomes a mirror — a version of the world optimized for your reaction, not your understanding.
 
 ## what gets reinforced
 

@@ -8,8 +8,6 @@ tags: [social, identity]
 
 [the template](/unfiltered/kids-learn-what-a-life-looks-like) talks about what kids absorb by watching - the shape of a day, the rhythm of the grind, the pattern they inherit without anyone teaching it. this essay is about something sharper. what happens when the parenting itself does damage.
 
-## what damage looks like
-
 neglect. sometimes it's not even recognizable as neglect because the parent is physically there. on the phone. responding to every question with "not now." their attention so fully consumed by [the grind](/unfiltered/the-system-filled-every-gap-you-had) and [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) that the child learns, early: my needs are an interruption.
 
 the child doesn't learn this in words. they learn it in the pause before the parent looks up. in the sigh. in the difference between "i see you" and "what now." children are extraordinary at reading microseconds.
@@ -50,7 +48,7 @@ i don't know what you do with that. i think a lot of people who grew up this way
 
 ## blame
 
-here's where it gets complicated and honestly where it stays complicated.
+it gets complicated here. and honestly stays complicated.
 
 the parent who neglected was probably [running on empty](/unfiltered/the-system-filled-every-gap-you-had). the parent who raged was probably carrying damage they never had the resources to process. the parent who controlled was probably terrified - of the world, of their own history. the parent who was absent was probably absent for reasons the child couldn't see: [the job](/unfiltered/your-best-hours-belong-to-someone-else), their own [shelf](/unfiltered/the-parts-of-yourself-you-put-away), their own [scar](/unfiltered/the-wound-heals-the-flinch-doesnt).
 

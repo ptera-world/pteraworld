@@ -6,19 +6,15 @@ tags: [social, identity]
 
 # The damage lands in your body.
 
-the entire collection up to this point lives in the mind. systems, structures, patterns, analysis. the grind fills your hours. the shelf holds your feelings. the floor blocks your self-actualization. all of it described in terms of cognition, emotion, capacity.
+the entire collection up to this point lives in the mind. systems, structures, patterns, analysis. the grind fills your hours. the shelf holds your feelings. the floor blocks your self-actualization.
 
 but the damage doesn't stay in the mind. it lands in the body. and the body keeps a different kind of score.
-
-## what stress is
 
 stress isn't a feeling. it's a chemical state. cortisol, adrenaline, inflammatory markers. the body doesn't know the difference between a predator and a performance review. it runs the same emergency response for both - elevated heart rate, suppressed digestion, narrowed focus, immune system on hold. the emergency response was designed for minutes. [the grind](/unfiltered/the-system-filled-every-gap-you-had) runs it for years.
 
 chronic stress isn't "being stressed out." it's your body running an emergency protocol that never ends. the inflammation becomes baseline. the tension becomes posture. the elevated cortisol becomes weight gain, insomnia, brain fog, immune suppression. the body adapts to the emergency by breaking down slowly instead of all at once.
 
 and the system calls this "aging." or "lifestyle factors." or "pre-existing conditions." as if the body deteriorating under decades of systemic pressure is a personal health choice.
-
-## what exhaustion is
 
 the tiredness at the end of [the grind](/unfiltered/the-system-filled-every-gap-you-had) isn't laziness. it's depletion. the body spent its resources - glucose, neurotransmitters, the capacity to regulate emotion and sustain attention - on eight hours of someone else's priorities. what comes home is the residue. the feeling of being tired isn't a mood. it's a metabolic state. the tank is empty. and the system expects you to fill it with six hours of sleep and do it again.
 

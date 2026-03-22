@@ -24,11 +24,9 @@ this is [compression](/prose/why-are-we-compressing-things) applied to human bei
 
 the system has a vocabulary for this. it's very precise.
 
-"food insecurity" - means people don't know where their next meal is coming from. but "food insecurity" sounds like a policy challenge. "people are hungry" sounds like an emergency. the vocabulary exists to convert emergencies into challenges. challenges are manageable. emergencies demand action.
+"food insecurity" sounds like a policy challenge. "people are hungry" sounds like an emergency. the vocabulary exists to convert emergencies into challenges. challenges are manageable. emergencies demand action. "housing instability" means people might lose their homes. "cost of living adjustment" means everything got more expensive and your pay didn't keep up. "economic pressure" means the system is squeezing people until they break. "market correction" means the thing people invested their lives in just lost value and they're trapped.
 
-"housing instability" - means people might lose their homes. "cost of living adjustment" - means everything got more expensive and your pay didn't keep up. "economic pressure" - means the system is squeezing people until they break. "market correction" - means the thing people invested their lives in just lost value and they're trapped.
-
-each phrase does the same thing: takes a human experience and reformats it into something that fits in a report. the report doesn't feel anything. the person does. the distance between those two is the vocabulary's job.
+each phrase takes a human experience and reformats it into something that fits in a report. the report doesn't feel anything. the person does. the distance between those two is the vocabulary's job.
 
 "only 10.6%." "only" is doing violence there. it's comparison language - only compared to what? compared to worse? compared to a number that would finally be bad enough to matter? what's the threshold? at what percentage does it stop being "only"? who set that threshold? was it someone below the line?
 
@@ -50,9 +48,7 @@ the number defines the problem. and by defining it, it contains it. everything o
 
 a single death is a tragedy. a million deaths is a statistic. not because people don't care - because the brain can't scale empathy. so the number steps in. the number handles it. the number absorbs the enormity and gives you back something you can process.
 
-and numbers are so convenient. once a person becomes a number, you don't have to feel anything about them. most people aren't empathetic towards numbers. a number doesn't look at you. a number doesn't need anything from you. a number is just a fact, and facts are neutral, and neutral means you can put the report down and go to lunch.
-
-and once you can process it, you can accept it. and once you can accept it, you can move on. the number doesn't demand action the way a face does. a face is a person. a number is a fact. facts are neutral. facts are just data. data doesn't cry.
+once a person becomes a number, you don't have to feel anything about them. a number doesn't look at you. a number doesn't need anything from you. it's just a fact, and facts are neutral, and neutral means you can put the report down and go to lunch. and once you can process it, you can accept it. and once you can accept it, you can move on.
 
 this is how a society lives with 770,000 homeless people. not by being cruel. by being statistical. the cruelty is in the reduction, and the reduction is invisible because it's how everyone - including the people who care - talks about it.
 

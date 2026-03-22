@@ -60,8 +60,6 @@ the floor keeps going down. every time you think you've found the most accessibl
 
 essays are what you write when you have enough distance to organize. songs are what you make when you have enough to feel and shape it. protest is what you do when you have enough to show up. and the people below all of those? they survive. that's it. that's the format. survival, unrecorded, ending when it ends. and above the floor, the people who could speak [put it on the shelf instead](/unfiltered/the-parts-of-yourself-you-put-away).
 
-## why this matters here
-
 this site is a graph of ideas. it talks about meaning, about systems, about what's wrong and what could be different. it does all of this from the top of the pyramid - from safety, capacity, platform, time.
 
 nothing wrong with that. we write from where we are.

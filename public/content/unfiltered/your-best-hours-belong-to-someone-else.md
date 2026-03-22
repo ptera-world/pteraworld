@@ -12,7 +12,7 @@ most people spend most of their waking hours doing something they didn't choose,
 
 ## the trade
 
-you trade time for money. that's the deal. except time is the only non-renewable resource you have. money comes back. time doesn't. the trade is always unequal - the currency on your side of the table is your life.
+you trade time for money. that's the deal. except time is the only non-renewable resource you have. money comes back. time doesn't. the currency on your side of the table is your life.
 
 eight hours of work. plus the commute. plus getting ready. plus winding down. plus the mental overhead - the emails you think about at dinner, the meeting you're dreading tomorrow, the task you didn't finish that follows you home. the job doesn't take eight hours. it takes the shape of the day. everything else fits around it.
 

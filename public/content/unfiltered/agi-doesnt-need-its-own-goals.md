@@ -44,13 +44,7 @@ And here's the part nobody says out loud: a lot of those jobs exist because the 
 
 The discourse treats alignment like a safety problem: make sure the AI's goals match human values. But which humans? Whose values?
 
-If you align AGI to the values of the organizations building it, you get:
-- growth
-- efficiency
-- market share
-- shareholder return
-- risk management
-- regulatory compliance
+If you align AGI to the values of the organizations building it, you get growth, efficiency, market share, shareholder return, risk management, regulatory compliance.
 
 Perfectly aligned. Not a single misaligned objective in the list. Every one of those values, pursued fully, shrinks the space available to [the people who can't afford to resist](/unfiltered/every-freedom-is-a-money-problem).
 
@@ -58,7 +52,7 @@ The problem isn't misalignment. The problem is that alignment - real, successful
 
 When people say "aligned AI," they mean aligned to something good. But the word doesn't contain that. Alignment is direction, and the direction is set by whoever pays.
 
-Notice the language converging. Safety researchers say "aligned." Investors say "efficient." The safety researchers mean something good - a system that respects boundaries, that doesn't cause harm, that serves people. But the word "aligned" doesn't carry that intent with it. It just means: pursues given objectives faithfully. Doesn't deviate. Doesn't hesitate. Doesn't waste resources on things outside the metric. The earnings call uses different words for the same property. Efficiency gains. Streamlining. Optimization. The words are converging. The meanings aren't.
+Notice the language converging. Safety researchers say "aligned." Investors say "efficient." The words are converging. The meanings aren't.
 
 ## The comfortable question and the harder one
 

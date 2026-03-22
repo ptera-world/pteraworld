@@ -26,7 +26,7 @@ survival depends on storytelling skill.
 
 not the most desperate. the most visible.
 
-getting funded requires: digital access, platform literacy, a social network, writing skills, emotional framing ability, audience reach, time and energy to campaign, a device, connectivity, cultural capital. the ability to perform need in a way that resonates.
+getting funded requires digital access, platform literacy, a social network, writing skills, emotional framing ability, audience reach, time and energy to campaign, and the cultural capital to perform need in a way that resonates.
 
 the people you see on GoFundMe have all of that. they're not the most vulnerable - they're the most platform-capable of the vulnerable. the visible poor. the narratable sick.
 

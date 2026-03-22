@@ -46,8 +46,6 @@ this isn't metaphor. this is just what happens. expression costs something. ever
 
 ## the vocal minority problem
 
-and here's where it turns.
-
 the people with time, energy, platform, and safety get to define what "the discourse" is. not because they're right. because they're *there*. presence is a resource. and resources aren't distributed by who has the most to say.
 
 the loudest voices on any issue are the voices that could afford to be loud. sometimes they're the ones closest to the problem. often they're not. often they're people with enough distance to have an opinion and enough platform to broadcast it. the signal gets shaped by who can transmit, not by who has the most to transmit.

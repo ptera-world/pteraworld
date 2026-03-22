@@ -48,7 +48,7 @@ these essays are as composed as the main site's. the composition just uses diffe
 
 ## what's left
 
-both collections manipulate. the main site does it with warmth and questions. this collection does it with weight and naming. the main site feels like exploration. this collection feels like honesty. neither feeling is wrong, exactly - but both are produced. both are the result of choices about tone, structure, register, and sequencing. the craft is different. the craft is still craft.
+both collections manipulate. the main site does it with warmth and questions. this collection does it with weight and naming. the main site feels like exploration. this collection feels like honesty. neither feeling is wrong, exactly - but both are produced, and both are the result of choices about tone, structure, register, and sequencing. the craft is different. the craft is still craft.
 
 the observations are still true. the floor is still there. the grind still fills every hour. the system still optimizes against the people with the least leverage. none of that changes because the voice describing it is constructed. but the voice - the feeling of "finally someone's saying it directly" - that feeling is as designed as the main site's "let's think about this together."
 

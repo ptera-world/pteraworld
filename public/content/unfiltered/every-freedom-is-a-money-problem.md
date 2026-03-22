@@ -12,12 +12,9 @@ money is the universal prerequisite. every other freedom - time, safety, health,
 
 ## what money gates
 
-- time, first. you buy it by earning enough to not need all your hours. but earning enough requires selling your hours. the gate is circular.
-- housing costs money. food costs money. the physical security that [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) lists as the bottom of the pyramid - all of that is a monthly payment. safety is a subscription.
-- so is health. [the benefit](/unfiltered/the-system-monetized-the-damage) covered this - healthcare tied to employment, the body's needs gated by a paycheck.
-- and you can't sit with a hard question when you're calculating whether you can afford groceries this week. cognitive bandwidth has a cost. poverty taxes it directly. every decision about money is a decision you're not making about anything else.
-- making things requires tools, space, time, and the belief that making is worth doing. the first three cost money. the fourth requires enough safety to feel like making matters - which costs money. expression is downstream of everything above it.
-- being present with people requires not being somewhere else earning. loneliness isn't just a social problem. it's an economic one.
+time, first. you buy it by earning enough to not need all your hours. but earning enough requires selling your hours. the gate is circular. housing costs money. food costs money. the physical security that [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) lists as the bottom of the pyramid - all of that is a monthly payment. safety is a subscription. so is health. [the benefit](/unfiltered/the-system-monetized-the-damage) covered this - healthcare tied to employment, the body's needs gated by a paycheck.
+
+you can't sit with a hard question when you're calculating whether you can afford groceries this week. cognitive bandwidth has a cost. poverty taxes it directly. every decision about money is a decision you're not making about anything else. making things requires tools, space, time, and the belief that making is worth doing. the first three cost money. the fourth requires enough safety to feel like making matters - which costs money. expression is downstream of everything above it. being present with people requires not being somewhere else earning. loneliness isn't just a social problem. it's an economic one.
 
 everything on the pyramid is downstream of money. and money is downstream of labor. and labor is downstream of [the job](/unfiltered/your-best-hours-belong-to-someone-else). the whole structure is a funnel that converts your life into someone else's profit and gives you back just enough to keep the conversion running.
 

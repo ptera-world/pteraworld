@@ -8,7 +8,7 @@ tags: [social]
 
 your employer offers mental health coverage. therapy sessions, maybe an EAP hotline, maybe a meditation app subscription. it's listed in the benefits package between dental and the 401k match.
 
-this means: the system acknowledged that work causes psychological damage, and rather than fix the work, it made the treatment part of the compensation. "we know this will hurt you. here's a copay."
+the system acknowledged that work causes psychological damage, and rather than fix the work, it made the treatment part of the compensation. "we know this will hurt you. here's a copay."
 
 ## how the loop works
 
@@ -22,7 +22,7 @@ and if you actually burn out - if the coping stops working and the performance d
 
 the healthcare is tied to the job. in most of the US, losing your job means losing your coverage. the thing that was breaking you was also the thing paying to manage the breaking.
 
-think about what that means. you can't leave the thing that's hurting you without also losing access to the thing that's treating the hurt. the exit costs include losing the treatment for the damage the thing you're exiting caused. that's not a safety net. that's a lock.
+you can't leave the thing that's hurting you without also losing access to the thing that's treating the hurt. the exit costs include losing the treatment for the damage the thing you're exiting caused. that's not a safety net. that's a lock.
 
 and everyone knows this. every person who's stayed in a job that was grinding them down because they couldn't afford to lose the insurance - they know. it's not a secret. it's not a conspiracy. it's just the structure, sitting there, doing exactly what it was designed to do.
 
