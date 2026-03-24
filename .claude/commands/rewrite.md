@@ -40,6 +40,8 @@ Now read the essay at `$ARGUMENTS`. Understand the thread — where it starts, w
 
 Rewrite it in this voice. Preserve every idea, argument, cross-link, and concrete detail. Preserve essay length.
 
+The `## See also` section at the bottom (if present) must be preserved exactly — same links, same lowercase titles, no descriptions added, heading intact.
+
 Write the result back to the same file path.
 
 ---
