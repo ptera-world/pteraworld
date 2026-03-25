@@ -1,6 +1,6 @@
 # Content Index
 
-Two collections, 74 essays total. The prose collection (49 essays) explores via questions in a neutral peer voice with no negative language. The unfiltered collection (25 essays) names the same structural problems directly, with negative language allowed. Together they form a single argument: meaning lives in the gap between structure and intent, nearly everything is designed to close that gap, and the people most affected by that closing are the least likely to be reading about it. The prose collection is the analysis; the unfiltered collection is the floor beneath it.
+Two collections, 76 essays total. The prose collection (50 essays) explores via questions in a neutral peer voice with no negative language. The unfiltered collection (26 essays) names the same structural problems directly, with negative language allowed. Together they form a single argument: meaning lives in the gap between structure and intent, nearly everything is designed to close that gap, and the people most affected by that closing are the least likely to be reading about it. The prose collection is the analysis; the unfiltered collection is the floor beneath it.
 
 ---
 
@@ -59,6 +59,7 @@ The diagnosis: systems optimize for their own continuation, not for the people i
 - `[unfiltered/you-did-everything-right]` the promise — The implicit social contract (do the right things, you'll be okay) that doesn't deliver; the system's answer to its broken promise is always "you did it wrong"
 - `[unfiltered/safe-spaces-need-everything-to-go-right]` the room — Safe spaces require everything to go right; safety is set by the least safe person present; depleted people can't hold each other's weight
 - `[unfiltered/the-algorithm-doesnt-care-what-you-need]` the feed — The algorithm optimizes for engagement not wellbeing; outrage and identity threats win the attention competition; the feed replaces boredom, connection, and rest with lesser substitutes
+- `[unfiltered/the-walls-came-down]` the walls — The internet removed distance; the room became the world; safety requires bounded space and the platforms collapsed every context into one; the wall is the product
 
 ### AI, Authorship, and Authenticity
 
@@ -101,6 +102,7 @@ What disappeared when everything scaled. The personal web, special things, depth
 - `[prose/what-do-we-keep-losing]` what do we keep losing? — Technology is preserved by practice, not existence; digital is more fragile than stone; knowledge systems need continuous care or they die
 - `[prose/why-is-nothing-special-anymore]` why is nothing special anymore? — Everything converged on frictionless sameness; trust in the audience disappeared because the metric can't tolerate anyone leaving
 - `[prose/why-did-things-stop-being-personal]` why did things stop being personal? — The personal web died because "good" was redefined toward platforms; Tumblr paradox; permission to make ugly things wasn't revoked, just stopped being default
+- `[prose/where-does-connection-come-from]` where does connection come from? — Connection as byproduct of shared space, not something you pursue; the bar stool, the game, the pyramid; you need a room, a reason, time, and walls
 - `[prose/everything-changes]` everything changes — Impermanence as the nature of reality; the frozen thing and moving reality create the gap that breaks things
 - `[prose/nothing-lasts]` nothing lasts — Impermanence as the condition of meaning, not its enemy; mono no aware; permission to let things die; cycles not lines
 
@@ -134,6 +136,7 @@ These pairs are in direct conversation. The prose essay explores the mechanism; 
 | `how-do-i-do-things` | `the-floor`, `the-silence` | Practical patterns for starting meets the recognition that starting requires conditions most people don't have |
 | `this-is-not-all` | `the-silence`, `why-this-exists` | Acknowledging gaps shaped like the author meets naming the structural reason those gaps exist |
 | `why-is-change-so-hard` | `the-loop`, `the-scar` | Change resisted by older systems meets belief systems that feed on resistance and trauma patterns that persist |
+| `where-does-connection-come-from` | `the-walls`, `the-room` | Connection as byproduct of bounded space meets the structural removal of boundaries and the impossibility of safety at scale |
 | `everything-changes` | `the-inheritance`, `the-template` | Impermanence as reality meets intergenerational patterns that replicate despite everything changing |
 
 ---
