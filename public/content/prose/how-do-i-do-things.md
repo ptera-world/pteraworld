@@ -65,7 +65,7 @@ If you don't try, nothing happens. The idea stays in your head. The question sta
 
 There's no guarantee that trying works. But not trying has a guaranteed outcome.
 
----
+## See also
 
 - [what's actually wrong?](/prose/whats-actually-wrong) - why it's hard to start things
 - [why is perfectionism a trap?](/prose/why-is-perfectionism-a-trap) - when standards become walls

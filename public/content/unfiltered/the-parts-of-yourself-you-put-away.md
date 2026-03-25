@@ -54,7 +54,7 @@ from inside, you're running a background process that never stops. monitoring th
 
 "good" is the sound the shelf makes when it's holding.
 
----
+## see also
 
 - [the grind](/unfiltered/the-system-filled-every-gap-you-had) - the structure that requires the shelf
 - [the benefit](/unfiltered/the-system-monetized-the-damage) - therapy as shelf management

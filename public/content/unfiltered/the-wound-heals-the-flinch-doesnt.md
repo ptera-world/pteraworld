@@ -64,7 +64,7 @@ and it requires someone - a therapist, a partner, a friend - who can hold space 
 
 what do you do when the thing you need to heal requires the exact capacity the wound took from you?
 
----
+## see also
 
 - [the body](/unfiltered/the-damage-lands-in-your-body) - where the scar lives physically
 - [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) - the scar's quieter cousin

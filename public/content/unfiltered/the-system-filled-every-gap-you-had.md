@@ -58,7 +58,7 @@ except it's not. it's a million people's problem. and they're all too tired to c
 
 and when the grind finally breaks something - when the burnout hits, when the anxiety becomes chronic, when you stop being able to feel things - [the system has a response for that too](/unfiltered/the-system-monetized-the-damage). it's in your benefits package. between dental and the 401k match.
 
----
+## see also
 
 - [the floor](/unfiltered/nobody-told-you-there-were-prerequisites) - the prerequisites nobody mentions
 - [the benefit](/unfiltered/the-system-monetized-the-damage) - the system monetized the damage it causes

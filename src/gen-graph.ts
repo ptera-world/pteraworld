@@ -637,7 +637,7 @@ for (const { id, path } of files) {
   const text = await readFile(path, "utf-8");
   const body = stripFrontmatter(text);
 
-  const match = body.match(/## (?:Related projects|See also)\n([\s\S]*?)(?=\n## |\n$|$)/);
+  const match = body.match(/## (?:Related projects|See also)\n([\s\S]*?)(?=\n## |\n$|$)/i);
   if (!match) continue;
 
   const section = match[1]!;

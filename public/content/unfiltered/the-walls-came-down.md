@@ -80,7 +80,7 @@ discord works because it has walls. thirty people in a server. you know who's th
 
 the tool the world is missing isn't a better feed or a smarter algorithm or a more engaging platform. it's a wall. small spaces, owned by someone, bounded, with edges you can see. the room doesn't need to be safe. it just needs to be small enough that safety is possible again.
 
----
+## see also
 
 - [the room](/unfiltered/safe-spaces-need-everything-to-go-right) — the mechanics of why safe spaces fail
 - [the shelf](/unfiltered/the-parts-of-yourself-you-put-away) — what you carry when the room isn't safe
