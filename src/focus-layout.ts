@@ -4,7 +4,7 @@
  * requestAnimationFrame for smooth visual transitions.
  */
 import type { Graph, Node } from "./graph";
-import { updatePositions, nodeEls, worldEl } from "./dom";
+import { updatePositions, nodeEls, edgeRefs, regionEls, worldEl } from "./dom";
 import { getSettings } from "./settings";
 
 const REPEL = 4000;
@@ -15,22 +15,64 @@ const FOCUS_GRAVITY = 0.015;
 const DAMPING = 0.86;
 const MAX_FORCE = 8;
 const SETTLE_THRESHOLD = 0.3;
-const NEIGHBORHOOD_HOPS = 2;
+const NEIGHBORHOOD_HOPS: Record<string, number> = { far: 3, mid: 2, near: 1 };
+const GOAL_NEIGHBORHOOD_SIZE: Record<string, number> = { far: 28, mid: 15, near: 8 };
+const GOAL_NEIGHBORHOOD_THRESHOLD = 0.5; // fraction of goal — whole hop preferred within ±50%
 const STEPS_PER_FRAME = 8;
 
 function nodeRadius(n: Node): number {
   return n.collisionRadius ?? n.radius;
 }
 
-export function createFocusLayout(graph: Graph) {
+export function createFocusLayout(graph: Graph, defaultFocusId: string | null = null, neighborhoodEnabled = true) {
   let focusedId: string | null = null;
   let neighborIds = new Set<string>();
+  let tier: "far" | "mid" | "near" = "mid";
   const vx = new Map<string, number>();
   const vy = new Map<string, number>();
   const anchorX = new Map<string, number>();
   const anchorY = new Map<string, number>();
   const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
   let rafId = 0;
+
+  /** BFS from nodeId toward goalSize nodes.
+   * Prefers complete hop boundaries when within threshold of the goal —
+   * natural graph distances make better visible cuts than arbitrary mid-hop stops.
+   * Falls back to mid-hop BFS when no hop count lands close enough. */
+  function getDefaultNeighborhood(nodeId: string, goalSize: number, thresholdFraction = GOAL_NEIGHBORHOOD_THRESHOLD): Set<string> {
+    const threshold = Math.round(goalSize * thresholdFraction);
+    const result = new Set<string>([nodeId]);
+    let frontier = new Set([nodeId]);
+    while (frontier.size > 0) {
+      const next = new Set<string>();
+      for (const id of frontier) {
+        for (const edge of graph.edges) {
+          const other = edge.from === id ? edge.to : edge.to === id ? edge.from : null;
+          if (other && !result.has(other)) next.add(other);
+        }
+      }
+      if (next.size === 0) break;
+      const afterHop = result.size + next.size;
+      // If this complete hop lands within threshold, commit it and keep going
+      if (Math.abs(afterHop - goalSize) <= threshold) {
+        for (const id of next) result.add(id);
+        frontier = next;
+        continue;
+      }
+      // If the hop overshoots beyond threshold, fall back to mid-hop BFS
+      if (afterHop > goalSize + threshold) {
+        for (const id of next) {
+          result.add(id);
+          if (result.size >= goalSize) break;
+        }
+        break;
+      }
+      // Under-threshold: commit and continue
+      for (const id of next) result.add(id);
+      frontier = next;
+    }
+    return result;
+  }
 
   function getNeighborhood(nodeId: string, hops: number): Set<string> {
     const result = new Set<string>([nodeId]);
@@ -71,11 +113,22 @@ export function createFocusLayout(graph: Graph) {
         updatePositions(graph);
         setTimeout(() => { delete worldEl.dataset.settling; }, 350);
       }
-      clearNeighborhoodAttr();
+      // Restore default neighborhood (never show all nodes at once)
+      if (defaultFocusId && neighborhoodEnabled) {
+        const defaultNeighbors = getDefaultNeighborhood(defaultFocusId, GOAL_NEIGHBORHOOD_SIZE[tier]!);
+        if (defaultNeighbors.size > 1) {
+          neighborIds = defaultNeighbors;
+          applyNeighborhoodAttr();
+        } else {
+          clearNeighborhoodAttr();
+        }
+      } else {
+        clearNeighborhoodAttr();
+      }
       return;
     }
 
-    neighborIds = getNeighborhood(focusedId, NEIGHBORHOOD_HOPS);
+    neighborIds = getNeighborhood(focusedId, NEIGHBORHOOD_HOPS[tier]!);
     applyNeighborhoodAttr();
 
     if (!settings.dynamicLayout) return;
@@ -195,7 +248,7 @@ export function createFocusLayout(graph: Graph) {
   }
 
   function applyNeighborhoodAttr(): void {
-    if (!getSettings().neighborhoodFocus) return;
+    if (!neighborhoodEnabled) return;
     for (const [id, el] of nodeEls) {
       if (neighborIds.has(id)) {
         delete el.dataset.neighborhood;
@@ -203,16 +256,54 @@ export function createFocusLayout(graph: Graph) {
         el.dataset.neighborhood = "distant";
       }
     }
+    for (const [id, el] of regionEls) {
+      if (neighborIds.has(id)) {
+        delete el.dataset.neighborhood;
+      } else {
+        el.dataset.neighborhood = "distant";
+      }
+    }
+    for (const ref of edgeRefs) {
+      if (neighborIds.has(ref.from) && neighborIds.has(ref.to)) {
+        delete ref.el.dataset.neighborhood;
+      } else {
+        ref.el.dataset.neighborhood = "distant";
+      }
+    }
   }
 
   function clearNeighborhoodAttr(): void {
-    for (const [, el] of nodeEls) {
-      delete el.dataset.neighborhood;
+    for (const [, el] of nodeEls) delete el.dataset.neighborhood;
+    for (const [, el] of regionEls) delete el.dataset.neighborhood;
+    for (const ref of edgeRefs) delete ref.el.dataset.neighborhood;
+  }
+
+  // Apply default neighborhood on init — never start with all nodes visible.
+  // Skip if seed has no edges (isolated meta node) to avoid hiding everything.
+  if (defaultFocusId && neighborhoodEnabled) {
+    const defaultNeighbors = getDefaultNeighborhood(defaultFocusId, GOAL_NEIGHBORHOOD_SIZE[tier]!);
+    if (defaultNeighbors.size > 1) {
+      neighborIds = defaultNeighbors;
+      applyNeighborhoodAttr();
     }
+  }
+
+  function onTierChange(newTier: "far" | "mid" | "near"): void {
+    if (newTier === tier) return;
+    tier = newTier;
+    if (!neighborhoodEnabled) return;
+    if (focusedId) {
+      neighborIds = getNeighborhood(focusedId, NEIGHBORHOOD_HOPS[tier]!);
+    } else if (defaultFocusId) {
+      const defaultNeighbors = getDefaultNeighborhood(defaultFocusId, GOAL_NEIGHBORHOOD_SIZE[tier]!);
+      if (defaultNeighbors.size > 1) neighborIds = defaultNeighbors;
+    }
+    applyNeighborhoodAttr();
   }
 
   return {
     onFocusChange,
+    onTierChange,
     /** Current neighborhood node IDs (empty when no focus). */
     getNeighborIds: () => neighborIds,
   };

@@ -6,8 +6,15 @@ import { updateMinimap } from "./minimap";
 import { siteConfig, getActiveCollection } from "./site-config";
 import { getSettings } from "./settings";
 
+
 const viewport = document.getElementById("viewport")!;
 export const worldEl = document.getElementById("world")!;
+
+let lastTier: ReturnType<typeof currentTier> | null = null;
+let onTierChange: ((tier: ReturnType<typeof currentTier>) => void) | null = null;
+export function setOnTierChange(cb: (tier: ReturnType<typeof currentTier>) => void): void {
+  onTierChange = cb;
+}
 
 interface EdgeRef {
   el: SVGPathElement;
@@ -21,10 +28,10 @@ interface EdgeRef {
 
 export const nodeEls = new Map<string, HTMLElement>();
 const hitNodes = new Map<HTMLElement, Node>();
-const edgeRefs: EdgeRef[] = [];
+export const edgeRefs: EdgeRef[] = [];
 const containmentEdgeRefs: EdgeRef[] = []; // Dynamic containment edges for current grouping
 export let landingEl: HTMLElement;
-const regionEls = new Map<string, HTMLElement>();
+export const regionEls = new Map<string, HTMLElement>();
 let svgLayer: SVGSVGElement;
 
 let filterRef: FilterState | null = null;
@@ -105,7 +112,11 @@ export function buildWorld(graph: Graph): void {
       if (node.body) {
         const bodyEl = document.createElement("div");
         bodyEl.className = "node-body";
-        bodyEl.textContent = node.body;
+        if (node.bodyHtml) {
+          bodyEl.innerHTML = node.bodyHtml;
+        } else {
+          bodyEl.textContent = node.body;
+        }
         text.appendChild(bodyEl);
       }
       el.appendChild(text);
@@ -149,7 +160,9 @@ export function updateTransform(camera: Camera): void {
   const ty = viewport.clientHeight / 2 - camera.y * camera.zoom;
   worldEl.style.transform = `translate(${tx}px, ${ty}px) scale(${camera.zoom})`;
   worldEl.style.setProperty("--zoom", `${camera.zoom}`);
-  worldEl.dataset.tier = currentTier(camera);
+  const tier = currentTier(camera);
+  worldEl.dataset.tier = tier;
+  if (tier !== lastTier) { lastTier = tier; onTierChange?.(tier); }
   const landingOpacity = Math.max(0, Math.min(1, (3.0 - camera.zoom) / 1.5));
   landingEl.style.setProperty("--landing-zoom", `${landingOpacity}`);
   updateMinimap(camera);

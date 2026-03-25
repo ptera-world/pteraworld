@@ -25,8 +25,10 @@ export interface Node {
   color: string;
   status?: "production" | "fleshed-out" | "early" | "planned";
   tags: string[];
-  /** Fragment body text (rendered on canvas). */
+  /** Fragment body text (source, used for collision radius). */
   body?: string;
+  /** Fragment body pre-rendered as HTML (used for canvas display). */
+  bodyHtml?: string;
   /** Optional tagline shown below description on the landing element. */
   trail?: string;
 }

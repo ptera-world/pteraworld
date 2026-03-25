@@ -1,6 +1,6 @@
 import { createCamera } from "./camera";
 import { createGraph } from "./graph";
-import { buildWorld, updateTransform, setFilterRef, updatePositions, animateTo, worldEl } from "./dom";
+import { buildWorld, updateTransform, setFilterRef, updatePositions, animateTo, worldEl, setOnTierChange } from "./dom";
 import { setupInput } from "./input";
 import { initPanel, openPanel } from "./panel";
 import { showCard, hideCard, getCurrentCardNode, setCardToggleFilter, setCardIsTagActive, setCardGetTagColor } from "./card";
@@ -10,7 +10,7 @@ import { createFocusLayout } from "./focus-layout";
 import { loadSettingsFromUrl } from "./settings";
 import { createMinimap } from "./minimap";
 import { initGroupingState, buildGroupingUI, restoreGroupingFromUrl, getTagColor, setOnGroupingChange, resetToCurrentGrouping } from "./grouping-state";
-import { siteConfig, getActiveCollection, siteUrl } from "./site-config";
+import { siteConfig, getActiveCollection, siteUrl, type CollectionConfig } from "./site-config";
 import { landingEl } from "./dom";
 
 loadSettingsFromUrl();
@@ -19,7 +19,7 @@ const camera = createCamera();
 const graph = createGraph();
 
 // Center camera on the active collection's meta node
-const collectionMeta = siteConfig.collections[getActiveCollection()];
+const collectionMeta: CollectionConfig = siteConfig.collections[getActiveCollection()];
 const metaNode = graph.nodes.find((n) => n.id === collectionMeta.metaNodeId);
 if (metaNode) { camera.x = metaNode.x; camera.y = metaNode.y; }
 
@@ -112,7 +112,9 @@ createMinimap(camera, graph, (x, y, animate) => {
 });
 updateTransform(camera);
 window.addEventListener("resize", () => updateTransform(camera));
-const focusLayout = createFocusLayout(graph);
+const neighborhoodEnabled = collectionMeta.neighborhoodFocus ?? getSettings().neighborhoodFocus;
+const focusLayout = createFocusLayout(graph, collectionMeta.metaNodeId, neighborhoodEnabled);
+setOnTierChange((tier) => focusLayout.onTierChange(tier));
 const input = setupInput(document.getElementById("viewport")!, camera, graph, {
   onFocusChange: (node) => focusLayout.onFocusChange(node),
 });

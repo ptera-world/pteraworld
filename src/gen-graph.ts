@@ -9,6 +9,7 @@ import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import { parse as parseYaml } from "yaml";
 import { parseFrontmatter, stripFrontmatter } from "./frontmatter";
+import { parseMarkdown } from "./markdown";
 import { type Point, convexHull, expandHull, filterOutliers, hullSeparation } from "./hull";
 import { findMarkdownFiles, CONTENT_DIR } from "./content";
 
@@ -33,8 +34,10 @@ interface ParsedNode {
   id: string;
   label: string;
   description: string;
-  /** Fragment body text (markdown content minus heading and ## See also). */
+  /** Fragment body text (source, used for collision radius). */
   body?: string;
+  /** Fragment body pre-rendered as HTML. */
+  bodyHtml?: string;
   url?: string;
   parent?: string;
   iconRadius?: number;
@@ -430,15 +433,39 @@ const files = allFiles.filter((f) => !CONFIG_ONLY_DIRS.has(f.category));
 const nodes: ParsedNode[] = [];
 const nodeIds = new Set<string>();
 
+/** Split fragment body at punctuation boundaries when chunks exceed threshold.
+ * Inserts markdown soft-break (two trailing spaces + newline) at split points.
+ * Mirrors the rendering in dom.ts via pre-rendered bodyHtml. */
+function splitFragmentBody(text: string, threshold = 90): string {
+  const parts: string[] = [];
+  let start = 0;
+  let lastBreak = 0;
+  for (let i = 0; i < text.length - 1; i++) {
+    const ch = text[i]!;
+    if (".?!;".includes(ch) && text[i + 1] === " " && (i - lastBreak) >= threshold) {
+      parts.push(text.slice(start, i + 1));
+      start = i + 2;
+      lastBreak = i + 1;
+      i++;
+    }
+  }
+  parts.push(text.slice(start));
+  return parts.join("  \n");
+}
+
 /** Estimate collision radius from body text dimensions.
- * Body: 11px, ~5.5px/char, max-width 280px CSS, line-height 1.5 (16.5px). */
+ * Body: 9px, ~4.5px/char, max-width 280px CSS, line-height 1.5 (13.5px).
+ * Uses same heuristic split as splitFragmentBody. */
 function fragmentCollisionRadius(body: string): number {
   const maxW = 280;
-  const lines = body.split("\n").reduce(
-    (sum, line) => sum + Math.max(1, Math.ceil(line.length * 5.5 / maxW)), 0,
+  const charW = 4.5;
+  const lineH = 13.5;
+  const chunks = splitFragmentBody(body).split("  \n");
+  const lines = chunks.reduce(
+    (sum, chunk) => sum + Math.max(1, Math.ceil(chunk.length * charW / maxW)), 0,
   );
-  const textW = Math.min(body.length * 5.5, maxW);
-  const textH = lines * 16.5;
+  const textW = Math.min(body.length * charW, maxW);
+  const textH = lines * lineH;
   return Math.hypot(textW / 2, textH / 2) + 12;
 }
 
@@ -485,6 +512,7 @@ function parseMultiFragmentFile(
     const allTags = [...new Set([...autoTags, ...tags])];
     const radius = radiusFromStatus(undefined);
     const collisionRadius = body ? fragmentCollisionRadius(body) : undefined;
+    const bodyHtml = body ? parseMarkdown(splitFragmentBody(body)) : undefined;
 
     results.push({
       node: {
@@ -492,6 +520,7 @@ function parseMultiFragmentFile(
         label,
         description: "",
         body: body || undefined,
+        bodyHtml,
         tags: allTags,
         radius,
         collisionRadius,
@@ -1422,6 +1451,7 @@ const nodeLines = nodes.map((n) => {
   if (n.status) fields.push(`status: "${n.status}"`);
   fields.push(`tags: [${n.tags.map((t) => `"${t}"`).join(", ")}]`);
   if (n.body) fields.push(`body: ${quote(n.body)}`);
+  if (n.bodyHtml) fields.push(`bodyHtml: ${quote(n.bodyHtml)}`);
   if (n.trail) fields.push(`trail: ${quote(n.trail)}`);
   return `  { ${fields.join(", ")} },`;
 }).join("\n");

@@ -18,7 +18,7 @@ export interface Settings {
 
 const defaults: Settings = {
   dynamicLayout: true,
-  neighborhoodFocus: true,
+  neighborhoodFocus: false,
   focusHighlight: true,
   edgesVisible: true,
   cardEnabled: true,

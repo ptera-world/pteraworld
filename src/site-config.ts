@@ -5,6 +5,8 @@ export interface CollectionConfig {
   metaNodeId: string;
   /** Content directories to include when building this collection's graph. */
   contentDirs: string[];
+  /** Override neighborhoodFocus for this collection. Undefined = inherit from settings. */
+  neighborhoodFocus?: boolean;
 }
 
 export const siteConfig = {
@@ -21,7 +23,13 @@ export const siteConfig = {
     default: {
       name: "ptera",
       metaNodeId: "meta/pteraworld",
-      contentDirs: ["ecosystem", "meta", "project", "fragments", "portal", "domain", "technology", "status"],
+      contentDirs: ["meta", "fragments", "portal"],
+      neighborhoodFocus: true,
+    },
+    projects: {
+      name: "projects",
+      metaNodeId: "meta/projects",
+      contentDirs: ["meta", "project", "ecosystem", "domain", "technology", "status"],
     },
     unfiltered: {
       name: "unfiltered",

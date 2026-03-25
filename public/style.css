@@ -65,9 +65,10 @@ html, body {
   position: relative; top: auto; left: auto;
   transform: none; max-width: 280px;
   pointer-events: auto; cursor: pointer;
-  text-align: left;
+  text-align: center;
 }
-.node.fragment .node-body { font-size: 11px; color: #aaa; line-height: 1.5; }
+.node.fragment .node-body { font-size: 9px; color: #aaa; line-height: 1.5; }
+.node.fragment .node-body p { margin: 0; }
 .node.fragment .node-text:hover .node-body { color: #ddd; }
 
 /* Project dot */
@@ -346,10 +347,10 @@ html, body {
 .node[data-filtered="surfaced"] { opacity: 0.4; pointer-events: auto; }
 .edge[data-filtered="surfaced"] { opacity: 0.3; }
 
-/* Neighborhood focus — fade distant nodes (overrides filtered states) */
-.node[data-neighborhood="distant"] { opacity: 0.06; pointer-events: none; transition: opacity 400ms; }
-.node[data-neighborhood="distant"] .node-text { display: none; }
-.node[data-neighborhood="distant"][data-filtered="hidden"] { opacity: 0.04; }
+/* Neighborhood focus — hide distant nodes/edges (overrides filtered states) */
+.node[data-neighborhood="distant"] { opacity: 0; pointer-events: none; transition: opacity 400ms; visibility: hidden; }
+.node[data-neighborhood="distant"][data-filtered="hidden"] { opacity: 0; }
+.edge[data-neighborhood="distant"] { opacity: 0; transition: opacity 400ms; }
 
 /* Text on canvas — project nodes get enhanced text at near zoom */
 #world[data-text-on-canvas][data-tier="near"] .node.project .node-text { transform: translateX(-50%) scale(0.85); }
